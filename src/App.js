@@ -14,6 +14,7 @@ const user = {
 function greeting(user){
   if (user){
     // here i am using curly braces to shove an expression in the "html"
+    // you can use string literals when declaring attribute names within react.
     return <h1> Hello, {formatName(user)}! </h1>;
   }
   return <h1> Hello, Stranger. </h1>;
