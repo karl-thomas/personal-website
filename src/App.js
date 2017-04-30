@@ -26,7 +26,6 @@ function formatName(user) {
 const user = {
   firstName: 'Karl',
   lastName: 'Thomas'
-  avatarUrl
 };
 
 function greeting(user){
