@@ -32,7 +32,7 @@ const user = {
 function tick (user){
   const greeting = (
     <div>
-      function customGreeting = {
+      function customGreeting (user) {
         if (user) {
         // here i am using curly braces to shove an expression in the "html"
         // you can use string literals when declaring attribute names within react.
