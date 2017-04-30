@@ -32,14 +32,16 @@ const user = {
 function tick (user){
   const greeting = (
     <div>
-      if (user) {
+      function customGreeting = {
+        if (user) {
         // here i am using curly braces to shove an expression in the "html"
         // you can use string literals when declaring attribute names within react.
-        <h1> Hello, {formatName(user)}!</h1>
-      } 
-      else {
+          <h1> Hello, {formatName(user)}!</h1>
+        } 
+        else {
         <h1> Hello, Stranger. </h1>
-      }
+        }
+      };
       <h2> It is {new Date().toLocaleTimeString()}.</h2>
     </div> 
     );
@@ -54,6 +56,7 @@ class App extends Component {
   render() {
     return (
       tick(user)
+      setInterval(tick, 1000);
     );
   }
 }
