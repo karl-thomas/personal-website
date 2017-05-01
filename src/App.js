@@ -20,45 +20,14 @@ import './App.css';
 //   }
 // }
 
-function formatName(user) {
-  return user.firstName + ' ' + user.lastName;
-}
 
-const user = {
-  firstName: 'Karl',
-  lastName: 'Thomas'
-};
-
-function tick (user){
-  const greeting = (
-    <div>
-      function customGreeting (user) {
-        if (user) {
-        // here i am using curly braces to shove an expression in the "html"
-        // you can use string literals when declaring attribute names within react.
-          <h1> Hello, {formatName(user)}!</h1>
-        } 
-        else {
-        <h1> Hello, Stranger. </h1>
-        }
-      };
-      <h2> It is {new Date().toLocaleTimeString()}.</h2>
-    </div> 
-    );
-  ReactDOM.render(
-    greeting,
-    document.getElementById('root')
-  ); 
-};
 
 // this app class gets called in the ReactDOM display
-class App extends Component {
-  render() {
-    return (
-      tick(user)
-      setInterval(tick, 1000);
-    );
-  }
-}
+// class App extends Component {
+//   render() {
+//     return (
+//     );
+//   }
+// }
 
-export default App;
+// export default App;
