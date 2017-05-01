@@ -25,6 +25,39 @@ function Welcome(props) {
   }
 };
 
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()};
+  }
+
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    this.setState({
+      date: new Date()
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+      </div>
+    );
+  }
+}
+
+
 // function tick (user){
 //   const greeting = (
 //     <div>
@@ -37,21 +70,14 @@ function Welcome(props) {
 //     document.getElementById('root')
 //   ); 
 // };
-
-// // it's rendering the app js file here, in the reacting dom guy which makes sense
-// setInterval(tick(user), 1000)
-
-function tick() {
-  const element = (
+const element = (
     <div>
-      <Welcome name="Karl Thomas" />
-      <h2>It is {new Date().toLocaleTimeString()}.</h2>
+      <Welcome name={formatName(user)} />
+      <Clock />
     </div>
   );
-  ReactDOM.render(
-    element,
-    document.getElementById('root')
-  );
-}
-
-setInterval(tick, 1000);
+// it's rendering the app js file here, in the reacting dom guy which makes sense/
+ReactDOM.render(
+  element,
+  document.getElementById('root')
+);
