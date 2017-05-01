@@ -14,11 +14,11 @@ function formatName(user) {
   return user.firstName + ' ' + user.lastName;
 }
 
-function customGreeting(userObj) {
-  if (userObj) {
+function Welcome(props) {
+  if (props.name) {
   // here i am using curly braces to shove an expression in the "html"
   // you can use string literals when declaring attribute names within react.
-    return <h1> Hello, {formatName(userObj)}!</h1>
+    return <h1> Hello, {props.name}!</h1>
   } 
   else {
     return <h1> Hello, Stranger. </h1>
@@ -44,7 +44,7 @@ function customGreeting(userObj) {
 function tick() {
   const element = (
     <div>
-      {customGreeting(user)}
+      <Welcome name="Karl Thomas" />
       <h2>It is {new Date().toLocaleTimeString()}.</h2>
     </div>
   );
