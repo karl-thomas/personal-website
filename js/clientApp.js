@@ -5,7 +5,7 @@ var MyTitle = React.createClass({
 	render: function () {
 		return (
 			div(null,
-				h1(null, 'checkout this component')
+				h1(null, this.props.title)
 			)
 		)
 	}
@@ -17,10 +17,10 @@ var MyFirstComponent = React.createClass({
   render: function () {
     return (
       div(null,
-        MyTitleFactory(null),
-        MyTitleFactory(null),
-        MyTitleFactory(null),
-        MyTitleFactory(null)
+        MyTitleFactory({ title: 'props are the best'}),
+        MyTitleFactory({ title: 'semicolons are not'}),
+        MyTitleFactory({ title: 'same # of thingies'}),
+        MyTitleFactory({ title: 'woopy woop mc doop'})
       )
     )
   }
