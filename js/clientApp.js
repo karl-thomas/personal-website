@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { HashRouter, Match} from 'react-router'
-import Landing from './landing'
+import { HashRouter, Match } from 'react-router'
+import Landing from './Landing'
 import '../public/normalize.css'
 import '../public/style.css'
 
