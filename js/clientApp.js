@@ -1,18 +1,19 @@
 import React from 'react'
 import { render } from 'react-dom'
 import '../public/normalize.css'
-import '../public/styles.css'
+import '../public/style.css'
 
 const App = React.createClass({
   render(){
     return (
       <div className='app'>
         <div className='landing'>
-        <h1>video guyy</h1>
-        <input type='text' placeholder='search' />
-        <a>or Browse All</a>
+          <h1>svideo</h1>
+          <input type='text' placeholder='Search' />
+          <a>or Browse All</a>
+        </div>
       </div>
-      )
+    )
   }
 })
 

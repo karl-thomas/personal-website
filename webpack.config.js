@@ -29,7 +29,7 @@ module.exports= {
 					'style-loader',
 					{
 						loader: 'css-loader',
-						option: {
+						options: {
 							url: false
 						}
 					}
