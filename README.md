@@ -19,3 +19,7 @@ webpack js/clientApp.js public/bundle.js
 for production
 NODE_ENV=production webpack -p js/clientApp.js public/bundle.js
 ```
+babel-ifying: make sure your program runs all your js as babel(ES6=>ES5)
+```
+webpack --module-bind='js=babel' js/clientApp.js public/bundle.js
+```
