@@ -14,12 +14,15 @@ npm install --global standard
 ```
 look up the correct version
 npm install --global webpack@v2.1.0-beta.25
+
 to bundle
 webpack js/clientApp.js public/bundle.js
+
 for production
 NODE_ENV=production webpack -p js/clientApp.js public/bundle.js
 ```
 #### babel-ifying: make sure your program runs all your js as babel(ES6=>ES5)
+* if you have configured your webpack, which yes, you should, then just say ``` webpack ```
 ```
 webpack --module-bind='js=babel' js/clientApp.js public/bundle.js
 ```
