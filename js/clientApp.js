@@ -1,17 +1,19 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import MyTitle from './MyTitle'
+import { render } from 'react-dom'
+import '../public/normalize.css'
+import '../public/styles.css'
 
-var MyFirstComponent = React.createClass({
-  render: function () {
+const App = React.createClass({
+  render(){
     return (
-      <div> 
-        <MyTitle title='props are cool' color='rebeccapurple' />
-        <MyTitle title='semicolons=not' color='peru' />
-        <MyTitle title='bears are king' color='mediumaquamarine' />
-      </div>  
-    )
+      <div className='app'>
+        <div className='landing'>
+        <h1>video guyy</h1>
+        <input type='text' placeholder='search' />
+        <a>or Browse All</a>
+      </div>
+      )
   }
 })
 
-ReactDOM.render(React.createElement(MyFirstComponent), document.getElementById('app'))
+render(<App />, document.getElementById('app'))
