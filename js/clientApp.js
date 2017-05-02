@@ -18,3 +18,4 @@ const App = React.createClass({
 })
 
 render(<App />, document.getElementById('app'))
+//the port 8080 is being used when you come back kill it
