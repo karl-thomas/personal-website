@@ -3,7 +3,7 @@ exports[`test Search snapshot test 1`] = `
   className="search">
   <header>
     <h1>
-      searchy guy
+      search guy
     </h1>
     <input
       onChange={[Function bound handleSearchTermChange]}
