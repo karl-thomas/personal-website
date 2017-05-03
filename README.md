@@ -32,7 +32,7 @@ but for testing use jest and enzyme. enzyme is defacto for testing react compone
  yarn global add jest@v16.0.2
  ```
  
- for coverage, which uses "instanbul"
+ for coverage, which uses "istanbul"
  ```
  npm run test -- --coverage
  
