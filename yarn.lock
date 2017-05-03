@@ -2875,7 +2875,7 @@ jest-util@^15.1.1:
     jest-mock "^15.0.0"
     mkdirp "^0.5.1"
 
-jest@15.1.1:
+jest@^15.1.1:
   version "15.1.1"
   resolved "https://registry.yarnpkg.com/jest/-/jest-15.1.1.tgz#d02972b3ba27067b7713e44219b4731aa48540a6"
   dependencies:
