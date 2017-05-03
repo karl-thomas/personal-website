@@ -22,7 +22,21 @@ for production
 NODE_ENV=production webpack -p js/clientApp.js public/bundle.js
 ```
 #### babel-ifying: make sure your program runs all your js as babel(ES6=>ES5)
-* if you have configured your webpack, which yes, you should, then just say ``` webpack ```
-```
-webpack --module-bind='js=babel' js/clientApp.js public/bundle.js
-```
+configure your webpack, which yes, you should, then just say ``` webpack ```
+
+#### testing
+most commands I wrote out manually into package.json so that npm runs them for me.
+but for testing use jest and enzyme. enzyme is defacto for testing react components and jest is just incredible, it includes a test coverage service and snap shot testing, realy good stuff.
+
+ ```
+ yarn global add jest@v16.0.2
+ ```
+ 
+ for coverage, which uses "instanbul"
+ ```
+ npm run test -- --coverage
+ 
+ or
+ 
+ open coverage/lcov-report/index.html
+ ```
