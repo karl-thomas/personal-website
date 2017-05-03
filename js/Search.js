@@ -5,7 +5,7 @@ const Search = React.createClass({
 	render () {
 		return (
 			<div className='search'>
-				{preload.shows.map(function (show) {
+				{preload.shows.map((show) => {
 					return (
 						<h3>{show.title}</h3>
 					)
