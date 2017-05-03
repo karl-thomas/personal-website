@@ -1,22 +1,23 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import MyTitle from './MyTitle'
+import { render } from 'react-dom'
+import { HashRouter, Match } from 'react-router'
+import Landing from './Landing'
+import Search from "./Search"
+import '../public/normalize.css'
+import '../public/style.css'
 
-var div = React.DOM.div
-
-var MyTitleFactory = React.createFactory(MyTitle)
-
-var MyFirstComponent = React.createClass({
-  render: function () {
+const App = React.createClass({
+  render () {
     return (
-      div(null,
-        MyTitleFactory({title: 'props are the best', color: 'peru'}),
-        MyTitleFactory({title: 'semicolons are not', color: 'mediumaquamarine'}),
-        MyTitleFactory({title: 'same # of thingies', color: 'rebeccapurple'}),
-        MyTitleFactory({title: 'woopy woop mc doop', color: 'darkvioletred'})
-      )
+      <HashRouter>
+        <div className='app'>
+          <Match exactly pattern='/' component={Landing} />
+          <Match pattern='/search' component={Search} />
+        </div>
+      </HashRouter>
     )
   }
 })
 
-ReactDOM.render(React.createElement(MyFirstComponent), document.getElementById('app'))
+render(<App />, document.getElementById('app'))
+
