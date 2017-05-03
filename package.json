@@ -9,7 +9,10 @@
     "build": "webpack",
     "dev": "webpack-dev-server",
     "lint": "eslint js/**/*.js webpack.config.js",
-    "watch": "npm run build -- --watch"
+    "watch": "npm run build -- --watch",
+    "test": "NODE_ENV=test jest",
+    "update-test": "npm run test -- -u",
+    "cover": "npm run test -- --coverage"
   },
   "dependencies": {
     "axios": "0.15.2",
@@ -46,7 +49,7 @@
     "eslint-plugin-promise": "2.0.1",
     "eslint-plugin-react": "6.3.0",
     "eslint-plugin-standard": "2.0.0",
-    "jest": "15.1.1",
+    "jest": "^15.1.1",
     "jsdom": "9.5.0",
     "json-loader": "0.5.4",
     "react-addons-test-utils": "15.3.2",
