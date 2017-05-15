@@ -4,6 +4,7 @@ import { BrowserRouter, Match } from 'react-router'
 import Landing from './Landing'
 import Search from './Search'
 import Details from './details'
+import preload from '../public/data.json'
 import '../public/normalize.css'
 import '../public/style.css'
 
