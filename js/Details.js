@@ -12,6 +12,7 @@ const Details = React.createClass({
 	}
 });
 
+// this is just an example of a stateless functional component
 // const Details = (props) => {
 // 	return <h1> {props.params.id} </h1>
 // }
