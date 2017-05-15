@@ -3,16 +3,16 @@ import ShowCard from './ShowCard'
 import preload from '../public/data.json'
 
 const Search = React.createClass({
-  getInitialState () {
-    return {
-      searchTerm: ''
-    }
-  },
-  handleSearchTermChange (event) {
-    this.setState({searchTerm: event.target.value})
-  },
-  render () {
-    return (
+  	getInitialState () {
+    	return {
+      	searchTerm: ''
+    	}
+  	},
+  	handleSearchTermChange (event) {
+    	this.setState({searchTerm: event.target.value})
+  	},
+  	render () {
+    	return (
 			<div className='search'>
 				<header>
 					<h1>search guy</h1>
@@ -31,7 +31,7 @@ const Search = React.createClass({
 				</div>
 			</div>
 		)
-  }
+ 	}
 })
 
 export default Search
