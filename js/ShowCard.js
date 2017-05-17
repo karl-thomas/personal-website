@@ -4,11 +4,11 @@ const { string } = React.PropTypes
 
 const ShowCard = React.createClass({
   propTypes: {
-    poster: string,
-    title: string,
-    year: string,
-    description: string,
-    imdbID: string
+    poster: string.isRequired,
+    title: string.isRequired,
+    year: string.isRequired,
+    description: string.isRequired,
+    imdbID: string.isRequired
   },
   render () {
     const {poster, title, year, description, imdbID} = this.props
