@@ -27,12 +27,19 @@ const Details = React.createClass({
 	},
 	render (){
 		const { title, description, year, poster, trailer } = this.props.show
+		let rating
+		if (this.state.omdbData.imdbRating){
+			rating = <h3>{this.state.omdbData.imdbRating}</h3>
+		} else {
+			rating = <img src='/public/img/loading.png' alt='loading indicator' />
+		}
 		return (
 			<div className='details'>
 				<Header />
 				<section>
 					<h1>{title}</h1>
 					<h2>({year})</h2>
+					{rating}
 					<img src={`/public/img/posters/${poster}`} />
 					<p> {description} </p>
 				</section>
