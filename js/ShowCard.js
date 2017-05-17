@@ -7,12 +7,13 @@ const ShowCard = React.createClass({
     poster: string,
     title: string,
     year: string,
-    description: string
+    description: string,
+    imdbID: string
   },
   render () {
-    const {poster, title, year, description} = this.props
+    const {poster, title, year, description, imdbID} = this.props
     return (
-      <Link to={`/details/${this.props.imdbID}`}>
+      <Link to={`/details/${imdbID}`}>
   			<div className='show-card'>
   				<img src={`/public/img/posters/${poster}`} />
   				<div>
