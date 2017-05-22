@@ -9,7 +9,7 @@ const Landing = React.createClass({
 		searchTerm: string,
 		dispatch: func
 	},
-	handleSearchTermChange (event){
+	handleSearchTermChange (event) {
 		this.props.dispatch(setSearchTerm(event.target.value))
 	},
   	render () {
