@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import ShowCard from './ShowCard'
 import Header from './Header'
 const {arrayOf, shape, string } = React.PropTypes
