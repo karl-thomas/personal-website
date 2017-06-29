@@ -1,42 +1,13 @@
-# Messing, with react
-Just a fun personal project, following along with guides and docs to learn react so it can influence my other projects. 
+# A Complete Intro to React
 
-As of right now all code is from a guide on frontendmasters.com, cloned from [this](https://github.com/btholt/complete-intro-to-react/tree/start "btholt's guide") repo
+Welcome to a complete intro to React! The site actual workshop material for this repo can be found [here][gh-page]. On the master branch you will find the completed project. On the start branch you will find the barebones boilerplater of the project designed to help you get started.
 
-## helpful tools
-#### general
-```
-npm install --global yarn
-npm install --global standard
-```
+## Contributing
 
-#### bundle/packaging
-```
-look up the correct version
-npm install --global webpack@v2.1.0-beta.25
+Please contribute, file issues, and make PRs. More than anything I'm sure there are typos abounding.
 
-to bundle
-webpack js/clientApp.js public/bundle.js
+## License
 
-for production
-NODE_ENV=production webpack -p js/clientApp.js public/bundle.js
-```
-#### babel-ifying: make sure your program runs all your js as babel(ES6=>ES5)
-configure your webpack, which yes, you should, then just say ``` webpack ```
+MIT
 
-#### testing
-most commands I wrote out manually into package.json so that npm runs them for me.
-but for testing use jest and enzyme. enzyme is defacto for testing react components and jest is just incredible, it includes a test coverage service and snap shot testing, realy good stuff.
-
- ```
- yarn global add jest@v16.0.2
- ```
- 
- for coverage, which uses "istanbul"
- ```
- npm run test -- --coverage
- 
- or
- 
- open coverage/lcov-report/index.html
- ```
+[gh-page]: http://btholt.github.io/complete-intro-to-react/
