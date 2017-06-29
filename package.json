@@ -58,11 +58,9 @@
     "react-test-renderer": "15.5.4",
     "webpack-dev-server": "2.4.5"
   },
-  "name": "complete-intro-to-react",
-  "version": "3.0.0",
-  "description": "A Complete Intro to React workshop",
+  "name": "messing-with-react",
+  "version": "0.0.0",
+  "description": "A foray into react for my own learning, using a tutorial from front end masters.",
   "main": "server.js",
-  "repository": "git@github.com:btholt/complete-intro-to-react.git",
-  "author": "Brian Holt <btholt@gmail.com>",
   "license": "MIT"
 }
