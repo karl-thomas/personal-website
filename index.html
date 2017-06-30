@@ -11,17 +11,21 @@
   <script src="node_modules/react/dist/react.js"></script>
   <script src="node_modules/react-dom/dist/react-dom.js"></script>
   <script>
-    const MyTitle = function() {
+    const ce = React.createElement
+    const MyTitle = function(props) {
       return (
-        React.createElement('div', null,
-          React.createElement('h1', null, 'My second component')
+        ce('div', null,
+          ce('h1', null, props.title)
           )
         )
     }
 
     const MyFirstComponent = function (){
-      return React.createElement('div', null,
-        React.createElement('h1', null, 'this is my first component')
+      return ce('div', null,
+        ce(MyTitle, { title: "game of thrans"})
+        ce(MyTitle, { title: "strangthangs"})
+        ce(MyTitle, { title: "rick marty"})
+        ce(MyTitle, { title: "silly vally"})
       )
     }
 
