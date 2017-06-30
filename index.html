@@ -12,6 +12,7 @@
   <script src="node_modules/react-dom/dist/react-dom.js"></script>
   <script>
     const ce = React.createElement
+
     const MyTitle = function(props) {
       return (
         ce('div', null,
@@ -21,7 +22,7 @@
     }
 
     const MyFirstComponent = function (){
-      return ce('div', null,
+      return ce('div', {id: 'my-first-component'},
         ce(MyTitle, { title: "game of thrans"})
         ce(MyTitle, { title: "strangthangs"})
         ce(MyTitle, { title: "rick marty"})
