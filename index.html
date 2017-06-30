@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset=utf-8>
+  <meta name=description content="">
+  <meta name=viewport content="width=device-width, initial-scale=1">
+  <title>Mini-flix</title>
+</head>
+<body>
+  <div id="app">
+  <script src="node_modules/react/dist/react.js"></script>
+  <script src="node_modules/react-dom/dist/react-dom.js"></script>
+  <script>
+    const MyFirstComponent = function (){
+      return React.createElement('div', null,
+        React.createElement('h1', null, 'this is my first component')
+      )
+    }
+
+    ReactDOM.render(
+      React.createElement(MyFirstComponent),
+      document.getElementById('app')
+    )
+  </script>
+</div>
+</body>
+</html>
