@@ -18,4 +18,4 @@ const MyFirstComponent = function() {
   );
 };
 
-ReactDOM.render(React.createElement(MyFirstComponent), document.getElementById('app'));
+render(React.createElement(MyFirstComponent), document.getElementById('app'));
