@@ -4,9 +4,10 @@ import { render } from 'react-dom';
 const ce = React.createElement;
 
 const MyTitle = function(props) {
+  const style = { color: props.color };
   return (
     <div>
-      <h1>
+      <h1 style={style}>
         {props.title}
       </h1>
     </div>
