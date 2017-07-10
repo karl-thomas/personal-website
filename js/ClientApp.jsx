@@ -1,27 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-const MyTitle = function(props) {
-  const style = { color: props.color };
-  return (
-    <div>
-      <h1 style={style}>
-        {props.title}
-      </h1>
+const App = () =>
+  <div className="app">
+    <div className="landing">
+      <h1>viddy-guy</h1>
+      <input type="text" placeholder="Search" />
+      <a>or browse all</a>
     </div>
-  );
-  // return ce('div', null, ce('h1', { style: { color: props.color } }, props.title));
-};
+  </div>;
 
-const MyFirstComponent = function() {
-  return (
-    <div id="my-first-component">
-      <MyTitle { title: 'game of thrans', color: 'YellowGreen' } />
-      <MyTitle { title: 'strangthangs', color: 'GreenYellow' } />
-      <MyTitle { title: 'rick marty', color: 'LimeGreen' } />
-      <MyTitle { title: 'silly vally', color: 'peru' } />
-    </div>
-  );
-};
-
-render(<MyFirstComponent />, document.getElementById('app'));
+render(<App />, document.getElementById('app'));
