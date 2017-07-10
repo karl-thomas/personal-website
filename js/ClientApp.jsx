@@ -16,14 +16,14 @@ const MyTitle = function(props) {
 };
 
 const MyFirstComponent = function() {
-  return ce(
-    'div',
-    { id: 'my-first-component' },
-    ce(MyTitle, { title: 'game of thrans', color: 'YellowGreen' }),
-    ce(MyTitle, { title: 'strangthangs', color: 'GreenYellow' }),
-    ce(MyTitle, { title: 'rick marty', color: 'LimeGreen' }),
-    ce(MyTitle, { title: 'silly vally', color: 'peru' })
+  return (
+    <div id="my-first-component">
+      <MyTitle { title: 'game of thrans', color: 'YellowGreen' } />
+      <MyTitle { title: 'strangthangs', color: 'GreenYellow' } />
+      <MyTitle { title: 'rick marty', color: 'LimeGreen' } />
+      <MyTitle { title: 'silly vally', color: 'peru' } />
+    </div>
   );
 };
 
-render(React.createElement(MyFirstComponent), document.getElementById('app'));
+render(React.createElement(MyFirstComponent document.getElementById('app'));
