@@ -10,7 +10,7 @@
     }]
   ],
   "plugins": [
-    "babel-blugin-transform-class-properties"
+    "babel-plugin-transform-class-properties"
   ]
 
 }
