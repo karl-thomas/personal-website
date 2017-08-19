@@ -8,5 +8,9 @@
       "loose": true,
       "modules": false
     }]
+  ],
+  "plugins": [
+    "babel-blugin-transform-class-properties"
   ]
+
 }

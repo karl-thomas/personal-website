@@ -1,12 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ShowCard from './ShowCard';
 import preload from '../data.json';
 
-const Search = () =>
-  <div className="search">
-    <div>
-      {preload.shows.map(show => <ShowCard key={show.imdbID} {...show} />)}
-    </div>
-  </div>;
+class Search extends Component {
+  // -*- this is replaced with class properties.
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     searchTerm: ''
+  //   };
+  // }
 
+  state = {
+    searchTerm: ''
+  };
+
+  // this is an auto bind, it replaces function = function.bind(this) in the constructor
+  // it does not create a new context
+  handleSearchTermChange = event => {
+    this.setState({ searchTerm: event.target.value });
+  };
+
+  render() {
+    return (
+      <div className="search">
+        <header>
+          <h1>Viddy guy</h1>
+          <input
+            onChange={this.handleSearchTermChange}
+            value={this.state.searchTerm}
+            type="text"
+            placeholder="Search"
+          />
+        </header>
+        <div>
+          {preload.shows.map(show => <ShowCard key={show.imdbID} {...show} />)}
+        </div>
+      </div>
+    );
+  }
+}
 export default Search;
