@@ -8,7 +8,7 @@ const renderApp = () => {
 
 renderApp();
 
-//the module(from webpack) can only be hot in development
+// the module(from webpack) can only be hot in development
 if (module.hot) {
   // when the top level component changes, reload it.
   // the smaller components will reload themselves.

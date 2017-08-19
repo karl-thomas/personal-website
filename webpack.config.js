@@ -7,7 +7,8 @@ module.exports = {
   devtool: 'cheap-eval-source-map',
   output: {
     path: path.join(__dirname, 'public'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/public/' // let hot modules know where to find the output
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json']
@@ -22,7 +23,7 @@ module.exports = {
     reasons: true,
     chunks: true
   },
-  plugins: [new webpack.HotModuleReplacmentPlugin(), new webpack.NamedModulesPlugin()],
+  plugins: [new webpack.HotModuleReplacementPlugin(), new webpack.NamedModulesPlugin()],
   module: {
     rules: [
       {
