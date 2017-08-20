@@ -2,9 +2,6 @@
 
 import React from 'react';
 
-const Details = () =>
-  <div className="details">
-    <h1>nice</h1>
-  </div>;
+const Details = props => <div className="details" />;
 
 export default Details;
