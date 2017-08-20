@@ -1,14 +1,13 @@
 // @flow
 
 import React from 'react';
+import Header from './Header';
 
 const Details = (props: { show: Show }) => {
   const { title, description, year, poster, trailer } = props.show;
   return (
     <div className="details">
-      <header>
-        <h1>viddy-guy</h1>
-      </header>
+      <Header />
       <section>
         <h1>
           {title}
