@@ -16,7 +16,9 @@ class Search extends Component {
   state = {
     searchTerm: ''
   };
+
   props: {
+    // shows? that means maybe i'll have that prop
     shows: Array<Show>
   };
   // this is an auto bind, it replaces function = function.bind(this) in the constructor
