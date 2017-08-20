@@ -1,23 +1,23 @@
 // @flow
 
-import React from 'react';
+import React, { Component } from 'react';
 import Header from './Header';
 
-const Details = (props: { show: Show }) => {
-  const { title, description, year, poster, trailer } = props.show;
-  return (
+class Details extends Component {
+  props: {
+    show: Show
+  };
+
+  render() {
+    const { title, description, year, poster, trailer } = this.props.show;
+    // prettier-ignore
+    return (
     <div className="details">
       <Header />
       <section>
-        <h1>
-          {title}
-        </h1>
-        <h2>
-          ({year})
-        </h2>
-        <p>
-          {description}
-        </p>
+        <h1>{title}</h1>
+        <h2>({year})</h2>
+        <p>{description}</p>
         <img src={`/public/img/posters/${poster}`} alt={` Poster for ${title} `} />
       </section>
       <div>
@@ -29,6 +29,8 @@ const Details = (props: { show: Show }) => {
         />
       </div>
     </div>
-  );
-};
+    );
+  }
+}
+
 export default Details;
