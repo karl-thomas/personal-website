@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import ShowCard from './ShowCard';
+import Header from './Header';
 
 class Search extends Component {
   /* -*- this is replaced with class properties.
@@ -30,15 +31,7 @@ class Search extends Component {
   render() {
     return (
       <div className="search">
-        <header>
-          <h1>viddy guy</h1>
-          <input
-            onChange={this.handleSearchTermChange}
-            value={this.state.searchTerm}
-            type="text"
-            placeholder="Search"
-          />
-        </header>
+        <Header showSearch searchTerm={this.state.searchTerm} handleSearchTermChange={this.handleSearchTermChange} />
         <div>
           {this.props.shows
             .filter(
