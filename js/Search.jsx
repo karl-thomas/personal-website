@@ -5,14 +5,14 @@ import ShowCard from './ShowCard';
 import preload from '../data.json';
 
 class Search extends Component {
-  // -*- this is replaced with class properties.
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     searchTerm: ''
-  //   };
-  // this.handleSearchTermChange = this.handleSearchTermChange.bind(this)
-  // }
+  /* -*- this is replaced with class properties.
+   constructor(props) {
+     super(props);
+     this.state = {
+       searchTerm: ''
+     };
+   this.handleSearchTermChange = this.handleSearchTermChange.bind(this)
+   } */
 
   state = {
     searchTerm: ''
