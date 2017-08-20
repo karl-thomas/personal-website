@@ -20,7 +20,7 @@ class Search extends Component {
 
   // this is an auto bind, it replaces function = function.bind(this) in the constructor
   // it does not create a new context
-  handleSearchTermChange = event => {
+  handleSearchTermChange = (event: SyntheticKeyboardEvent & { target: HTMLInputElement }) => {
     this.setState({ searchTerm: event.target.value });
   };
 
@@ -48,4 +48,5 @@ class Search extends Component {
     );
   }
 }
+
 export default Search;
