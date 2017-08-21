@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
+// import { context } from 'react-redux';
 import ShowCard from './ShowCard';
 import Header from './Header';
 
@@ -31,12 +32,18 @@ class Search extends Component {
   render() {
     return (
       <div className="search">
-        <Header showSearch searchTerm={this.state.searchTerm} handleSearchTermChange={this.handleSearchTermChange} />
+        <Header
+          showSearch
+          searchTerm={this.state.searchTerm}
+          handleSearchTermChange={this.handleSearchTermChange}
+        />
         <div>
           {this.props.shows
             .filter(
               show =>
-                `${show.title} ${show.description}`.toUpperCase().indexOf(this.state.searchTerm.toUpperCase()) >= 0
+                `${show.title} ${show.description}`
+                  .toUpperCase()
+                  .indexOf(this.state.searchTerm.toUpperCase()) >= 0
             )
             .map(show => <ShowCard key={show.imdbID} {...show} />)}
         </div>
