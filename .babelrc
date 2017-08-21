@@ -8,5 +8,10 @@
       "loose": true,
       "modules": false
     }]
+  ],
+  "plugins": [
+    "react-hot-loader/babel",
+    "babel-plugin-transform-class-properties"
   ]
+
 }
