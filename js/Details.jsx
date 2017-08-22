@@ -43,10 +43,7 @@ class Details extends Component {
           <p>
             {description}
           </p>
-          <img
-            src={`/public/img/posters/${poster}`}
-            alt={` Poster for ${title} `}
-          />
+          <img src={`/public/img/posters/${poster}`} alt={` Poster for ${title} `} />
         </section>
         <div>
           <iframe
