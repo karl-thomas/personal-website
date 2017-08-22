@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import type { Match } from 'react-router-dom';
 import { Provider } from 'react-redux'; // redux setup
 import store from './store'; // redux setup
+import Blog from './Blog';
 import Landing from './Landing';
 import Search from './Search';
 import Details from './Details';
@@ -25,11 +26,9 @@ const App = () =>
     <Provider store={store}>
       <div className="app">
         <Switch>
+          <Route exact path="/blog" component={Blog} />
           <Route exact path="/" component={Landing} />
-          <Route
-            path="/search"
-            component={props => <Search shows={preload.shows} {...props} />}
-          />
+          <Route path="/search" component={props => <Search shows={preload.shows} {...props} />} />
           <Route path="/details/:id" component={matchedDetailsPage} />
 
           <Route component={FourOhFour} />
