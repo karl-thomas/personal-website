@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Sidebar from './SideBar';
+import SideBar from './SideBar';
 
 class Blog extends Component {
   render() {
-    return <Sidebar />;
+    return <SideBar />;
   }
 }
 
