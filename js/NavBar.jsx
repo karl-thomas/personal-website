@@ -11,7 +11,7 @@ const Wrap = styled.div`
   padding: 1em;
   color: #d9480f;
   width: 100%;
-  height: 15vh;
+  height: 13vh;
   -webkit-transition: all 0.7s ease-out;
   -moz-transition: all 0.7s ease-out;
   -ms-transition: all 0.7s ease-out;
