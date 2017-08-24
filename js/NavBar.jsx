@@ -4,7 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Wrap = styled.div`
-  top: ${props => (props.startPos ? '7vh' : '75vh')};
+  top: ${props => (props.startPos ? '5vh' : '77vh')};
   z-index: 0;
   position: fixed;
   background-color: rgba(200, 200, 200, .5);
