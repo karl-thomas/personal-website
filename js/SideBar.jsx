@@ -1,7 +1,10 @@
-import React, { Component } from 'react';
+// @flow
+
+import React from 'react';
 import styled from 'styled-components';
 
 const SideWrap = styled.div`
+  position: fixed
   border: 2px solid rgb(233, 171, 88);
   border-radius: 5px;
   background-color: rgba(233, 171, 88, .5);
@@ -17,16 +20,11 @@ const SideWrap = styled.div`
   transition: all 0.7s ease-out;
 `;
 
-class SideBar extends Component {
-  state = {
-    startPos: true
-  };
+const Header = styled.h1`margin-top: 20vh;`;
 
-  handleClick = () => this.setState(prevState => ({ startPos: !prevState.startPos }));
-
-  render() {
-    return <SideWrap onClick={this.handleClick} startPos={this.state.startPos} />;
-  }
-}
+const SideBar = (props: { parentClickHandler: Function, startPos: Boolean }) =>
+  <SideWrap onClick={props.parentClickHandler} startPos={props.startPos}>
+    <Header> Karl Thomas </Header>
+  </SideWrap>;
 
 export default SideBar;
