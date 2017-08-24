@@ -20,11 +20,11 @@ const SideWrap = styled.div`
   transition: all 0.7s ease-out;
 `;
 
-const Header = styled.h1`margin-top: 20vh;`;
+const Header = styled.h1`margin-top: 50vh;`;
 
 const SideBar = (props: { parentClickHandler: Function, startPos: Boolean }) =>
-  <SideWrap onClick={props.parentClickHandler} startPos={props.startPos}>
-    <Header> Karl Thomas </Header>
+  <SideWrap startPos={props.startPos}>
+    <Header onClick={props.parentClickHandler}> Karl Thomas </Header>
   </SideWrap>;
 
 export default SideBar;

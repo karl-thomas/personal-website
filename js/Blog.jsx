@@ -12,10 +12,7 @@ class Blog extends Component {
     startPos: true
   };
 
-  handleClick = event => {
-    console.log(event.target);
-    this.setState(prevState => ({ startPos: !prevState.startPos }));
-  };
+  handleClick = this.setState(prevState => ({ startPos: !prevState.startPos }));
 
   render() {
     return (

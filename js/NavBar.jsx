@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+// @flow
+
+import React from 'react';
 import styled from 'styled-components';
 
 const Wrap = styled.div`
@@ -18,10 +20,6 @@ const Wrap = styled.div`
   transition: all 0.7s ease-out;
 `;
 
-class NavBar extends Component {
-  render() {
-    return <Wrap onClick={this.handleClick} startPos={this.state.startPos} />;
-  }
-}
+const NavBar = (props: { startPos: Boolean }) => <Wrap startPos={props.startPos} />;
 
 export default NavBar;
