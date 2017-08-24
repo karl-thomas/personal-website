@@ -3,16 +3,14 @@ import SideBar from './SideBar';
 import NavBar from './NavBar';
 
 class Blog extends Component {
-  // state = {
-  //   startPos: true
-  // };
-
-  // handleClick = () => this.setState(prevState => ({ startPos: !prevState.startPos }));
   state = {
     startPos: true
   };
 
-  handleClick = this.setState(prevState => ({ startPos: !prevState.startPos }));
+  handleClick = event => {
+    console.log(event.target);
+    this.setState(prevState => ({ startPos: !prevState.startPos }));
+  };
 
   render() {
     return (

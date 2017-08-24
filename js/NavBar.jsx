@@ -4,15 +4,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Wrap = styled.div`
+  top: ${props => (props.startPos ? '7vh' : '75vh')};
+  z-index: 0;
   position: fixed;
-  border: 2px solid rgb(233, 171, 88);
-  border-radius: 5px;
-  background-color: rgba(233, 171, 88, .5);
+  background-color: rgba(200, 200, 200, .5);
   padding: 1em;
   color: #d9480f;
-  margin-top: ${props => (props.startPos ? '7vh' : '60vh')};
   width: 100%;
-  height: 200px;
+  height: 15vh;
   -webkit-transition: all 0.7s ease-out;
   -moz-transition: all 0.7s ease-out;
   -ms-transition: all 0.7s ease-out;
