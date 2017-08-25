@@ -1,3 +1,5 @@
+// @flow
+
 import { SET_SEARCH_TERM } from './actions';
 
 // takes in a search term, returns well formatted action that can go into redux,

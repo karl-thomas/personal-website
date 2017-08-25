@@ -1,11 +1,12 @@
+// @flow
+
 import { SET_SEARCH_TERM } from './actions';
 
 const DEFAULT_STATE = {
   searchTerm: ''
 };
 
-const setSearchTerm = (state, action) =>
-  Object.assign({}, state, { searchTerm: action.payload });
+const setSearchTerm = (state, action) => Object.assign({}, state, { searchTerm: action.payload });
 
 const rootReducer = (state = DEFAULT_STATE, action) => {
   switch (action.type) {
