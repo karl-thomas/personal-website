@@ -288,7 +288,8 @@ select {
  */
 
 button,
-html input[type="button"], /* 1 */
+html input[type="button"],
+/* 1 */
 input[type="reset"],
 input[type="submit"] {
   -webkit-appearance: button; /* 2 */
@@ -412,7 +413,6 @@ optgroup {
 /**
  * Remove most spacing between table cells.
  */
-
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -687,3 +687,4 @@ header > input {
 .details > header + section {
   margin-top: 25px;
 }
+
