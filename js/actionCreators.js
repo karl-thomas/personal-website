@@ -8,11 +8,13 @@ export function setSearchTerm(searchTerm: string) {
   return { type: SET_SEARCH_TERM, payload: searchTerm };
 }
 
+// what actually gets sent to redux store, with the result of the thunk
 export function addApiData(apiData: Show) {
   return { type: ADD_API_DATA, payload: apiData };
 }
 
 // this is a thunk, a function that dispatches to the reducer, a callback, async, whatever.
+// gets called by the details component to load the rating info.
 export function getApiDetails(imdbID: string) {
   return (dispatch: Function) => {
     axios

@@ -7,7 +7,7 @@ import reducer from './reducers';
 const store = createStore(
   reducer,
   compose(
-    applyMiddleware(thunk),
+    applyMiddleware(thunk), // async redux funct
     typeof window === 'object' && window.devToolsExtension !== 'undefined'
       ? window.devToolsExtension()
       : f => f

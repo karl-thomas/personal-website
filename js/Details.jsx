@@ -69,4 +69,5 @@ const mapDispatchToProps = (dispatch: Function, ownProps) => ({
   }
 });
 
+// details is now getting props from the app component and from redux
 export default connect(mapStateToProps, mapDispatchToProps)(Details);
