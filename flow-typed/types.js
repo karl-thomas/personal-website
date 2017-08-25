@@ -17,9 +17,10 @@ declare var module: {
 
 declare type ActionType = 'SET_SEARCH_TERM';
 
-declare type ActionT<A: ActionType, P> {
-  type: A, 
+// bars needed for generic types
+declare type ActionT<A: ActionType, P> = {|
+  type: A,
   payload: P
-}
+|};
 
 export type Action = ActionT<'SET_SEARCH_TERM', string>;
