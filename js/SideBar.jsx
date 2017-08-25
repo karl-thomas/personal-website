@@ -2,7 +2,6 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 const SideWrap = styled.div`
   z-index: 1000;
@@ -34,17 +33,29 @@ const Header = styled.h1`
   transition: all 0.7s ease-out;
 `;
 
-const ContactWrap = styled.div`
+const ContactWrap = styled.ul`
+  list-style: none;
+  padding-left: 0;
+  float: left;
   position: relative;
   top: 75px;
 `;
 
 const ContactLink = styled.a`
-  font-size: 20px;
+  vertical-align: top;
+  font-size: 24px;
+  margin-left: 10px;
+  margin-bottom: 20px;
   text-decoration-color: #a9ffce;
-  display: block;
+  display: inline-block;
   color: DarkSlateGrey;
   line-height: 2;
+`;
+
+const Icon = styled.img`
+  display: inline-block;
+  width: 40px;
+  height: 40px;
 `;
 
 const SideBar = (props: { parentClickHandler: Function, startPos: Boolean }) =>
@@ -53,11 +64,14 @@ const SideBar = (props: { parentClickHandler: Function, startPos: Boolean }) =>
       Karl Thomas
     </Header>
     <ContactWrap>
-      <h2>
-        <em> Contact </em>
-      </h2>
-      <ContactLink href="https://github.com/karl-thomas">/karl-thomas</ContactLink>
-      <ContactLink href="https://www.linkedin.com/in/karl-thomas/">/karl-thomas</ContactLink>
+      <li>
+        <Icon alt="github icon" src="/public/img/social-github.png" />
+        <ContactLink href="https://github.com/karl-thomas">/karl-thomas</ContactLink>
+      </li>
+      <li>
+        <Icon alt="linkedin icon" src="/public/img/linkedin.png" />
+        <ContactLink href="https://www.linkedin.com/in/karl-thomas/">/karl-thomas</ContactLink>
+      </li>
     </ContactWrap>
   </SideWrap>;
 
