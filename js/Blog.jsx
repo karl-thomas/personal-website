@@ -8,7 +8,7 @@ class Blog extends Component {
   };
 
   handleClick = event => {
-    console.log(event.target);
+    console.log(event.target); // eslint-disable-line no-console
     this.setState(prevState => ({ startPos: !prevState.startPos }));
   };
 

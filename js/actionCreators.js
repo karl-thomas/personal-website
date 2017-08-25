@@ -1,5 +1,5 @@
 // @flow
-
+import axios from 'axios';
 import { SET_SEARCH_TERM, ADD_API_DATA } from './actions';
 
 // takes in a search term, returns well formatted action that can go into redux,
@@ -10,4 +10,18 @@ export function setSearchTerm(searchTerm: string) {
 
 export function addApiData(apiData: Show) {
   return { type: ADD_API_DATA, payload: apiData };
+}
+
+// this is a thunk, a function that dispatches to the reducer, a callback, async, whatever.
+export function getApiDetails(imdbID: string) {
+  return (dispatch: Function) => {
+    axios
+      .get(`http://localhost:3000/${imdbID}`)
+      .then(response => {
+        dispatch(addApiData(response.data));
+      })
+      .catch(error => {
+        console.error('axios error', error); // eslint-disable-line no-console
+      });
+  };
 }
