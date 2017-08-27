@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import type { Match } from 'react-router-dom';
 import { Provider } from 'react-redux'; // redux setup
 import store from './store'; // redux setup
@@ -22,19 +22,17 @@ const FourOhFour = () => <h1>404</h1>;
 
 // provider gives app access to redux store
 const App = () =>
-  <BrowserRouter>
-    <Provider store={store}>
-      <div className="app">
-        <Switch>
-          <Route exact path="/blog" component={Blog} />
-          <Route exact path="/" component={Landing} />
-          <Route path="/search" component={props => <Search shows={preload.shows} {...props} />} />
-          <Route path="/details/:id" component={matchedDetailsPage} />
+  <Provider store={store}>
+    <div className="app">
+      <Switch>
+        <Route exact path="/blog" component={Blog} />
+        <Route exact path="/" component={Landing} />
+        <Route path="/search" component={props => <Search shows={preload.shows} {...props} />} />
+        <Route path="/details/:id" component={matchedDetailsPage} />
 
-          <Route component={FourOhFour} />
-        </Switch>
-      </div>
-    </Provider>
-  </BrowserRouter>;
+        <Route component={FourOhFour} />
+      </Switch>
+    </div>
+  </Provider>;
 
 export default App;

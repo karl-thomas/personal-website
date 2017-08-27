@@ -2,10 +2,10 @@
 
 import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import reducer from './reducers';
+import rootReducer from './reducers';
 
 const store = createStore(
-  reducer,
+  rootReducer,
   compose(
     applyMiddleware(thunk), // async redux funct
     typeof window === 'object' && window.devToolsExtension !== 'undefined'
