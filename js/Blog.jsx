@@ -17,6 +17,7 @@ class Blog extends Component {
       <div>
         <NavBar startPos={this.state.startPos} />
         <SideBar startPos={this.state.startPos} parentClickHandler={this.handleClick} />
+        
       </div>
     );
   }
