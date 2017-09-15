@@ -11,10 +11,12 @@ class PostContainer extends Component {
   }
 
   getPostData = () =>
-    axios.get('http://localhost:3000/posts').then(
-      response => this.setState({ apiData: response.data })
-      // (response ? response.json() : {})
-    );
+    axios
+      .get('http://localhost:3000/posts')
+      .then(response => this.setState({ apiData: response.data }))
+      .catch(error => {
+        console.error('axios ERROR', error); // eslint-disable-line no-console
+      });
 
   render() {
     return (
