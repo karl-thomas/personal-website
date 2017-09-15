@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class PostContainer extends Component {
   state = {
@@ -9,13 +10,11 @@ class PostContainer extends Component {
     this.getPostData();
   }
 
-  getPostData = () => {
-    fetch('https://pacific-reaches-44954.herokuapp.com/posts', { mode: 'no-cors' })
-      .then(response => response.json())
-      .then(json => {
-        this.setState({ apiData: json });
-      });
-  };
+  getPostData = () =>
+    axios.get('http://localhost:3000/posts').then(
+      response => this.setState({ apiData: response.data })
+      // (response ? response.json() : {})
+    );
 
   render() {
     return (
