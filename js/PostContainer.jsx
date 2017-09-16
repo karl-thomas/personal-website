@@ -1,5 +1,17 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  position: fixed;
+  top: 25vh;
+  left: 25%;
+  padding: 20px;
+  background-color: rgba(200, 200, 200, 0.5);
+  overflow-y: scroll;
+  height: 77vh;
+  width: 70%;
+`;
 
 class PostContainer extends Component {
   state = {
@@ -20,11 +32,11 @@ class PostContainer extends Component {
 
   render() {
     return (
-      <div>
+      <Wrapper>
         <pre>
           <code>{JSON.stringify(this.state.apiData, null, 4)}</code>
         </pre>
-      </div>
+      </Wrapper>
     );
   }
 }
