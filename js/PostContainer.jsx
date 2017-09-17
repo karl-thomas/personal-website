@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 
 class PostContainer extends Component {
   state = {
-    apiData: ''
+    apiData: {}
   };
 
   componentDidMount() {
