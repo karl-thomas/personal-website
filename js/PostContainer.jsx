@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import media from './breakpoints';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -9,8 +10,13 @@ const Wrapper = styled.div`
   padding: 20px;
   background-color: rgba(200, 200, 200, 0.5);
   overflow-y: scroll;
-  height: 77vh;
+  height: 75vh;
   width: 70%;
+  ${media.phone`
+      top: 112px;
+      left:0px;
+      width:100%;
+    `};
 `;
 
 class PostContainer extends Component {
