@@ -11,7 +11,7 @@ const SideWrap = styled.div`
   padding: 0em 1em;
   color: #d9480f;
   left: ${props => (props.startPos ? '3%' : '75%')};
-  max-width: 13vw;
+  width: 175px;
   height: 100vh;
   -webkit-transition: all 0.7s ease-out;
   -moz-transition: all 0.7s ease-out;
@@ -24,8 +24,9 @@ const Header = styled.h1`
   color: DarkSlateGrey;
   border-bottom: thick solid #a9ffce;
   position: relative;
-  font-size: 325%;
-  top: ${props => (props.startPos ? '2vh' : '73vh')};
+  font-size: 290%;
+  margin-top: 0px;
+  top: ${props => (props.startPos ? '5vh' : '77vh')};
   -webkit-transition: all 0.7s ease-out;
   -moz-transition: all 0.7s ease-out;
   -ms-transition: all 0.7s ease-out;

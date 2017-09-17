@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   position: fixed;
-  top: 25vh;
-  left: 25%;
+  top: calc(80px + 12vh);
+  left: calc(165px + 10%);
   padding: 20px;
   background-color: rgba(200, 200, 200, 0.5);
   overflow-y: scroll;
