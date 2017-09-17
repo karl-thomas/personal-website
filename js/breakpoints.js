@@ -1,4 +1,4 @@
-import css from 'styled-components';
+import { css } from 'styled-components'; // this has to be in brackets, apparently it has two css vars
 
 const sizes = {
   desktop: 992,

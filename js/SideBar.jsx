@@ -7,10 +7,10 @@ const SideWrap = styled.div`
   z-index: 1000;
   -webkit-font-smoothing: antialiased;
   position: fixed;
-  background-color: rgba(170, 170, 170, .5);
+  background-color: rgba(170, 170, 170, 0.5);
   padding: 0em 1em;
   color: #d9480f;
-  left: ${props => (props.startPos ? '5%' : '75%')};
+  left: ${props => (props.startPos ? '3%' : '75%')};
   max-width: 13vw;
   height: 100vh;
   -webkit-transition: all 0.7s ease-out;
@@ -58,7 +58,7 @@ const Icon = styled.img`
   height: 40px;
 `;
 
-const SideBar = (props: { parentClickHandler: Function, startPos: Boolean }) =>
+const SideBar = (props: { parentClickHandler: Function, startPos: Boolean }) => (
   <SideWrap startPos={props.startPos}>
     <Header onClick={props.parentClickHandler} startPos={props.startPos}>
       Karl Thomas
@@ -73,6 +73,7 @@ const SideBar = (props: { parentClickHandler: Function, startPos: Boolean }) =>
         <ContactLink href="https://www.linkedin.com/in/karl-thomas/">/karl-thomas</ContactLink>
       </li>
     </ContactWrap>
-  </SideWrap>;
+  </SideWrap>
+);
 
 export default SideBar;
