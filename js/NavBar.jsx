@@ -2,23 +2,25 @@
 
 import React from 'react';
 import styled from 'styled-components';
+import media, { colors } from './utilities';
 
 const Wrap = styled.div`
   top: ${props => (props.startPos ? '5vh' : '77vh')};
   z-index: 0;
   position: fixed;
-  background-color: rgba(200, 200, 200, .5);
-  padding: 1em;
-  color: #d9480f;
+  background-color: ${props => (props.startPos ? colors.puce : colors.lightBlue)};
+  color: #ae5d64;
   width: 100%;
-  height: 13vh;
+  height: 112px;
   -webkit-transition: all 0.7s ease-out;
   -moz-transition: all 0.7s ease-out;
   -ms-transition: all 0.7s ease-out;
   -o-transition: all 0.7s ease-out;
   transition: all 0.7s ease-out;
-`;
 
+  ${media.phone`display: none;`};
+`;
+// ${media.desktop`background: dodgerblue;`} ${media.tablet`background: mediumseagreen;`}
 const NavBar = (props: { startPos: Boolean }) => <Wrap startPos={props.startPos} />;
 
 export default NavBar;
