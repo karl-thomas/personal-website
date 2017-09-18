@@ -2,7 +2,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import media from './breakpoints';
+import media, { colors } from './utilities';
 
 const transition = `-moz-transition: all 0.7s ease-out; -ms-transition: all 0.7s ease-out; -o-transition: all 0.7s ease-out; transition: all 0.7s ease-out;`;
 
@@ -10,21 +10,23 @@ const SideWrap = styled.div`
   z-index: 1000;
   -webkit-font-smoothing: antialiased;
   position: fixed;
-  background-color: rgba(146, 220, 229, 0.75);
-  padding: 0em 1em;
+  background-color: ${props => (props.startPos ? colors.lightBlue : colors.puce)};
+  padding: 0em 0em;
   left: ${props => (props.startPos ? '3%' : '75%')};
-  width: calc(175px + 2em);
+  width: 225px;
   height: 100vh;
   ${transition} ${media.phone`
     left: 0px;
     width: 100%;
     height: 112px;
     padding: 1em;
-    border-bottom: thick solid #AA5C62;
+    border-bottom: thick solid ${colors.puce}
     `};
 `;
 
 const Header = styled.h1`
+  width: 100%;
+  padding-left: 20px;
   color: white;
   position: relative;
   font-size: 290%;
@@ -38,7 +40,8 @@ const Header = styled.h1`
     `};
 `;
 
-const ContactWrap = styled.ul`
+const ContactUL = styled.ul`
+  width: 100%;
   list-style: none;
   padding-left: 0;
   float: left;
@@ -46,12 +49,16 @@ const ContactWrap = styled.ul`
   top: 75px;
   ${media.phone`display: none;`};
 `;
-
+const ContactLi = styled.li`
+  padding: 10px 17px;
+  &:hover {
+    background-color: ${colors.blueShadow};
+  }
+`;
 const ContactLink = styled.a`
   vertical-align: top;
-  font-size: 24px;
+  font-size: 22px;
   margin-left: 10px;
-  margin-bottom: 20px;
   text-decoration-color: #a9ffce;
   display: ${props => (props.startPos ? 'inline-block' : 'none')};
   color: white;
@@ -69,20 +76,20 @@ const SideBar = (props: { parentClickHandler: Function, startPos: Boolean }) => 
     <Header onClick={props.parentClickHandler} startPos={props.startPos}>
       Karl Thomas
     </Header>
-    <ContactWrap>
-      <li>
+    <ContactUL>
+      <ContactLi>
         <Icon startPos={props.startPos} alt="github icon" src="/public/img/social-github.png" />
         <ContactLink startPos={props.startPos} href="https://github.com/karl-thomas">
           /karl-thomas
         </ContactLink>
-      </li>
-      <li>
+      </ContactLi>
+      <ContactLi>
         <Icon startPos={props.startPos} alt="linkedin icon" src="/public/img/linkedin.png" />
         <ContactLink startPos={props.startPos} href="https://www.linkedin.com/in/karl-thomas/">
           /karl-thomas
         </ContactLink>
-      </li>
-    </ContactWrap>
+      </ContactLi>
+    </ContactUL>
   </SideWrap>
 );
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import media from './breakpoints';
+import media from './utilities';
 
 const Wrapper = styled.div`
   position: fixed;

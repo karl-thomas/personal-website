@@ -2,13 +2,13 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import media from './breakpoints';
+import media, { colors } from './utilities';
 
 const Wrap = styled.div`
   top: ${props => (props.startPos ? '5vh' : '77vh')};
   z-index: 0;
   position: fixed;
-  background-color: rgba(170, 91, 97, 0.75);
+  background-color: ${props => (props.startPos ? colors.puce : colors.lightBlue)};
   color: #ae5d64;
   width: 100%;
   height: 112px;
