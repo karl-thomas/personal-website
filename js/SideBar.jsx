@@ -10,23 +10,22 @@ const SideWrap = styled.div`
   z-index: 1000;
   -webkit-font-smoothing: antialiased;
   position: fixed;
-  background-color: rgba(170, 170, 170, 0.5);
+  background-color: rgba(146, 220, 229, 0.75);
   padding: 0em 1em;
-  color: #d9480f;
   left: ${props => (props.startPos ? '3%' : '75%')};
-  width: 175px;
+  width: calc(175px + 2em);
   height: 100vh;
   ${transition} ${media.phone`
     left: 0px;
     width: 100%;
-    height: 80px;
+    height: 112px;
     padding: 1em;
+    border-bottom: thick solid #AA5C62;
     `};
 `;
 
 const Header = styled.h1`
-  color: DarkSlateGrey;
-  border-bottom: thick solid #a9ffce;
+  color: white;
   position: relative;
   font-size: 290%;
   margin-top: 0px;
@@ -55,7 +54,7 @@ const ContactLink = styled.a`
   margin-bottom: 20px;
   text-decoration-color: #a9ffce;
   display: ${props => (props.startPos ? 'inline-block' : 'none')};
-  color: DarkSlateGrey;
+  color: white;
   line-height: 2;
 `;
 

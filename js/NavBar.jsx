@@ -8,11 +8,10 @@ const Wrap = styled.div`
   top: ${props => (props.startPos ? '5vh' : '77vh')};
   z-index: 0;
   position: fixed;
-  background-color: rgba(200, 200, 200, 0.5);
-  padding: 1em;
-  color: #d9480f;
+  background-color: rgba(170, 91, 97, 0.75);
+  color: #ae5d64;
   width: 100%;
-  height: 80px;
+  height: 112px;
   -webkit-transition: all 0.7s ease-out;
   -moz-transition: all 0.7s ease-out;
   -ms-transition: all 0.7s ease-out;
