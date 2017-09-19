@@ -35,6 +35,7 @@ const Header = styled.h1`
   -webkit-transition: all 0.7s ease-out;
   ${transition} ${media.phone`
     top:0px;
+    padding-left:10px;
     width:20px;
     font-size:200%;
     `};

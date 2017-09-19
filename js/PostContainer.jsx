@@ -5,13 +5,13 @@ import media from './utilities';
 import PostCard from './PostCard';
 
 const Wrapper = styled.div`
+  border: 1px solid;
   position: fixed;
-  top: calc(80px + 12vh);
-  left: calc(165px + 10%);
+  top: calc(112px + 5vh);
+  left: calc(225px + 3%);
   padding: 20px;
-  overflow-y: scroll;
   height: 75vh;
-  width: 70%;
+  width: calc(100% - 225px + 3%);
   ${media.phone`
       top: 112px;
       left:0px;
@@ -41,7 +41,7 @@ class PostContainer extends Component {
     if (this.state.apiData.length === 0) {
       containerComponent = 'loadin';
     } else {
-      containerComponent = this.state.apiData.map(record => <PostCard {...record} />);
+      containerComponent = this.state.apiData.map(record => <PostCard key={record.id} {...record} />);
     }
 
     return <Wrapper>{containerComponent}</Wrapper>;
