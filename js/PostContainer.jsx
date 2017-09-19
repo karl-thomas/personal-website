@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   position: fixed;
   top: calc(112px + 5vh);
   left: calc(225px + 3%);
-  padding: 20px;
+  padding: 2em;
   height: 75vh;
   width: calc(100% - 225px + 3%);
   ${media.phone`
