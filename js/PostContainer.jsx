@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import media from './utilities';
+import PostCard from './PostCard';
 
 const Wrapper = styled.div`
   position: fixed;
   top: calc(80px + 12vh);
   left: calc(165px + 10%);
   padding: 20px;
-  background-color: rgba(200, 200, 200, 0.5);
   overflow-y: scroll;
   height: 75vh;
   width: 70%;
@@ -21,7 +21,7 @@ const Wrapper = styled.div`
 
 class PostContainer extends Component {
   state = {
-    apiData: {}
+    apiData: []
   };
 
   componentDidMount() {
@@ -37,13 +37,14 @@ class PostContainer extends Component {
       });
 
   render() {
-    return (
-      <Wrapper>
-        <pre>
-          <code>{JSON.stringify(this.state.apiData, null, 4)}</code>
-        </pre>
-      </Wrapper>
-    );
+    let containerComponent;
+    if (this.state.apiData.length === 0) {
+      containerComponent = 'loadin';
+    } else {
+      containerComponent = this.state.apiData.map(record => <PostCard {...record} />);
+    }
+
+    return <Wrapper>{containerComponent}</Wrapper>;
   }
 }
 
