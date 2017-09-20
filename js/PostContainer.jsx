@@ -9,7 +9,6 @@ import PostCard from './PostCard';
 const Wrapper = styled.div`
   position: fixed;
   top: calc(112px + 5vh);
-  left: ${props => (props.startPos ? 'calc(225px + 3%)' : '100%')};
   padding: 2em;
   height: 75vh;
   width: calc(97% - 225px);
@@ -18,8 +17,10 @@ const Wrapper = styled.div`
   -ms-transition: all 0.5s ease-out;
   -o-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
-
-  ${media.phone`
+  ${props =>
+    props.startPos
+      ? 'transform: translate(calc(225px + 3%));'
+      : 'transform: translate(100vw);'} ${media.phone`
       top: 112px;
       left:0px;
       width:100%;
@@ -49,13 +50,9 @@ class PostContainer extends Component {
 
   // displaySettings = () => {
   //   let settings;
-  //   if () {
-  //     settings = 'transform: translate(1000px);';
-  //   } else if () {
-  //     settings = 'left:100%;';
-  //   } else if (!this.props.startPos && this.midPoint) {
-  //     settings = 'transform: translate(-1000px);';
-  //   }
+  //   if (props.startPos) {
+  //     settings = 'left:calc(225px + 3%);';
+  //   } else
   //   return settings;
   // };
 
