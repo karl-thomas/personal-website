@@ -7,6 +7,8 @@ import media, { colors } from './utilities';
 const transition = `-moz-transition: all 0.7s ease-out; -ms-transition: all 0.7s ease-out; -o-transition: all 0.7s ease-out; transition: all 0.7s ease-out;`;
 
 const SideWrap = styled.div`
+  box-shadow: ${props =>
+    props.startPos ? '-2px 0px 6px 3px rgba(0, 0, 0, 0.1)' : '2px 0px 6px 3px rgba(0, 0, 0, 0.1)'};
   z-index: 1000;
   -webkit-font-smoothing: antialiased;
   position: fixed;
@@ -16,6 +18,7 @@ const SideWrap = styled.div`
   width: 225px;
   height: 100vh;
   ${transition} ${media.phone`
+    box-shadow: 2px 0px 6px 3px rgba(0, 0, 0, 0.1);
     left: 0px;
     width: 100%;
     height: 112px;

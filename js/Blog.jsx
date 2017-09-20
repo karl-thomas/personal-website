@@ -5,20 +5,34 @@ import PostContainer from './PostContainer';
 
 class Blog extends Component {
   state = {
-    startPos: true
+    startPos: true,
+    midPoint: false
   };
 
   handleClick = event => {
     console.log(event.target); // eslint-disable-line no-console
-    this.setState(prevState => ({ startPos: !prevState.startPos }));
+    if (this.state.startPos) {
+      this.setState({ midPoint: true });
+      setTimeout(
+        () => this.setState(prevState => ({ startPos: !prevState.startPos, midPoint: false })),
+        1000
+      );
+    } else {
+      this.setState(prevState => ({ startPos: !prevState.startPos }));
+      setTimeout(() => this.setState({ midPoint: false }), 700);
+    }
   };
 
   render() {
     return (
       <div>
-        <NavBar startPos={this.state.startPos} />
-        <SideBar startPos={this.state.startPos} parentClickHandler={this.handleClick} />
-        <PostContainer />
+        <NavBar startPos={this.state.startPos} midPoint={this.state.midPoint} />
+        <SideBar
+          startPos={this.state.startPos}
+          midPoint={this.state.midPoint}
+          parentClickHandler={this.handleClick}
+        />
+        <PostContainer startPos={this.state.startPos} midPoint={this.state.midPoint} />
       </div>
     );
   }
