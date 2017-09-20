@@ -11,28 +11,15 @@ class Blog extends Component {
 
   handleClick = event => {
     console.log(event.target); // eslint-disable-line no-console
-    if (this.state.startPos) {
-      this.setState({ midPoint: true });
-      setTimeout(
-        () => this.setState(prevState => ({ startPos: !prevState.startPos, midPoint: false })),
-        1000
-      );
-    } else {
-      this.setState(prevState => ({ startPos: !prevState.startPos }));
-      setTimeout(() => this.setState({ midPoint: false }), 700);
-    }
+    this.setState(prevState => ({ startPos: !prevState.startPos }));
   };
 
   render() {
     return (
       <div>
-        <NavBar startPos={this.state.startPos} midPoint={this.state.midPoint} />
-        <SideBar
-          startPos={this.state.startPos}
-          midPoint={this.state.midPoint}
-          parentClickHandler={this.handleClick}
-        />
-        <PostContainer startPos={this.state.startPos} midPoint={this.state.midPoint} />
+        <NavBar startPos={this.state.startPos} />
+        <SideBar startPos={this.state.startPos} parentClickHandler={this.handleClick} />
+        <PostContainer startPos={this.state.startPos} />
       </div>
     );
   }

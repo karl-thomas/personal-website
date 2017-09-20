@@ -9,16 +9,17 @@ import PostCard from './PostCard';
 const Wrapper = styled.div`
   position: fixed;
   top: calc(112px + 5vh);
-  left: calc(225px + 3%);
+  left: ${props => (props.startPos ? 'calc(225px + 3%)' : '100%')};
   padding: 2em;
   height: 75vh;
   width: calc(97% - 225px);
-  -webkit-transition: all 1s ease-out;
-  -moz-transition: all 1s ease-out;
-  -ms-transition: all 1s ease-out;
-  -o-transition: all 1s ease-out;
-  transition: all 1s ease-out;
-  ${props => props.settings} ${media.phone`
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+
+  ${media.phone`
       top: 112px;
       left:0px;
       width:100%;
@@ -43,21 +44,20 @@ class PostContainer extends Component {
       });
 
   props: {
-    startPos: Boolean,
-    midPoint: Boolean
+    startPos: Boolean
   };
 
-  displaySettings = () => {
-    let settings;
-    if (this.props.startPos && this.props.midPoint) {
-      settings = 'transform: translate(1000px);';
-    } else if (!this.props.startPos && !this.props.midPoint) {
-      settings = 'left:100%;';
-    } else if (!this.props.startPos && this.midPoint) {
-      settings = 'transform: translate(-1000px);';
-    }
-    return settings;
-  };
+  // displaySettings = () => {
+  //   let settings;
+  //   if () {
+  //     settings = 'transform: translate(1000px);';
+  //   } else if () {
+  //     settings = 'left:100%;';
+  //   } else if (!this.props.startPos && this.midPoint) {
+  //     settings = 'transform: translate(-1000px);';
+  //   }
+  //   return settings;
+  // };
 
   render() {
     let containerComponent;
@@ -67,7 +67,7 @@ class PostContainer extends Component {
       containerComponent = this.state.apiData.map(record => <PostCard key={record.id} {...record} />);
     }
 
-    return <Wrapper settings={this.displaySettings()}>{containerComponent}</Wrapper>;
+    return <Wrapper startPos={this.props.startPos}>{containerComponent}</Wrapper>;
   }
 }
 
