@@ -17,10 +17,9 @@ const Wrapper = styled.div`
   -ms-transition: all 0.5s ease-out;
   -o-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
-  ${props =>
-    props.startPos
-      ? 'transform: translate(calc(225px + 3%));'
-      : 'transform: translate(100vw);'} ${media.phone`
+  ${props => (props.startPos ? 'transform: translate(calc(225px + 3%));' : 'transform: translate(100vw);')};
+  ${media.phone`
+      transform: translate(0px);
       top: 112px;
       left:0px;
       width:100%;
