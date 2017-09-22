@@ -5,13 +5,18 @@ import styled from 'styled-components';
 import media, { colors } from './utilities';
 
 const Wrap = styled.div`
-  top: ${props => (props.startPos ? '5vh' : '77vh')};
+  ${props =>
+    props.startPos
+      ? ` transform: translate(0px, 5vh); 
+          background-color: ${colors.puce};`
+      : ` transform: translate(0px, 77vh);
+          background-color: ${colors.lightBlue};`};
   z-index: 0;
   position: fixed;
-  background-color: ${props => (props.startPos ? colors.puce : colors.lightBlue)};
   color: #ae5d64;
   width: 100%;
   height: 112px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   -webkit-transition: all 0.7s ease-out;
   -moz-transition: all 0.7s ease-out;
   -ms-transition: all 0.7s ease-out;

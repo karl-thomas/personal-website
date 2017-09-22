@@ -5,7 +5,8 @@ import PostContainer from './PostContainer';
 
 class Blog extends Component {
   state = {
-    startPos: true
+    startPos: true,
+    midPoint: false
   };
 
   handleClick = event => {
@@ -18,7 +19,7 @@ class Blog extends Component {
       <div>
         <NavBar startPos={this.state.startPos} />
         <SideBar startPos={this.state.startPos} parentClickHandler={this.handleClick} />
-        <PostContainer />
+        <PostContainer startPos={this.state.startPos} />
       </div>
     );
   }

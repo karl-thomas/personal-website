@@ -7,15 +7,23 @@ import media, { colors } from './utilities';
 const transition = `-moz-transition: all 0.7s ease-out; -ms-transition: all 0.7s ease-out; -o-transition: all 0.7s ease-out; transition: all 0.7s ease-out;`;
 
 const SideWrap = styled.div`
+  ${props =>
+    props.startPos /* true: top left, false: bottom right */
+      ? `background-color: ${colors.lightBlue};
+         left: 3%;
+         box-shadow:-2px 0px 6px 3px rgba(0, 0, 0, 0.1);`
+      : `background-color: ${colors.puce};
+         left: 75%;
+         box-shadow:2px 0px 6px 3px rgba(0, 0, 0, 0.1);`};
   z-index: 1000;
   -webkit-font-smoothing: antialiased;
   position: fixed;
-  background-color: ${props => (props.startPos ? colors.lightBlue : colors.puce)};
   padding: 0em 0em;
-  left: ${props => (props.startPos ? '3%' : '75%')};
   width: 225px;
   height: 100vh;
-  ${transition} ${media.phone`
+  ${transition};
+  ${media.phone`
+    box-shadow: 2px 0px 6px 3px rgba(0, 0, 0, 0.1);
     left: 0px;
     width: 100%;
     height: 112px;
@@ -25,16 +33,18 @@ const SideWrap = styled.div`
 `;
 
 const Header = styled.h1`
+  ${props => (props.startPos ? `top: 5vh;` : ` top: 77vh;`)};
   width: 100%;
   padding-left: 20px;
   color: white;
   position: relative;
   font-size: 290%;
   margin-top: 0px;
-  top: ${props => (props.startPos ? '5vh' : '77vh')};
   -webkit-transition: all 0.7s ease-out;
-  ${transition} ${media.phone`
+  ${transition};
+  ${media.phone`
     top:0px;
+    padding-left:10px;
     width:20px;
     font-size:200%;
     `};
