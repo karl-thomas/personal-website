@@ -2,7 +2,8 @@
 
 import React, { Component } from 'react';
 import styled from 'styled-components';
-// import media from './utilities';
+// to take me to the details page in the future
+// import { Link } from 'react-router-dom';
 
 const Card = styled.div`
   background-color: rgba(156, 196, 205, 1);
@@ -14,7 +15,7 @@ const Card = styled.div`
 `;
 class PostCard extends Component {
   componentDidMount() {
-    console.log(this.props);
+    console.log(this.props); // eslint-disable-line no-console
   }
   props: {
     id: String // , not using these yet but will be.
@@ -24,14 +25,7 @@ class PostCard extends Component {
   };
 
   render() {
-    return (
-      <Card>
-        {this.props.id}
-        <pre>
-          <code>{JSON.stringify(this.props, null, 4)}</code>
-        </pre>
-      </Card>
-    );
+    return <Card>{this.props.id}</Card>;
   }
 }
 export default PostCard;
