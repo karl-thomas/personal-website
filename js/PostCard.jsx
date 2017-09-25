@@ -49,8 +49,8 @@ class PostCard extends Component {
   }
   props: {
     id: String,
-    // github_record: Object, // not using this yet
-    // spotify_record: Object,
+    github_record: Object, // not using this yet
+    spotify_record: Object,
     // twitter_record: Object,
     total_interactions: number,
     created_at: string
@@ -66,10 +66,17 @@ class PostCard extends Component {
       second: '2-digit'
     });
   };
+
+  title = () => {
+    const { github_record, spotify_record } = this.props;
+    return `${github_record.most_used_lang[0]}, 
+      ${spotify_record.interesting_genre},
+      and the ${github_record.recent_commits} commits`;
+  };
   render() {
     return (
       <Card>
-        <Title>{this.props.id}</Title>
+        <Title>{this.title()}</Title>
         <CountBox>
           <h1>{this.props.total_interactions}</h1>
         </CountBox>
