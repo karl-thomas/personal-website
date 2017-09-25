@@ -55,7 +55,17 @@ class PostCard extends Component {
     total_interactions: number,
     created_at: string
   };
-
+  formattedDate = () => {
+    const date = new Date(this.props.created_at);
+    return date.toLocaleString(undefined, {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    });
+  };
   render() {
     return (
       <Card>
@@ -64,7 +74,7 @@ class PostCard extends Component {
           <h1>{this.props.total_interactions}</h1>
         </CountBox>
         <TimeBox>
-          <TimeStamp>{this.props.created_at}</TimeStamp>
+          <TimeStamp>{this.formattedDate()}</TimeStamp>
         </TimeBox>
       </Card>
     );
