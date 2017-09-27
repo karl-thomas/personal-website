@@ -7,15 +7,20 @@ import { Provider } from 'react-redux'; // redux setup
 import store from './store'; // redux setup
 // import Blog from './Blog';
 import AsyncRoute from './AsyncRoute';
-import Search from './Search';
-import Details from './Details';
+// import Search from './Search'; // replaced with
+// import Details from './Details';
 import preload from '../data.json';
 
 const matchedDetailsPage = (props: { match: Match }) => {
   const compareParamsToPreload = show => props.match.params.id === show.imdbID;
   const selectedShow = preload.shows.find(compareParamsToPreload);
   // give it the matching show, and the ret of the props, because of the url params
-  return <Details show={selectedShow} {...props} />;
+  return (
+    <AsyncRoute
+      props={Object.assign({ show: selectedShow, match: {} }, props)}
+      loadingPromise={import('./Details')}
+    />
+  );
 };
 
 const FourOhFour = () => <h1>404</h1>;
@@ -31,7 +36,15 @@ const App = () => (
           path="/"
           component={props => <AsyncRoute props={props} loadingPromise={import('./Landing')} />}
         />
-        <Route path="/search" component={props => <Search shows={preload.shows} {...props} />} />
+        <Route
+          path="/search"
+          component={props => (
+            <AsyncRoute
+              props={Object.assign({ shows: preload.shows }, props)}
+              loadingPromise={import('./Search')}
+            />
+          )}
+        />
         <Route path="/details/:id" component={matchedDetailsPage} />
 
         <Route component={FourOhFour} />

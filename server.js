@@ -22,15 +22,15 @@ const template = _.template(baseTemplate);
 const server = express();
 
 server.use(compression());
-// if (process.env.NODE_ENV === 'development') {
-const compiler = webpack(config);
-server.use(
-  webpackDevMiddleware(compiler, {
-    publicPath: config.output.publicPath
-  })
-);
-server.use(webpackHotMiddleware(compiler));
-// }
+if (process.env.NODE_ENV === 'development') {
+  const compiler = webpack(config);
+  server.use(
+    webpackDevMiddleware(compiler, {
+      publicPath: config.output.publicPath
+    })
+  );
+  server.use(webpackHotMiddleware(compiler));
+}
 server.use('/public', express.static('./public'));
 
 server.use((req, res) => {

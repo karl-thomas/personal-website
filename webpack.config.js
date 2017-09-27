@@ -3,20 +3,25 @@ const webpack = require('webpack');
 
 const config = {
   context: __dirname,
-  entry: ['webpack-hot-middleware/client?path=__webpack_hmr&timeout=2000', './js/ClientApp.jsx'],
+  entry: [
+    'react-hot-loader/patch',
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server',
+    './js/ClientApp.jsx'
+  ],
   devtool: process.env.NODE_ENV === 'development' ? 'cheap-eval-source-map' : false,
   output: {
     path: path.join(__dirname, 'public'),
     filename: 'bundle.js',
     publicPath: '/public/' // let hot modules know where to find the output
   },
-  resolve: {
-    extensions: ['.js', '.jsx', '.json']
-  },
   devServer: {
     hot: true,
     publicPath: '/public/',
     historyApiFallback: true
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.json']
   },
   stats: {
     colors: true,
@@ -40,8 +45,10 @@ const config = {
   }
 };
 
-if (process.env.NODE_ENV === 'development') {
-  config.entry.unshift('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000');
+if (process.env.NODE_ENV === 'production') {
+  config.entry = './js/ClientApp.jsx';
+  config.devtool = false;
+  config.plugins = [];
 }
 
 module.exports = config;
