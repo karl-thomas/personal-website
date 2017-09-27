@@ -1,8 +1,7 @@
 // @flow
-
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-// import type { Match } from 'react-router-dom';
+import type { Match } from 'react-router-dom';
 import { Provider } from 'react-redux'; // redux setup
 import store from './store'; // redux setup
 import Blog from './Blog';
@@ -47,7 +46,11 @@ const App = () => (
   <Provider store={store}>
     <div className="app">
       <Switch>
-        <Route exact path="/blog" component={Blog} />
+        <Route exact path="/" component={Blog} />
+        <Route
+          path="/details/:id"
+          component={(props: { match: Match }) => <Blog id={props.match.params.id} />}
+        />
         <Route component={FourOhFour} />
       </Switch>
     </div>

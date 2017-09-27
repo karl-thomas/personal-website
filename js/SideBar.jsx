@@ -81,7 +81,7 @@ const Icon = styled.img`
   height: 40px;
 `;
 
-const SideBar = (props: { parentClickHandler: Function, startPos: Boolean }) => (
+const SideBar = (props: { parentClickHandler: Function, startPos: boolean }) => (
   <SideWrap startPos={props.startPos}>
     <Header onClick={props.parentClickHandler} startPos={props.startPos}>
       Karl Thomas

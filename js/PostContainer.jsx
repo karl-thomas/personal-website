@@ -32,25 +32,30 @@ class PostContainer extends Component {
   state = {
     apiData: []
   };
-
   componentDidMount() {
-    this.getPostData();
+    this.getPostData(this.props.id);
   }
 
-  getPostData = () =>
-    axios
-      .get('http://localhost:3000/posts')
-      .then(response => this.setState({ apiData: response.data }))
-      .catch(error => {
-        console.error('axios ERROR', error); // eslint-disable-line no-console
-      });
+  getPostData = (id: string) => {
+    if (id) {
+      axios
+        .get('http://localhost:3000/posts')
+        .then(response => this.setState({ apiData: response.data }))
+        .catch(error => {
+          console.error('axios ERROR', error); // eslint-disable-line no-console
+        });
+    }
+  };
 
   props: {
-    startPos: Boolean
+    startPos: boolean
+    // postID: string
   };
 
   render() {
     let containerComponent;
+    // let postElements; / once i figure out the actual details component
+    // postElements = this.props.postID? :
     if (this.state.apiData.length === 0) {
       containerComponent = 'loadin';
     } else {

@@ -26,6 +26,6 @@ const Wrap = styled.div`
   ${media.phone`display: none;`};
 `;
 // ${media.desktop`background: dodgerblue;`} ${media.tablet`background: mediumseagreen;`}
-const NavBar = (props: { startPos: Boolean }) => <Wrap startPos={props.startPos} />;
+const NavBar = (props: { startPos: boolean }) => <Wrap startPos={props.startPos} />;
 
 export default NavBar;

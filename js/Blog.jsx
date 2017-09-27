@@ -1,17 +1,23 @@
+// @flow
 import React, { Component } from 'react';
 import SideBar from './SideBar';
 import NavBar from './NavBar';
 import PostContainer from './PostContainer';
 
 class Blog extends Component {
-  state = {
-    startPos: true,
-    midPoint: false
+  static defaultProps = {
+    postID: ''
   };
 
-  handleClick = event => {
-    console.log(event.target); // eslint-disable-line no-console
+  state = {
+    startPos: true
+  };
+
+  handleClick = () => {
     this.setState(prevState => ({ startPos: !prevState.startPos }));
+  };
+  props: {
+    postID?: string
   };
 
   render() {
@@ -19,7 +25,7 @@ class Blog extends Component {
       <div>
         <NavBar startPos={this.state.startPos} />
         <SideBar startPos={this.state.startPos} parentClickHandler={this.handleClick} />
-        <PostContainer startPos={this.state.startPos} />
+        <PostContainer startPos={this.state.startPos} postID={this.props.postID} />
       </div>
     );
   }
