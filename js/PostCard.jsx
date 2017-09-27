@@ -18,10 +18,12 @@ const Card = styled.div`
 const Title = styled.h1`
   display: inline-block;
   color: white;
+  width: 85%;
 `;
 const CountBox = styled.div`
   color: white;
-  float: right;
+  left: 0px;
+  width: 15%;
 `;
 
 const TimeBox = styled.div`
@@ -48,10 +50,10 @@ class PostCard extends Component {
     console.log(this.props); // eslint-disable-line no-console
   }
   props: {
-    id: String,
-    github_record: Object, // not using this yet
+    // id: String,
+    github_record: Object,
     spotify_record: Object,
-    // twitter_record: Object,
+    // twitter_record: Object, // not using this yet
     total_interactions: number,
     created_at: string
   };
