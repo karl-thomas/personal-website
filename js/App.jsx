@@ -48,8 +48,8 @@ const App = () => (
       <Switch>
         <Route exact path="/" component={Blog} />
         <Route
-          path="/details/:id"
-          component={(props: { match: Match }) => <Blog id={props.match.params.id} />}
+          path="/posts/:id"
+          component={(props: { match: Match }) => <Blog postID={props.match.params.id} />}
         />
         <Route component={FourOhFour} />
       </Switch>

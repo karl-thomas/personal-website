@@ -34,18 +34,18 @@ class PostContainer extends Component {
   };
 
   componentDidMount() {
-    this.getPostData(this.props.postID);
+    if (!this.props.postID) {
+      this.getPostData();
+    }
   }
 
-  getPostData = (id: string) => {
-    if (!id) {
-      axios
-        .get('http://localhost:3000/posts')
-        .then(response => this.setState({ apiData: response.data }))
-        .catch(error => {
-          console.error('axios ERROR', error); // eslint-disable-line no-console
-        });
-    }
+  getPostData = () => {
+    axios
+      .get('http://localhost:3000/posts')
+      .then(response => this.setState({ apiData: response.data }))
+      .catch(error => {
+        console.error('axios ERROR', error); // eslint-disable-line no-console
+      });
   };
 
   props: {
@@ -55,11 +55,14 @@ class PostContainer extends Component {
 
   render() {
     let containerComponent;
-    // let postElements; / once i figure out the actual details component
-    // postElements = this.props.postID? :
+
     if (this.state.apiData.length === 0) {
       containerComponent = 'loadin';
+    } else if (this.props.postID) {
+      console.log('deets page');
+      containerComponent = 'need to make deets';
     } else {
+      console.log('this be the index page');
       containerComponent = this.state.apiData.map(record => <PostCard key={record.id} {...record} />);
     }
 

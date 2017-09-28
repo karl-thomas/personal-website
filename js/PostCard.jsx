@@ -1,10 +1,10 @@
 // @flow
 
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors } from './utilities';
 // to take me to the details page in the future
-// import { Link } from 'react-router-dom';
 
 const Card = styled.div`
   background-color: ${colors.space};
@@ -52,7 +52,7 @@ class PostCard extends Component {
     console.log(this.props); // eslint-disable-line no-console
   }
   props: {
-    // id: String,
+    id: string,
     github_record: Object,
     spotify_record: Object,
     // twitter_record: Object, // not using this yet
@@ -79,15 +79,17 @@ class PostCard extends Component {
   };
   render() {
     return (
-      <Card>
-        <Title>{this.title()}</Title>
-        <CountBox>
-          <h1>{this.props.total_interactions}</h1>
-        </CountBox>
-        <TimeBox>
-          <TimeStamp>{this.formattedDate()}</TimeStamp>
-        </TimeBox>
-      </Card>
+      <Link to={`/posts/${this.props.id}`}>
+        <Card>
+          <Title>{this.title()}</Title>
+          <CountBox>
+            <h1>{this.props.total_interactions}</h1>
+          </CountBox>
+          <TimeBox>
+            <TimeStamp>{this.formattedDate()}</TimeStamp>
+          </TimeBox>
+        </Card>
+      </Link>
     );
   }
 }
