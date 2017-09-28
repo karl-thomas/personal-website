@@ -7,7 +7,7 @@ import { colors } from './utilities';
 // import { Link } from 'react-router-dom';
 
 const Card = styled.div`
-  background-color: ${colors.lightBlue};
+  background-color: ${colors.space};
   margin: 0em 0em 1em 0em;
   position: relative;
   padding: 1em;
@@ -20,14 +20,16 @@ const Title = styled.h1`
   color: white;
   width: 85%;
 `;
+
 const CountBox = styled.div`
   color: white;
-  left: 0px;
+  float: right;
+  right: 0px;
   width: 15%;
 `;
 
 const TimeBox = styled.div`
-  background-color: ${colors.blueShadow};
+  background-color: ${colors.torq};
   position: absolute;
   padding: 0em 1em;
   border-top: thin solid black;

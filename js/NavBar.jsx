@@ -8,9 +8,9 @@ const Wrap = styled.div`
   ${props =>
     props.startPos
       ? ` transform: translate(0px, 5vh); 
-          background-color: ${colors.puce};`
+          background-color: ${colors.purp};`
       : ` transform: translate(0px, 77vh);
-          background-color: ${colors.lightBlue};`};
+          background-color: ${colors.torq};`};
   z-index: 0;
   position: fixed;
   color: #ae5d64;

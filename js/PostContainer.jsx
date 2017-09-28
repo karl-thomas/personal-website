@@ -32,12 +32,13 @@ class PostContainer extends Component {
   state = {
     apiData: []
   };
+
   componentDidMount() {
-    this.getPostData(this.props.id);
+    this.getPostData(this.props.postID);
   }
 
   getPostData = (id: string) => {
-    if (id) {
+    if (!id) {
       axios
         .get('http://localhost:3000/posts')
         .then(response => this.setState({ apiData: response.data }))
@@ -48,8 +49,8 @@ class PostContainer extends Component {
   };
 
   props: {
-    startPos: boolean
-    // postID: string
+    startPos: boolean,
+    postID: string
   };
 
   render() {
