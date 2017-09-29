@@ -9,9 +9,7 @@ class PostDetails extends Component {
   componentDidMount() {
     this.getPostData();
   }
-  getPostData = () => {
-    fetch(this.props.id);
-  };
+  getPostData = () => {};
   props: {
     id: string
   };

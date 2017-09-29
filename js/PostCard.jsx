@@ -49,14 +49,16 @@ const TimeStamp = styled.p`
 
 class PostCard extends Component {
   componentDidMount() {
+    console.log('rendering postcard'); // eslint-disable-line no-console
     console.log(this.props); // eslint-disable-line no-console
   }
   props: {
     id: string,
-    github_record: Object,
-    spotify_record: Object,
+    // github_record: Object,
+    // spotify_record: Object,
     // twitter_record: Object, // not using this yet
     total_interactions: number,
+    title: string,
     created_at: string
   };
   formattedDate = () => {
@@ -71,17 +73,11 @@ class PostCard extends Component {
     });
   };
 
-  title = () => {
-    const { github_record, spotify_record } = this.props;
-    return `${github_record.most_used_lang[0]}, 
-      ${spotify_record.interesting_genre},
-      and the ${github_record.recent_commits} commits`;
-  };
   render() {
     return (
       <Link to={`/posts/${this.props.id}`}>
         <Card>
-          <Title>{this.title()}</Title>
+          <Title>{this.props.title}</Title>
           <CountBox>
             <h1>{this.props.total_interactions}</h1>
           </CountBox>
