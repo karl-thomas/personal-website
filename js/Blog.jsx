@@ -6,7 +6,7 @@ import PostContainer from './PostContainer';
 
 class Blog extends Component {
   static defaultProps = {
-    postID: ''
+    postID: {}
   };
 
   state = {
@@ -17,7 +17,7 @@ class Blog extends Component {
     this.setState(prevState => ({ startPos: !prevState.startPos }));
   };
   props: {
-    postID?: string
+    postID?: Object
   };
 
   render() {

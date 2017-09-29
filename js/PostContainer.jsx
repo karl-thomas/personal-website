@@ -5,6 +5,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import media from './utilities';
 import PostCard from './PostCard';
+import PostDetails from './PostDetails';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -34,7 +35,7 @@ class PostContainer extends Component {
   };
 
   componentDidMount() {
-    if (!this.props.postID) {
+    if (!this.props.postID.id) {
       this.getPostData();
     }
   }
@@ -50,19 +51,17 @@ class PostContainer extends Component {
 
   props: {
     startPos: boolean,
-    postID: string
+    postID: Object
   };
 
   render() {
     let containerComponent;
 
-    if (this.state.apiData.length === 0) {
+    if (this.props.postID.id) {
+      containerComponent = <PostDetails id={this.props.postID.id} />;
+    } else if (this.state.apiData.length === 0) {
       containerComponent = 'loadin';
-    } else if (this.props.postID) {
-      console.log('deets page');
-      containerComponent = 'need to make deets';
     } else {
-      console.log('this be the index page');
       containerComponent = this.state.apiData.map(record => <PostCard key={record.id} {...record} />);
     }
 

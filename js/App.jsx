@@ -2,8 +2,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import type { Match } from 'react-router-dom';
-import { Provider } from 'react-redux'; // redux setup
-import store from './store'; // redux setup
+// import { Provider } from 'react-redux'; // redux setup
+// import store from './store'; // redux setup
 import Blog from './Blog';
 // import AsyncRoute from './AsyncRoute';
 // import preload from '../data.json';
@@ -43,18 +43,19 @@ const FourOhFour = () => <h1>404</h1>;
 
 // provider gives app access to redux store
 const App = () => (
-  <Provider store={store}>
-    <div className="app">
-      <Switch>
-        <Route exact path="/" component={Blog} />
-        <Route
-          path="/posts/:id"
-          component={(props: { match: Match }) => <Blog postID={props.match.params.id} />}
-        />
-        <Route component={FourOhFour} />
-      </Switch>
-    </div>
-  </Provider>
+  <div className="app">
+    <Switch>
+      <Route exact path="/" component={Blog} />
+      <Route
+        path="/posts/:id"
+        component={(props: { match: Match }) => {
+          const id = { id: props.match.params.id };
+          return <Blog postID={id} />;
+        }}
+      />
+      <Route component={FourOhFour} />
+    </Switch>
+  </div>
 );
 
 export default App;

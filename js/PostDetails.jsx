@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
@@ -5,11 +7,22 @@ const Box = styled.div``;
 
 class PostDetails extends Component {
   componentDidMount() {
-    console.log(this.props);
+    this.getPostData();
   }
-
+  getPostData = () => {
+    fetch(this.props.id);
+  };
+  props: {
+    id: string
+  };
   render() {
-    return Box;
+    return (
+      <Box>
+        <pre>
+          <code>{JSON.stringify(this.props, null, 4)}</code>
+        </pre>
+      </Box>
+    );
   }
 }
 
