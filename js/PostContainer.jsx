@@ -5,6 +5,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import media from './utilities';
 import PostCard from './PostCard';
+import PostDetails from './PostDetails';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -34,24 +35,31 @@ class PostContainer extends Component {
   };
 
   componentDidMount() {
-    this.getPostData();
+    if (!this.props.postID.id) {
+      this.getPostData();
+    }
   }
 
-  getPostData = () =>
+  getPostData = () => {
     axios
       .get('http://localhost:3000/posts')
       .then(response => this.setState({ apiData: response.data }))
       .catch(error => {
         console.error('axios ERROR', error); // eslint-disable-line no-console
       });
+  };
 
   props: {
-    startPos: Boolean
+    startPos: boolean,
+    postID: Object
   };
 
   render() {
     let containerComponent;
-    if (this.state.apiData.length === 0) {
+
+    if (this.props.postID.id) {
+      containerComponent = <PostDetails id={this.props.postID.id} />;
+    } else if (this.state.apiData.length === 0) {
       containerComponent = 'loadin';
     } else {
       containerComponent = this.state.apiData.map(record => <PostCard key={record.id} {...record} />);

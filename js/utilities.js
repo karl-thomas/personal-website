@@ -2,9 +2,11 @@ import { css } from 'styled-components'; // this has to be in brackets, apparent
 
 // color helpers
 export const colors = {
-  lightBlue: 'rgba(146, 220, 229, 0.75)',
-  blueShadow: 'rgba(146, 220, 229, 1)',
-  puce: 'rgba(170, 91, 97, 0.75)'
+  torq: 'rgba(29, 225, 162, 0.75)',
+  lightCyan: 'rgba(222, 255, 242, 1)',
+  purp: 'rgba(70, 34, 85, 0.75)',
+  space: 'rgba(70, 79, 81, 1)',
+  black: 'rgba( 0, 0, 9, 1)'
 };
 
 const sizes = {

@@ -1,13 +1,13 @@
 // @flow
 
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors } from './utilities';
 // to take me to the details page in the future
-// import { Link } from 'react-router-dom';
 
 const Card = styled.div`
-  background-color: ${colors.lightBlue};
+  background-color: ${colors.space};
   margin: 0em 0em 1em 0em;
   position: relative;
   padding: 1em;
@@ -18,14 +18,18 @@ const Card = styled.div`
 const Title = styled.h1`
   display: inline-block;
   color: white;
+  width: 85%;
 `;
+
 const CountBox = styled.div`
   color: white;
   float: right;
+  right: 0px;
+  width: 15%;
 `;
 
 const TimeBox = styled.div`
-  background-color: ${colors.blueShadow};
+  background-color: ${colors.torq};
   position: absolute;
   padding: 0em 1em;
   border-top: thin solid black;
@@ -45,28 +49,43 @@ const TimeStamp = styled.p`
 
 class PostCard extends Component {
   componentDidMount() {
+    console.log('rendering postcard'); // eslint-disable-line no-console
     console.log(this.props); // eslint-disable-line no-console
   }
   props: {
-    id: String,
-    // github_record: Object, // not using this yet
+    id: string,
+    // github_record: Object,
     // spotify_record: Object,
-    // twitter_record: Object,
+    // twitter_record: Object, // not using this yet
     total_interactions: number,
+    title: string,
     created_at: string
+  };
+  formattedDate = () => {
+    const date = new Date(this.props.created_at);
+    return date.toLocaleString(undefined, {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    });
   };
 
   render() {
     return (
-      <Card>
-        <Title>{this.props.id}</Title>
-        <CountBox>
-          <h1>{this.props.total_interactions}</h1>
-        </CountBox>
-        <TimeBox>
-          <TimeStamp>{this.props.created_at}</TimeStamp>
-        </TimeBox>
-      </Card>
+      <Link to={`/posts/${this.props.id}`}>
+        <Card>
+          <Title>{this.props.title}</Title>
+          <CountBox>
+            <h1>{this.props.total_interactions}</h1>
+          </CountBox>
+          <TimeBox>
+            <TimeStamp>{this.formattedDate()}</TimeStamp>
+          </TimeBox>
+        </Card>
+      </Link>
     );
   }
 }
