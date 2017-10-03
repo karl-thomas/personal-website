@@ -17,10 +17,14 @@ const Wrapper = styled.div`
   -ms-transition: all 0.5s ease-out;
   -o-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
-  ${props =>
-    props.startPos
+  ${props => {
+    let propsStyles = '';
+    propsStyles += props.show ? 'visibility: visible;' : 'visibility: hidden;';
+    propsStyles += props.startPos
       ? 'transform: translate(calc(225px + 4%),calc(112px + 5vh));'
-      : 'transform: translate(100vw,100vh);'};
+      : 'transform: translate(100vw,100vh);';
+    return propsStyles;
+  }};
   ${media.phone`
       transform: translate(0px);
       top: 112px;
@@ -31,15 +35,24 @@ const Wrapper = styled.div`
 
 class PostContainer extends Component {
   state = {
-    apiData: []
+    apiData: [],
+    show: true,
+    moved: false
   };
 
   componentDidMount() {
-    if (!this.props.postID.id) {
-      this.getPostData();
-    }
+    if (!this.props.postID.id) this.getPostData();
   }
 
+  componentWillReceiveProps(nextProps: Object) {
+    if (!nextProps.startPos) {
+      setTimeout(() => {
+        this.updateShowStatus(false);
+      }, 50);
+    } else if (nextProps.startPos && !this.state.show) {
+      this.updateShowStatus(true);
+    }
+  }
   getPostData = () => {
     axios
       .get('http://localhost:3000/posts')
@@ -48,6 +61,9 @@ class PostContainer extends Component {
         console.error('axios ERROR', error); // eslint-disable-line no-console
       });
   };
+
+  updateShowStatus = (boolVal: boolean) =>
+    this.setState(prevState => (prevState.show === boolVal ? null : { show: boolVal }));
 
   props: {
     startPos: boolean,
@@ -65,7 +81,11 @@ class PostContainer extends Component {
       containerComponent = this.state.apiData.map(record => <PostCard key={record.id} {...record} />);
     }
 
-    return <Wrapper startPos={this.props.startPos}>{containerComponent}</Wrapper>;
+    return (
+      <Wrapper startPos={this.props.startPos} show={this.state.show}>
+        {containerComponent}
+      </Wrapper>
+    );
   }
 }
 
