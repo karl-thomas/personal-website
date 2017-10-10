@@ -10,16 +10,16 @@ const SideWrap = styled.div`
   ${props =>
     props.startPos /* true: top left, false: bottom right */
       ? `background-color: ${colors.torq};
-         left: 3%;
+         transform: translate(3vw,0vh);
          box-shadow:-2px 0px 6px 3px rgba(0, 0, 0, 0.1);`
       : `background-color: ${colors.purp};
-         left: 75%;
+         transform: translate(calc(97vw - 200px),0vh);
          box-shadow:2px 0px 6px 3px rgba(0, 0, 0, 0.1);`};
   z-index: 1000;
   -webkit-font-smoothing: antialiased;
   position: fixed;
   padding: 0em 0em;
-  width: 225px;
+  width: 200px;
   height: 100vh;
   ${transition};
   ${media.phone`
@@ -35,7 +35,7 @@ const SideWrap = styled.div`
 const Header = styled.h1`
   ${props => (props.startPos ? `top: 5vh;` : ` top: 77vh;`)};
   width: 100%;
-  padding-left: 20px;
+  padding-left: 10px;
   color: white;
   position: relative;
   font-size: 290%;
