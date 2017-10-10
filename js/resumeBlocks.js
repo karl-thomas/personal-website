@@ -9,7 +9,7 @@ resumeFig.experience = [
       'Pair program with students to build a more solid foundation for their own learning.',
       'Lead lectures on OOP and a few core concepts of Javascript.'
     ],
-    start: 'May 2016',
+    start: 'May 2017',
     end: 'Current'
   }
 ];
@@ -39,6 +39,7 @@ resumeFig.volunteering = [
 
 resumeFig.projects = [
   {
+    link: 'https://github.com/karl-thomas/automatic-blog',
     title: 'Automatic-blog',
     start: 'Jul 2017',
     end: 'Current',
@@ -50,6 +51,7 @@ resumeFig.projects = [
     ]
   },
   {
+    link: 'https://github.com/karl-thomas/WITNESS-ME',
     title: 'Witness Me',
     start: 'Apr 2017',
     end: 'Apr 2017',

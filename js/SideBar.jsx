@@ -33,7 +33,7 @@ const SideWrap = styled.div`
 `;
 
 const Header = styled.h1`
-  ${props => (props.startPos ? `top: 5vh;` : ` top: 77vh;`)};
+  ${props => (props.startPos ? `transform: translate(0px,5vh);` : ` transform: translate(0px,77vh);`)};
   width: 100%;
   padding-left: 10px;
   color: white;
