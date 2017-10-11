@@ -68,15 +68,9 @@ const ContactLink = styled.a`
   line-height: 2;
 `;
 
-const Link = styled.h1`
-  display: inline-block;
-  text-decoration: underline;
-  text-decoration-color: #a9ffce;
-  font-weight: 500;
+const Li = styled.li`
   padding-left: 10px;
-  color: white;
-  position: relative;
-  margin-top: 0px;
+  margin: 0px 0px 40px 0px;
   -webkit-transition: all 0.7s ease-out;
 `;
 const Pan = styled.div`
@@ -87,29 +81,16 @@ const Pan = styled.div`
   width: 10px;
   height: 40px;
   -webkit-transition: all 0.7s ease-out;
-`;
-const LILink = Link.extend``;
-const GHLink = Link.extend``;
-const RLink = Link.extend``;
-const LIPan = Pan.extend`
-  ${LILink}:hover & {
-    width: 100px;
+  ${Li}:hover & {
+    width: 90%;
   }
 `;
-const GHPan = Pan.extend`
-  ${GHLink}:hover & {
-    width: 100px;
-  }
-`;
-const RPan = Pan.extend`
-  ${RLink}:hover & {
-    width: 100px;
-  }
-`;
-
-const LinkText = styled.p`
+const LinkText = styled.h1`
+  text-decoration: underline;
+  text-decoration-color: #a9ffce;
+  font-weight: 500;
+  color: white;
   position: absolute;
-  top: 20 px;
   z-index: 1000;
   display: inline-block;
   margin: 0px;
@@ -119,28 +100,22 @@ const SideBar = (props: { parentClickHandler: Function, startPos: boolean }) => 
   <SideWrap startPos={props.startPos}>
     <Header startPos={props.startPos}>Karl Thomas</Header>
     <ContactUL>
-      <li>
-        <RLink onClick={props.parentClickHandler}>
-          <RPan />
-          <LinkText>Portfolio</LinkText>
-        </RLink>
-      </li>
-      <li>
+      <Li onClick={props.parentClickHandler}>
+        <Pan />
+        <LinkText>Portfolio</LinkText>
+      </Li>
+      <Li>
         <ContactLink startPos={props.startPos} href="https://github.com/karl-thomas">
-          <GHLink>
-            <GHPan />
-            <LinkText>Github</LinkText>
-          </GHLink>
+          <Pan />
+          <LinkText>Github</LinkText>
         </ContactLink>
-      </li>
-      <li>
+      </Li>
+      <Li>
         <ContactLink startPos={props.startPos} href="https://www.linkedin.com/in/karl-thomas/">
-          <LILink>
-            <LIPan />
-            <LinkText>LinkedIn</LinkText>
-          </LILink>
+          <Pan />
+          <LinkText>LinkedIn</LinkText>
         </ContactLink>
-      </li>
+      </Li>
     </ContactUL>
   </SideWrap>
 );
