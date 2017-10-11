@@ -5,9 +5,9 @@ resumeFig.experience = [
     title: 'Mentor',
     company: 'Dev Bootcamp',
     bullets: [
-      'Help others learn new programming concepts and tech stacks.',
-      'Pair program with students to build a more solid foundation for their own learning.',
-      'Lead lectures on OOP and a few core concepts of Javascript.'
+      'Responsible for offering mentorship to over 100 students from day one to graduation.',
+      'Collaborates with instructors to make action plans to address student trouble points',
+      'Lead lectures on OOP in Ruby and  core concepts of Javascript.'
     ],
     start: 'May 2017',
     end: 'Current'

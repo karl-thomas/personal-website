@@ -59,15 +59,12 @@ const ContactUL = styled.ul`
   top: 75px;
   ${media.phone`display: none;`};
 `;
-const ContactLi = styled.li`
-  padding: 10px 17px;
-  &:hover {
-    background-color: ${colors.space};
-  }
-`;
+
 const ContactLink = styled.a`
+  font-weight: 500;
+  font-size: 32px;
   vertical-align: top;
-  font-size: 22px;
+  font-size: 20px;
   margin-left: 10px;
   text-decoration-color: #a9ffce;
   display: ${props => (props.startPos ? 'inline-block' : 'none')};
@@ -75,30 +72,30 @@ const ContactLink = styled.a`
   line-height: 2;
 `;
 
-const Icon = styled.img`
-  display: ${props => (props.startPos ? 'inline-block' : 'none')};
-  width: 40px;
-  height: 40px;
+const Link = styled.h1`
+  text-decoration: underline;
+  text-decoration-color: #a9ffce;
+  font-weight: 500;
+  width: 100%;
+  padding-left: 10px;
+  color: white;
+  position: relative;
+  margin-top: 0px;
+  -webkit-transition: all 0.7s ease-out;
 `;
 
 const SideBar = (props: { parentClickHandler: Function, startPos: boolean }) => (
   <SideWrap startPos={props.startPos}>
-    <Header onClick={props.parentClickHandler} startPos={props.startPos}>
-      Karl Thomas
-    </Header>
+    <Header startPos={props.startPos}>Karl Thomas</Header>
+    <Link onClick={props.parentClickHandler}>Portfolio</Link>
     <ContactUL>
-      <ContactLi>
-        <Icon startPos={props.startPos} alt="github icon" src="/public/img/social-github.png" />
-        <ContactLink startPos={props.startPos} href="https://github.com/karl-thomas">
-          /karl-thomas
-        </ContactLink>
-      </ContactLi>
-      <ContactLi>
-        <Icon startPos={props.startPos} alt="linkedin icon" src="/public/img/linkedin.png" />
-        <ContactLink startPos={props.startPos} href="https://www.linkedin.com/in/karl-thomas/">
-          /karl-thomas
-        </ContactLink>
-      </ContactLi>
+      <ContactLink startPos={props.startPos} href="https://github.com/karl-thomas">
+        Github
+      </ContactLink>
+
+      <ContactLink startPos={props.startPos} href="https://www.linkedin.com/in/karl-thomas/">
+        LinkedIn
+      </ContactLink>
     </ContactUL>
   </SideWrap>
 );
