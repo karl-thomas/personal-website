@@ -61,12 +61,8 @@ const ContactUL = styled.ul`
 `;
 
 const ContactLink = styled.a`
-  font-weight: 500;
-  font-size: 32px;
+  display: block;
   vertical-align: top;
-  font-size: 20px;
-  margin-left: 10px;
-  text-decoration-color: #a9ffce;
   display: ${props => (props.startPos ? 'inline-block' : 'none')};
   color: white;
   line-height: 2;
@@ -83,18 +79,32 @@ const Link = styled.h1`
   margin-top: 0px;
   -webkit-transition: all 0.7s ease-out;
 `;
+const Pan = styled.div`
+  background-color: ${colors.purp};
+  z-index: -1000;
+  width: 10px;
+  height: 40px;
+`;
+const LILink = Link.extend``;
+const GHLink = Link.extend``;
+const RLink = Link.extend``;
+const LIPan = Pan.extend``;
+const GHPan = Pan.extend``;
+const RPan = Pan.extend``;
 
 const SideBar = (props: { parentClickHandler: Function, startPos: boolean }) => (
   <SideWrap startPos={props.startPos}>
     <Header startPos={props.startPos}>Karl Thomas</Header>
-    <Link onClick={props.parentClickHandler}>Portfolio</Link>
     <ContactUL>
+      <RPan />
+      <RLink onClick={props.parentClickHandler}>Portfolio</RLink>
       <ContactLink startPos={props.startPos} href="https://github.com/karl-thomas">
-        Github
+        <GHPan />
+        <GHLink>Github</GHLink>
       </ContactLink>
-
       <ContactLink startPos={props.startPos} href="https://www.linkedin.com/in/karl-thomas/">
-        LinkedIn
+        <LIPan />
+        <LILink>LinkedIn</LILink>
       </ContactLink>
     </ContactUL>
   </SideWrap>
