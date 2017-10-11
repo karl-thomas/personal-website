@@ -69,10 +69,10 @@ const ContactLink = styled.a`
 `;
 
 const Link = styled.h1`
+  display: inline-block;
   text-decoration: underline;
   text-decoration-color: #a9ffce;
   font-weight: 500;
-  width: 100%;
   padding-left: 10px;
   color: white;
   position: relative;
@@ -80,32 +80,67 @@ const Link = styled.h1`
   -webkit-transition: all 0.7s ease-out;
 `;
 const Pan = styled.div`
+  position: absolute;
+  display: inline-block;
   background-color: ${colors.purp};
   z-index: -1000;
   width: 10px;
   height: 40px;
+  -webkit-transition: all 0.7s ease-out;
 `;
 const LILink = Link.extend``;
 const GHLink = Link.extend``;
 const RLink = Link.extend``;
-const LIPan = Pan.extend``;
-const GHPan = Pan.extend``;
-const RPan = Pan.extend``;
+const LIPan = Pan.extend`
+  ${LILink}:hover & {
+    width: 100px;
+  }
+`;
+const GHPan = Pan.extend`
+  ${GHLink}:hover & {
+    width: 100px;
+  }
+`;
+const RPan = Pan.extend`
+  ${RLink}:hover & {
+    width: 100px;
+  }
+`;
+
+const LinkText = styled.p`
+  position: absolute;
+  top: 20 px;
+  z-index: 1000;
+  display: inline-block;
+  margin: 0px;
+`;
 
 const SideBar = (props: { parentClickHandler: Function, startPos: boolean }) => (
   <SideWrap startPos={props.startPos}>
     <Header startPos={props.startPos}>Karl Thomas</Header>
     <ContactUL>
-      <RPan />
-      <RLink onClick={props.parentClickHandler}>Portfolio</RLink>
-      <ContactLink startPos={props.startPos} href="https://github.com/karl-thomas">
-        <GHPan />
-        <GHLink>Github</GHLink>
-      </ContactLink>
-      <ContactLink startPos={props.startPos} href="https://www.linkedin.com/in/karl-thomas/">
-        <LIPan />
-        <LILink>LinkedIn</LILink>
-      </ContactLink>
+      <li>
+        <RLink onClick={props.parentClickHandler}>
+          <RPan />
+          <LinkText>Portfolio</LinkText>
+        </RLink>
+      </li>
+      <li>
+        <ContactLink startPos={props.startPos} href="https://github.com/karl-thomas">
+          <GHLink>
+            <GHPan />
+            <LinkText>Github</LinkText>
+          </GHLink>
+        </ContactLink>
+      </li>
+      <li>
+        <ContactLink startPos={props.startPos} href="https://www.linkedin.com/in/karl-thomas/">
+          <LILink>
+            <LIPan />
+            <LinkText>LinkedIn</LinkText>
+          </LILink>
+        </ContactLink>
+      </li>
     </ContactUL>
   </SideWrap>
 );
