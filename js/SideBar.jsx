@@ -52,11 +52,10 @@ const Header = styled.h1`
 
 const ContactUL = styled.ul`
   width: 100%;
+  position: absolute;
   list-style: none;
   padding-left: 0;
-  float: left;
-  position: relative;
-  top: 75px;
+  top: 175px;
   ${media.phone`display: none;`};
 `;
 
@@ -65,20 +64,20 @@ const ContactLink = styled.a`
   vertical-align: top;
   display: ${props => (props.startPos ? 'inline-block' : 'none')};
   color: white;
-  line-height: 2;
 `;
 
 const Li = styled.li`
+  height: 50px;
+  margin-bottom: 10px;
   padding-left: 10px;
-  margin: 0px 0px 40px 0px;
   -webkit-transition: all 0.7s ease-out;
 `;
 const Pan = styled.div`
   position: absolute;
   display: inline-block;
-  background-color: ${colors.purp};
+  background-color: ${colors.torqPurp};
   z-index: -1000;
-  width: 10px;
+  width: 3px;
   height: 40px;
   -webkit-transition: all 0.7s ease-out;
   ${Li}:hover & {
@@ -87,13 +86,16 @@ const Pan = styled.div`
 `;
 const LinkText = styled.h1`
   text-decoration: underline;
+  padding-left: 10px;
   text-decoration-color: #a9ffce;
   font-weight: 500;
   color: white;
   position: absolute;
   z-index: 1000;
-  display: inline-block;
   margin: 0px;
+  ${Li}:hover & {
+    width: 100%;
+  }
 `;
 
 const SideBar = (props: { parentClickHandler: Function, startPos: boolean }) => (
