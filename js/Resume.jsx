@@ -44,7 +44,7 @@ const Times = styled.p`
 `;
 
 const Body = styled.div`
-  padding-left: 17%;
+  padding-left: 144px;
   padding-bottom: 20px;
 `;
 

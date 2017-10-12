@@ -40,7 +40,7 @@ const Header = styled.h1`
   position: relative;
   font-size: 290%;
   margin-top: 0px;
-  -webkit-transition: all 0.7s ease-out;
+  -webkit-transition: all 0.4s ease-out;
   ${transition};
   ${media.phone`
     top:0px;
@@ -51,11 +51,12 @@ const Header = styled.h1`
 `;
 
 const ContactUL = styled.ul`
+  ${props => (props.startPos ? `transform: translate(0px,1vh);` : ` transform: translate(0px,-3vh);`)};
   width: 100%;
   position: absolute;
   list-style: none;
   padding-left: 0;
-  top: 175px;
+  -webkit-transition: all 0.4s ease-out;
   ${media.phone`display: none;`};
 `;
 
@@ -75,7 +76,7 @@ const Li = styled.li`
 const Pan = styled.div`
   position: absolute;
   display: inline-block;
-  background-color: ${colors.torqPurp};
+  background-color: ${props => (props.startPos ? colors.torqPurp : '#46536e')};
   z-index: -1000;
   width: 3px;
   height: 40px;
@@ -85,9 +86,7 @@ const Pan = styled.div`
   }
 `;
 const LinkText = styled.h1`
-  text-decoration: underline;
   padding-left: 10px;
-  text-decoration-color: #a9ffce;
   font-weight: 500;
   color: white;
   position: absolute;
@@ -96,30 +95,41 @@ const LinkText = styled.h1`
   ${Li}:hover & {
     width: 100%;
   }
+  &::after {
+    content: '  ►';
+    color: ${props => (props.startPos ? '#50e5b7' : '#6f567d')};
+  }
 `;
 
-const SideBar = (props: { parentClickHandler: Function, startPos: boolean }) => (
-  <SideWrap startPos={props.startPos}>
-    <Header startPos={props.startPos}>Karl Thomas</Header>
-    <ContactUL>
-      <Li onClick={props.parentClickHandler}>
-        <Pan />
-        <LinkText>Portfolio</LinkText>
-      </Li>
-      <Li>
-        <ContactLink startPos={props.startPos} href="https://github.com/karl-thomas">
-          <Pan />
-          <LinkText>Github</LinkText>
-        </ContactLink>
-      </Li>
-      <Li>
-        <ContactLink startPos={props.startPos} href="https://www.linkedin.com/in/karl-thomas/">
-          <Pan />
-          <LinkText>LinkedIn</LinkText>
-        </ContactLink>
-      </Li>
-    </ContactUL>
-  </SideWrap>
-);
+const SideBar = (props: { parentClickHandler: Function, startPos: boolean }) => {
+  const textUtil = props.startPos ? (
+    <LinkText startPos={props.startPos}>Portfolio</LinkText>
+  ) : (
+    <LinkText startPos={props.startPos}>Back</LinkText>
+  );
+  return (
+    <SideWrap startPos={props.startPos}>
+      <Header startPos={props.startPos}>Karl Thomas</Header>
+      <ContactUL startPos={props.startPos}>
+        <Li startPos={props.startPos} onClick={props.parentClickHandler}>
+          <Pan startPos={props.startPos} />
+          {textUtil}
+        </Li>
+        <Li>
+          <ContactLink startPos={props.startPos} href="https://github.com/karl-thomas">
+            <Pan startPos={props.startPos} />
+            <LinkText startPos={props.startPos}>Github</LinkText>
+          </ContactLink>
+        </Li>
+        <Li>
+          <ContactLink startPos={props.startPos} href="https://www.linkedin.com/in/karl-thomas/">
+            <Pan startPos={props.startPos} />
+            <LinkText startPos={props.startPos}>LinkedIn</LinkText>
+          </ContactLink>
+        </Li>
+      </ContactUL>
+    </SideWrap>
+  );
+};
 
 export default SideBar;
