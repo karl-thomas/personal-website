@@ -26,6 +26,7 @@ const Wrapper = styled.div`
     return propsStyles;
   }};
   ${media.phone`
+    visibility: visible;
       transform: translate(0px);
       top: 112px;
       left:0px;
@@ -41,6 +42,7 @@ class PostContainer extends Component {
   };
 
   componentDidMount() {
+    console.log(window.innerHeight);
     if (!this.props.postID.id) this.getPostData();
   }
 

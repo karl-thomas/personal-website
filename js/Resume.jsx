@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import resumeFig from './resumeBlocks';
+import media from './utilities';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -17,6 +18,9 @@ const Wrapper = styled.div`
   transition: all 0.5s ease-out;
   overflow-y: scroll;
   ${props => (props.startPos ? 'transform: translate(-100vw,-100vh);' : 'transform: translate(0vw,0vh);')};
+  ${media.phone`
+    display:none;
+    `};
 `;
 const Header = styled.h2`
   display: block;
@@ -27,7 +31,7 @@ const Header = styled.h2`
   width: 100%;
   margin: 0px 0px 5px;
 `;
-const Summary = styled.div`padding-left: 17%;`;
+const Summary = styled.div`padding-left: 144px;`;
 
 const Title = styled.p`
   font-style: italic;
@@ -63,7 +67,6 @@ class Resume extends Component {
   };
 
   componentWillReceiveProps(nextProps: Object) {
-    console.log(nextProps);
     if (nextProps.startPos) {
       setTimeout(() => {
         this.updateShowStatus(false);

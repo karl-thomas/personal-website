@@ -23,11 +23,14 @@ const SideWrap = styled.div`
   height: 100vh;
   ${transition};
   ${media.phone`
+    background-color: ${colors.torq};
+   transform: translate(3vw,0vh);
+   box-shadow:-2px 0px 6px 3px rgba(0, 0, 0, 0.1);
     box-shadow: 2px 0px 6px 3px rgba(0, 0, 0, 0.1);
-    left: 0px;
+    left: -10px;
     width: 100%;
     height: 112px;
-    padding: 1em;
+    padding: .5em;
     border-bottom: thick solid ${colors.purp}
     `};
 `;
@@ -43,9 +46,10 @@ const Header = styled.h1`
   -webkit-transition: all 0.4s ease-out;
   ${transition};
   ${media.phone`
-    top:0px;
-    padding-left:10px;
-    width:20px;
+    transform: translate(0px,5vh);
+    position: fixed;
+    top:-.5em;
+    width:90px;
     font-size:200%;
     `};
 `;
@@ -74,13 +78,14 @@ const Li = styled.li`
   -webkit-transition: all 0.7s ease-out;
 `;
 const Pan = styled.div`
+  box-shadow: inset 2px 3px 1px rgba(0, 0, 0, 0.2);
   position: absolute;
   display: inline-block;
   background-color: ${props => (props.startPos ? colors.torqPurp : '#46536e')};
   z-index: -1000;
   width: 3px;
   height: 40px;
-  -webkit-transition: all 0.7s ease-out;
+  -webkit-transition: all 0.4s ease-out;
   ${Li}:hover & {
     width: 90%;
   }
@@ -94,10 +99,11 @@ const LinkText = styled.h1`
   margin: 0px;
   ${Li}:hover & {
     width: 100%;
-  }
-  &::after {
-    content: '  ►';
-    color: ${props => (props.startPos ? '#50e5b7' : '#6f567d')};
+    &::after {
+      content: '  ►';
+      color: ${props => (props.startPos ? '#50e5b7' : '#6f567d')};
+      text-shadow: 2px 3px 1px rgba(0, 0, 0, 0.2);
+    }
   }
 `;
 
