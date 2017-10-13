@@ -127,10 +127,11 @@ class Resume extends Component {
       <Wrapper startPos={this.props.startPos}>
         <Header>Elevator Speech</Header>
         <Summary>
-          A Ohio-California transplant into Chicago, driven by curiosity into the Tech Industry. My goal is to
-          continuously learn useful design practices and implement interesting technologies with fellow
-          developers who show empathy in their work and world-view. I have a love for quirky code and elegant
-          solutions, and am currently looking for a role under mentorship with room to develop.
+          A Ohio-California transplant into Chicago, driven by curiosity into the Tech Industry. After
+          graduating from and working at Dev Bootcamp, my goal is to continuously learn useful design
+          practices and implement interesting technologies with fellow developers who show empathy in their
+          work and world-view. I have a love for quirky code and elegant solutions, and am currently looking
+          for a role under mentorship with room to develop.
         </Summary>
         <br />
         <Header>Experience</Header>

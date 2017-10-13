@@ -44,7 +44,7 @@ resumeFig.projects = [
     start: 'Jul 2017',
     end: 'Current',
     description:
-      'This blog will write itself using APIs of websites and applications I use most, such as Github, Spotify, and Twitter.',
+      'A personal project focused on creating a blog that will write itself using APIs of websites and applications I use most, such as Github, Spotify, and Twitter. ',
     bullets: [
       'Ruby on Rails framework  with MongoDB for the back end',
       'Served to a Node front end with React and D3'
@@ -56,7 +56,7 @@ resumeFig.projects = [
     start: 'Apr 2017',
     end: 'Apr 2017',
     description:
-      'Witness Me allows users to challenge each other to various friendly bets. To make things interesting, bets can range from $1 to $10. A witness must be present to determine the winner. The winner receives the pot of money placed in the initial bet. ',
+      'The capstone group project from when I graduated Dev Bootcamp, Witness Me allows users to challenge each other to various friendly bets. These bets can range from $1 to $10, but witness must be present to determine the winner. The winner receives the pot of money placed in the initial bet. ',
     bullets: [
       'Challenges initiated and confirmed in real time using a web socket "handshake"',
       'Ruby on Rails, JavaScript, Redis, Postgresql, Dwolla API, Twillio API, Amazon Web Services, Heroku'
