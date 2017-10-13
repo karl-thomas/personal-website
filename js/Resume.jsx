@@ -104,7 +104,8 @@ class Resume extends Component {
         </Times>
         <Body>
           <LinkTo href={proj.link}>{proj.title}</LinkTo>
-          {proj.bullets.join(' ')}
+          <p>{proj.description}</p>
+          <ul>{proj.bullets.map(bullet => <li>{bullet}</li>)}</ul>
         </Body>
       </div>
     ));
@@ -118,7 +119,7 @@ class Resume extends Component {
           <Title>
             {vol.title}, {vol.company}
           </Title>
-          {vol.bullets.join(' ')}
+          <ul>{vol.bullets.join(' ')}</ul>
         </Body>
       </div>
     ));
