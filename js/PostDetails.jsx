@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-const Box = styled.div``;
+const Pre = styled.pre`overflow-y: scroll;`;
 
 class PostDetails extends Component {
   state = {
@@ -30,11 +30,12 @@ class PostDetails extends Component {
       postContent = 'LOADIN';
     }
     return (
-      <Box>
-        <pre>
+      <div>
+        <h1>No post details yet, still tinkering with D3.</h1>
+        <Pre>
           <code>{JSON.stringify(postContent, null, 4)}</code>
-        </pre>
-      </Box>
+        </Pre>
+      </div>
     );
   }
 }
