@@ -34,13 +34,16 @@ const Header = styled.h2`
   width: 100%;
   margin: 0px 0px 5px;
 `;
-const Summary = styled.div`padding-left: 144px;`;
+const Summary = styled.div`
+  padding-left: 144px;
+  ${media.tablet`padding:0px;margin:10px;`};
+`;
 
 const Title = styled.p`
   font-style: italic;
-  margin: 0px;
   height: 50%;
   padding-bottom: 10px;
+  ${media.tablet`text-align: right;`};
 `;
 
 const Times = styled.p`
@@ -53,8 +56,13 @@ const Times = styled.p`
 const Body = styled.div`
   padding-left: 144px;
   padding-bottom: 20px;
+  ${media.tablet`padding:0px;margin:10px;`};
 `;
-
+const Section = styled.div`
+  &:not(:last-child) {
+    border-bottom: thin dotted #a2a6a8;
+  }
+`;
 const LinkTo = styled.a`
   display: block;
   font-style: italic;
@@ -62,6 +70,7 @@ const LinkTo = styled.a`
   height: 50%;
   padding-bottom: 10px;
   text-decoration-color: #a9ffce;
+  ${media.tablet`text-align: right;`};
 `;
 
 class Resume extends Component {
@@ -87,7 +96,7 @@ class Resume extends Component {
 
   render() {
     const workComponent = resumeFig.experience.map(work => (
-      <div>
+      <Section>
         <Times>
           {work.start} to {work.end}
         </Times>
@@ -97,11 +106,11 @@ class Resume extends Component {
           </Title>
           {work.bullets.join(' ')}
         </Body>
-      </div>
+      </Section>
     ));
 
     const projectsComponent = resumeFig.projects.map(proj => (
-      <div>
+      <Section>
         <Times>
           {proj.start} to {proj.end}
         </Times>
@@ -110,11 +119,11 @@ class Resume extends Component {
           <p>{proj.description}</p>
           <ul>{proj.bullets.map(bullet => <li>{bullet}</li>)}</ul>
         </Body>
-      </div>
+      </Section>
     ));
 
     const volunteerComponent = resumeFig.volunteering.map(vol => (
-      <div>
+      <Section>
         <Times>
           {vol.start} to {vol.end}
         </Times>
@@ -124,7 +133,7 @@ class Resume extends Component {
           </Title>
           {vol.bullets.join(' ')}
         </Body>
-      </div>
+      </Section>
     ));
 
     return (
@@ -139,13 +148,13 @@ class Resume extends Component {
         </Summary>
         <br />
         <Header>Experience</Header>
-        {workComponent}
+        <div>{workComponent}</div>
         <br />
         <Header>Projects</Header>
-        {projectsComponent}
+        <div>{projectsComponent}</div>
         <br />
         <Header>Volunteer Work</Header>
-        {volunteerComponent}
+        <div>{volunteerComponent}</div>
       </Wrapper>
     );
   }
