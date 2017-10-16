@@ -17,7 +17,10 @@ const Wrapper = styled.div`
   -o-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
   overflow-y: scroll;
-  ${props => (props.startPos ? 'transform: translate(-100vw,-100vh);' : 'transform: translate(0vw,0vh);')};
+  ${props =>
+    props.startPos
+      ? 'transform: translate(-100vw,-100vh); visibility:hidden;'
+      : 'transform: translate(0vw,0vh);visibility:visible;'};
   ${media.phone`
     display:none;
     `};
@@ -119,7 +122,7 @@ class Resume extends Component {
           <Title>
             {vol.title}, {vol.company}
           </Title>
-          <ul>{vol.bullets.join(' ')}</ul>
+          {vol.bullets.join(' ')}
         </Body>
       </div>
     ));
