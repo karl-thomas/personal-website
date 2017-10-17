@@ -66,6 +66,7 @@ const Section = styled.div`
 const LinkTo = styled.a`
   display: block;
   font-style: italic;
+  margin-top: 10px;
   margin: 0px;
   height: 50%;
   padding-bottom: 10px;
