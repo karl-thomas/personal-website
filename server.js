@@ -1,6 +1,5 @@
 /* eslint no-console:0 */
 require('babel-register');
-
 const express = require('express');
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
