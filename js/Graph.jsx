@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
+import * as d3 from 'd3';
+import PropTypes from 'prop-types';
 
 class Graph extends Component {
-  props = {};
+  state = {
+    data: '',
+    margin: '',
+    width: '',
+    height: '',
+    g: ''
+  };
 
-  componentDidMount(){
-    draw(this.data)
+  componentDidMount() {
+    console.log(this.props);
+    this.convertToSimpleData(this.props.github_record.counts_by_date);
+    this.selectSvg();
+    console.log(this.state);
+    this.draw(this.state.data, this.x, this.y, this.state.g);
   }
 
   convertToSimpleData = start => {
@@ -14,64 +26,79 @@ class Graph extends Component {
     }));
   };
 
-  var data = convertToSimpleData(startingData)
-  var svg = d3.select("svg"),
-    margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = +svg.attr("width") - margin.left - margin.right,
-    height = +svg.attr("height") - margin.top - margin.bottom,
-    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  selectSvg = () => {
+    const svg = d3.select('svg');
 
-var parseTime = d3.timeParse("%Y-%m-%d");
+    this.setState(() => ({
+      margin: { top: 20, right: 20, bottom: 30, left: 50 },
+      width: +svg.attr('width') - this.state.margin.left - this.state.margin.right,
+      height: +svg.attr('height') - this.state.margin.top - this.state.margin.bottom,
+      g: svg.append('g').attr('transform', `translate(${this.state.margin.left}`, `${this.state.margin.top})`)
+    }));
+  };
 
-var x = d3.scaleTime()
-    .rangeRound([0, width]);
+  parseTime = d3.timeParse('%Y-%m-%d');
 
-var y = d3.scaleLinear()
-    .rangeRound([height, 0]);
+  x = d3.scaleTime().rangeRound([0, this.state.width]);
 
-var line = d3.line()
+  y = d3.scaleLinear().rangeRound([this.state.height, 0]);
+
+  line = d3
+    .line()
     .curve(d3.curveCatmullRomOpen)
-    .x(function(d) { return x(d.date); })
-    .y(function(d) { return y(d.data); });
+    .x(d => this.x(d.date))
+    .y(d => this.y(d.data));
 
-var draw = (data) => { 
-  data.forEach((d) =>{ 
-    d.date = parseTime(d.date)
-    d.data = +d.data
-  })
-  console.log(data)
-  x.domain(d3.extent(data, function(d) { return d.date; }));
-  y.domain(d3.extent(data, function(d) { return d.data; }));
+  draw = (data, x, y, g) => {
+    data.forEach(d => {
+      const de = d;
+      de.date = this.parseTime(d.date);
+      de.data = +d.data;
+    });
 
-  g.append("g")
-      .attr("transform", "translate(0," + height + ")")
+    x.domain(d3.extent(data, d => d.date));
+    y.domain(d3.extent(data, d => d.data));
+
+    g
+      .append('g')
+      .attr('transform', `translate(0,${this.state.height})`)
       .call(d3.axisBottom(x))
-    .select(".domain")
-      ;
+      .select('.domain');
 
-  g.append("g")
+    g
+      .append('g')
       .call(d3.axisLeft(y))
-    .append("text")
-      .attr("fill", "#000")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", "0.71em")
-      .attr("text-anchor", "end")
-      .text("Price ($)");
+      .append('text')
+      .attr('fill', '#000')
+      .attr('transform', 'rotate(-90)')
+      .attr('y', 6)
+      .attr('dy', '0.71em')
+      .attr('text-anchor', 'end')
+      .text('Price ($)');
 
-  g.append("path")
+    g
+      .append('path')
       .datum(data)
-      .attr("fill", "none")
-      .attr("stroke", "steelblue")
-      .attr("stroke-linejoin", "round")
-      .attr("stroke-linecap", "round")
-      .attr("stroke-width", 1.5)
-      .attr("d", line);
-};
-  
+      .attr('fill', 'none')
+      .attr('stroke', 'steelblue')
+      .attr('stroke-linejoin', 'round')
+      .attr('stroke-linecap', 'round')
+      .attr('stroke-width', 1.5)
+      .attr('d', this.line());
+  };
+
   render() {
-    return <div> Oh Hello!!!</div>;
+    return (
+      <div>
+        <svg width="960" height="500" />
+        Oh Hello!!!
+      </div>
+    );
   }
 }
+
+Graph.propTypes = {
+  github_record: PropTypes.objectOf(PropTypes.object)
+};
 
 export default Graph;
