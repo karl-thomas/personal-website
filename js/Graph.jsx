@@ -1,10 +1,11 @@
+/* eslint react/forbid-prop-types: 0 */
+/* eslint no-param-reassign: 0 */
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 import PropTypes from 'prop-types';
 
 class Graph extends Component {
   state = {
-    data: '',
     margin: '',
     width: '',
     height: '',
@@ -13,59 +14,68 @@ class Graph extends Component {
 
   componentDidMount() {
     console.log(this.props);
-    this.convertToSimpleData(this.props.github_record.counts_by_date);
-    this.selectSvg();
-    console.log(this.state);
-    this.draw(this.state.data, this.x, this.y, this.state.g);
+    const data = this.convertToSimpleData(this.props.github_record.counts_by_date);
+    console.log(data);
+    const svg = this.selectSvg();
+    console.log(svg);
+    this.draw(data, svg);
   }
 
-  convertToSimpleData = start => {
+  convertToSimpleData = start =>
     Object.keys(start).map(date => ({
       date,
       data: Object.values(start[date]).reduce((a, b) => a + b, 0)
     }));
-  };
 
   selectSvg = () => {
     const svg = d3.select('svg');
-
-    this.setState(() => ({
-      margin: { top: 20, right: 20, bottom: 30, left: 50 },
-      width: +svg.attr('width') - this.state.margin.left - this.state.margin.right,
-      height: +svg.attr('height') - this.state.margin.top - this.state.margin.bottom,
-      g: svg.append('g').attr('transform', `translate(${this.state.margin.left}`, `${this.state.margin.top})`)
-    }));
+    const margin = { top: 20, right: 20, bottom: 30, left: 50 };
+    const width = +svg.attr('width') - margin.left - margin.right;
+    const height = +svg.attr('height') - margin.top - margin.bottom;
+    return {
+      margin,
+      width,
+      height,
+      x: this.x(width),
+      y: this.y(height),
+      g: svg.append('g').attr('transform', `translate(${margin.left}, ${margin.top})`)
+    };
   };
 
-  parseTime = d3.timeParse('%Y-%m-%d');
+  x = svgWidth => d3.scaleTime().rangeRound([0, svgWidth]);
 
-  x = d3.scaleTime().rangeRound([0, this.state.width]);
+  y = svgHeight => d3.scaleLinear().rangeRound([svgHeight, 0]);
 
-  y = d3.scaleLinear().rangeRound([this.state.height, 0]);
+  // need to split this up into a function that conditionally return a different line.
+  //
+  line = svg => {
+    const x = d3.scaleTime().rangeRound([0, svg.width]);
+    const y = d3.scaleLinear().rangeRound([svg.height, 0]);
+    return d3
+      .line()
+      .curve(d3.curveCatmullRomOpen)
+      .x(d => x(d.date))
+      .y(d => y(d.data));
+  };
 
-  line = d3
-    .line()
-    .curve(d3.curveCatmullRomOpen)
-    .x(d => this.x(d.date))
-    .y(d => this.y(d.data));
-
-  draw = (data, x, y, g) => {
+  draw = (data, svg) => {
+    const x = d3.scaleTime().rangeRound([0, svg.width]);
+    const y = d3.scaleLinear().rangeRound([svg.height, 0]);
     data.forEach(d => {
-      const de = d;
-      de.date = this.parseTime(d.date);
-      de.data = +d.data;
+      d.date = d3.timeParse('%Y-%m-%d')(d.date);
+      d.data = +d.data;
     });
 
     x.domain(d3.extent(data, d => d.date));
-    y.domain(d3.extent(data, d => d.data));
+    y.domain([0, d3.max(data, d => Math.max(d.data))]);
 
-    g
+    svg.g
       .append('g')
-      .attr('transform', `translate(0,${this.state.height})`)
+      .attr('transform', `translate(0,${svg.height})`)
       .call(d3.axisBottom(x))
       .select('.domain');
 
-    g
+    svg.g
       .append('g')
       .call(d3.axisLeft(y))
       .append('text')
@@ -75,8 +85,11 @@ class Graph extends Component {
       .attr('dy', '0.71em')
       .attr('text-anchor', 'end')
       .text('Price ($)');
-
-    g
+    const line = d3
+      .line()
+      .x(d => x(d.date))
+      .y(d => y(d.data));
+    svg.g
       .append('path')
       .datum(data)
       .attr('fill', 'none')
@@ -84,21 +97,20 @@ class Graph extends Component {
       .attr('stroke-linejoin', 'round')
       .attr('stroke-linecap', 'round')
       .attr('stroke-width', 1.5)
-      .attr('d', this.line());
+      .attr('d', line);
   };
 
   render() {
     return (
       <div>
-        <svg width="960" height="500" />
+        <svg width="400" height="500" />
         Oh Hello!!!
       </div>
     );
   }
 }
-
 Graph.propTypes = {
-  github_record: PropTypes.objectOf(PropTypes.object)
+  github_record: PropTypes.any
 };
 
 export default Graph;
