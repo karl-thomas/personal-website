@@ -1,9 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
-import styled from 'styled-components';
-
-const Pre = styled.pre`overflow-y: scroll;`;
+import Graph from './Graph';
 
 class PostDetails extends Component {
   state = {
@@ -13,15 +11,18 @@ class PostDetails extends Component {
   componentDidMount() {
     this.getPostData();
   }
+
   getPostData = () => {
-    const url = `http://production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com/posts/${this.props.id}`;
+    const url = `http://production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com/${this.props.id}`;
     fetch(url)
       .then(response => response.json())
       .then(json => this.setState({ apiData: json }));
   };
+
   props: {
     id: string
   };
+
   render() {
     let postContent;
     if (this.state.apiData) {

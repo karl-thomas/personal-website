@@ -13,11 +13,10 @@ class Graph extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
     const data = this.convertToSimpleData(this.props.github_record.counts_by_date);
-    console.log(data);
+
     const svg = this.selectSvg();
-    console.log(svg);
+
     this.draw(data, svg);
   }
 
