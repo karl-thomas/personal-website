@@ -21,26 +21,6 @@ const Title = styled.h1`
   width: 85%;
 `;
 
-const CountBox = styled.div`
-  box-shadow: inset 2px -3px 1px rgba(0, 0, 0, 0.2);
-  background-color: #36bf9a;
-  height: calc(100%-30px);
-  padding: 1em 1em 1em 1em;
-  color: white;
-  float: right;
-  right: 0px;
-  width: 15%;
-  h1 {
-    height: 50px;
-
-    margin: 0px;
-  }
-  &::before {
-    content: 'Total';
-    height: 0px;
-  }
-`;
-
 const TimeBox = styled.div`
   background-color: ${colors.torq};
   position: absolute;
@@ -70,7 +50,6 @@ class PostCard extends Component {
     // github_record: Object,
     // spotify_record: Object,
     // twitter_record: Object, // not using this yet
-    total_interactions: number,
     title: string,
     created_at: string
   };
@@ -91,9 +70,6 @@ class PostCard extends Component {
       <Link to={`/posts/${this.props.id}`}>
         <Card>
           <Title>{this.props.title}</Title>
-          <CountBox>
-            <h1>{this.props.total_interactions}</h1>
-          </CountBox>
           <TimeBox>
             <TimeStamp>{this.formattedDate()}</TimeStamp>
           </TimeBox>
