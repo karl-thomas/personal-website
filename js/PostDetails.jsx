@@ -13,7 +13,7 @@ class PostDetails extends Component {
   }
 
   getPostData = () => {
-    const url = `http://production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com/${this.props.id}`;
+    const url = `http://production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com/posts/${this.props.id}`;
     fetch(url)
       .then(response => response.json())
       .then(json => this.setState({ apiData: json }));
