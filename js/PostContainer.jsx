@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   padding: 2em;
   height: 75vh;
   width: calc(97% - 200px);
+  overflow-y: scroll;
   -webkit-transition: all 0.5s ease-out;
   -moz-transition: all 0.5s ease-out;
   -ms-transition: all 0.5s ease-out;

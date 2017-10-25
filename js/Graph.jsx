@@ -83,7 +83,7 @@ class Graph extends Component {
       .attr('y', 6)
       .attr('dy', '0.71em')
       .attr('text-anchor', 'end')
-      .text('Price ($)');
+      .text('contributions');
     const line = d3
       .line()
       .x(d => x(d.date))
@@ -102,7 +102,7 @@ class Graph extends Component {
   render() {
     return (
       <div>
-        <svg width="400" height="500" />
+        <svg width="700" height="500" />
         Oh Hello!!!
       </div>
     );

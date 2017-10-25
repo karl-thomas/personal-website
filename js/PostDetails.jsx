@@ -25,14 +25,17 @@ class PostDetails extends Component {
 
   render() {
     let postContent;
+    let title;
     if (this.state.apiData) {
+      title = <h3>{this.state.apiData.title}</h3>;
       postContent = <Graph {...this.state.apiData} />;
     } else {
       postContent = 'LOADIN';
     }
     return (
       <div>
-        <h1>No post details yet, still tinkering with D3.</h1>
+        <h1>{title}</h1>
+        <p>Currently graphing activity on github the past two week, adding spotify and twitter soon!</p>
         {postContent}
       </div>
     );
