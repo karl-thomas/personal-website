@@ -25,16 +25,14 @@ class PostDetails extends Component {
   render() {
     let postContent;
     if (this.state.apiData) {
-      postContent = this.state.apiData;
+      postContent = <Graph {...this.state.apiData} />;
     } else {
       postContent = 'LOADIN';
     }
     return (
       <div>
         <h1>No post details yet, still tinkering with D3.</h1>
-        <Pre>
-          <code>{JSON.stringify(postContent, null, 4)}</code>
-        </Pre>
+        {postContent}
       </div>
     );
   }
