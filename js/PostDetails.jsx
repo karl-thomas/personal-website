@@ -35,7 +35,7 @@ class PostDetails extends Component {
     }
     return (
       <div>
-        <h1>{title}</h1>
+        {title}
         <p>Currently graphing activity on github the past two weeks, adding spotify and twitter soon!</p>
         {postContent}
       </div>

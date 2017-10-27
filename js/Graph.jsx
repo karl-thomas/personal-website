@@ -16,7 +16,7 @@ const Wrap = styled.div`
 `;
 class Graph extends Component {
   state = {
-    data: {},
+    data: [],
     svg: {}
   };
 
@@ -31,9 +31,7 @@ class Graph extends Component {
 
   selectAndDraw = () => {
     const data = this.convertToSimpleData(this.props.github_record.counts_by_date);
-
     const svg = this.selectSvg();
-
     this.draw(data, svg);
   };
 
@@ -59,28 +57,10 @@ class Graph extends Component {
       margin,
       width,
       height,
-      x: this.x(width),
-      y: this.y(height),
       g: svg.append('g').attr('transform', `translate(${margin.left}, ${margin.top})`)
     };
 
     return svg;
-  };
-
-  x = svgWidth => d3.scaleTime().rangeRound([0, svgWidth]);
-
-  y = svgHeight => d3.scaleLinear().rangeRound([svgHeight, 0]);
-
-  // need to split this up into a function that conditionally return a different line.
-  //
-  line = svg => {
-    const x = d3.scaleTime().rangeRound([0, svg.width]);
-    const y = d3.scaleLinear().rangeRound([svg.height, 0]);
-    return d3
-      .line()
-      .curve(d3.curveCatmullRomOpen)
-      .x(d => x(d.date))
-      .y(d => y(d.data));
   };
 
   draw = (data, svg) => {
@@ -128,7 +108,7 @@ class Graph extends Component {
   render() {
     return (
       <Wrap>
-        <svg width="700" height="500" />
+        <svg width="1200" height="500" />
       </Wrap>
     );
   }
