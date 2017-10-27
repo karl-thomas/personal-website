@@ -11,9 +11,10 @@ class PostDetails extends Component {
   componentDidMount() {
     this.getPostData();
   }
+  // production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com
 
   getPostData = () => {
-    const url = `http://production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com/posts/${this.props.id}`;
+    const url = `http://localhost:3000/posts/${this.props.id}`;
     fetch(url)
       .then(response => response.json())
       .then(json => this.setState({ apiData: json }));
@@ -35,7 +36,7 @@ class PostDetails extends Component {
     return (
       <div>
         <h1>{title}</h1>
-        <p>Currently graphing activity on github the past two week, adding spotify and twitter soon!</p>
+        <p>Currently graphing activity on github the past two weeks, adding spotify and twitter soon!</p>
         {postContent}
       </div>
     );

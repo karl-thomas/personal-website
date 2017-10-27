@@ -56,9 +56,10 @@ class PostContainer extends Component {
       this.updateShowStatus(true);
     }
   }
+  // production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com
   getPostData = () => {
     axios
-      .get('http://production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com/posts')
+      .get('http://localhost:3000/posts')
       .then(response => this.setState({ apiData: response.data }))
       .catch(error => {
         console.error('axios ERROR', error); // eslint-disable-line no-console

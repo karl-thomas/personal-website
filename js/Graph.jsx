@@ -3,13 +3,21 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
+import media, { sizes } from './utilities';
+
+const Wrap = styled.div`
+  ${media.phone`
+    & > svg > g {
+      transform: translate(20px,20px)
+    }
+    `};
+`;
 class Graph extends Component {
   state = {
-    margin: '',
-    width: '',
-    height: '',
-    g: ''
+    data: {},
+    svg: {}
   };
 
   componentDidMount() {
@@ -20,18 +28,34 @@ class Graph extends Component {
     this.draw(data, svg);
   }
 
-  convertToSimpleData = start =>
-    Object.keys(start).map(date => ({
+  componentDidUpdate() {
+    d3.selectAll('svg > *').remove();
+    const data = this.convertToSimpleData(this.props.github_record.counts_by_date);
+
+    const svg = this.selectSvg();
+
+    this.draw(data, svg);
+  }
+
+  screenWidth = () =>
+    window.innerWidth > sizes.phone
+      ? Math.ceil(window.innerWidth * 97 / 100 - 200)
+      : Math.ceil(window.innerWidth);
+
+  convertToSimpleData = start => {
+    const data = Object.keys(start).map(date => ({
       date,
       data: Object.values(start[date]).reduce((a, b) => a + b, 0)
     }));
+    return data;
+  };
 
   selectSvg = () => {
-    const svg = d3.select('svg');
+    let svg = d3.select('svg');
     const margin = { top: 20, right: 20, bottom: 30, left: 50 };
-    const width = +svg.attr('width') - margin.left - margin.right;
+    const width = +this.screenWidth() - margin.left - margin.right;
     const height = +svg.attr('height') - margin.top - margin.bottom;
-    return {
+    svg = {
       margin,
       width,
       height,
@@ -39,6 +63,8 @@ class Graph extends Component {
       y: this.y(height),
       g: svg.append('g').attr('transform', `translate(${margin.left}, ${margin.top})`)
     };
+
+    return svg;
   };
 
   x = svgWidth => d3.scaleTime().rangeRound([0, svgWidth]);
@@ -101,10 +127,10 @@ class Graph extends Component {
 
   render() {
     return (
-      <div>
+      <Wrap>
         <svg width="700" height="500" />
         Oh Hello!!!
-      </div>
+      </Wrap>
     );
   }
 }

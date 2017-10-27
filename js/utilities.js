@@ -10,7 +10,7 @@ export const colors = {
   torqPurp: 'rgb(54, 191, 154)'
 };
 
-const sizes = {
+export const sizes = {
   desktop: 992,
   tablet: 768,
   phone: 550
