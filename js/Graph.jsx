@@ -21,21 +21,21 @@ class Graph extends Component {
   };
 
   componentDidMount() {
-    const data = this.convertToSimpleData(this.props.github_record.counts_by_date);
-
-    const svg = this.selectSvg();
-
-    this.draw(data, svg);
+    this.selectAndDraw();
   }
 
   componentDidUpdate() {
     d3.selectAll('svg > *').remove();
+    this.selectAndDraw();
+  }
+
+  selectAndDraw = () => {
     const data = this.convertToSimpleData(this.props.github_record.counts_by_date);
 
     const svg = this.selectSvg();
 
     this.draw(data, svg);
-  }
+  };
 
   screenWidth = () =>
     window.innerWidth > sizes.phone
@@ -129,7 +129,6 @@ class Graph extends Component {
     return (
       <Wrap>
         <svg width="700" height="500" />
-        Oh Hello!!!
       </Wrap>
     );
   }
