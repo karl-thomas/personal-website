@@ -2,7 +2,6 @@
 /* eslint no-param-reassign: 0 */
 import React, { Component } from 'react';
 import * as d3 from 'd3';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import media, { sizes } from './utilities';
@@ -30,9 +29,8 @@ class Graph extends Component {
   }
 
   selectAndDraw = () => {
-    const data = this.convertToSimpleData(this.props.github_record.counts_by_date);
     const svg = this.selectSvg();
-    this.draw(data, svg);
+    this.draw(this.props, svg);
   };
 
   screenWidth = () =>
@@ -40,11 +38,16 @@ class Graph extends Component {
       ? Math.ceil(window.innerWidth * 97 / 100 - 200)
       : Math.ceil(window.innerWidth);
 
-  convertToSimpleData = start => {
-    const data = Object.keys(start).map(date => ({
+  convertToSimpleData = (start, stream) => {
+    const record = `${stream}_record`; // get the correct record.
+    const dataDates = start[record].counts_by_date; // pull the count by dates out of the object
+
+    // reduce the keys into static values
+    const data = Object.keys(dataDates).map(date => ({
       date,
-      data: Object.values(start[date]).reduce((a, b) => a + b, 0)
+      data: Object.values(dataDates[date]).reduce((a, b) => a + b, 0)
     }));
+
     return data;
   };
 
@@ -62,17 +65,34 @@ class Graph extends Component {
 
     return svg;
   };
-
+  makeChart = (dataset, xName = 'date') => {
+    const chartObj = {};
+    chartObj.data = dataset;
+    chartObj.margin = { top: 20, right: 20, bottom: 30, left: 50 };
+    chartObj.width = 650 - chartObj.margin.left - chartObj.margin.right;
+    chartObj.height = 480 - chartObj.margin.top - chartObj.margin.bottom;
+    chartObj.xFunct = d => d[xName];
+    return chartObj;
+  };
   draw = (data, svg) => {
+    const githubData = this.convertToSimpleData(this.props, 'github');
+    const spotifyData = this.convertToSimpleData(this.props, 'spotify');
     const x = d3.scaleTime().rangeRound([0, svg.width]);
     const y = d3.scaleLinear().rangeRound([svg.height, 0]);
-    data.forEach(d => {
+
+    githubData.forEach(d => {
       d.date = d3.timeParse('%Y-%m-%d')(d.date);
       d.data = +d.data;
     });
 
-    x.domain(d3.extent(data, d => d.date));
-    y.domain([0, d3.max(data, d => Math.max(d.data))]);
+    spotifyData.forEach(d => {
+      d.date = d3.timeParse('%Y-%m-%d')(d.date);
+      d.data = +d.data;
+    });
+
+    // temporary fix, need to find the actual max
+    x.domain(d3.extent(githubData, d => d.date));
+    y.domain([0, d3.max(spotifyData, d => Math.max(d.data))]);
 
     svg.g
       .append('g')
@@ -96,12 +116,22 @@ class Graph extends Component {
       .y(d => y(d.data));
     svg.g
       .append('path')
-      .datum(data)
+      .datum(githubData)
       .attr('fill', 'none')
       .attr('stroke', 'steelblue')
       .attr('stroke-linejoin', 'round')
       .attr('stroke-linecap', 'round')
-      .attr('stroke-width', 1.5)
+      .attr('stroke-width', 3.0)
+      .attr('d', line);
+
+    svg.g
+      .append('path')
+      .datum(spotifyData)
+      .attr('fill', 'none')
+      .attr('stroke', 'steelblue')
+      .attr('stroke-linejoin', 'round')
+      .attr('stroke-linecap', 'round')
+      .attr('stroke-width', 3.0)
       .attr('d', line);
   };
 
@@ -113,8 +143,4 @@ class Graph extends Component {
     );
   }
 }
-Graph.propTypes = {
-  github_record: PropTypes.any
-};
-
 export default Graph;
