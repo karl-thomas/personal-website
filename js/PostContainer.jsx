@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   position: fixed;
   padding: 2em;
   height: 75vh;
-  width: calc(97% - 200px);
+  width: calc(97% - 250px);
   overflow-y: scroll;
   -webkit-transition: all 0.5s ease-out;
   -moz-transition: all 0.5s ease-out;
@@ -22,7 +22,7 @@ const Wrapper = styled.div`
     let propsStyles = '';
     propsStyles += props.show ? 'visibility: visible;' : 'visibility: hidden;';
     propsStyles += props.startPos
-      ? 'transform: translate(calc(200px + 4%),calc(112px + 5vh));'
+      ? 'transform: translate(calc(250px + 4%),calc(112px + 5vh));'
       : 'transform: translate(100vw,100vh);';
     return propsStyles;
   }};

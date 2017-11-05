@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   padding: 2em;
   padding-left: 3em;
   height: 75vh;
-  width: calc(97% - 200px);
+  width: calc(97% - 250px);
   -webkit-transition: all 0.5s ease-out;
   -moz-transition: all 0.5s ease-out;
   -ms-transition: all 0.5s ease-out;

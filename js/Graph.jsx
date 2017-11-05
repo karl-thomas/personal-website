@@ -30,14 +30,14 @@ class Graph extends Component {
     this.draw(this.datafy(dorta), this.selectSvg());
   }
 
-  componentDidUpdate() {
-    d3.selectAll('svg > *').remove();
-    this.selectAndDraw();
-  }
+  // componentDidUpdate() {
+  //   d3.selectAll('svg > *').remove();
+  //   this.selectAndDraw();
+  // }
 
   screenWidth = () =>
     window.innerWidth > sizes.phone
-      ? Math.ceil(window.innerWidth * 97 / 100 - 315)
+      ? Math.ceil(window.innerWidth * 97 / 100 - 375)
       : Math.ceil(window.innerWidth);
 
   convertToSimpleData = (start, stream) => {

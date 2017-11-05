@@ -18,14 +18,14 @@ const SideWrap = styled.div`
   z-index: 1000;
   -webkit-font-smoothing: antialiased;
   position: fixed;
-  padding: 0em 0em;
-  width: 200px;
+  padding: 0em 1em;
+  width: 250px;
   height: 100vh;
   ${transition};
   ${media.phone`
     background-color: ${colors.torq};
-   transform: translate(3vw,0vh);
-   box-shadow:-2px 0px 6px 3px rgba(0, 0, 0, 0.1);
+    transform: translate(3vw,0vh);
+    box-shadow:-2px 0px 6px 3px rgba(0, 0, 0, 0.1);
     box-shadow: 2px 0px 6px 3px rgba(0, 0, 0, 0.1);
     left: -10px;
     width: 100%;
