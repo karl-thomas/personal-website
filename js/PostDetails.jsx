@@ -36,7 +36,7 @@ class PostDetails extends Component {
     return (
       <div>
         {title}
-        <p>Currently graphing activity on github the past two weeks, adding spotify and twitter soon!</p>
+        <p>Currently graphing activity on github and spotify the past two weeks, twitter soon!</p>
         {postContent}
       </div>
     );
