@@ -451,8 +451,9 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* back groun is shade of green, could be shade of purplr \(^-^)/ */
 body {
-  background-color: #e8eef2;
+  background-color: hsla(161, 34%, 93%, 0.75);
 }
 
 .line {

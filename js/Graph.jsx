@@ -7,6 +7,10 @@ import styled from 'styled-components';
 import media, { sizes } from './utilities';
 
 const Wrap = styled.div`
+  background-color: white;
+  border-radius: 25px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+
   ${media.phone`
     & > svg > g {
       transform: translate(20px,20px)
@@ -33,7 +37,7 @@ class Graph extends Component {
 
   screenWidth = () =>
     window.innerWidth > sizes.phone
-      ? Math.ceil(window.innerWidth * 97 / 100 - 200)
+      ? Math.ceil(window.innerWidth * 97 / 100 - 315)
       : Math.ceil(window.innerWidth);
 
   convertToSimpleData = (start, stream) => {
@@ -74,11 +78,11 @@ class Graph extends Component {
     const y = d3.scaleLinear().rangeRound([svg.height, 0]);
     const line = d3
       .line()
-      .curve(d3.curveBasis)
+      .curve(d3.curveMonotoneX)
       .x(d => x(d.date))
       .y(d => y(d.temperature));
 
-    const cities = ['date', 'Github', 'Spotify'].slice(1).map(id => ({
+    const cities = ['Github', 'Spotify'].map(id => ({
       id,
       values: data.map(d => {
         const temperature = d[id] ? d[id] : 0;
@@ -114,7 +118,7 @@ class Graph extends Component {
       .attr('y', 6)
       .attr('dy', '0.71em')
       .attr('fill', '#000')
-      .text('Temperature, ºF');
+      .text('Contributions');
 
     const city = svg.g
       .selectAll('.city')

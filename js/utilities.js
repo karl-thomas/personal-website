@@ -7,7 +7,9 @@ export const colors = {
   purp: 'rgba(70, 34, 85, 0.75)',
   space: 'rgba(70, 79, 81, 1)',
   black: 'rgba( 0, 0, 9, 1)',
-  torqPurp: 'rgb(54, 191, 154)'
+  torqPurp: 'rgb(54, 191, 154)',
+  lightTorq: 'hsla(161, 34%, 93%, 0.75)',
+  lightPurp: 'hsla(282, 49%, 96%, 0.75)'
 };
 
 export const sizes = {
