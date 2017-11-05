@@ -31,25 +31,6 @@ class Graph extends Component {
     this.selectAndDraw();
   }
 
-  datafy = data => {
-    const returnValue = data.reduce((sum, obj) => {
-      const item = sum.find(
-        thing => d3.timeFormat('%Y-%m-%d')(thing.date) === d3.timeFormat('%Y-%m-%d')(obj.date)
-      );
-
-      if (item) {
-        const sumIndex = sum.findIndex(elem => item === elem);
-        sum[sumIndex] = Object.assign(item, obj);
-      } else {
-        sum.push(obj);
-      }
-
-      return sum;
-    }, []);
-
-    return returnValue;
-  };
-
   screenWidth = () =>
     window.innerWidth > sizes.phone
       ? Math.ceil(window.innerWidth * 97 / 100 - 200)
@@ -87,11 +68,10 @@ class Graph extends Component {
   //  'date, git, spotify, twitter' as the properties per row.
 
   draw = (data, svg) => {
+    // range for dates
     const x = d3.scaleTime().rangeRound([0, svg.width]);
+    // range for contributions
     const y = d3.scaleLinear().rangeRound([svg.height, 0]);
-    const z = d3.scaleOrdinal(d3.schemeCategory10);
-    console.log(data);
-
     const line = d3
       .line()
       .curve(d3.curveBasis)
@@ -105,15 +85,19 @@ class Graph extends Component {
         return { date: d.date, temperature };
       })
     }));
-    console.log(cities);
+
+    // colors
+    const z = d3
+      .scaleOrdinal()
+      .domain(cities.map(c => c.id))
+      .range(['#50e5b7', '#FF934F', '#46536e']);
+
     x.domain(d3.extent(data, d => d.date));
 
     y.domain([
       d3.min(cities, c => d3.min(c.values, d => d.temperature)),
       d3.max(cities, c => d3.max(c.values, d => d.temperature))
     ]);
-
-    z.domain(cities.map(c => c.id));
 
     svg.g
       .append('g')
@@ -155,6 +139,21 @@ class Graph extends Component {
       .text(d => d.id);
   };
 
+  datafy = data => {
+    const returnValue = data.reduce((sum, obj) => {
+      const item = sum.find(
+        thing => d3.timeFormat('%Y-%m-%d')(thing.date) === d3.timeFormat('%Y-%m-%d')(obj.date)
+      );
+      if (item) {
+        const sumIndex = sum.findIndex(elem => item === elem);
+        sum[sumIndex] = Object.assign(item, obj);
+      } else {
+        sum.push(obj);
+      }
+      return sum;
+    }, []);
+    return returnValue;
+  };
   render() {
     return (
       <Wrap>

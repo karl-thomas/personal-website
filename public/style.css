@@ -455,10 +455,6 @@ body {
   background-color: #e8eef2;
 }
 
-.axis--x path {
-  display: none;
-}
-
 .line {
   fill: none;
   stroke: steelblue;
