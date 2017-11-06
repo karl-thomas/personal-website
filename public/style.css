@@ -455,7 +455,9 @@ html {
 body {
   background-color: hsla(161, 34%, 93%, 0.75);
 }
-
+.resume {
+  display: none;
+}
 .line {
   fill: none;
   stroke: steelblue;

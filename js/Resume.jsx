@@ -5,22 +5,25 @@ import styled from 'styled-components';
 import resumeFig from './resumeBlocks';
 import media from './utilities';
 
-const Wrapper = styled.div`
+const OutsideBox = styled.div`
   position: fixed;
-  padding: 2em;
-  padding-left: 3em;
-  height: 75vh;
   width: calc(97% - 250px);
   -webkit-transition: all 0.5s ease-out;
   -moz-transition: all 0.5s ease-out;
   -ms-transition: all 0.5s ease-out;
   -o-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
+  height: 75vh;
+  ${props => (props.startPos ? 'transform: translate(-100vw,-100vh);' : `transform: translate(0vw,0vh);`)};
+`;
+
+const Wrapper = styled.div`
+  height: 100%;
+  width: 100%;
+  padding: 2em;
+  padding-left: 3em;
   overflow-y: scroll;
-  ${props =>
-    props.startPos
-      ? 'transform: translate(-100vw,-100vh); visibility:hidden;'
-      : 'transform: translate(0vw,0vh);visibility:visible;'};
+  ${props => (props.startPos ? '' : `display: block;`)};
   ${media.phone`
     display:none;
     `};
@@ -144,25 +147,27 @@ class Resume extends Component {
     ));
 
     return (
-      <Wrapper startPos={this.props.startPos}>
-        <Header>Elevator Speech</Header>
-        <Summary>
-          A Ohio-California transplant into Chicago, driven by curiosity into the Tech Industry. After
-          graduating from and working at Dev Bootcamp, my goal is to continuously learn useful design
-          practices and implement interesting technologies with fellow developers who show empathy in their
-          work and world-view. I have a love for quirky code and elegant solutions, and am currently looking
-          for a role under mentorship with room to develop.
-        </Summary>
-        <br />
-        <Header>Experience</Header>
-        <div>{workComponent}</div>
-        <br />
-        <Header>Projects</Header>
-        <div>{projectsComponent}</div>
-        <br />
-        <Header>Volunteer Work</Header>
-        <div>{volunteerComponent}</div>
-      </Wrapper>
+      <OutsideBox startPos={this.props.startPos}>
+        <Wrapper className="resume" startPos={this.props.startPos}>
+          <Header>Elevator Speech</Header>
+          <Summary>
+            A Ohio-California transplant into Chicago, driven by curiosity into the Tech Industry. After
+            graduating from and working at Dev Bootcamp, my goal is to continuously learn useful design
+            practices and implement interesting technologies with fellow developers who show empathy in their
+            work and world-view. I have a love for quirky code and elegant solutions, and am currently looking
+            for a role under mentorship with room to develop.
+          </Summary>
+          <br />
+          <Header>Experience</Header>
+          <div>{workComponent}</div>
+          <br />
+          <Header>Projects</Header>
+          <div>{projectsComponent}</div>
+          <br />
+          <Header>Volunteer Work</Header>
+          <div>{volunteerComponent}</div>
+        </Wrapper>
+      </OutsideBox>
     );
   }
 }
