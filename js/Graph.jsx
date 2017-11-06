@@ -8,9 +8,9 @@ import media, { sizes } from './utilities';
 
 const Wrap = styled.div`
   background-color: white;
+  width: 100%;
   border-radius: 25px;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-
   ${media.phone`
     & > svg > g {
       transform: translate(20px,20px)
@@ -68,7 +68,8 @@ class Graph extends Component {
     return svg;
   };
 
-  // this solution will rely on me passing in my date in a tabular format
+  // this solution will rely on me passing in my data in a tabular format
+
   //  'date, git, spotify, twitter' as the properties per row.
 
   draw = (data, svg) => {
@@ -82,7 +83,8 @@ class Graph extends Component {
       .x(d => x(d.date))
       .y(d => y(d.temperature));
 
-    const cities = ['Github', 'Spotify'].map(id => ({
+    // streams == data stream location.
+    const streams = ['Github', 'Spotify'].map(id => ({
       id,
       values: data.map(d => {
         const temperature = d[id] ? d[id] : 0;
@@ -93,14 +95,14 @@ class Graph extends Component {
     // colors
     const z = d3
       .scaleOrdinal()
-      .domain(cities.map(c => c.id))
+      .domain(streams.map(c => c.id))
       .range(['#50e5b7', '#FF934F', '#46536e']);
 
     x.domain(d3.extent(data, d => d.date));
 
     y.domain([
-      d3.min(cities, c => d3.min(c.values, d => d.temperature)),
-      d3.max(cities, c => d3.max(c.values, d => d.temperature))
+      d3.min(streams, c => d3.min(c.values, d => d.temperature)),
+      d3.max(streams, c => d3.max(c.values, d => d.temperature))
     ]);
 
     svg.g
@@ -120,27 +122,27 @@ class Graph extends Component {
       .attr('fill', '#000')
       .text('Contributions');
 
-    const city = svg.g
-      .selectAll('.city')
-      .data(cities)
+    const stream = svg.g
+      .selectAll('.stream')
+      .data(streams)
       .enter()
       .append('g')
-      .attr('class', 'city');
+      .attr('class', 'stream');
 
-    city
+    stream
       .append('path')
       .attr('class', 'line')
       .attr('d', d => line(d.values))
       .style('stroke', d => z(d.id));
 
-    city
+    stream
       .append('text')
       .datum(d => ({ id: d.id, value: d.values[d.values.length - 1] }))
       .attr('transform', d => `translate(${x(d.value.date)},${y(d.value.temperature)})`)
       .attr('x', 3)
       .attr('dy', '0.35em')
       .style('font', '10px sans-serif')
-      .text(d => d.id);
+      .text(d => `-► ${d.id}`);
   };
 
   datafy = data => {
