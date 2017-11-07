@@ -29,7 +29,7 @@ resumeFig.volunteering = [
     title: 'Volunteer Instructor',
     company: 'CodeNow',
     bullets: [
-      'Taught highschool student the basics of HTML, CSS, jQuery, and Ruby on Rails basics.',
+      'Taught highschool students the basics of HTML, CSS, jQuery, and Ruby on Rails',
       'Paired with students in groups of 4-6 to strengthen communication skills.'
     ],
     start: 'Jun 2017',

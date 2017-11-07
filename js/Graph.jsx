@@ -26,7 +26,7 @@ class Graph extends Component {
   screenWidth = () =>
     window.innerWidth > sizes.phone
       ? Math.ceil(window.innerWidth * 97 / 100 - 375)
-      : Math.ceil(window.innerWidth);
+      : Math.ceil(window.innerWidth) - 60;
 
   convertToSimpleData = (start, stream) => {
     const record = `${stream.toLowerCase()}_record`; // get the correct record.

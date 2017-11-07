@@ -13,7 +13,7 @@ const SideWrap = styled.div`
          transform: translate(3vw,0vh);
          box-shadow:-2px 0px 6px 3px rgba(0, 0, 0, 0.1);`
       : `background-color: ${colors.purp};
-         transform: translate(calc(97vw - 200px),0vh);
+         transform: translate(calc(97vw - 250px),0vh);
          box-shadow:2px 0px 6px 3px rgba(0, 0, 0, 0.1);`};
   z-index: 1000;
   -webkit-font-smoothing: antialiased;
