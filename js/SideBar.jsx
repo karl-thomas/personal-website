@@ -87,7 +87,7 @@ const Pan = styled.div`
   height: 40px;
   -webkit-transition: all 0.4s ease-out;
   ${Li}:hover & {
-    width: 90%;
+    width: calc(90% - 1.5em);
   }
 `;
 const LinkText = styled.h1`
@@ -98,7 +98,7 @@ const LinkText = styled.h1`
   z-index: 1000;
   margin: 0px;
   ${Li}:hover & {
-    width: 100%;
+    width: calc(100% - 1em);
     &::after {
       content: '  ►';
       color: ${props => (props.startPos ? '#50e5b7' : '#6f567d')};
