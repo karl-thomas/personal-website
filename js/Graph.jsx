@@ -81,14 +81,14 @@ class Graph extends Component {
       .line()
       .curve(d3.curveMonotoneX)
       .x(d => x(d.date))
-      .y(d => y(d.temperature));
+      .y(d => y(d.contributions));
 
     // streams == data stream location.
     const streams = ['Github', 'Spotify'].map(id => ({
       id,
       values: data.map(d => {
-        const temperature = d[id] ? d[id] : 0;
-        return { date: d.date, temperature };
+        const contributions = d[id] ? d[id] : 0;
+        return { date: d.date, contributions };
       })
     }));
 
@@ -101,8 +101,8 @@ class Graph extends Component {
     x.domain(d3.extent(data, d => d.date));
 
     y.domain([
-      d3.min(streams, c => d3.min(c.values, d => d.temperature)),
-      d3.max(streams, c => d3.max(c.values, d => d.temperature))
+      d3.min(streams, c => d3.min(c.values, d => d.contributions)),
+      d3.max(streams, c => d3.max(c.values, d => d.contributions))
     ]);
 
     svg.g
@@ -138,7 +138,7 @@ class Graph extends Component {
     stream
       .append('text')
       .datum(d => ({ id: d.id, value: d.values[d.values.length - 1] }))
-      .attr('transform', d => `translate(${x(d.value.date)},${y(d.value.temperature)})`)
+      .attr('transform', d => `translate(${x(d.value.date)},${y(d.value.contributions)})`)
       .attr('x', 3)
       .attr('dy', '0.35em')
       .style('font', '10px sans-serif')
