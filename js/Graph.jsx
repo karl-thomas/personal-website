@@ -2,21 +2,9 @@
 /* eslint no-param-reassign: 0 */
 import React, { Component } from 'react';
 import * as d3 from 'd3';
-import styled from 'styled-components';
+import Wrap from './shared/StyledComponents';
+import { sizes } from './utilities';
 
-import media, { sizes } from './utilities';
-
-const Wrap = styled.div`
-  background-color: white;
-  width: 100%;
-  border-radius: 25px;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-  ${media.phone`
-    & > svg > g {
-      transform: translate(20px,20px)
-    }
-    `};
-`;
 class Graph extends Component {
   state = {
     data: [],
