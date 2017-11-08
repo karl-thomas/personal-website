@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { colors } from './utilities';
+import { colors } from '../utilities';
 // to take me to the details page in the future
 
 const Card = styled.div`

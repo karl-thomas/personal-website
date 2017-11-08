@@ -2,6 +2,8 @@
 
 import React, { Component } from 'react';
 import Graph from './Graph';
+import GithubInsights from './GithubInsights';
+import SpotifyInsights from './SpotifyInsights';
 
 class PostDetails extends Component {
   state = {
@@ -29,14 +31,19 @@ class PostDetails extends Component {
     let title;
     if (this.state.apiData) {
       title = <h3>{this.state.apiData.title}</h3>;
-      postContent = <Graph {...this.state.apiData} />;
+      postContent = (
+        <div>
+          <GithubInsights {...this.state.apiData.github_record} />
+          <SpotifyInsights {...this.state.apiData.spotify_record} />
+          <Graph {...this.state.apiData} />
+        </div>
+      );
     } else {
       postContent = 'LOADIN';
     }
     return (
       <div>
         {title}
-        <p>Currently graphing activity on github and spotify the past two weeks, twitter soon!</p>
         {postContent}
       </div>
     );

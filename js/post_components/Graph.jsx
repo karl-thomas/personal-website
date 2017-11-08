@@ -2,8 +2,8 @@
 /* eslint no-param-reassign: 0 */
 import React, { Component } from 'react';
 import * as d3 from 'd3';
-import Wrap from './shared/StyledComponents';
-import { sizes } from './utilities';
+import Wrap from '../shared/StyledComponents';
+import { sizes } from '../utilities';
 
 class Graph extends Component {
   state = {
