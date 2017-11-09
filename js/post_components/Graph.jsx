@@ -58,7 +58,7 @@ class Graph extends Component {
 
   // this solution will rely on me passing in my data in a tabular format
 
-  //  'date, git, spotify, twitter' as the properties per row.
+  //  'date, git, spotify, twitter' as the properties per 'row'.
 
   draw = (data, svg) => {
     // range for dates
