@@ -38,7 +38,7 @@ export const LinkText = styled.h1`
   color: white;
   position: absolute;
   z-index: 1000;
-  margin: 0px;
+  margin: auto;
   ${Li}:hover & {
     width: calc(100% - 1em);
     &::after {

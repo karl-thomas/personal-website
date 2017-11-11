@@ -1,62 +1,55 @@
 // @flow
 
 import React, { Component } from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import Wrap from '../shared/StyledComponents';
-import { colors } from '../utilities';
+// import { colors } from '../utilities';
 import Insight from './Insight';
+import Link from '../shared/PanningLink';
+
 // karls react styleguide --------
 // violations of camel case are due to the rails api
 // this information is being interpreted from
 // a component that is too small is something that will not be
 // used outside of the context in which it currently lives
+
 // const linkWidth = '175px';
-// const InsightBox = styled.li`
+// const Trigger = styled.div``;
+// const Pan = styled.div`
+//   box-shadow: inset 2px 3px 1px rgba(0, 0, 0, 0.2);
+//   position: absolute;
 //   display: inline-block;
-//   vertical-align: top;
-//   border: solid 1px black;
-//   height: 200px;
-//   width: 200px;
-//   margin: 10px;
-//   padding: 10px 10px;
+//   background-color: ${colors.torqPurp};
+//   z-index: 999;
+//   width: 3px;
+//   height: 20px;
+//   -webkit-transition: all 0.4s ease-out;
+//   ${Trigger}:hover & {
+//     width: ${linkWidth};
+//   }
 // `;
-const linkWidth = '175px';
-const Trigger = styled.div``;
-const Pan = styled.div`
-  box-shadow: inset 2px 3px 1px rgba(0, 0, 0, 0.2);
-  position: absolute;
-  display: inline-block;
-  background-color: ${colors.torqPurp};
-  z-index: 999;
-  width: 3px;
-  height: 20px;
-  -webkit-transition: all 0.4s ease-out;
-  ${Trigger}:hover & {
-    width: ${linkWidth};
-  }
-`;
-const Link = styled.a`
-  padding-left: 10px;
-  font-weight: 500;
-  text-decoration: none;
-  color: ${colors.torqPurp};
-  position: absolute;
-  z-index: 1000;
-  width: ${linkWidth};
-  margin: 0px;
-  -moz-transition: all 0.2s ease-in;
-  -o-transition: all 0.2s ease-in;
-  -webkit-transition: all 0.2s ease-in;
-  transition: all 0.2s ease-in;
-  ${Trigger}:hover & {
-    color: white;
-    &::after {
-      content: '  ►';
-      color: white;
-      text-shadow: 2px 3px 1px rgba(0, 0, 0, 0.2);
-    }
-  }
-`;
+// const Link = styled.a`
+//   padding-left: 10px;
+//   font-weight: 500;
+//   text-decoration: none;
+//   color: ${colors.torqPurp};
+//   position: absolute;
+//   z-index: 1000;
+//   width: ${linkWidth};
+//   margin: 0px;
+//   -moz-transition: all 0.2s ease-in;
+//   -o-transition: all 0.2s ease-in;
+//   -webkit-transition: all 0.2s ease-in;
+//   transition: all 0.2s ease-in;
+//   ${Trigger}:hover & {
+//     color: white;
+//     &::after {
+//       content: '  ►';
+//       color: white;
+//       text-shadow: 2px 3px 1px rgba(0, 0, 0, 0.2);
+//     }
+//   }
+// `;
 
 type Props = {
   most_used_lang: Array<any>,
@@ -81,10 +74,9 @@ class GithubInsights extends Component {
     const body = `I have recently made ${project.recent_commits} commits on my project, &apos;${project.name}&apos;`;
     return (
       <Insight title="Most Recent Project" body={body}>
-        <Trigger>
-          <Pan />
-          <Link href={project.url}> Project on github </Link>
-        </Trigger>
+        <Link to={project.url} width="175" height="24">
+          Project on github
+        </Link>
       </Insight>
     );
   };

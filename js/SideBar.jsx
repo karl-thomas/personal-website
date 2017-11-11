@@ -3,6 +3,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import media, { colors } from './utilities';
+import Link from './shared/PanningLink';
 
 const transition = `-moz-transition: all 0.7s ease-out; -ms-transition: all 0.7s ease-out; -o-transition: all 0.7s ease-out; transition: all 0.7s ease-out;`;
 
@@ -64,12 +65,12 @@ const ContactUL = styled.ul`
   ${media.phone`display: none;`};
 `;
 
-const ContactLink = styled.a`
-  display: block;
-  vertical-align: top;
-  display: ${props => (props.startPos ? 'inline-block' : 'none')};
-  color: white;
-`;
+// const ContactLink = styled.a`
+//   display: block;
+//   vertical-align: top;
+//   display: ${props => (props.startPos ? 'inline-block' : 'none')};
+//   color: white;
+// `;
 
 const Li = styled.li`
   height: 50px;
@@ -89,6 +90,12 @@ const Pan = styled.div`
   ${Li}:hover & {
     width: calc(90% - 1.5em);
   }
+`;
+
+const BarHeader = styled.h1`
+  display: inline-block;
+  margin: 0px;
+  font-weight: 500;
 `;
 const LinkText = styled.h1`
   padding-left: 10px;
@@ -122,16 +129,14 @@ const SideBar = (props: { parentClickHandler: Function, startPos: boolean }) => 
           {textUtil}
         </Li>
         <Li>
-          <ContactLink startPos={props.startPos} href="https://github.com/karl-thomas">
-            <Pan startPos={props.startPos} />
-            <LinkText startPos={props.startPos}>Github</LinkText>
-          </ContactLink>
+          <Link to="https://github.com/karl-thomas" width="200" height="40">
+            <BarHeader>Github</BarHeader>
+          </Link>
         </Li>
         <Li>
-          <ContactLink startPos={props.startPos} href="https://www.linkedin.com/in/karl-thomas/">
-            <Pan startPos={props.startPos} />
-            <LinkText startPos={props.startPos}>LinkedIn</LinkText>
-          </ContactLink>
+          <Link to="https://www.linkedin.com/in/karl-thomas/" width="200" height="40">
+            <BarHeader>LinkedIn</BarHeader>
+          </Link>
         </Li>
       </ContactUL>
     </SideWrap>
