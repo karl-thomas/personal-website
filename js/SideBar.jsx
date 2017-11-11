@@ -95,6 +95,7 @@ const Pan = styled.div`
 const BarHeader = styled.h1`
   display: inline-block;
   margin: 0px;
+  color: white;
   font-weight: 500;
 `;
 const LinkText = styled.h1`
@@ -114,33 +115,27 @@ const LinkText = styled.h1`
   }
 `;
 
-const SideBar = (props: { parentClickHandler: Function, startPos: boolean }) => {
-  const textUtil = props.startPos ? (
-    <LinkText startPos={props.startPos}>Portfolio</LinkText>
-  ) : (
-    <LinkText startPos={props.startPos}>Back</LinkText>
-  );
-  return (
-    <SideWrap startPos={props.startPos}>
-      <Header startPos={props.startPos}>Karl Thomas</Header>
-      <ContactUL startPos={props.startPos}>
-        <Li startPos={props.startPos} onClick={props.parentClickHandler}>
-          <Pan startPos={props.startPos} />
-          {textUtil}
-        </Li>
-        <Li>
-          <Link to="https://github.com/karl-thomas" width="200" height="40">
-            <BarHeader>Github</BarHeader>
-          </Link>
-        </Li>
-        <Li>
-          <Link to="https://www.linkedin.com/in/karl-thomas/" width="200" height="40">
-            <BarHeader>LinkedIn</BarHeader>
-          </Link>
-        </Li>
-      </ContactUL>
-    </SideWrap>
-  );
-};
+const SideBar = (props: { parentClickHandler: Function, startPos: boolean }) => (
+  <SideWrap startPos={props.startPos}>
+    <Header startPos={props.startPos}>Karl Thomas</Header>
+    <ContactUL startPos={props.startPos}>
+      <Li startPos={props.startPos} onClick={props.parentClickHandler}>
+        <Link width="200" height="40">
+          {props.startPos ? <BarHeader>Portfolio</BarHeader> : <BarHeader>back </BarHeader>}
+        </Link>
+      </Li>
+      <Li>
+        <Link to="https://github.com/karl-thomas" width="200" height="40">
+          <BarHeader>Github</BarHeader>
+        </Link>
+      </Li>
+      <Li>
+        <Link to="https://www.linkedin.com/in/karl-thomas/" width="200" height="40">
+          <BarHeader>LinkedIn</BarHeader>
+        </Link>
+      </Li>
+    </ContactUL>
+  </SideWrap>
+);
 
 export default SideBar;

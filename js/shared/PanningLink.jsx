@@ -48,7 +48,7 @@ type PLProps = {
   width: string,
   height: string,
   children: Object,
-  to: string
+  to?: string
 };
 
 const PanningLink = (props: PLProps) => (
