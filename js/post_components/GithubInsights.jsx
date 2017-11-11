@@ -4,20 +4,24 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Wrap from '../shared/StyledComponents';
 import { colors } from '../utilities';
+import Insight from './Insight';
 // karls react styleguide --------
 // violations of camel case are due to the rails api
 // this information is being interpreted from
 // a component that is too small is something that will not be
 // used outside of the context in which it currently lives
+// const linkWidth = '175px';
+// const InsightBox = styled.li`
+//   display: inline-block;
+//   vertical-align: top;
+//   border: solid 1px black;
+//   height: 200px;
+//   width: 200px;
+//   margin: 10px;
+//   padding: 10px 10px;
+// `;
 const linkWidth = '175px';
-const InsightBox = styled.div`
-  border: solid 1px black;
-  height: 200px;
-  width: 200px;
-  margin: 10px;
-  padding: 10px 10px;
-`;
-
+const Trigger = styled.div``;
 const Pan = styled.div`
   box-shadow: inset 2px 3px 1px rgba(0, 0, 0, 0.2);
   position: absolute;
@@ -27,7 +31,7 @@ const Pan = styled.div`
   width: 3px;
   height: 20px;
   -webkit-transition: all 0.4s ease-out;
-  ${InsightBox} > div:hover & {
+  ${Trigger}:hover & {
     width: ${linkWidth};
   }
 `;
@@ -44,7 +48,7 @@ const Link = styled.a`
   -o-transition: all 0.2s ease-in;
   -webkit-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
-  ${InsightBox} > div:hover & {
+  ${Trigger}:hover & {
     color: white;
     &::after {
       content: '  ►';
@@ -68,26 +72,20 @@ class GithubInsights extends Component {
 
   mostUsedLang = () => {
     const lang = this.props.most_used_lang;
-    return (
-      <div>
-        In the past two weeks I have written {this.bytesToSize(lang[1])} of {lang[0]}
-      </div>
-    );
+    const body = `In the past two weeks I have written ${this.bytesToSize(lang[1])} of ${lang[0]}`;
+    return <Insight title="Most Used language" body={body} />;
   };
 
   mostRecentProject = () => {
     const project = this.props.most_recent_project;
+    const body = `I have recently made ${project.recent_commits} commits on my project, &apos;${project.name}&apos;`;
     return (
-      <InsightBox>
-        <strong>Most Recent Project</strong>
-        <p>
-          I have recently made {project.recent_commits} commits on my project, &apos;{project.name}&apos;
-        </p>
-        <div>
+      <Insight title="Most Recent Project" body={body}>
+        <Trigger>
           <Pan />
           <Link href={project.url}> Project on github </Link>
-        </div>
-      </InsightBox>
+        </Trigger>
+      </Insight>
     );
   };
 
@@ -103,8 +101,10 @@ class GithubInsights extends Component {
   render() {
     return (
       <Wrap>
-        {this.mostRecentProject()}
-        {this.mostUsedLang()}
+        <ul>
+          {this.mostRecentProject()}
+          {this.mostUsedLang()}
+        </ul>
       </Wrap>
     );
   }
