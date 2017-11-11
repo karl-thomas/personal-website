@@ -12,7 +12,18 @@ const Pan = styled.div`
   box-shadow: inset 2px 3px 1px rgba(0, 0, 0, 0.2);
   position: absolute;
   display: inline-block;
-  background-color: ${colors.torqPurp};
+  background-color: ${props => {
+    switch (props.color) {
+      default:
+        return colors.torqPurp;
+
+      case 'green':
+        return colors.torqPurp;
+
+      case 'purple':
+        return '#46536e';
+    }
+  }};
   z-index: 999;
   width: 3px;
   height: ${props => props.height}px;
@@ -48,7 +59,8 @@ type PLProps = {
   width: string,
   height: string,
   children: Object,
-  to?: string
+  to?: string,
+  color?: string
 };
 
 const PanningLink = (props: PLProps) => (
@@ -56,7 +68,7 @@ const PanningLink = (props: PLProps) => (
     <Link height={props.height} width={props.width} href={props.to}>
       {props.children}
     </Link>
-    <Pan width={props.width} height={props.height} />
+    <Pan color={props.color} width={props.width} height={props.height} />
   </Trigger>
 );
 

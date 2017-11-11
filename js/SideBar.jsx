@@ -78,19 +78,19 @@ const Li = styled.li`
   padding-left: 10px;
   -webkit-transition: all 0.7s ease-out;
 `;
-const Pan = styled.div`
-  box-shadow: inset 2px 3px 1px rgba(0, 0, 0, 0.2);
-  position: absolute;
-  display: inline-block;
-  background-color: ${props => (props.startPos ? colors.torqPurp : '#46536e')};
-  z-index: -1000;
-  width: 3px;
-  height: 40px;
-  -webkit-transition: all 0.4s ease-out;
-  ${Li}:hover & {
-    width: calc(90% - 1.5em);
-  }
-`;
+// const Pan = styled.div`
+//   box-shadow: inset 2px 3px 1px rgba(0, 0, 0, 0.2);
+//   position: absolute;
+//   display: inline-block;
+//   background-color: ${props => (props.startPos ? colors.torqPurp : '#46536e')};
+//   z-index: -1000;
+//   width: 3px;
+//   height: 40px;
+//   -webkit-transition: all 0.4s ease-out;
+//   ${Li}:hover & {
+//     width: calc(90% - 1.5em);
+//   }
+// `;
 
 const BarHeader = styled.h1`
   display: inline-block;
@@ -98,43 +98,37 @@ const BarHeader = styled.h1`
   color: white;
   font-weight: 500;
 `;
-const LinkText = styled.h1`
-  padding-left: 10px;
-  font-weight: 500;
-  color: white;
-  position: absolute;
-  z-index: 1000;
-  margin: 0px;
-  ${Li}:hover & {
-    width: calc(100% - 1em);
-    &::after {
-      content: '  ►';
-      color: ${props => (props.startPos ? '#50e5b7' : '#6f567d')};
-      text-shadow: 2px 3px 1px rgba(0, 0, 0, 0.2);
-    }
-  }
-`;
 
 const SideBar = (props: { parentClickHandler: Function, startPos: boolean }) => (
   <SideWrap startPos={props.startPos}>
     <Header startPos={props.startPos}>Karl Thomas</Header>
-    <ContactUL startPos={props.startPos}>
-      <Li startPos={props.startPos} onClick={props.parentClickHandler}>
-        <Link width="200" height="40">
-          {props.startPos ? <BarHeader>Portfolio</BarHeader> : <BarHeader>back </BarHeader>}
-        </Link>
-      </Li>
-      <Li>
-        <Link to="https://github.com/karl-thomas" width="200" height="40">
-          <BarHeader>Github</BarHeader>
-        </Link>
-      </Li>
-      <Li>
-        <Link to="https://www.linkedin.com/in/karl-thomas/" width="200" height="40">
-          <BarHeader>LinkedIn</BarHeader>
-        </Link>
-      </Li>
-    </ContactUL>
+    {props.startPos ? (
+      <ContactUL startPos={props.startPos}>
+        <Li startPos={props.startPos} onClick={props.parentClickHandler}>
+          <Link color="green" width="200" height="40">
+            <BarHeader>Portfolio</BarHeader>
+          </Link>
+        </Li>
+        <Li>
+          <Link to="https://github.com/karl-thomas" width="200" height="40">
+            <BarHeader>Github</BarHeader>
+          </Link>
+        </Li>
+        <Li>
+          <Link to="https://www.linkedin.com/in/karl-thomas/" width="200" height="40">
+            <BarHeader>LinkedIn</BarHeader>
+          </Link>
+        </Li>
+      </ContactUL>
+    ) : (
+      <ContactUL startPos={props.startPos}>
+        <Li startPos={props.startPos} onClick={props.parentClickHandler}>
+          <Link color="purple" width="200" height="40">
+            <BarHeader>Back</BarHeader>
+          </Link>
+        </Li>
+      </ContactUL>
+    )}
   </SideWrap>
 );
 
