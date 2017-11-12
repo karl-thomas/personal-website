@@ -65,32 +65,12 @@ const ContactUL = styled.ul`
   ${media.phone`display: none;`};
 `;
 
-// const ContactLink = styled.a`
-//   display: block;
-//   vertical-align: top;
-//   display: ${props => (props.startPos ? 'inline-block' : 'none')};
-//   color: white;
-// `;
-
 const Li = styled.li`
   height: 50px;
   margin-bottom: 10px;
   padding-left: 10px;
   -webkit-transition: all 0.7s ease-out;
 `;
-// const Pan = styled.div`
-//   box-shadow: inset 2px 3px 1px rgba(0, 0, 0, 0.2);
-//   position: absolute;
-//   display: inline-block;
-//   background-color: ${props => (props.startPos ? colors.torqPurp : '#46536e')};
-//   z-index: -1000;
-//   width: 3px;
-//   height: 40px;
-//   -webkit-transition: all 0.4s ease-out;
-//   ${Li}:hover & {
-//     width: calc(90% - 1.5em);
-//   }
-// `;
 
 const BarHeader = styled.h1`
   display: inline-block;

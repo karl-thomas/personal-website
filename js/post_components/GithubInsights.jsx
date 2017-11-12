@@ -7,53 +7,18 @@ import Wrap from '../shared/StyledComponents';
 import Insight from './Insight';
 import Link from '../shared/PanningLink';
 
-// karls react styleguide --------
-// violations of camel case are due to the rails api
+// karls react styleguide ---- :) ---
+
+// violations of camel case are due to the rails api-
 // this information is being interpreted from
+
 // a component that is too small is something that will not be
 // used outside of the context in which it currently lives
 
-// const linkWidth = '175px';
-// const Trigger = styled.div``;
-// const Pan = styled.div`
-//   box-shadow: inset 2px 3px 1px rgba(0, 0, 0, 0.2);
-//   position: absolute;
-//   display: inline-block;
-//   background-color: ${colors.torqPurp};
-//   z-index: 999;
-//   width: 3px;
-//   height: 20px;
-//   -webkit-transition: all 0.4s ease-out;
-//   ${Trigger}:hover & {
-//     width: ${linkWidth};
-//   }
-// `;
-// const Link = styled.a`
-//   padding-left: 10px;
-//   font-weight: 500;
-//   text-decoration: none;
-//   color: ${colors.torqPurp};
-//   position: absolute;
-//   z-index: 1000;
-//   width: ${linkWidth};
-//   margin: 0px;
-//   -moz-transition: all 0.2s ease-in;
-//   -o-transition: all 0.2s ease-in;
-//   -webkit-transition: all 0.2s ease-in;
-//   transition: all 0.2s ease-in;
-//   ${Trigger}:hover & {
-//     color: white;
-//     &::after {
-//       content: '  ►';
-//       color: white;
-//       text-shadow: 2px 3px 1px rgba(0, 0, 0, 0.2);
-//     }
-//   }
-// `;
-
 type Props = {
   most_used_lang: Array<any>,
-  most_recent_project: Object
+  most_recent_project: Object,
+  most_viewed_project: Object
 };
 
 class GithubInsights extends Component {
@@ -63,17 +28,33 @@ class GithubInsights extends Component {
 
   props: Props;
 
+  mostViewedProject = () => {
+    const project = this.props.most_viewed_project;
+    return (
+      <Insight title="Most Viewed Project">
+        <p> Recent my project </p>
+      </Insight>
+    );
+  };
+
   mostUsedLang = () => {
     const lang = this.props.most_used_lang;
-    const body = `In the past two weeks I have written ${this.bytesToSize(lang[1])} of ${lang[0]}`;
-    return <Insight title="Most Used language" body={body} />;
+    return (
+      <Insight title="Most Used language">
+        <p>
+          In the past two weeks I have written {this.bytesToSize(lang[1])} of {lang[0]}
+        </p>
+      </Insight>
+    );
   };
 
   mostRecentProject = () => {
     const project = this.props.most_recent_project;
-    const body = `I have recently made ${project.recent_commits} commits on my project, &apos;${project.name}&apos;`;
     return (
-      <Insight title="Most Recent Project" body={body}>
+      <Insight title="Most Recent Project">
+        <p>
+          I have recently made {project.recent_commits} commits on my project, &apos;{project.name}&apos;
+        </p>
         <Link to={project.url} width="175" height="24">
           Project on github
         </Link>

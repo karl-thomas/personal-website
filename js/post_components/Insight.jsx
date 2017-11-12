@@ -13,11 +13,10 @@ const InsightBox = styled.li`
 `;
 
 // a wrapper for insights, children being tags withing insights
-const Insight = (props: { body: string, title: string, children?: Object }) => (
+const Insight = (props: { title: string, children?: Object }) => (
   <InsightBox>
     <strong>{props.title}</strong>
 
-    <p>{props.body}</p>
     {props.children}
   </InsightBox>
 );
