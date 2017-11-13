@@ -7,6 +7,7 @@ import { colors } from '../utilities';
 const Trigger = styled.div`
   width: ${props => props.width}px;
   height: ${props => props.height}px;
+  position: relative;
 `;
 const Pan = styled.div`
   box-shadow: inset 2px 3px 1px rgba(0, 0, 0, 0.2);

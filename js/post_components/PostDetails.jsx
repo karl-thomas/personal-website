@@ -4,6 +4,12 @@ import React, { Component } from 'react';
 import Graph from './Graph';
 import GithubInsights from './GithubInsights';
 import SpotifyInsights from './SpotifyInsights';
+import Wrap from '../shared/StyledComponents';
+
+const InsightContainer = Wrap.extend`
+  overflow-x: scroll;
+  white-space: nowrap;
+`;
 
 class PostDetails extends Component {
   state = {
@@ -33,8 +39,10 @@ class PostDetails extends Component {
       title = <h3>{this.state.apiData.title}</h3>;
       postContent = (
         <div>
-          <GithubInsights {...this.state.apiData.github_record} />
-          <SpotifyInsights {...this.state.apiData.spotify_record} />
+          <InsightContainer>
+            <GithubInsights {...this.state.apiData.github_record} />
+            <SpotifyInsights {...this.state.apiData.spotify_record} />
+          </InsightContainer>
           <Graph {...this.state.apiData} />
         </div>
       );
