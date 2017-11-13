@@ -148,11 +148,12 @@ class Graph extends Component {
     }, []);
     return returnValue;
   };
+
   render() {
     return (
       <Wrap>
         <div className="chart-wrapper" id="chart-line1" />
-        <svg width="1200" height="500" />
+        <svg width={this.screenWidth() + 50} height="500" />
       </Wrap>
     );
   }
