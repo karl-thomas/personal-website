@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 // import styled from 'styled-components';
-import Wrap from '../shared/StyledComponents';
+// import Wrap from '../shared/StyledComponents';
 // import { colors } from '../utilities';
 import Insight from './Insight';
 import Link from '../shared/PanningLink';
@@ -18,7 +18,7 @@ import Link from '../shared/PanningLink';
 type Props = {
   most_used_lang: Array<any>,
   most_recent_project: Object,
-  most_viewed_project: Object
+  most_viewed_repo: Object
 };
 
 class GithubInsights extends Component {
@@ -29,10 +29,16 @@ class GithubInsights extends Component {
   props: Props;
 
   mostViewedProject = () => {
-    const project = this.props.most_viewed_project;
+    const project = this.props.most_viewed_repo;
     return (
       <Insight title="Most Viewed Project">
-        <p> Recent my project </p>
+        <p>
+          Recently my project &apos;{project.name}&apos; has gotten {project.recent_views} views and
+          {` ${project.uniques}`} unique views
+        </p>
+        <Link to={project.url} width="175" height="24">
+          Project on github
+        </Link>
       </Insight>
     );
   };
@@ -73,12 +79,11 @@ class GithubInsights extends Component {
 
   render() {
     return (
-      <Wrap>
-        <ul>
-          {this.mostRecentProject()}
-          {this.mostUsedLang()}
-        </ul>
-      </Wrap>
+      <ul>
+        {this.mostViewedProject()}
+        {this.mostRecentProject()}
+        {this.mostUsedLang()}
+      </ul>
     );
   }
 }
