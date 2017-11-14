@@ -8,6 +8,8 @@ import Wrap from '../shared/StyledComponents';
 
 const InsightContainer = Wrap.extend`
   overflow-x: scroll;
+  padding-top: 0px;
+  margin-top: 0px;
   white-space: nowrap;
 `;
 
@@ -43,6 +45,7 @@ class PostDetails extends Component {
             <GithubInsights {...this.state.apiData.github_record} />
             <SpotifyInsights {...this.state.apiData.spotify_record} />
           </InsightContainer>
+          <br />
           <Graph {...this.state.apiData} />
         </div>
       );

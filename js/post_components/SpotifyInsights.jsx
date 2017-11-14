@@ -1,6 +1,13 @@
 // @flow
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import Insight from './Insight';
+
+const Ul = styled.ul`
+  display: inline-block;
+  margin: 0px;
+  padding: 0px;
+`;
 
 type SpotInsightProps = {
   most_occuring_feature: string,
@@ -15,7 +22,7 @@ class SpotifyInsights extends Component {
   props: SpotInsightProps;
 
   songFeature = (
-    <Insight title="Common Song Feature">
+    <Insight source="spotify" title="Song Feature">
       <p>
         Most songs I have been listening to recently have a high amount of {this.props.most_occuring_feature}
       </p>
@@ -23,7 +30,7 @@ class SpotifyInsights extends Component {
   );
 
   recommendedTrack = (
-    <Insight title="Recommended Track">
+    <Insight source="spotify" title="Recommended Track">
       <p>
         Based on the last few songs I listened to, I am most likely going to listen to
         {` ${this.props.recommended_track.track}`} by the band {this.props.recommended_track.artist}
@@ -33,10 +40,10 @@ class SpotifyInsights extends Component {
 
   render() {
     return (
-      <ul>
+      <Ul>
         {this.songFeature}
         {this.recommendedTrack}
-      </ul>
+      </Ul>
     );
   }
 }
