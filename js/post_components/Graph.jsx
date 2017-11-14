@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 import Wrap from '../shared/StyledComponents';
-import { sizes } from '../utilities';
+import { sizes, colors } from '../utilities';
 
 class Graph extends Component {
   state = {
@@ -84,7 +84,7 @@ class Graph extends Component {
     const z = d3
       .scaleOrdinal()
       .domain(streams.map(c => c.id))
-      .range(['#50e5b7', '#FF934F', '#46536e']);
+      .range([colors.github, colors.spotify, colors.twitter]);
 
     x.domain(d3.extent(data, d => d.date));
 
