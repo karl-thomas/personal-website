@@ -32,6 +32,7 @@ export const Pan = styled.div`
     width: calc(90% - 1.5em);
   }
 `;
+
 export const LinkText = styled.h1`
   padding-left: 10px;
   font-weight: 500;

@@ -5,6 +5,7 @@ import Graph from './Graph';
 import MostRecentProject, { MostViewedProject, MostUsedLang } from './GithubInsights';
 import SongFeature, { RecommendedTrack } from './SpotifyInsights';
 import Wrap from '../shared/StyledComponents';
+import GreenText from '../shared/GreenText';
 
 const InsightContainer = Wrap.extend`
   overflow-x: scroll;
@@ -62,11 +63,20 @@ class PostDetails extends Component {
     let title;
 
     if (+Object.keys(this.state.apiData) !== 0) {
-      title = <h3>{this.state.apiData.title}</h3>;
+      title = (
+        <h2>
+          <GreenText text="//  " />
+          {this.state.apiData.title}
+        </h2>
+      );
       postContent = (
         <div>
           <InsightContainer> {this.state.insights}</InsightContainer>
           <br />
+          <h3>
+            <GreenText text="//  " />
+            Activity the last two weeks
+          </h3>
           <Graph {...this.state.apiData} />
         </div>
       );
