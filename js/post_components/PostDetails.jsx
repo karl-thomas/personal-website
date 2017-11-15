@@ -2,8 +2,8 @@
 
 import React, { Component } from 'react';
 import Graph from './Graph';
-import GithubInsights from './GithubInsights';
-import SpotifyInsights from './SpotifyInsights';
+import MostRecentProject, { MostViewedProject, MostUsedLang } from './GithubInsights';
+import SongFeature, { RecommendedTrack } from './SpotifyInsights';
 import Wrap from '../shared/StyledComponents';
 
 const InsightContainer = Wrap.extend`
@@ -15,19 +15,42 @@ const InsightContainer = Wrap.extend`
 
 class PostDetails extends Component {
   state = {
-    apiData: ''
+    apiData: {},
+    insights: []
   };
 
   componentDidMount() {
     this.getPostData();
   }
+
   // production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com
 
   getPostData = () => {
     const url = `http://localhost:3000/posts/${this.props.id}`;
     fetch(url)
       .then(response => response.json())
-      .then(json => this.setState({ apiData: json }));
+      .then(json => this.setState({ apiData: json, insights: this.insights(json) }));
+  };
+
+  insights = (json: Object) =>
+    this.shuffle([
+      <MostUsedLang key="1" {...json.github_record} />,
+      <MostViewedProject key="2" {...json.github_record} />,
+      <MostRecentProject key="3" {...json.github_record} />,
+      <SongFeature key="4" {...json.spotify_record} />,
+      <RecommendedTrack key="5" {...json.spotify_record} />
+    ]);
+
+  shuffle = (array: Array<any>) => {
+    let counter = array.length;
+    while (counter > 0) {
+      const index = Math.floor(Math.random() * counter);
+      counter -= 1;
+      const temp = array[counter];
+      array[counter] = array[index];
+      array[index] = temp;
+    }
+    return array;
   };
 
   props: {
@@ -37,14 +60,12 @@ class PostDetails extends Component {
   render() {
     let postContent;
     let title;
-    if (this.state.apiData) {
+
+    if (+Object.keys(this.state.apiData) !== 0) {
       title = <h3>{this.state.apiData.title}</h3>;
       postContent = (
         <div>
-          <InsightContainer>
-            <GithubInsights {...this.state.apiData.github_record} />
-            <SpotifyInsights {...this.state.apiData.spotify_record} />
-          </InsightContainer>
+          <InsightContainer> {this.state.insights}</InsightContainer>
           <br />
           <Graph {...this.state.apiData} />
         </div>

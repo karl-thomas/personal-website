@@ -34,7 +34,7 @@ const Orphanage = styled.div`
 const Insight = (props: { source: string, title: string, children?: Object }) => {
   const scheme = { github: colors.github, spotify: colors.spotify, twitter: colors.twitter };
   return (
-    <InsightBox>
+    <InsightBox className="insight">
       <Title color={scheme[props.source]}>
         <strong>{props.title}</strong>
       </Title>
