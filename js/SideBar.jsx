@@ -41,6 +41,7 @@ const Header = styled.h1`
   width: 100%;
   padding-left: 10px;
   color: white;
+  display: block;
   position: relative;
   font-size: 290%;
   margin-top: 0px;
