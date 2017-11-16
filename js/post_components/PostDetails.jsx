@@ -6,6 +6,7 @@ import MostRecentProject, { MostViewedProject, MostUsedLang } from './GithubInsi
 import SongFeature, { RecommendedTrack } from './SpotifyInsights';
 import Wrap from '../shared/StyledComponents';
 import GreenText from '../shared/GreenText';
+import Legend from './Legend';
 
 const InsightContainer = Wrap.extend`
   overflow-x: scroll;
@@ -27,7 +28,7 @@ class PostDetails extends Component {
   // production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com
 
   getPostData = () => {
-    const url = `http://production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com/posts/${this.props.id}`;
+    const url = `http://localhost:3000/posts/${this.props.id}`;
     fetch(url)
       .then(response => response.json())
       .then(json => this.setState({ apiData: json, insights: this.insights(json) }));
@@ -86,6 +87,7 @@ class PostDetails extends Component {
     return (
       <div>
         {title}
+        <Legend sources={['Github', 'Spotify']} />
         {postContent}
       </div>
     );

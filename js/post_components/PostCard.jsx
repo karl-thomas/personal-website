@@ -4,28 +4,32 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors } from '../utilities';
+import Wrap from '../shared/StyledComponents';
 // to take me to the details page in the future
 
-const Card = styled.div`
-  background-color: ${colors.space};
-  margin: 0em 0em 1em 0em;
-  position: relative;
-  padding: 0em 0em 0em 1em;
-  height: 150px;
-  width: 100%;
-`;
+// const Card = styled.div`
+//   background-color: ${colors.space};
+//   margin: 0em 0em 1em 0em;
+//   position: relative;
+//   padding: 0em 0em 0em 1em;
+//   height: 150px;
+//   width: 100%;
+// `;
 
 const Title = styled.h1`
   display: inline-block;
-  color: white;
+  padding-left: 1em;
+  color: #444;
   width: 85%;
 `;
 
 const TimeBox = styled.div`
   background-color: ${colors.torq};
-  position: absolute;
+  position: relative;
   padding: 0em 1em;
-  border-top: thin solid black;
+  border-bottom-right-radius: inherit;
+  border-bottom-left-radius: inherit;
+  border-top: thin solid #444;
   right: 0em;
   height: 30px;
   width: 100%;
@@ -68,12 +72,12 @@ class PostCard extends Component {
   render() {
     return (
       <Link to={`/posts/${this.props.id}`}>
-        <Card>
+        <Wrap>
           <Title>{this.props.title}</Title>
           <TimeBox>
             <TimeStamp>{this.formattedDate()}</TimeStamp>
           </TimeBox>
-        </Card>
+        </Wrap>
       </Link>
     );
   }
