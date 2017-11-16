@@ -74,13 +74,15 @@ class Graph extends Component {
     // streams == data stream location.
     const streams = ['Github', 'Spotify'].map(id => ({
       id,
-      values: data.map(d => {
-        const contributions = d[id] ? d[id] : 0;
-        return { date: d.date, contributions };
-      })
+      values: data
+        .map(d => {
+          const contributions = d[id] ? d[id] : 0;
+          return { date: d.date, contributions };
+        })
+        .sort((a, b) => new Date(a.date) - new Date(b.date))
     }));
 
-    // colors
+    console.log(streams);
     const z = d3
       .scaleOrdinal()
       .domain(streams.map(c => c.id))
@@ -90,7 +92,7 @@ class Graph extends Component {
 
     y.domain([
       d3.min(streams, c => d3.min(c.values, d => d.contributions)),
-      d3.max(streams, c => d3.max(c.values, d => d.contributions))
+      d3.max(streams, c => d3.max(c.values, d => d.contributions + 2))
     ]);
 
     svg.g
