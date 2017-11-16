@@ -83,9 +83,7 @@ class Resume extends Component {
   };
 
   componentDidMount() {
-    console.log(
-      'Hello, welcome to my personal blog. As you can see by the console log statements and missing pages im still working on it! Please checkout the repo at https://github.com/karl-thomas/personal-website'
-    );
+    console.log('Hello, welcome to my personal blog. As you can see by the console log statements and missing pages im still working on it! Please checkout the repo at https://github.com/karl-thomas/personal-website'); // eslint-disable-line no-console
   }
 
   componentWillReceiveProps(nextProps: Object) {
