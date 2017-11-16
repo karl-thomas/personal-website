@@ -64,6 +64,9 @@ const Body = styled.div`
   padding-left: 144px;
   padding-bottom: 20px;
   ${media.tablet`padding:0px;margin:10px;`};
+  & > p {
+    color: #444;
+  }
 `;
 const SubSection = styled.div`
   &:not(:last-child) {
@@ -114,7 +117,7 @@ class Resume extends Component {
           <Title>
             {work.title}, {work.company}
           </Title>
-          {work.bullets.join(' ')}
+          <p>{work.bullets.join(' ')}</p>
         </Body>
       </SubSection>
     ));
@@ -141,7 +144,7 @@ class Resume extends Component {
           <Title>
             {vol.title}, {vol.company}
           </Title>
-          {vol.bullets.join(' ')}
+          <p>{vol.bullets.join(' ')}</p>
         </Body>
       </SubSection>
     ));
@@ -153,11 +156,14 @@ class Resume extends Component {
 
           <Section>
             <Summary>
-              A Ohio-California transplant into Chicago, driven by curiosity into the Tech Industry. After
-              graduating from and working at Dev Bootcamp, my goal is to continuously learn useful design
-              practices and implement interesting technologies with fellow developers who show empathy in
-              their work and world-view. I have a love for quirky code and elegant solutions, and am currently
-              looking for a role under mentorship with room to develop.
+              <p>
+                {' '}
+                A Ohio-California transplant into Chicago, driven by curiosity into the Tech Industry. After
+                graduating from and working at Dev Bootcamp, my goal is to continuously learn useful design
+                practices and implement interesting technologies with fellow developers who show empathy in
+                their work and world-view. I have a love for quirky code and elegant solutions, and am
+                currently looking for a role under mentorship with room to develop.
+              </p>
             </Summary>
           </Section>
           <br />
