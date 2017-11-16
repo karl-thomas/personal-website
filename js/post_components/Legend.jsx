@@ -3,6 +3,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../utilities';
 
+const LegendCont = styled.div`margin-bottom: 10px;`;
+
 const InlineDiv = styled.div`
   display: inline-block;
   text-align: center;
@@ -24,13 +26,13 @@ const SourceName = styled.strong`
 `;
 
 const Legend = (props: { sources: Array<string> }) => (
-  <div>
+  <LegendCont>
     {props.sources.map(source => (
       <InlineDiv>
         <Colorbox source={source} />
         <SourceName>{source}</SourceName>
       </InlineDiv>
     ))}
-  </div>
+  </LegendCont>
 );
 export default Legend;

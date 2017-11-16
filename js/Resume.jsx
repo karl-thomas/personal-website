@@ -64,6 +64,9 @@ const Body = styled.div`
   padding-left: 144px;
   padding-bottom: 20px;
   ${media.tablet`padding:0px;margin:10px;`};
+  & > p {
+    color: #444;
+  }
 `;
 const SubSection = styled.div`
   &:not(:last-child) {
