@@ -45,10 +45,6 @@ const TimeStamp = styled.p`
 `;
 
 class PostCard extends Component {
-  componentDidMount() {
-    console.log('rendering postcard'); // eslint-disable-line no-console
-    console.log(this.props); // eslint-disable-line no-console
-  }
   props: {
     id: string,
     // github_record: Object,
