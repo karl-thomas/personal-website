@@ -86,11 +86,7 @@ class Resume extends Component {
     show: false
   };
 
-  componentDidMount() {
-    console.log(
-      'Hello, welcome to my personal blog. As you can see by the console log statements and missing pages im still working on it! Please checkout the repo at https://github.com/karl-thomas/personal-website'
-    );
-  }
+  componentDidMount() {}
 
   componentWillReceiveProps(nextProps: Object) {
     if (nextProps.startPos) {

@@ -27,7 +27,6 @@ const Legend = (props: { sources: Array<string> }) => (
   <div>
     {props.sources.map(source => (
       <InlineDiv>
-        {console.log(props)}
         <Colorbox source={source} />
         <SourceName>{source}</SourceName>
       </InlineDiv>
