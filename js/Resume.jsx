@@ -4,6 +4,9 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import resumeFig from './resumeBlocks';
 import media from './utilities';
+import Wrap from './shared/StyledComponents';
+
+const Section = Wrap.extend`padding: 1em;`;
 
 const OutsideBox = styled.div`
   position: fixed;
@@ -29,6 +32,7 @@ const Wrapper = styled.div`
     `};
 `;
 const Header = styled.h2`
+  padding: 10px 20px 15px;
   display: block;
   text-align: left;
   float: right;
@@ -61,7 +65,7 @@ const Body = styled.div`
   padding-bottom: 20px;
   ${media.tablet`padding:0px;margin:10px;`};
 `;
-const Section = styled.div`
+const SubSection = styled.div`
   &:not(:last-child) {
     border-bottom: thin dotted #a2a6a8;
   }
@@ -106,7 +110,7 @@ class Resume extends Component {
 
   render() {
     const workComponent = resumeFig.experience.map(work => (
-      <Section>
+      <SubSection>
         <Times>
           {work.start} to {work.end}
         </Times>
@@ -116,11 +120,11 @@ class Resume extends Component {
           </Title>
           {work.bullets.join(' ')}
         </Body>
-      </Section>
+      </SubSection>
     ));
 
     const projectsComponent = resumeFig.projects.map(proj => (
-      <Section>
+      <SubSection>
         <Times>
           {proj.start} to {proj.end}
         </Times>
@@ -129,11 +133,11 @@ class Resume extends Component {
           <p>{proj.description}</p>
           <ul>{proj.bullets.map(bullet => <li>{bullet}</li>)}</ul>
         </Body>
-      </Section>
+      </SubSection>
     ));
 
     const volunteerComponent = resumeFig.volunteering.map(vol => (
-      <Section>
+      <SubSection>
         <Times>
           {vol.start} to {vol.end}
         </Times>
@@ -143,29 +147,32 @@ class Resume extends Component {
           </Title>
           {vol.bullets.join(' ')}
         </Body>
-      </Section>
+      </SubSection>
     ));
 
     return (
       <OutsideBox startPos={this.props.startPos}>
         <Wrapper className="resume" startPos={this.props.startPos}>
           <Header>Elevator Speech</Header>
-          <Summary>
-            A Ohio-California transplant into Chicago, driven by curiosity into the Tech Industry. After
-            graduating from and working at Dev Bootcamp, my goal is to continuously learn useful design
-            practices and implement interesting technologies with fellow developers who show empathy in their
-            work and world-view. I have a love for quirky code and elegant solutions, and am currently looking
-            for a role under mentorship with room to develop.
-          </Summary>
+
+          <Section>
+            <Summary>
+              A Ohio-California transplant into Chicago, driven by curiosity into the Tech Industry. After
+              graduating from and working at Dev Bootcamp, my goal is to continuously learn useful design
+              practices and implement interesting technologies with fellow developers who show empathy in
+              their work and world-view. I have a love for quirky code and elegant solutions, and am currently
+              looking for a role under mentorship with room to develop.
+            </Summary>
+          </Section>
           <br />
           <Header>Experience</Header>
-          <div>{workComponent}</div>
+          <Section>{workComponent}</Section>
           <br />
           <Header>Projects</Header>
-          <div>{projectsComponent}</div>
+          <Section>{projectsComponent}</Section>
           <br />
           <Header>Volunteer Work</Header>
-          <div>{volunteerComponent}</div>
+          <Section>{volunteerComponent}</Section>
         </Wrapper>
       </OutsideBox>
     );

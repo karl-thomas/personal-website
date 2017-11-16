@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import SideBar from './SideBar';
 import NavBar from './NavBar';
-import PostContainer from './PostContainer';
+import PostContainer from './post_components/PostContainer';
 import Resume from './Resume';
 
 class Blog extends Component {

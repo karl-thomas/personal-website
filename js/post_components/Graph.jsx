@@ -2,21 +2,9 @@
 /* eslint no-param-reassign: 0 */
 import React, { Component } from 'react';
 import * as d3 from 'd3';
-import styled from 'styled-components';
+import Wrap from '../shared/StyledComponents';
+import { sizes, colors } from '../utilities';
 
-import media, { sizes } from './utilities';
-
-const Wrap = styled.div`
-  background-color: white;
-  width: 100%;
-  border-radius: 25px;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-  ${media.phone`
-    & > svg > g {
-      transform: translate(20px,20px)
-    }
-    `};
-`;
 class Graph extends Component {
   state = {
     data: [],
@@ -38,7 +26,7 @@ class Graph extends Component {
   screenWidth = () =>
     window.innerWidth > sizes.phone
       ? Math.ceil(window.innerWidth * 97 / 100 - 375)
-      : Math.ceil(window.innerWidth);
+      : Math.ceil(window.innerWidth) - 60;
 
   convertToSimpleData = (start, stream) => {
     const record = `${stream.toLowerCase()}_record`; // get the correct record.
@@ -70,7 +58,7 @@ class Graph extends Component {
 
   // this solution will rely on me passing in my data in a tabular format
 
-  //  'date, git, spotify, twitter' as the properties per row.
+  //  'date, git, spotify, twitter' as the properties per 'row'.
 
   draw = (data, svg) => {
     // range for dates
@@ -96,7 +84,7 @@ class Graph extends Component {
     const z = d3
       .scaleOrdinal()
       .domain(streams.map(c => c.id))
-      .range(['#50e5b7', '#FF934F', '#46536e']);
+      .range([colors.github, colors.spotify, colors.twitter]);
 
     x.domain(d3.extent(data, d => d.date));
 
@@ -160,11 +148,12 @@ class Graph extends Component {
     }, []);
     return returnValue;
   };
+
   render() {
     return (
       <Wrap>
         <div className="chart-wrapper" id="chart-line1" />
-        <svg width="1200" height="500" />
+        <svg width={this.screenWidth() + 50} height="500" />
       </Wrap>
     );
   }

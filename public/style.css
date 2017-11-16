@@ -463,3 +463,8 @@ body {
   stroke: steelblue;
   stroke-width: 2px;
 }
+
+h1 {
+  display: none;
+}
+

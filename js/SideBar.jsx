@@ -3,6 +3,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import media, { colors } from './utilities';
+import Link from './shared/PanningLink';
 
 const transition = `-moz-transition: all 0.7s ease-out; -ms-transition: all 0.7s ease-out; -o-transition: all 0.7s ease-out; transition: all 0.7s ease-out;`;
 
@@ -13,7 +14,7 @@ const SideWrap = styled.div`
          transform: translate(3vw,0vh);
          box-shadow:-2px 0px 6px 3px rgba(0, 0, 0, 0.1);`
       : `background-color: ${colors.purp};
-         transform: translate(calc(97vw - 200px),0vh);
+         transform: translate(calc(97vw - 250px),0vh);
          box-shadow:2px 0px 6px 3px rgba(0, 0, 0, 0.1);`};
   z-index: 1000;
   -webkit-font-smoothing: antialiased;
@@ -40,6 +41,7 @@ const Header = styled.h1`
   width: 100%;
   padding-left: 10px;
   color: white;
+  display: block;
   position: relative;
   font-size: 290%;
   margin-top: 0px;
@@ -64,78 +66,51 @@ const ContactUL = styled.ul`
   ${media.phone`display: none;`};
 `;
 
-const ContactLink = styled.a`
-  display: block;
-  vertical-align: top;
-  display: ${props => (props.startPos ? 'inline-block' : 'none')};
-  color: white;
-`;
-
 const Li = styled.li`
   height: 50px;
   margin-bottom: 10px;
   padding-left: 10px;
   -webkit-transition: all 0.7s ease-out;
 `;
-const Pan = styled.div`
-  box-shadow: inset 2px 3px 1px rgba(0, 0, 0, 0.2);
-  position: absolute;
+
+const BarHeader = styled.h1`
   display: inline-block;
-  background-color: ${props => (props.startPos ? colors.torqPurp : '#46536e')};
-  z-index: -1000;
-  width: 3px;
-  height: 40px;
-  -webkit-transition: all 0.4s ease-out;
-  ${Li}:hover & {
-    width: 90%;
-  }
-`;
-const LinkText = styled.h1`
-  padding-left: 10px;
-  font-weight: 500;
-  color: white;
-  position: absolute;
-  z-index: 1000;
   margin: 0px;
-  ${Li}:hover & {
-    width: 100%;
-    &::after {
-      content: '  ►';
-      color: ${props => (props.startPos ? '#50e5b7' : '#6f567d')};
-      text-shadow: 2px 3px 1px rgba(0, 0, 0, 0.2);
-    }
-  }
+  color: white;
+  font-weight: 500;
 `;
 
-const SideBar = (props: { parentClickHandler: Function, startPos: boolean }) => {
-  const textUtil = props.startPos ? (
-    <LinkText startPos={props.startPos}>Portfolio</LinkText>
-  ) : (
-    <LinkText startPos={props.startPos}>Back</LinkText>
-  );
-  return (
-    <SideWrap startPos={props.startPos}>
-      <Header startPos={props.startPos}>Karl Thomas</Header>
+const SideBar = (props: { parentClickHandler: Function, startPos: boolean }) => (
+  <SideWrap startPos={props.startPos}>
+    <Header startPos={props.startPos}>Karl Thomas</Header>
+    {props.startPos ? (
       <ContactUL startPos={props.startPos}>
         <Li startPos={props.startPos} onClick={props.parentClickHandler}>
-          <Pan startPos={props.startPos} />
-          {textUtil}
+          <Link color="green" width="200" height="40">
+            <BarHeader>Portfolio</BarHeader>
+          </Link>
         </Li>
         <Li>
-          <ContactLink startPos={props.startPos} href="https://github.com/karl-thomas">
-            <Pan startPos={props.startPos} />
-            <LinkText startPos={props.startPos}>Github</LinkText>
-          </ContactLink>
+          <Link to="https://github.com/karl-thomas" width="200" height="40">
+            <BarHeader>Github</BarHeader>
+          </Link>
         </Li>
         <Li>
-          <ContactLink startPos={props.startPos} href="https://www.linkedin.com/in/karl-thomas/">
-            <Pan startPos={props.startPos} />
-            <LinkText startPos={props.startPos}>LinkedIn</LinkText>
-          </ContactLink>
+          <Link to="https://www.linkedin.com/in/karl-thomas/" width="200" height="40">
+            <BarHeader>LinkedIn</BarHeader>
+          </Link>
         </Li>
       </ContactUL>
-    </SideWrap>
-  );
-};
+    ) : (
+      <ContactUL startPos={props.startPos}>
+        <Li startPos={props.startPos} onClick={props.parentClickHandler}>
+          <Link color="purple" width="200" height="40">
+            <BarHeader>Back</BarHeader>
+          </Link>
+        </Li>
+      </ContactUL>
+    )}
+  </SideWrap>
+);
 
 export default SideBar;
