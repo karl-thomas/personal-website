@@ -465,6 +465,15 @@ body {
 }
 
 h1 {
+  color: #444;
   display: none;
 }
 
+p,
+h2,
+h3,
+h4,
+strong,
+li {
+  color: #444;
+}
