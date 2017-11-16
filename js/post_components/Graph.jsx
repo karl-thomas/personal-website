@@ -82,7 +82,6 @@ class Graph extends Component {
         .sort((a, b) => new Date(a.date) - new Date(b.date))
     }));
 
-    console.log(streams);
     const z = d3
       .scaleOrdinal()
       .domain(streams.map(c => c.id))
