@@ -22,7 +22,7 @@ class Graph extends Component {
 
   componentDidUpdate() {
     d3.selectAll('svg > *').remove();
-    if (+this.props.tempGraph) {
+    if (this.props.tempGraph !== undefined) {
       this.draw(this.seperateObjects(this.props.tempGraph), this.selectSvg());
     }
   }
@@ -77,7 +77,6 @@ class Graph extends Component {
 
   draw = (data, svg) => {
     // range for dates
-    console.log(data);
     const x = d3.scaleTime().rangeRound([0, svg.width]);
     // range for contributions
     const y = d3.scaleLinear().rangeRound([svg.height, 0]);
@@ -88,7 +87,6 @@ class Graph extends Component {
       .y(d => y(d.contributions));
 
     // streams == data stream location.
-    console.log(this.getKeys(data));
     const streams = this.getKeys(data).map(id => ({
       id,
       values: data

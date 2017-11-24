@@ -37,7 +37,10 @@ class PostDetails extends Component {
 
   showRecentProjGraph = (event: SyntheticEvent) => {
     event.preventDefault();
-    this.setState({ tempGraph: this.state.apiData.github_record.most_recent_project.counts_by_date });
+    this.setState(() => {
+      console.log('changing');
+      return { tempGraph: this.state.apiData.github_record.most_recent_project.counts_by_date };
+    });
   };
 
   insights = (json: Object) =>
@@ -66,8 +69,9 @@ class PostDetails extends Component {
   };
 
   graphComponent = () => {
+    console.log('in here');
     let graph = '';
-    if (+Object.keys(this.state.tempGraph)) {
+    if (+Object.keys(this.state.tempGraph) !== 0) {
       graph = <Graph tempGraph={this.state.tempGraph} />;
     } else {
       graph = <Graph {...this.state.apiData} />;
