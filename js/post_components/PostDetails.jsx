@@ -20,7 +20,8 @@ class PostDetails extends Component {
   state = {
     apiData: {},
     insights: [],
-    tempGraph: {}
+    tempGraph: {},
+    tempTitle: ''
   };
 
   componentDidMount() {
@@ -38,7 +39,10 @@ class PostDetails extends Component {
 
   showRecentProjGraph = (event: SyntheticEvent) => {
     event.preventDefault();
-    this.setState(() => ({ tempGraph: this.state.apiData.github_record.most_recent_project.counts_by_date }));
+    this.setState(() => ({
+      tempGraph: this.state.apiData.github_record.most_recent_project.counts_by_date,
+      tempTitle: 'Most Recent Project'
+    }));
   };
 
   insights = (json: Object) =>
@@ -67,46 +71,50 @@ class PostDetails extends Component {
   };
 
   graphComponent = () => {
-    let graph = '';
+    let graph;
     if (+Object.keys(this.state.tempGraph) !== 0) {
-      graph = <Graph tempGraph={this.state.tempGraph} />;
+      graph = (
+        <div>
+          <h3>
+            <GreenText text="//  " />
+            Activity on the {this.state.tempTitle}
+          </h3>
+          <Graph tempGraph={this.state.tempGraph} />
+        </div>
+      );
     } else {
-      graph = <Graph {...this.state.apiData} />;
+      graph = (
+        <div>
+          <h3>
+            <GreenText text="//  " />
+            Activity the last two weeks
+          </h3>
+          <Graph {...this.state.apiData} />
+        </div>
+      );
     }
     return graph;
   };
 
   render() {
     let postContent;
-    let title;
     if (+Object.keys(this.state.apiData) !== 0) {
-      title = (
-        <h2>
-          <GreenText text="//  " />
-          {this.state.apiData.title}
-        </h2>
-      );
       postContent = (
         <div>
+          <h2>
+            <GreenText text="//  " />
+            {this.state.apiData.title}
+          </h2>
+          <Legend sources={['Github', 'Spotify']} />
           <InsightContainer> {this.state.insights}</InsightContainer>
           <br />
-          <h3>
-            <GreenText text="//  " />
-            Activity the last two weeks
-          </h3>
           {this.graphComponent()}
         </div>
       );
     } else {
       postContent = 'LOADIN';
     }
-    return (
-      <div>
-        {title}
-        <Legend sources={['Github', 'Spotify']} />
-        {postContent}
-      </div>
-    );
+    return <div>{postContent}</div>;
   }
 }
 

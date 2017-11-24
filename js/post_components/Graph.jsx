@@ -100,7 +100,7 @@ class Graph extends Component {
     const z = d3
       .scaleOrdinal()
       .domain(streams.map(c => c.id))
-      .range([colors.github, colors.spotify, colors.twitter]);
+      .range(streams.map(c => colors[c.id].toLowerCase()));
 
     x.domain(d3.extent(data, d => d.date));
 
