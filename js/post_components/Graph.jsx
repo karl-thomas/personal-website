@@ -21,8 +21,8 @@ class Graph extends Component {
   }
 
   componentDidUpdate() {
-    d3.selectAll('svg > *').remove();
     if (this.props.tempGraph !== undefined) {
+      d3.selectAll('svg > *').remove();
       this.draw(this.seperateObjects(this.props.tempGraph), this.selectSvg());
     }
   }
