@@ -1,6 +1,8 @@
 /* eslint react/forbid-prop-types: 0 */
 /* eslint no-param-reassign: 0 */
+
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as d3 from 'd3';
 import Wrap from '../shared/StyledComponents';
 import { sizes, colors } from '../utilities';
@@ -18,27 +20,22 @@ class Graph extends Component {
     this.draw(this.datafy(dorta), this.selectSvg());
   }
 
-  // componentDidUpdate() {
-  //   d3.selectAll('svg > *').remove();
-  //   this.selectAndDraw();
-  // }
+  componentDidUpdate() {
+    d3.selectAll('svg > *').remove();
+    if (+this.props.tempGraph) {
+      this.draw(this.seperateObjects(this.props.tempGraph), this.selectSvg());
+    }
+  }
 
-  screenWidth = () =>
-    window.innerWidth > sizes.phone
-      ? Math.ceil(window.innerWidth * 97 / 100 - 375)
-      : Math.ceil(window.innerWidth) - 60;
-
-  convertToSimpleData = (start, stream) => {
-    const record = `${stream.toLowerCase()}_record`; // get the correct record.
-    const dataDates = start[record].counts_by_date; // pull the count by dates out of the object
-    const parseTime = d3.timeParse('%Y-%m-%d');
-    // reduce the keys into static values
-    const data = Object.keys(dataDates).map(date => ({
-      date: parseTime(date),
-      [stream]: +Object.values(dataDates[date]).reduce((a, b) => a + b, 0)
-    }));
-
-    return data;
+  // this solution will rely on me passing in my data in a tabular format
+  getKeys = obj => {
+    let keys = [];
+    obj.forEach(d => {
+      const subset = Object.keys(d);
+      subset.splice(subset.indexOf('date'), 1);
+      keys = [...keys, ...subset];
+    });
+    return Array.from(new Set(keys));
   };
 
   selectSvg = () => {
@@ -55,13 +52,32 @@ class Graph extends Component {
 
     return svg;
   };
+  seperateObjects = obj =>
+    Object.keys(obj)
+      .map(date => Object.assign({ date: d3.timeParse('%Y-%m-%d')(date) }, obj[date]))
+      .sort((a, b) => new Date(a.date) - new Date(b.date));
 
-  // this solution will rely on me passing in my data in a tabular format
+  convertToSimpleData = (start, stream) => {
+    const record = `${stream.toLowerCase()}_record`; // get the correct record.
+    const dataDates = start[record].counts_by_date; // pull the count by dates out of the object
+    const parseTime = d3.timeParse('%Y-%m-%d');
+    // reduce the keys into static values
+    const data = Object.keys(dataDates).map(date => ({
+      date: parseTime(date),
+      [stream]: +Object.values(dataDates[date]).reduce((a, b) => a + b, 0)
+    }));
 
+    return data;
+  };
+  screenWidth = () =>
+    window.innerWidth > sizes.phone
+      ? Math.ceil(window.innerWidth * 97 / 100 - 375)
+      : Math.ceil(window.innerWidth) - 60;
   //  'date, git, spotify, twitter' as the properties per 'row'.
 
   draw = (data, svg) => {
     // range for dates
+    console.log(data);
     const x = d3.scaleTime().rangeRound([0, svg.width]);
     // range for contributions
     const y = d3.scaleLinear().rangeRound([svg.height, 0]);
@@ -72,7 +88,8 @@ class Graph extends Component {
       .y(d => y(d.contributions));
 
     // streams == data stream location.
-    const streams = ['Github', 'Spotify'].map(id => ({
+    console.log(this.getKeys(data));
+    const streams = this.getKeys(data).map(id => ({
       id,
       values: data
         .map(d => {
@@ -159,4 +176,9 @@ class Graph extends Component {
     );
   }
 }
+
+Graph.propTypes = {
+  tempGraph: PropTypes.objectOf(PropTypes.number)
+};
+
 export default Graph;

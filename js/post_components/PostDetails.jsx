@@ -18,7 +18,8 @@ const InsightContainer = Wrap.extend`
 class PostDetails extends Component {
   state = {
     apiData: {},
-    insights: []
+    insights: [],
+    tempGraph: {}
   };
 
   componentDidMount() {
@@ -28,17 +29,22 @@ class PostDetails extends Component {
   // production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com
 
   getPostData = () => {
-    const url = `http://production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com/posts/${this.props.id}`;
+    const url = `http://localhost:3000/posts/${this.props.id}`;
     fetch(url)
       .then(response => response.json())
       .then(json => this.setState({ apiData: json, insights: this.insights(json) }));
+  };
+
+  showRecentProjGraph = (event: SyntheticEvent) => {
+    event.preventDefault();
+    this.setState({ tempGraph: this.state.apiData.github_record.most_recent_project.counts_by_date });
   };
 
   insights = (json: Object) =>
     this.shuffle([
       <MostUsedLang key="1" {...json.github_record} />,
       <MostViewedProject key="2" {...json.github_record} />,
-      <MostRecentProject key="3" {...json.github_record} />,
+      <MostRecentProject showRecentProjGraph={this.showRecentProjGraph} key="3" {...json.github_record} />,
       <SongFeature key="4" {...json.spotify_record} />,
       <RecommendedTrack key="5" {...json.spotify_record} />
     ]);
@@ -59,10 +65,19 @@ class PostDetails extends Component {
     id: string
   };
 
+  graphComponent = () => {
+    let graph = '';
+    if (+Object.keys(this.state.tempGraph)) {
+      graph = <Graph tempGraph={this.state.tempGraph} />;
+    } else {
+      graph = <Graph {...this.state.apiData} />;
+    }
+    return graph;
+  };
+
   render() {
     let postContent;
     let title;
-
     if (+Object.keys(this.state.apiData) !== 0) {
       title = (
         <h2>
@@ -78,7 +93,7 @@ class PostDetails extends Component {
             <GreenText text="//  " />
             Activity the last two weeks
           </h3>
-          <Graph {...this.state.apiData} />
+          {this.graphComponent()}
         </div>
       );
     } else {
