@@ -100,7 +100,7 @@ class Graph extends Component {
     const z = d3
       .scaleOrdinal()
       .domain(streams.map(c => c.id))
-      .range(streams.map(c => colors[c.id].toLowerCase()));
+      .range(streams.map(c => colors[c.id]));
 
     x.domain(d3.extent(data, d => d.date));
 
@@ -176,7 +176,7 @@ class Graph extends Component {
 }
 
 Graph.propTypes = {
-  tempGraph: PropTypes.objectOf(PropTypes.number)
+  tempGraph: PropTypes.objectOf(PropTypes.object)
 };
 
 export default Graph;
