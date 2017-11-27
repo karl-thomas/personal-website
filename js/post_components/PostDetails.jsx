@@ -79,7 +79,9 @@ class PostDetails extends Component {
             <GreenText text="//  " />
             Activity on the {this.state.tempTitle}
           </h3>
-          <p>breaking?</p>
+          <Legend
+            sources={['clones', 'commits', 'unique_views', 'opened_pull_request', 'closed_pull_request']}
+          />
           <Graph tempGraph={this.state.tempGraph} />
         </div>
       );

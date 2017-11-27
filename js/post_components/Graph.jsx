@@ -14,17 +14,18 @@ class Graph extends Component {
   };
 
   componentDidMount() {
-    console.log('pooopies', this.props);
-    const githubData = this.convertToSimpleData(this.props, 'Github');
-    const spotifyData = this.convertToSimpleData(this.props, 'Spotify');
-    const dorta = githubData.concat(spotifyData);
-    this.draw(this.datafy(dorta), this.selectSvg());
+    if (this.tempGraphDefined()) {
+      this.drawTempGraph();
+    } else {
+      this.drawDefaultGraph();
+    }
   }
 
   componentDidUpdate() {
-    if (this.props.tempGraph !== undefined) {
-      d3.selectAll('svg > *').remove();
-      this.draw(this.seperateObjects(this.props.tempGraph), this.selectSvg());
+    if (this.tempGraphDefined()) {
+      this.drawTempGraph();
+    } else {
+      this.drawDefaultGraph();
     }
   }
 
@@ -38,6 +39,23 @@ class Graph extends Component {
     });
     return Array.from(new Set(keys));
   };
+
+  tempGraphDefined = () => this.props.tempGraph !== undefined;
+
+  drawDefaultGraph = () => {
+    this.clearGraph();
+    const githubData = this.convertToSimpleData(this.props, 'Github');
+    const spotifyData = this.convertToSimpleData(this.props, 'Spotify');
+    const dorta = githubData.concat(spotifyData);
+    this.draw(this.datafy(dorta), this.selectSvg());
+  };
+
+  drawTempGraph = () => {
+    this.clearGraph();
+    this.draw(this.seperateObjects(this.props.tempGraph), this.selectSvg());
+  };
+
+  clearGraph = () => d3.selectAll('svg > *').remove();
 
   selectSvg = () => {
     let svg = d3.select('svg');
