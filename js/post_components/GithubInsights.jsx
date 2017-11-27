@@ -62,6 +62,7 @@ const MostRecentProject = (props: Object) => {
       <Link to={project.url} width="175" height="24">
         Project on github
       </Link>
+      <br />
       <div role="link" onClick={props.showRecentProjGraph} tabIndex={0}>
         <Link width="175" height="24">
           Show Graph
