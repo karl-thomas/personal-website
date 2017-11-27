@@ -14,6 +14,7 @@ class Graph extends Component {
   };
 
   componentDidMount() {
+    console.log('pooopies', this.props);
     const githubData = this.convertToSimpleData(this.props, 'Github');
     const spotifyData = this.convertToSimpleData(this.props, 'Spotify');
     const dorta = githubData.concat(spotifyData);

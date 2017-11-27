@@ -79,6 +79,7 @@ class PostDetails extends Component {
             <GreenText text="//  " />
             Activity on the {this.state.tempTitle}
           </h3>
+          <p>breaking?</p>
           <Graph tempGraph={this.state.tempGraph} />
         </div>
       );
