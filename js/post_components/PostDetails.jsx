@@ -1,10 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
-import Graph from './Graph';
-import MostRecentProject, { MostViewedProject, MostUsedLang } from './GithubInsights';
-import SongFeature, { RecommendedTrack } from './SpotifyInsights';
-import Wrap from '../shared/StyledComponents';
+import InsightRenderer from './InsightRenderer';
 import GreenText from '../shared/GreenText';
 import Legend from './Legend';
 
@@ -34,7 +31,7 @@ class PostDetails extends Component {
     const url = `http://localhost:3000/posts/${this.props.id}`;
     fetch(url)
       .then(response => response.json())
-      .then(json => this.setState({ apiData: json, insights: this.insights(json) }));
+      .then(json => this.setState({ apiData: json }));
   };
 
   showRecentProjGraph = (event: SyntheticEvent) => {
@@ -109,7 +106,7 @@ class PostDetails extends Component {
             {this.state.apiData.title}
           </h2>
           <Legend sources={['Github', 'Spotify']} />
-          <InsightContainer> {this.state.insights}</InsightContainer>
+          <InsightRenderer {...this.state.apiData} showRecentProjGraph={this.showRecentProjGraph} />
           <br />
           {this.graphComponent()}
         </div>
