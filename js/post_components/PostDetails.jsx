@@ -4,14 +4,7 @@ import React, { Component } from 'react';
 import InsightRenderer from './InsightRenderer';
 import GreenText from '../shared/GreenText';
 import Legend from './Legend';
-
-const InsightContainer = Wrap.extend`
-  overflow-x: scroll;
-  padding-top: 0px;
-  margin-top: 0px;
-  max-width: 1000px;
-  white-space: nowrap;
-`;
+import GraphRenderer from './GraphRenderer';
 
 class PostDetails extends Component {
   state = {
@@ -42,58 +35,14 @@ class PostDetails extends Component {
     }));
   };
 
-  insights = (json: Object) =>
-    this.shuffle([
-      <MostUsedLang key="1" {...json.github_record} />,
-      <MostViewedProject key="2" {...json.github_record} />,
-      <MostRecentProject showRecentProjGraph={this.showRecentProjGraph} key="3" {...json.github_record} />,
-      <SongFeature key="4" {...json.spotify_record} />,
-      <RecommendedTrack key="5" {...json.spotify_record} />
-    ]);
-
-  shuffle = (array: Array<any>) => {
-    let counter = array.length;
-    while (counter > 0) {
-      const index = Math.floor(Math.random() * counter);
-      counter -= 1;
-      const temp = array[counter];
-      array[counter] = array[index];
-      array[index] = temp;
-    }
-    return array;
-  };
+  emptyTempGraph = () =>
+    this.setState(() => ({
+      tempGraph: {},
+      tempTitle: ''
+    }));
 
   props: {
     id: string
-  };
-
-  graphComponent = () => {
-    let graph;
-    if (+Object.keys(this.state.tempGraph) !== 0) {
-      graph = (
-        <div>
-          <h3>
-            <GreenText text="//  " />
-            Activity on the {this.state.tempTitle}
-          </h3>
-          <Legend
-            sources={['clones', 'commits', 'unique_views', 'opened_pull_request', 'closed_pull_request']}
-          />
-          <Graph tempGraph={this.state.tempGraph} />
-        </div>
-      );
-    } else {
-      graph = (
-        <div>
-          <h3>
-            <GreenText text="//  " />
-            Activity the last two weeks
-          </h3>
-          <Graph {...this.state.apiData} />
-        </div>
-      );
-    }
-    return graph;
   };
 
   render() {
@@ -108,7 +57,7 @@ class PostDetails extends Component {
           <Legend sources={['Github', 'Spotify']} />
           <InsightRenderer {...this.state.apiData} showRecentProjGraph={this.showRecentProjGraph} />
           <br />
-          {this.graphComponent()}
+          <GraphRenderer {...this.state} />
         </div>
       );
     } else {
