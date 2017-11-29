@@ -63,21 +63,6 @@ class PostDetails extends Component {
           <Legend sources={['Github', 'Spotify']} />
           <InsightRenderer {...this.state.apiData} showRecentProjGraph={this.showRecentProjGraph} />
           <br />
-          <svg width="200" height="50" version="1.1" xmlns="http://www.w3.org/2000/svg">
-            <rect x="10" y="10" width="30" height="30" stroke="black" fill="transparent" strokeWidth="5" />
-            <rect
-              x="0"
-              y="10"
-              rx="10"
-              ry="10"
-              width="30"
-              height="30"
-              stroke="black"
-              fill="transparent"
-              strokeWidth="5"
-            />
-          </svg>
-          <br />
           <GraphRenderer {...this.state} />
         </div>
       );

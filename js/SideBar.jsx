@@ -57,7 +57,7 @@ const Header = styled.h1`
 `;
 
 const ContactUL = styled.ul`
-  ${props => (props.startPos ? `transform: translate(0px,1vh);` : ` transform: translate(0px,-3vh);`)};
+  ${props => (props.startPos ? `transform: translate(0px,4vh);` : ` transform: translate(0px,-3vh);`)};
   width: 100%;
   position: absolute;
   list-style: none;

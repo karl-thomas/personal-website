@@ -157,7 +157,6 @@ class Resume extends Component {
           <Section>
             <Summary>
               <p>
-                {' '}
                 A Ohio-California transplant into Chicago, driven by curiosity into the Tech Industry. After
                 graduating from and working at Dev Bootcamp, my goal is to continuously learn useful design
                 practices and implement interesting technologies with fellow developers who show empathy in
