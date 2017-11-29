@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { object, string, objectOf, oneOfType, number, funct, node } from 'prop-types';
+import { object, string, objectOf, oneOfType, number, func, node } from 'prop-types';
 import Wrap from '../shared/StyledComponents';
 import MostRecentProject, { MostViewedProject, MostUsedLang } from './GithubInsights';
 import SongFeature, { RecommendedTrack } from './SpotifyInsights';
@@ -16,7 +16,7 @@ class InsightRenderer extends PureComponent {
   static propTypes = {
     spotify_record: objectOf(oneOfType([string, number, object])),
     github_record: objectOf(oneOfType([object, node])),
-    showRecentProjGraph: funct
+    showRecentProjGraph: func
   };
 
   shouldComponentUpdate() {

@@ -2,12 +2,21 @@
 /* eslint no-param-reassign: 0 */
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { object, string } from 'prop-types';
 import * as d3 from 'd3';
 import Wrap from '../shared/StyledComponents';
+import Legend from './Legend';
+import GreenText from '../shared/GreenText';
+
 import { sizes, colors } from '../utilities';
 
 class Graph extends Component {
+  static propTypes = {
+    tempTitle: string,
+    tempGraph: object,
+    apiData: object
+  };
+
   state = {
     data: [],
     svg: {}
@@ -40,12 +49,12 @@ class Graph extends Component {
     return Array.from(new Set(keys));
   };
 
-  tempGraphDefined = () => this.props.tempGraph !== undefined;
+  tempGraphDefined = () => +Object.keys(this.props.tempGraph) !== 0;
 
   drawDefaultGraph = () => {
     this.clearGraph();
-    const githubData = this.convertToSimpleData(this.props, 'Github');
-    const spotifyData = this.convertToSimpleData(this.props, 'Spotify');
+    const githubData = this.convertToSimpleData(this.props.apiData, 'Github');
+    const spotifyData = this.convertToSimpleData(this.props.apiData, 'Spotify');
     const dorta = githubData.concat(spotifyData);
     this.draw(this.datafy(dorta), this.selectSvg());
   };
@@ -187,17 +196,33 @@ class Graph extends Component {
   };
 
   render() {
-    return (
-      <Wrap>
-        <div className="chart-wrapper" id="chart-line1" />
-        <svg id="graph-start" width={this.screenWidth() + 50} height="400" />
-      </Wrap>
+    return +Object.keys(this.props.tempGraph) !== 0 ? (
+      <div>
+        <h3>
+          <GreenText text="//  " />
+          Activity on the {this.props.tempTitle}
+        </h3>
+        <Legend
+          sources={['clones', 'commits', 'unique_views', 'opened_pull_request', 'closed_pull_request']}
+        />
+        <Wrap>
+          <div className="chart-wrapper" id="chart-line1" />
+          <svg id="graph-start" width={this.screenWidth() + 50} height="400" />
+        </Wrap>
+      </div>
+    ) : (
+      <div>
+        <h3>
+          <GreenText text="//  " />
+          Activity the last two weeks
+        </h3>
+        <Wrap>
+          <div className="chart-wrapper" id="chart-line1" />
+          <svg id="graph-start" width={this.screenWidth() + 50} height="400" />
+        </Wrap>
+      </div>
     );
   }
 }
-
-Graph.propTypes = {
-  tempGraph: PropTypes.objectOf(PropTypes.object)
-};
 
 export default Graph;

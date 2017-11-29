@@ -4,12 +4,11 @@ import React, { Component } from 'react';
 import InsightRenderer from './InsightRenderer';
 import GreenText from '../shared/GreenText';
 import Legend from './Legend';
-import GraphRenderer from './GraphRenderer';
+import Graph from './Graph';
 
 class PostDetails extends Component {
   state = {
     apiData: {},
-    insights: [],
     tempGraph: {},
     tempTitle: ''
   };
@@ -63,7 +62,7 @@ class PostDetails extends Component {
           <Legend sources={['Github', 'Spotify']} />
           <InsightRenderer {...this.state.apiData} showRecentProjGraph={this.showRecentProjGraph} />
           <br />
-          <GraphRenderer {...this.state} />
+          <Graph {...this.state} />
         </div>
       );
     } else {
