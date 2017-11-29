@@ -1,6 +1,8 @@
 /* eslint react/forbid-prop-types: 0 */
 /* eslint no-param-reassign: 0 */
+
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as d3 from 'd3';
 import Wrap from '../shared/StyledComponents';
 import { sizes, colors } from '../utilities';
@@ -12,21 +14,68 @@ class Graph extends Component {
   };
 
   componentDidMount() {
+    if (this.tempGraphDefined()) {
+      this.drawTempGraph();
+    } else {
+      this.drawDefaultGraph();
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.tempGraphDefined()) {
+      this.drawTempGraph();
+    } else {
+      this.drawDefaultGraph();
+    }
+  }
+
+  // this solution will rely on me passing in my data in a tabular format
+  getKeys = obj => {
+    let keys = [];
+    obj.forEach(d => {
+      const subset = Object.keys(d);
+      subset.splice(subset.indexOf('date'), 1);
+      keys = [...keys, ...subset];
+    });
+    return Array.from(new Set(keys));
+  };
+
+  tempGraphDefined = () => this.props.tempGraph !== undefined;
+
+  drawDefaultGraph = () => {
+    this.clearGraph();
     const githubData = this.convertToSimpleData(this.props, 'Github');
     const spotifyData = this.convertToSimpleData(this.props, 'Spotify');
     const dorta = githubData.concat(spotifyData);
     this.draw(this.datafy(dorta), this.selectSvg());
-  }
+  };
 
-  // componentDidUpdate() {
-  //   d3.selectAll('svg > *').remove();
-  //   this.selectAndDraw();
-  // }
+  drawTempGraph = () => {
+    this.clearGraph();
+    this.draw(this.seperateObjects(this.props.tempGraph), this.selectSvg());
+  };
 
-  screenWidth = () =>
-    window.innerWidth > sizes.phone
-      ? Math.ceil(window.innerWidth * 97 / 100 - 375)
-      : Math.ceil(window.innerWidth) - 60;
+  clearGraph = () => d3.selectAll('#graph-start > *').remove();
+
+  selectSvg = () => {
+    let svg = d3.select('#graph-start');
+    const margin = { top: 20, right: 20, bottom: 30, left: 50 };
+    const width = +this.screenWidth() - margin.left - margin.right;
+    const height = +svg.attr('height') - margin.top - margin.bottom;
+    svg = {
+      margin,
+      width,
+      height,
+      g: svg.append('g').attr('transform', `translate(${margin.left}, ${margin.top})`)
+    };
+
+    return svg;
+  };
+
+  seperateObjects = obj =>
+    Object.keys(obj)
+      .map(date => Object.assign({ date: d3.timeParse('%Y-%m-%d')(date) }, obj[date]))
+      .sort((a, b) => new Date(a.date) - new Date(b.date));
 
   convertToSimpleData = (start, stream) => {
     const record = `${stream.toLowerCase()}_record`; // get the correct record.
@@ -41,23 +90,10 @@ class Graph extends Component {
     return data;
   };
 
-  selectSvg = () => {
-    let svg = d3.select('svg');
-    const margin = { top: 20, right: 20, bottom: 30, left: 50 };
-    const width = +this.screenWidth() - margin.left - margin.right;
-    const height = +svg.attr('height') - margin.top - margin.bottom;
-    svg = {
-      margin,
-      width,
-      height,
-      g: svg.append('g').attr('transform', `translate(${margin.left}, ${margin.top})`)
-    };
-
-    return svg;
-  };
-
-  // this solution will rely on me passing in my data in a tabular format
-
+  screenWidth = () =>
+    window.innerWidth > sizes.phone
+      ? Math.ceil(window.innerWidth * 97 / 100 - 375)
+      : Math.ceil(window.innerWidth) - 60;
   //  'date, git, spotify, twitter' as the properties per 'row'.
 
   draw = (data, svg) => {
@@ -72,7 +108,7 @@ class Graph extends Component {
       .y(d => y(d.contributions));
 
     // streams == data stream location.
-    const streams = ['Github', 'Spotify'].map(id => ({
+    const streams = this.getKeys(data).map(id => ({
       id,
       values: data
         .map(d => {
@@ -85,7 +121,7 @@ class Graph extends Component {
     const z = d3
       .scaleOrdinal()
       .domain(streams.map(c => c.id))
-      .range([colors.github, colors.spotify, colors.twitter]);
+      .range(streams.map(c => colors[c.id]));
 
     x.domain(d3.extent(data, d => d.date));
 
@@ -154,9 +190,14 @@ class Graph extends Component {
     return (
       <Wrap>
         <div className="chart-wrapper" id="chart-line1" />
-        <svg width={this.screenWidth() + 50} height="500" />
+        <svg id="graph-start" width={this.screenWidth() + 50} height="400" />
       </Wrap>
     );
   }
 }
+
+Graph.propTypes = {
+  tempGraph: PropTypes.objectOf(PropTypes.object)
+};
+
 export default Graph;

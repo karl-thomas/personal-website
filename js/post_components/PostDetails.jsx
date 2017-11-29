@@ -1,24 +1,17 @@
 // @flow
 
 import React, { Component } from 'react';
-import Graph from './Graph';
-import MostRecentProject, { MostViewedProject, MostUsedLang } from './GithubInsights';
-import SongFeature, { RecommendedTrack } from './SpotifyInsights';
-import Wrap from '../shared/StyledComponents';
+import InsightRenderer from './InsightRenderer';
 import GreenText from '../shared/GreenText';
 import Legend from './Legend';
-
-const InsightContainer = Wrap.extend`
-  overflow-x: scroll;
-  padding-top: 0px;
-  margin-top: 0px;
-  white-space: nowrap;
-`;
+import GraphRenderer from './GraphRenderer';
 
 class PostDetails extends Component {
   state = {
     apiData: {},
-    insights: []
+    insights: [],
+    tempGraph: {},
+    tempTitle: ''
   };
 
   componentDidMount() {
@@ -28,32 +21,31 @@ class PostDetails extends Component {
   // production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com
 
   getPostData = () => {
-    const url = `http://production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com/posts/${this.props.id}`;
+    const url = `http://localhost:3000/posts/${this.props.id}`;
     fetch(url)
       .then(response => response.json())
-      .then(json => this.setState({ apiData: json, insights: this.insights(json) }));
+      .then(json => this.setState({ apiData: json }));
   };
 
-  insights = (json: Object) =>
-    this.shuffle([
-      <MostUsedLang key="1" {...json.github_record} />,
-      <MostViewedProject key="2" {...json.github_record} />,
-      <MostRecentProject key="3" {...json.github_record} />,
-      <SongFeature key="4" {...json.spotify_record} />,
-      <RecommendedTrack key="5" {...json.spotify_record} />
-    ]);
-
-  shuffle = (array: Array<any>) => {
-    let counter = array.length;
-    while (counter > 0) {
-      const index = Math.floor(Math.random() * counter);
-      counter -= 1;
-      const temp = array[counter];
-      array[counter] = array[index];
-      array[index] = temp;
+  showRecentProjGraph = (event: SyntheticEvent) => {
+    event.preventDefault();
+    if (this.tempGraphDefined()) {
+      this.emptyTempGraph();
+    } else {
+      this.setState(() => ({
+        tempGraph: this.state.apiData.github_record.most_recent_project.counts_by_date,
+        tempTitle: 'Most Recent Project'
+      }));
     }
-    return array;
   };
+
+  tempGraphDefined = () => +Object.keys(this.state.tempGraph) !== 0 || !(this.state.tempTitle === '');
+
+  emptyTempGraph = () =>
+    this.setState(() => ({
+      tempGraph: {},
+      tempTitle: ''
+    }));
 
   props: {
     id: string
@@ -61,36 +53,38 @@ class PostDetails extends Component {
 
   render() {
     let postContent;
-    let title;
-
     if (+Object.keys(this.state.apiData) !== 0) {
-      title = (
-        <h2>
-          <GreenText text="//  " />
-          {this.state.apiData.title}
-        </h2>
-      );
       postContent = (
         <div>
-          <InsightContainer> {this.state.insights}</InsightContainer>
-          <br />
-          <h3>
+          <h2>
             <GreenText text="//  " />
-            Activity the last two weeks
-          </h3>
-          <Graph {...this.state.apiData} />
+            {this.state.apiData.title}
+          </h2>
+          <Legend sources={['Github', 'Spotify']} />
+          <InsightRenderer {...this.state.apiData} showRecentProjGraph={this.showRecentProjGraph} />
+          <br />
+          <svg width="200" height="50" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="10" width="30" height="30" stroke="black" fill="transparent" strokeWidth="5" />
+            <rect
+              x="0"
+              y="10"
+              rx="10"
+              ry="10"
+              width="30"
+              height="30"
+              stroke="black"
+              fill="transparent"
+              strokeWidth="5"
+            />
+          </svg>
+          <br />
+          <GraphRenderer {...this.state} />
         </div>
       );
     } else {
       postContent = 'LOADIN';
     }
-    return (
-      <div>
-        {title}
-        <Legend sources={['Github', 'Spotify']} />
-        {postContent}
-      </div>
-    );
+    return <div>{postContent}</div>;
   }
 }
 

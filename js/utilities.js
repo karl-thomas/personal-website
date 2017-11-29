@@ -12,7 +12,14 @@ export const colors = {
   lightPurp: 'hsla(282, 49%, 96%, 0.75)',
   github: '#FF934F',
   spotify: '#50e5b7',
-  twitter: '#46536e'
+  twitter: '#46536e',
+  closed_pull_request: '#FF934F',
+  commits: '#50e5b7',
+  opened_pull_request: '#46536e',
+  unique_views: '#7785AC',
+  clones: '#CC5A71',
+  Github: '#FF934F',
+  Spotify: '#50e5b7'
 };
 
 export const sizes = {
