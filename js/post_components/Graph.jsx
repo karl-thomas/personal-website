@@ -23,19 +23,11 @@ class Graph extends Component {
   };
 
   componentDidMount() {
-    if (this.tempGraphDefined()) {
-      this.drawTempGraph();
-    } else {
-      this.drawDefaultGraph();
-    }
+    this.determineGraphToDraw();
   }
 
   componentDidUpdate() {
-    if (this.tempGraphDefined()) {
-      this.drawTempGraph();
-    } else {
-      this.drawDefaultGraph();
-    }
+    this.determineGraphToDraw();
   }
 
   // this solution will rely on me passing in my data in a tabular format
@@ -48,6 +40,8 @@ class Graph extends Component {
     });
     return Array.from(new Set(keys));
   };
+
+  determineGraphToDraw = () => (this.tempGraphDefined() ? this.drawTempGraph() : this.drawDefaultGraph());
 
   tempGraphDefined = () => +Object.keys(this.props.tempGraph) !== 0;
 
