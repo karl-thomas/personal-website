@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { object, string, objectOf, oneOfType, number, funct } from 'prop-types';
+import { object, string, objectOf, oneOfType, number, funct, node } from 'prop-types';
 import Wrap from '../shared/StyledComponents';
 import MostRecentProject, { MostViewedProject, MostUsedLang } from './GithubInsights';
 import SongFeature, { RecommendedTrack } from './SpotifyInsights';
@@ -14,10 +14,14 @@ const InsightContainer = Wrap.extend`
 
 class InsightRenderer extends PureComponent {
   static propTypes = {
-    spotify_record: objectOf(oneOfType(string, number, object)),
-    github_record: objectOf(oneOfType(string, number, object)),
+    spotify_record: objectOf(oneOfType([string, number, object])),
+    github_record: objectOf(oneOfType([object, node])),
     showRecentProjGraph: funct
   };
+
+  shouldComponentUpdate() {
+    return false;
+  }
 
   shuffle = array => {
     let counter = array.length;
@@ -30,7 +34,8 @@ class InsightRenderer extends PureComponent {
     }
     return array;
   };
-
+  // this needs a touch up,
+  // refactoring it so that each individual insight was not it's own component
   insights = () =>
     this.shuffle([
       <MostUsedLang key="1" {...this.props.github_record} />,

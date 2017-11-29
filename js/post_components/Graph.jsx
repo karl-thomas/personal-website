@@ -55,10 +55,10 @@ class Graph extends Component {
     this.draw(this.seperateObjects(this.props.tempGraph), this.selectSvg());
   };
 
-  clearGraph = () => d3.selectAll('svg > *').remove();
+  clearGraph = () => d3.selectAll('#graph-start > *').remove();
 
   selectSvg = () => {
-    let svg = d3.select('svg');
+    let svg = d3.select('#graph-start');
     const margin = { top: 20, right: 20, bottom: 30, left: 50 };
     const width = +this.screenWidth() - margin.left - margin.right;
     const height = +svg.attr('height') - margin.top - margin.bottom;
@@ -71,6 +71,7 @@ class Graph extends Component {
 
     return svg;
   };
+
   seperateObjects = obj =>
     Object.keys(obj)
       .map(date => Object.assign({ date: d3.timeParse('%Y-%m-%d')(date) }, obj[date]))
@@ -88,6 +89,7 @@ class Graph extends Component {
 
     return data;
   };
+
   screenWidth = () =>
     window.innerWidth > sizes.phone
       ? Math.ceil(window.innerWidth * 97 / 100 - 375)
@@ -188,7 +190,7 @@ class Graph extends Component {
     return (
       <Wrap>
         <div className="chart-wrapper" id="chart-line1" />
-        <svg width={this.screenWidth() + 50} height="500" />
+        <svg id="graph-start" width={this.screenWidth() + 50} height="400" />
       </Wrap>
     );
   }
