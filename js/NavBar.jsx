@@ -1,6 +1,5 @@
-// @flow
-
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { bool } from 'prop-types';
 import styled from 'styled-components';
 import media from './utilities';
@@ -59,6 +58,7 @@ const TopSvg = styled.svg`
   display: block;
   left: calc(50vw - 50px);
   position: fixed;
+  width: 50px;
   height: 50px;
   z-index: 0;
   ${transition};
@@ -67,10 +67,26 @@ const TopSvg = styled.svg`
     ${transition};
   }
 `;
+// const UtilityBox = styled.div`
+//   display: block;
+//   left: 30vw;
+//   position: fixed;
+//   height: 150px;
+//   z-index: 20;
+// `;
+// const StyledHeader = styled.h1`
+//   margin: 0px;
+//   padding: 0px;
+//   display: inline;
+//   color: white;
+// `;
+
+const StyledLink = styled(Link)`text-decoration: none;`;
 
 class NavBar extends Component {
   static propTypes = {
     startPos: bool
+    // postID: object
   };
 
   startPos = this.props.startPos;
@@ -82,9 +98,11 @@ class NavBar extends Component {
         <TopSvg startPos={this.props.startPos}>
           <polygon className="bottom-triangle" points="50,0 0,0 0,50" />
         </TopSvg>
-        <TopRight className="post-title-text" startPos={this.props.startPos}>
-          <h1 style={{ fontSize: '250%' }}>Automatic Blog</h1>
-        </TopRight>
+        <StyledLink to="/">
+          <TopRight className="post-title-text" startPos={this.props.startPos}>
+            <h1 style={{ fontSize: '250%' }}>Automatic Blog</h1>
+          </TopRight>
+        </StyledLink>
       </Top>
     );
   }
