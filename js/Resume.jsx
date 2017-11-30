@@ -16,15 +16,14 @@ const OutsideBox = styled.div`
   -ms-transition: all 0.5s ease-out;
   -o-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
-  height: 75vh;
+  height: 84vh;
   ${props => (props.startPos ? 'transform: translate(-100vw,-100vh);' : `transform: translate(0vw,0vh);`)};
 `;
 
 const Wrapper = styled.div`
   height: 100%;
   width: 100%;
-  padding: 2em;
-  padding-left: 3em;
+  padding: 2em 2em 100px 3em;
   overflow-y: scroll;
   ${props => (props.startPos ? '' : `display: block;`)};
   ${media.phone`

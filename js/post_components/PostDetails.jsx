@@ -1,8 +1,8 @@
 // @flow
 
 import React, { Component } from 'react';
+import ReactDOMServer from 'react-dom/server';
 import InsightRenderer from './InsightRenderer';
-import GreenText from '../shared/GreenText';
 import Legend from './Legend';
 import Graph from './Graph';
 
@@ -24,6 +24,13 @@ class PostDetails extends Component {
     fetch(url)
       .then(response => response.json())
       .then(json => this.setState({ apiData: json }));
+  };
+
+  changeTitle = () => {
+    const titleBox = document.getElementsByClassName('post-title-text')[0];
+    titleBox.innerHTML = ReactDOMServer.renderToString(
+      <h2 style={{ fontSize: '175%' }}>{this.state.apiData.title}</h2>
+    );
   };
 
   showRecentProjGraph = (event: SyntheticEvent) => {
@@ -53,12 +60,11 @@ class PostDetails extends Component {
   render() {
     let postContent;
     if (+Object.keys(this.state.apiData) !== 0) {
+      this.changeTitle();
       postContent = (
         <div>
-          <h2>
-            <GreenText text="//  " />
-            {this.state.apiData.title}
-          </h2>
+          <br />
+          <br />
           <Legend sources={['Github', 'Spotify']} />
           <InsightRenderer {...this.state.apiData} showRecentProjGraph={this.showRecentProjGraph} />
           <br />

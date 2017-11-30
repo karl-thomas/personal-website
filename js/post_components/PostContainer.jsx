@@ -8,9 +8,10 @@ import PostCard from './PostCard';
 import PostDetails from './PostDetails';
 
 const Wrapper = styled.div`
+  z-index: -1000;
   position: fixed;
-  padding: 2em;
-  height: 75vh;
+  padding: 4em 2em;
+  height: 72vh;
   width: calc(97% - 250px);
   overflow-y: scroll;
   -webkit-transition: all 0.5s ease-out;
@@ -60,7 +61,11 @@ class PostContainer extends Component {
   getPostData = () => {
     axios
       .get('http://localhost:3000/posts')
-      .then(response => this.setState({ apiData: response.data }))
+      .then(response =>
+        this.setState({
+          apiData: response.data
+        })
+      )
       .catch(error => {
         console.error('axios ERROR', error); // eslint-disable-line no-console
       });
@@ -82,7 +87,9 @@ class PostContainer extends Component {
     } else if (this.state.apiData.length === 0) {
       containerComponent = 'loadin';
     } else {
-      containerComponent = this.state.apiData.map(record => <PostCard key={record.id} {...record} />);
+      containerComponent = this.state.apiData.map(record => (
+        <PostCard key={`${Math.random()}`} {...record} />
+      ));
     }
 
     return (
