@@ -7,35 +7,6 @@ import media from '../utilities';
 import PostCard from './PostCard';
 import PostDetails from './PostDetails';
 
-const Wrapper = styled.div`
-  z-index: -1000;
-  position: fixed;
-  padding: 4em 2em;
-  height: 72vh;
-  width: calc(97% - 250px);
-  overflow-y: scroll;
-  -webkit-transition: all 0.5s ease-out;
-  -moz-transition: all 0.5s ease-out;
-  -ms-transition: all 0.5s ease-out;
-  -o-transition: all 0.5s ease-out;
-  transition: all 0.5s ease-out;
-  ${props => {
-    let propsStyles = '';
-    propsStyles += props.show ? 'visibility: visible;' : 'visibility: hidden;';
-    propsStyles += props.startPos
-      ? 'transform: translate(calc(250px + 4%),calc(112px + 5vh));'
-      : 'transform: translate(100vw,100vh);';
-    return propsStyles;
-  }};
-  ${media.phone`
-    visibility: visible;
-      transform: translate(0px);
-      top: 112px;
-      left:0px;
-      width:100%;
-    `};
-`;
-
 class PostContainer extends Component {
   state = {
     apiData: [],
@@ -100,5 +71,34 @@ class PostContainer extends Component {
     );
   }
 }
+
+const Wrapper = styled.div`
+  z-index: -1000;
+  position: fixed;
+  padding: 4em 2em;
+  height: 72vh;
+  width: calc(97% - 250px);
+  overflow-y: scroll;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+  ${props => {
+    let propsStyles = '';
+    propsStyles += props.show ? 'visibility: visible;' : 'visibility: hidden;';
+    propsStyles += props.startPos
+      ? 'transform: translate(calc(250px + 4%),calc(112px + 5vh));'
+      : 'transform: translate(100vw,100vh);';
+    return propsStyles;
+  }};
+  ${media.phone`
+    visibility: visible;
+      transform: translate(0px);
+      top: 112px;
+      left:0px;
+      width:100%;
+    `};
+`;
 
 export default PostContainer;

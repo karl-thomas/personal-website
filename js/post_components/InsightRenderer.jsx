@@ -4,14 +4,6 @@ import Wrap from '../shared/StyledComponents';
 import MostRecentProject, { MostViewedProject, MostUsedLang } from './GithubInsights';
 import SongFeature, { RecommendedTrack } from './SpotifyInsights';
 
-const InsightContainer = Wrap.extend`
-  overflow-x: scroll;
-  padding-top: 0px;
-  margin-top: 0px;
-  max-width: 1000px;
-  white-space: nowrap;
-`;
-
 class InsightRenderer extends PureComponent {
   static propTypes = {
     spotify_record: objectOf(oneOfType([string, number, object])),
@@ -53,5 +45,13 @@ class InsightRenderer extends PureComponent {
     return <InsightContainer>{this.insights()}</InsightContainer>;
   }
 }
+
+const InsightContainer = Wrap.extend`
+  overflow-x: scroll;
+  padding-top: 0px;
+  margin-top: 0px;
+  max-width: 1000px;
+  white-space: nowrap;
+`;
 
 export default InsightRenderer;

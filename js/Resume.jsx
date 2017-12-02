@@ -6,83 +6,6 @@ import resumeFig from './resumeBlocks';
 import media from './utilities';
 import Wrap from './shared/StyledComponents';
 
-const Section = Wrap.extend`padding: 1em;`;
-
-const OutsideBox = styled.div`
-  position: fixed;
-  width: calc(97% - 250px);
-  -webkit-transition: all 0.5s ease-out;
-  -moz-transition: all 0.5s ease-out;
-  -ms-transition: all 0.5s ease-out;
-  -o-transition: all 0.5s ease-out;
-  transition: all 0.5s ease-out;
-  height: 84vh;
-  ${props => (props.startPos ? 'transform: translate(-100vw,-100vh);' : `transform: translate(0vw,0vh);`)};
-`;
-
-const Wrapper = styled.div`
-  height: 100%;
-  width: 100%;
-  padding: 2em 2em 100px 3em;
-  overflow-y: scroll;
-  ${props => (props.startPos ? '' : `display: block;`)};
-  ${media.phone`
-    display:none;
-    `};
-`;
-const Header = styled.h2`
-  padding: 10px 20px 15px;
-  display: block;
-  text-align: left;
-  float: right;
-  border-bottom: thin solid black;
-  font-weight: 500;
-  width: 100%;
-  margin: 0px 0px 5px;
-`;
-const Summary = styled.div`
-  padding-left: 144px;
-  ${media.tablet`padding:0px;margin:10px;`};
-`;
-
-const Title = styled.p`
-  font-style: italic;
-  height: 50%;
-  padding-bottom: 10px;
-  ${media.tablet`text-align: right;`};
-`;
-
-const Times = styled.p`
-  font-size: 75%;
-  float: left;
-  margin: 2px 0px 0px 0px;
-  padding: 0px;
-`;
-
-const Body = styled.div`
-  padding-left: 144px;
-  padding-bottom: 20px;
-  ${media.tablet`padding:0px;margin:10px;`};
-  & > p {
-    color: #444;
-  }
-`;
-const SubSection = styled.div`
-  &:not(:last-child) {
-    border-bottom: thin dotted #a2a6a8;
-  }
-`;
-const LinkTo = styled.a`
-  display: block;
-  font-style: italic;
-  margin-top: 10px;
-  margin: 0px;
-  height: 50%;
-  padding-bottom: 10px;
-  text-decoration-color: #a9ffce;
-  ${media.tablet`text-align: right;`};
-`;
-
 class Resume extends Component {
   state = {
     show: false
@@ -178,4 +101,81 @@ class Resume extends Component {
     );
   }
 }
+
+const Section = Wrap.extend`padding: 1em;`;
+
+const OutsideBox = styled.div`
+  position: fixed;
+  width: calc(97% - 250px);
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+  height: 84vh;
+  ${props => (props.startPos ? 'transform: translate(-100vw,-100vh);' : `transform: translate(0vw,0vh);`)};
+`;
+
+const Wrapper = styled.div`
+  height: 100%;
+  width: 100%;
+  padding: 2em 2em 100px 3em;
+  overflow-y: scroll;
+  ${props => (props.startPos ? '' : `display: block;`)};
+  ${media.phone`
+    display:none;
+    `};
+`;
+const Header = styled.h2`
+  padding: 10px 20px 15px;
+  display: block;
+  text-align: left;
+  float: right;
+  border-bottom: thin solid black;
+  font-weight: 500;
+  width: 100%;
+  margin: 0px 0px 5px;
+`;
+const Summary = styled.div`
+  padding-left: 144px;
+  ${media.tablet`padding:0px;margin:10px;`};
+`;
+
+const Title = styled.p`
+  font-style: italic;
+  height: 50%;
+  padding-bottom: 10px;
+  ${media.tablet`text-align: right;`};
+`;
+
+const Times = styled.p`
+  font-size: 75%;
+  float: left;
+  margin: 2px 0px 0px 0px;
+  padding: 0px;
+`;
+
+const Body = styled.div`
+  padding-left: 144px;
+  padding-bottom: 20px;
+  ${media.tablet`padding:0px;margin:10px;`};
+  & > p {
+    color: #444;
+  }
+`;
+const SubSection = styled.div`
+  &:not(:last-child) {
+    border-bottom: thin dotted #a2a6a8;
+  }
+`;
+const LinkTo = styled.a`
+  display: block;
+  font-style: italic;
+  margin-top: 10px;
+  margin: 0px;
+  height: 50%;
+  padding-bottom: 10px;
+  text-decoration-color: #a9ffce;
+  ${media.tablet`text-align: right;`};
+`;
 export default Resume;

@@ -3,6 +3,19 @@ import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../utilities';
 
+// a wrapper for insights, children being tags withing insights
+const Insight = (props: { source: string, title: string, children?: Object }) => {
+  const scheme = { github: colors.github, spotify: colors.spotify, twitter: colors.twitter };
+  return (
+    <InsightBox className="insight">
+      <Title color={scheme[props.source]}>
+        <strong>{props.title}</strong>
+      </Title>
+      <Orphanage>{props.children}</Orphanage>
+    </InsightBox>
+  );
+};
+
 const Title = styled.div`
   background-color: ${props => props.color};
   height: 35px;
@@ -29,18 +42,5 @@ const Orphanage = styled.div`
   }
   padding: 10px;
 `;
-
-// a wrapper for insights, children being tags withing insights
-const Insight = (props: { source: string, title: string, children?: Object }) => {
-  const scheme = { github: colors.github, spotify: colors.spotify, twitter: colors.twitter };
-  return (
-    <InsightBox className="insight">
-      <Title color={scheme[props.source]}>
-        <strong>{props.title}</strong>
-      </Title>
-      <Orphanage>{props.children}</Orphanage>
-    </InsightBox>
-  );
-};
 
 export default Insight;

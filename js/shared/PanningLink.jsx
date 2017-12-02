@@ -5,6 +5,30 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors } from '../utilities';
 
+type PLProps = {
+  width: string,
+  height: string,
+  children: Object,
+  internal?: boolean,
+  to?: string,
+  color?: string
+};
+
+const PanningLink = (props: PLProps) => (
+  <Trigger width={props.width} height={props.height}>
+    {props.internal ? (
+      <StyledLink height={props.height} width={props.width} to={props.to || '/'}>
+        {props.children}
+      </StyledLink>
+    ) : (
+      <StyledA height={props.height} width={props.width} href={props.to}>
+        {props.children}
+      </StyledA>
+    )}
+    <Pan color={props.color} width={props.width} height={props.height} />
+  </Trigger>
+);
+
 const Trigger = styled.div`
   width: ${props => props.width}px;
   height: ${props => props.height}px;
@@ -79,29 +103,5 @@ const StyledA = styled.a`
     }
   }
 `;
-
-type PLProps = {
-  width: string,
-  height: string,
-  children: Object,
-  internal?: boolean,
-  to?: string,
-  color?: string
-};
-
-const PanningLink = (props: PLProps) => (
-  <Trigger width={props.width} height={props.height}>
-    {props.internal ? (
-      <StyledLink height={props.height} width={props.width} to={props.to || '/'}>
-        {props.children}
-      </StyledLink>
-    ) : (
-      <StyledA height={props.height} width={props.width} href={props.to}>
-        {props.children}
-      </StyledA>
-    )}
-    <Pan color={props.color} width={props.width} height={props.height} />
-  </Trigger>
-);
 
 export default PanningLink;
