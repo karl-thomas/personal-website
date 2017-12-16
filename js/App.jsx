@@ -11,7 +11,7 @@ import Blog from './Blog';
 // const matchedDetailsPage = (props: { match: Match }) => {
 //   const compareParamsToPreload = show => props.match.params.id === show.imdbID;
 //   const selectedShow = preload.shows.find(compareParamsToPreload);
-//   // give it the matching show, and the ret of the props, because of the url params
+//   // give it dfathe matching show, and the ret of the props, because of the url params
 //   return (
 //     <AsyncRoute
 //       props={Object.assign({ show: selectedShow, match: {} }, props)}
