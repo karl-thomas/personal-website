@@ -7,10 +7,76 @@ import media from '../utilities';
 import PostCard from './PostCard';
 import PostDetails from './PostDetails';
 
+class PostContainer extends Component {
+  state = {
+    apiData: [],
+    show: true,
+    moved: false
+  };
+
+  componentDidMount() {
+    console.log(window.innerHeight); // eslint-disable-line no-console
+    if (!this.props.postID.id) this.getPostData();
+  }
+
+  componentWillReceiveProps(nextProps: Object) {
+    if (!nextProps.startPos) {
+      setTimeout(() => {
+        this.updateShowStatus(false);
+      }, 50);
+    } else if (nextProps.startPos && !this.state.show) {
+      this.updateShowStatus(true);
+    }
+  }
+
+  // production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com
+  getPostData = () => {
+    axios
+      .get('http://localhost:3000/posts')
+      .then(response =>
+        this.setState({
+          apiData: response.data
+        })
+      )
+      .catch(error => {
+        console.error('axios ERROR', error); // eslint-disable-line no-console
+      });
+  };
+
+  updateShowStatus = (boolVal: boolean) =>
+    this.setState(prevState => (prevState.show === boolVal ? null : { show: boolVal }));
+
+  props: {
+    startPos: boolean,
+    postID: Object
+  };
+
+  render() {
+    let containerComponent;
+
+    if (this.props.postID.id) {
+      containerComponent = <PostDetails id={this.props.postID.id} />;
+    } else if (this.state.apiData.length === 0) {
+      containerComponent = 'loadin';
+    } else {
+      containerComponent = this.state.apiData.map(record => (
+        <PostCard key={`${Math.random()}`} {...record} />
+      ));
+    }
+
+    return (
+      <Wrapper startPos={this.props.startPos} show={this.state.show}>
+        {containerComponent}
+      </Wrapper>
+    );
+  }
+}
+
 const Wrapper = styled.div`
+  z-index: -1000;
   position: fixed;
-  padding: 2em;
-  height: 75vh;
+  padding: 4em 2em;
+  height: 72vh;
   width: calc(97% - 250px);
   overflow-y: scroll;
   -webkit-transition: all 0.5s ease-out;
@@ -34,63 +100,5 @@ const Wrapper = styled.div`
       width:100%;
     `};
 `;
-
-class PostContainer extends Component {
-  state = {
-    apiData: [],
-    show: true,
-    moved: false
-  };
-
-  componentDidMount() {
-    console.log(window.innerHeight); // eslint-disable-line no-console
-    if (!this.props.postID.id) this.getPostData();
-  }
-
-  componentWillReceiveProps(nextProps: Object) {
-    if (!nextProps.startPos) {
-      setTimeout(() => {
-        this.updateShowStatus(false);
-      }, 50);
-    } else if (nextProps.startPos && !this.state.show) {
-      this.updateShowStatus(true);
-    }
-  }
-  // production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com
-  getPostData = () => {
-    axios
-      .get('http://localhost:3000/posts')
-      .then(response => this.setState({ apiData: response.data }))
-      .catch(error => {
-        console.error('axios ERROR', error); // eslint-disable-line no-console
-      });
-  };
-
-  updateShowStatus = (boolVal: boolean) =>
-    this.setState(prevState => (prevState.show === boolVal ? null : { show: boolVal }));
-
-  props: {
-    startPos: boolean,
-    postID: Object
-  };
-
-  render() {
-    let containerComponent;
-
-    if (this.props.postID.id) {
-      containerComponent = <PostDetails id={this.props.postID.id} />;
-    } else if (this.state.apiData.length === 0) {
-      containerComponent = 'loadin';
-    } else {
-      containerComponent = this.state.apiData.map(record => <PostCard key={record.id} {...record} />);
-    }
-
-    return (
-      <Wrapper startPos={this.props.startPos} show={this.state.show}>
-        {containerComponent}
-      </Wrapper>
-    );
-  }
-}
 
 export default PostContainer;

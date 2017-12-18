@@ -3,6 +3,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
+const Spinner = () => <Image src="/public/img/loading.png" alt="loading indicator" />;
 const spin = keyframes`
   from {
     transform: rotate(0deg);
@@ -18,7 +19,5 @@ const Image = styled.img`
   background-repeact: no-repeat;
   max-width: 250px;
 `;
-
-const Spinner = () => <Image src="/public/img/loading.png" alt="loading indicator" />;
 
 export default Spinner;

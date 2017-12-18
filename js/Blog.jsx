@@ -17,6 +17,7 @@ class Blog extends Component {
   handleClick = () => {
     this.setState(prevState => ({ startPos: !prevState.startPos }));
   };
+
   props: {
     postID?: Object
   };
@@ -25,7 +26,7 @@ class Blog extends Component {
     return (
       <div>
         <Resume startPos={this.state.startPos} />
-        <NavBar startPos={this.state.startPos} />
+        <NavBar startPos={this.state.startPos} postID={this.props.postID} />
         <SideBar startPos={this.state.startPos} parentClickHandler={this.handleClick} />
         <PostContainer startPos={this.state.startPos} postID={this.props.postID} />
       </div>

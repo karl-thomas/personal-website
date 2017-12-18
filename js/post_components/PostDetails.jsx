@@ -1,15 +1,14 @@
 // @flow
 
 import React, { Component } from 'react';
+import ReactDOMServer from 'react-dom/server';
 import InsightRenderer from './InsightRenderer';
-import GreenText from '../shared/GreenText';
 import Legend from './Legend';
-import GraphRenderer from './GraphRenderer';
+import Graph from './Graph';
 
 class PostDetails extends Component {
   state = {
     apiData: {},
-    insights: [],
     tempGraph: {},
     tempTitle: ''
   };
@@ -25,6 +24,13 @@ class PostDetails extends Component {
     fetch(url)
       .then(response => response.json())
       .then(json => this.setState({ apiData: json }));
+  };
+
+  changeTitle = () => {
+    const titleBox = document.getElementsByClassName('post-title-text')[0];
+    titleBox.innerHTML = ReactDOMServer.renderToString(
+      <h2 style={{ fontSize: '175%' }}>{this.state.apiData.title}</h2>
+    );
   };
 
   showRecentProjGraph = (event: SyntheticEvent) => {
@@ -54,31 +60,15 @@ class PostDetails extends Component {
   render() {
     let postContent;
     if (+Object.keys(this.state.apiData) !== 0) {
+      this.changeTitle();
       postContent = (
         <div>
-          <h2>
-            <GreenText text="//  " />
-            {this.state.apiData.title}
-          </h2>
+          <br />
+          <br />
           <Legend sources={['Github', 'Spotify']} />
           <InsightRenderer {...this.state.apiData} showRecentProjGraph={this.showRecentProjGraph} />
           <br />
-          <svg width="200" height="50" version="1.1" xmlns="http://www.w3.org/2000/svg">
-            <rect x="10" y="10" width="30" height="30" stroke="black" fill="transparent" strokeWidth="5" />
-            <rect
-              x="0"
-              y="10"
-              rx="10"
-              ry="10"
-              width="30"
-              height="30"
-              stroke="black"
-              fill="transparent"
-              strokeWidth="5"
-            />
-          </svg>
-          <br />
-          <GraphRenderer {...this.state} />
+          <Graph {...this.state} />
         </div>
       );
     } else {

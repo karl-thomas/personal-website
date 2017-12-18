@@ -1,19 +1,8 @@
 // @flow
 
 import React from 'react';
-// import styled from 'styled-components';
-// import Wrap from '../shared/StyledComponents';
-// import { colors } from '../utilities';
 import Insight from './Insight';
 import Link from '../shared/PanningLink';
-
-// karls react styleguide ---- :) ---
-
-// violations of camel case are due to the rails api-
-// this information is being interpreted from
-
-// a component that is too small is something that will not be
-// used outside of the context in which it currently lives
 
 // human readable version of byte size
 const bytesToSize = (bytes: number) => {
