@@ -11,7 +11,7 @@ export const colors = {
   lightTorq: 'hsla(161, 34%, 93%, 0.75)',
   lightPurp: 'hsla(282, 49%, 96%, 0.75)',
   github: '#FF934F',
-  spotify: '#50ee5b7',
+  spotify: '#50e5b7',
   twitter: '#46536e',
   closed_pull_request: '#FF934F',
   commits: '#50e5b7',
