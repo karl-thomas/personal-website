@@ -31,7 +31,7 @@ class PostCard extends Component {
   render() {
     return (
       <Link to={`/posts/${this.props.id}`}>
-        <Wrap>
+        <Wrap className="post-list">
           <Title>{this.props.title}</Title>
           <TimeBox>
             <TimeStamp>{this.formattedDate()}</TimeStamp>
