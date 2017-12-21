@@ -22,6 +22,7 @@ class Resume extends Component {
       this.updateShowStatus(true);
     }
   }
+
   updateShowStatus = (boolVal: boolean) =>
     this.setState(prevState => (prevState.show === boolVal ? null : { show: boolVal }));
 

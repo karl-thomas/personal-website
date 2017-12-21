@@ -49,7 +49,8 @@ class Graph extends Component {
     this.clearGraph();
     const githubData = this.convertToSimpleData(this.props.apiData, 'Github');
     const spotifyData = this.convertToSimpleData(this.props.apiData, 'Spotify');
-    const dorta = githubData.concat(spotifyData);
+    const twitterData = this.convertToSimpleData(this.props.apiData, 'Twitter');
+    const dorta = githubData.concat(spotifyData, twitterData);
     this.draw(this.datafy(dorta), this.selectSvg());
   };
 
