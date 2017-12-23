@@ -12,6 +12,10 @@ class NavBar extends Component {
     // postID: object
   };
 
+  componentDidMount() {
+    window.addEventListener('resize', () => {});
+  }
+
   startPos = this.props.startPos;
 
   render() {
