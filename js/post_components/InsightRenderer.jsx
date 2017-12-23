@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { object, string, objectOf, oneOfType, number, func, node } from 'prop-types';
 import Wrap from '../shared/StyledComponents';
 import MostRecentProject, { MostViewedProject, MostUsedLang } from './GithubInsights';
-import SongFeature from './SpotifyInsights';
+
 import Insight from './Insight';
 
 class InsightRenderer extends PureComponent {
@@ -39,6 +39,16 @@ class InsightRenderer extends PureComponent {
       </Insight>
     );
   };
+
+  songFeature = () => {
+    const feature = this.props.spotify_record.most_occuring_feature;
+    return (
+      <Insight source="spotify" title="Song Feature">
+        <p>Most songs I have been listening to recently have a high amount of {feature}</p>
+      </Insight>
+    );
+  };
+
   // this needs a touch up,
   // refactoring it so that each individual insight was not it's own component
   insights = () =>
@@ -50,7 +60,7 @@ class InsightRenderer extends PureComponent {
         showRecentProjGraph={this.props.showRecentProjGraph}
         {...this.props.github_record}
       />,
-      <SongFeature key="4" {...this.props.spotify_record} />,
+      this.songFeature(),
       this.recommendedTrack()
     ]);
 
