@@ -2,7 +2,8 @@ import React, { PureComponent } from 'react';
 import { object, string, objectOf, oneOfType, number, func, node } from 'prop-types';
 import Wrap from '../shared/StyledComponents';
 import MostRecentProject, { MostViewedProject, MostUsedLang } from './GithubInsights';
-import SongFeature, { RecommendedTrack } from './SpotifyInsights';
+import SongFeature from './SpotifyInsights';
+import Insight from './Insight';
 
 class InsightRenderer extends PureComponent {
   static propTypes = {
@@ -26,6 +27,18 @@ class InsightRenderer extends PureComponent {
     }
     return array;
   };
+
+  recommendedTrack = () => {
+    const track = this.props.spotify_record.recommended_track;
+    return (
+      <Insight source="spotify" title="Recommended Track">
+        <p>
+          Based on the last few songs I listened to, I am most likely going to listen to
+          {` ${track.track}`} by the band {track.artist}
+        </p>
+      </Insight>
+    );
+  };
   // this needs a touch up,
   // refactoring it so that each individual insight was not it's own component
   insights = () =>
@@ -38,7 +51,7 @@ class InsightRenderer extends PureComponent {
         {...this.props.github_record}
       />,
       <SongFeature key="4" {...this.props.spotify_record} />,
-      <RecommendedTrack key="5" {...this.props.spotify_record} />
+      this.recommendedTrack()
     ]);
 
   render() {
