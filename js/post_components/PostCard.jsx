@@ -10,9 +10,6 @@ import Wrap from '../shared/StyledComponents';
 class PostCard extends Component {
   props: {
     id: string,
-    // github_record: Object,
-    // spotify_record: Object,
-    // twitter_record: Object, // not using this yet
     title: string,
     created_at: string
   };

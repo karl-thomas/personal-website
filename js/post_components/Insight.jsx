@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import { string, object } from 'prop-types';
+import { string, oneOfType, arrayOf, node } from 'prop-types';
 import styled from 'styled-components';
 import { colors } from '../utilities';
 
@@ -9,7 +9,7 @@ class Insight extends Component {
   static propTypes = {
     source: string,
     title: string,
-    children: object
+    children: oneOfType([arrayOf(node), node])
   };
 
   shouldComponentUpdate() {

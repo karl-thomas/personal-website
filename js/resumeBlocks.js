@@ -2,6 +2,7 @@ const resumeFig = {};
 
 resumeFig.experience = [
   {
+    id: 0,
     title: 'Mentor',
     company: 'Dev Bootcamp',
     bullets: [
@@ -16,6 +17,7 @@ resumeFig.experience = [
 
 resumeFig.volunteering = [
   {
+    id: 0,
     title: 'Volunteer Instructor',
     company: 'Living Works',
     bullets: [
@@ -26,6 +28,7 @@ resumeFig.volunteering = [
     end: 'Current'
   },
   {
+    id: 1,
     title: 'Volunteer Instructor',
     company: 'CodeNow',
     bullets: [
@@ -39,6 +42,7 @@ resumeFig.volunteering = [
 
 resumeFig.projects = [
   {
+    id: 0,
     link: 'https://github.com/karl-thomas/automatic-blog',
     title: 'Automatic-blog',
     start: 'Jul 2017',
@@ -51,6 +55,7 @@ resumeFig.projects = [
     ]
   },
   {
+    id: 1,
     link: 'https://github.com/karl-thomas/WITNESS-ME',
     title: 'Witness Me',
     start: 'Apr 2017',

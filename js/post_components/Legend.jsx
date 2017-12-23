@@ -17,7 +17,7 @@ class Legend extends Component {
     return (
       <LegendCont>
         {this.props.sources.map(source => (
-          <InlineDiv>
+          <InlineDiv key={source}>
             <Colorbox source={source} />
             <SourceName>{source}</SourceName>
           </InlineDiv>

@@ -38,7 +38,7 @@ class InsightRenderer extends PureComponent {
   mostRecentProject = () => {
     const project = this.props.github_record.most_recent_project;
     return (
-      <Insight source="github" title="Recent Project">
+      <Insight key="Recent Project" source="github" title="Recent Project">
         <p>
           I have recently made {project.recent_commits} commits on my project, &apos;{project.name}&apos;
         </p>
@@ -59,7 +59,7 @@ class InsightRenderer extends PureComponent {
   mostViewedProject = () => {
     const project = this.props.github_record.most_viewed_repo;
     return (
-      <Insight source="github" title="Most Viewed Project">
+      <Insight key="Most Viewed Project" source="github" title="Most Viewed Project">
         <p>
           Recently my project &apos;{project.name}&apos; has gotten {project.recent_views} views and
           {` ${project.uniques}`} unique views
@@ -75,7 +75,7 @@ class InsightRenderer extends PureComponent {
   mostUsedLang = () => {
     const lang = this.props.github_record.most_used_lang;
     return (
-      <Insight source="github" title="Most Used language">
+      <Insight key="Most Used language" source="github" title="Most Used language">
         <p>
           In the past two weeks I have written {this.bytesToSize(lang[1])} of {lang[0]}
         </p>
@@ -86,7 +86,7 @@ class InsightRenderer extends PureComponent {
   recommendedTrack = () => {
     const track = this.props.spotify_record.recommended_track;
     return (
-      <Insight source="spotify" title="Recommended Track">
+      <Insight key="Recommended Track" source="spotify" title="Recommended Track">
         <p>
           Based on the last few songs I listened to, I am most likely going to listen to
           {` ${track.track}`} by the band {track.artist}
@@ -98,7 +98,7 @@ class InsightRenderer extends PureComponent {
   songFeature = () => {
     const feature = this.props.spotify_record.most_occuring_feature;
     return (
-      <Insight source="spotify" title="Song Feature">
+      <Insight key="Song Feature" source="spotify" title="Song Feature">
         <p>Most songs I have been listening to recently have a high amount of {feature}</p>
       </Insight>
     );
