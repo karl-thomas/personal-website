@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import { object, string, objectOf, oneOfType, number, func, node } from 'prop-types';
 import Wrap from '../shared/StyledComponents';
-import MostRecentProject, { MostViewedProject, MostUsedLang } from './GithubInsights';
-
+// import MostRecentProject, { MostViewedProject, MostUsedLang } from './GithubInsights';
+import Link from '../shared/PanningLink';
 import Insight from './Insight';
 
 class InsightRenderer extends PureComponent {
@@ -26,6 +26,61 @@ class InsightRenderer extends PureComponent {
       array[index] = temp;
     }
     return array;
+  };
+  bytesToSize = bytes => {
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+    if (bytes === 0) return '0 Bytes';
+    const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10);
+    if (i === 0) return `${bytes} ${sizes[i]}`;
+    return `${(bytes / 1024 ** i).toFixed(1)} ${sizes[i]}`;
+  };
+
+  mostRecentProject = () => {
+    const project = this.props.github_record.most_recent_project;
+    return (
+      <Insight source="github" title="Recent Project">
+        <p>
+          I have recently made {project.recent_commits} commits on my project, &apos;{project.name}&apos;
+        </p>
+        <br />
+        <Link to={project.url} width="175" height="24">
+          Project on github
+        </Link>
+        <br />
+        <div role="link" onClick={this.props.showRecentProjGraph} tabIndex={0}>
+          <Link width="175" height="24">
+            Show Graph
+          </Link>
+        </div>
+      </Insight>
+    );
+  };
+
+  mostViewedProject = () => {
+    const project = this.props.github_record.most_viewed_repo;
+    return (
+      <Insight source="github" title="Most Viewed Project">
+        <p>
+          Recently my project &apos;{project.name}&apos; has gotten {project.recent_views} views and
+          {` ${project.uniques}`} unique views
+        </p>
+        <br />
+        <Link to={project.url} width="175" height="24">
+          Project on github
+        </Link>
+      </Insight>
+    );
+  };
+
+  mostUsedLang = () => {
+    const lang = this.props.github_record.most_used_lang;
+    return (
+      <Insight source="github" title="Most Used language">
+        <p>
+          In the past two weeks I have written {this.bytesToSize(lang[1])} of {lang[0]}
+        </p>
+      </Insight>
+    );
   };
 
   recommendedTrack = () => {
@@ -53,13 +108,9 @@ class InsightRenderer extends PureComponent {
   // refactoring it so that each individual insight was not it's own component
   insights = () =>
     this.shuffle([
-      <MostUsedLang key="1" {...this.props.github_record} />,
-      <MostViewedProject key="2" {...this.props.github_record} />,
-      <MostRecentProject
-        key="3"
-        showRecentProjGraph={this.props.showRecentProjGraph}
-        {...this.props.github_record}
-      />,
+      this.mostUsedLang(),
+      this.mostViewedProject(),
+      this.mostRecentProject(),
       this.songFeature(),
       this.recommendedTrack()
     ]);
