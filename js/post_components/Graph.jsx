@@ -24,6 +24,9 @@ class Graph extends Component {
 
   componentDidMount() {
     this.determineGraphToDraw();
+    window.addEventListener('resize', () => {
+      this.determineGraphToDraw();
+    });
   }
 
   componentDidUpdate() {
@@ -63,6 +66,8 @@ class Graph extends Component {
 
   selectSvg = () => {
     let svg = d3.select('#graph-start');
+    // fix width for redraws
+    svg.attr('width', this.screenWidth() + 50);
     const margin = { top: 20, right: 20, bottom: 30, left: 50 };
     const width = +this.screenWidth() - margin.left - margin.right;
     const height = +svg.attr('height') - margin.top - margin.bottom;

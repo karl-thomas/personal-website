@@ -12,10 +12,6 @@ class NavBar extends Component {
     // postID: object
   };
 
-  componentDidMount() {
-    window.addEventListener('resize', () => {});
-  }
-
   startPos = this.props.startPos;
 
   render() {
@@ -97,6 +93,9 @@ const TopSvg = styled.svg`
     fill: ${props => (props.startPos ? `#422c54` : `#30a988`)};
     ${transition};
   }
+  ${media.phone`
+    display:none;
+    `};
 `;
 
 export default NavBar;
