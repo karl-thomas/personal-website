@@ -11,8 +11,6 @@ class Resume extends Component {
     show: false
   };
 
-  componentDidMount() {}
-
   componentWillReceiveProps(nextProps: Object) {
     if (nextProps.startPos) {
       setTimeout(() => {

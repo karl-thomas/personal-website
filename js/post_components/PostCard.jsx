@@ -8,11 +8,16 @@ import Wrap from '../shared/StyledComponents';
 // to take me to the details page in the future
 
 class PostCard extends Component {
+  shouldComponentUpdate() {
+    return false;
+  }
+
   props: {
     id: string,
     title: string,
     created_at: string
   };
+
   formattedDate = () => {
     const date = new Date(this.props.created_at);
     return date.toLocaleString(undefined, {

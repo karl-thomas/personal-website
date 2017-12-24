@@ -15,7 +15,6 @@ class PostContainer extends Component {
   };
 
   componentDidMount() {
-    console.log(window.innerHeight); // eslint-disable-line no-console
     if (!this.props.postID.id) this.getPostData();
   }
 
@@ -32,7 +31,7 @@ class PostContainer extends Component {
   // production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com
   getPostData = () => {
     axios
-      .get('http://localhost:3000/posts')
+      .get('production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com/posts')
       .then(response =>
         this.setState({
           apiData: response.data

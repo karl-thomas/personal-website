@@ -27,6 +27,7 @@ class InsightRenderer extends PureComponent {
     }
     return array;
   };
+
   bytesToSize = bytes => {
     const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
     if (bytes === 0) return '0 Bytes';
