@@ -455,13 +455,20 @@ html {
 body {
   background-color: hsla(161, 34%, 93%, 0.75);
 }
+
+/* fix rendering bug */
 .resume {
   display: none;
 }
+/* d3 generated lines */
 .line {
   fill: none;
   stroke: steelblue;
   stroke-width: 3.25px;
+}
+
+.post-list {
+  margin-bottom: 20px;
 }
 
 h1 {

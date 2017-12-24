@@ -1,18 +1,31 @@
 // @flow
-import React from 'react';
+import React, { Component } from 'react';
+import { array } from 'prop-types';
 import styled from 'styled-components';
 import { colors } from '../utilities';
 
-const Legend = (props: { sources: Array<string> }) => (
-  <LegendCont>
-    {props.sources.map(source => (
-      <InlineDiv>
-        <Colorbox source={source} />
-        <SourceName>{source}</SourceName>
-      </InlineDiv>
-    ))}
-  </LegendCont>
-);
+class Legend extends Component {
+  static propTypes = {
+    sources: array
+  };
+
+  shouldComponentUpdate() {
+    return false;
+  }
+
+  render() {
+    return (
+      <LegendCont>
+        {this.props.sources.map(source => (
+          <InlineDiv key={source}>
+            <Colorbox source={source} />
+            <SourceName>{source}</SourceName>
+          </InlineDiv>
+        ))}
+      </LegendCont>
+    );
+  }
+}
 
 const LegendCont = styled.div`margin-bottom: 10px;`;
 

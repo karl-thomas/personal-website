@@ -65,7 +65,7 @@ class PostDetails extends Component {
         <div>
           <br />
           <br />
-          <Legend sources={['Github', 'Spotify']} />
+          <Legend sources={['Github', 'Spotify', 'Twitter']} />
           <InsightRenderer {...this.state.apiData} showRecentProjGraph={this.showRecentProjGraph} />
           <br />
           <Graph {...this.state} />

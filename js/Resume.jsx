@@ -22,6 +22,7 @@ class Resume extends Component {
       this.updateShowStatus(true);
     }
   }
+
   updateShowStatus = (boolVal: boolean) =>
     this.setState(prevState => (prevState.show === boolVal ? null : { show: boolVal }));
 
@@ -31,7 +32,7 @@ class Resume extends Component {
 
   render() {
     const workComponent = resumeFig.experience.map(work => (
-      <SubSection>
+      <SubSection key={work.id}>
         <Times>
           {work.start} to {work.end}
         </Times>
@@ -45,20 +46,20 @@ class Resume extends Component {
     ));
 
     const projectsComponent = resumeFig.projects.map(proj => (
-      <SubSection>
+      <SubSection key={proj.id}>
         <Times>
           {proj.start} to {proj.end}
         </Times>
         <Body>
           <LinkTo href={proj.link}>{proj.title}</LinkTo>
           <p>{proj.description}</p>
-          <ul>{proj.bullets.map(bullet => <li>{bullet}</li>)}</ul>
+          <ul>{proj.bullets.map(bullet => <li key={bullet}>{bullet}</li>)}</ul>
         </Body>
       </SubSection>
     ));
 
     const volunteerComponent = resumeFig.volunteering.map(vol => (
-      <SubSection>
+      <SubSection key={vol.id}>
         <Times>
           {vol.start} to {vol.end}
         </Times>

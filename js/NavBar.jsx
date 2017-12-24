@@ -93,6 +93,9 @@ const TopSvg = styled.svg`
     fill: ${props => (props.startPos ? `#422c54` : `#30a988`)};
     ${transition};
   }
+  ${media.phone`
+    display:none;
+    `};
 `;
 
 export default NavBar;

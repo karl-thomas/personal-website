@@ -1,20 +1,34 @@
 // @flow
-import React from 'react';
+import React, { Component } from 'react';
+import { string, oneOfType, arrayOf, node } from 'prop-types';
 import styled from 'styled-components';
 import { colors } from '../utilities';
 
 // a wrapper for insights, children being tags withing insights
-const Insight = (props: { source: string, title: string, children?: Object }) => {
-  const scheme = { github: colors.github, spotify: colors.spotify, twitter: colors.twitter };
-  return (
-    <InsightBox className="insight">
-      <Title color={scheme[props.source]}>
-        <strong>{props.title}</strong>
-      </Title>
-      <Orphanage>{props.children}</Orphanage>
-    </InsightBox>
-  );
-};
+class Insight extends Component {
+  static propTypes = {
+    source: string,
+    title: string,
+    children: oneOfType([arrayOf(node), node])
+  };
+
+  shouldComponentUpdate() {
+    return false;
+  }
+
+  scheme = { github: colors.github, spotify: colors.spotify, twitter: colors.twitter };
+
+  render() {
+    return (
+      <InsightBox className="insight">
+        <Title color={this.scheme[this.props.source]}>
+          <strong>{this.props.title}</strong>
+        </Title>
+        <Orphanage>{this.props.children}</Orphanage>
+      </InsightBox>
+    );
+  }
+}
 
 const Title = styled.div`
   background-color: ${props => props.color};
