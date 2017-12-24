@@ -31,7 +31,7 @@ class PostContainer extends Component {
   // production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com
   getPostData = () => {
     axios
-      .get('production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com/posts')
+      .get('http://production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com/posts')
       .then(response =>
         this.setState({
           apiData: response.data
