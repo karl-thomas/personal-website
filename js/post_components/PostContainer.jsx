@@ -10,28 +10,16 @@ import PostDetails from './PostDetails';
 class PostContainer extends Component {
   state = {
     apiData: [],
-    show: true,
     moved: false
   };
 
   componentDidMount() {
     if (!this.props.postID.id) this.getPostData();
   }
-
-  componentWillReceiveProps(nextProps: Object) {
-    if (!nextProps.startPos) {
-      setTimeout(() => {
-        this.updateShowStatus(false);
-      }, 50);
-    } else if (nextProps.startPos && !this.state.show) {
-      this.updateShowStatus(true);
-    }
-  }
-
   // production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com
   getPostData = () => {
     axios
-      .get('http://production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com/posts')
+      .get('http://localhost:3000/posts')
       .then(response =>
         this.setState({
           apiData: response.data
@@ -41,9 +29,6 @@ class PostContainer extends Component {
         console.error('axios ERROR', error); // eslint-disable-line no-console
       });
   };
-
-  updateShowStatus = (boolVal: boolean) =>
-    this.setState(prevState => (prevState.show === boolVal ? null : { show: boolVal }));
 
   props: {
     startPos: boolean,
@@ -63,11 +48,7 @@ class PostContainer extends Component {
       ));
     }
 
-    return (
-      <Wrapper startPos={this.props.startPos} show={this.state.show}>
-        {containerComponent}
-      </Wrapper>
-    );
+    return <Wrapper startPos={this.props.startPos}>{containerComponent}</Wrapper>;
   }
 }
 
@@ -83,14 +64,10 @@ const Wrapper = styled.div`
   -ms-transition: all 0.5s ease-out;
   -o-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
-  ${props => {
-    let propsStyles = '';
-    propsStyles += props.show ? 'visibility: visible;' : 'visibility: hidden;';
-    propsStyles += props.startPos
+  ${props =>
+    props.startPos
       ? 'transform: translate(calc(250px + 4%),calc(112px + 5vh));'
-      : 'transform: translate(100vw,100vh);';
-    return propsStyles;
-  }};
+      : 'transform: translate(100vw,100vh);'};
   ${media.phone`
     visibility: visible;
       transform: translate(0px);
