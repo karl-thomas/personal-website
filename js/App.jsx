@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import type { Match } from 'react-router-dom';
 // import { Provider } from 'react-redux'; // redux setup
 // import store from './store'; // redux setup
-import Blog from './Blog';
+import AutomaticBlog from './AutomaticBlog';
 // import AsyncRoute from './AsyncRoute';
 // import preload from '../data.json';
 
@@ -45,12 +45,12 @@ const FourOhFour = () => <h1>404</h1>;
 const App = () => (
   <div className="app">
     <Switch>
-      <Route exact path="/" component={Blog} />
+      <Route exact path="/" component={AutomaticBlog} />
       <Route
         path="/posts/:id"
         component={(props: { match: Match }) => {
           const id = { id: props.match.params.id };
-          return <Blog postID={id} />;
+          return <AutomaticBlog postID={id} />;
         }}
       />
       <Route component={FourOhFour} />
