@@ -31,7 +31,7 @@ class PostContainer extends Component {
   };
 
   props: {
-    startPos: boolean,
+    startPos?: boolean,
     postID: Object
   };
 

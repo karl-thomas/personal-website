@@ -165,7 +165,7 @@ class Graph extends Component {
 
     stream
       .append('path')
-      .attr('class', 'line')
+      .attr('class', d => `line ${d.id}`)
       .attr('d', d => line(d.values))
       .style('stroke', d => z(d.id));
 
