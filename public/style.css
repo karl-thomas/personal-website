@@ -488,3 +488,10 @@ strong,
 li {
   color: #444;
 }
+
+.flavor-text--green {
+  display: inline;
+  margin: 0px;
+  padding: 0px;
+  color: #36bf9a;
+}
