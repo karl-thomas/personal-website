@@ -6,7 +6,6 @@ import { object, string } from 'prop-types';
 import * as d3 from 'd3';
 import Wrap from '../shared/StyledComponents';
 import Legend from './Legend';
-import GreenText from '../shared/GreenText';
 
 import { sizes, colors } from '../utilities';
 
