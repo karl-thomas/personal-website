@@ -1,5 +1,5 @@
-// @flow
 import React, { Component } from 'react';
+import { object } from 'prop-types';
 import BlogLayout from './Blog';
 import PostContainer from './post_components/PostContainer';
 
@@ -8,8 +8,8 @@ class AutomaticBlog extends Component {
     postID: {}
   };
 
-  props: {
-    postID?: Object
+  static propTypes = {
+    postID: object
   };
 
   render() {
