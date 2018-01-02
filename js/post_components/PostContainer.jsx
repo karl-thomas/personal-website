@@ -14,6 +14,7 @@ class PostContainer extends Component {
   };
 
   componentDidMount() {
+    console.log(process.env.GHOST_ADDRESS);
     if (!this.props.postID.id) this.getPostData();
   }
   // production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com
