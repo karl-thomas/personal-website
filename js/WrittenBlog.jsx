@@ -3,7 +3,7 @@ import { object } from 'prop-types';
 import BlogLayout from './Blog';
 import PostContainer from './automatic_blog/PostContainer';
 
-class AutomaticBlog extends Component {
+class WrittenBlog extends Component {
   static defaultProps = {
     postID: {}
   };
@@ -15,10 +15,10 @@ class AutomaticBlog extends Component {
   render() {
     return (
       <BlogLayout>
-        <PostContainer postID={this.props.postID} />
+        <PostContainer postID={this.props.postID} written />
       </BlogLayout>
     );
   }
 }
 
-export default AutomaticBlog;
+export default WrittenBlog;

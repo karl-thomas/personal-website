@@ -6,6 +6,7 @@ import type { Match } from 'react-router-dom';
 // import { Provider } from 'react-redux'; // redux setup
 // import store from './store'; // redux setup
 import AutomaticBlog from './AutomaticBlog';
+import WrittenBlog from './WrittenBlog';
 // import AsyncRoute from './AsyncRoute';
 // import preload from '../data.json';
 
@@ -48,12 +49,13 @@ const App = () => (
     <Switch>
       <Route exact path="/" component={AutomaticBlog} />
       <Route
-        path="/posts/:id"
+        path="/auto/posts/:id"
         component={(props: { match: Match }) => {
           const id = { id: props.match.params.id };
           return <AutomaticBlog postID={id} />;
         }}
       />
+      <Route path="/blog" component={WrittenBlog} />
       <Route component={FourOhFour} />
     </Switch>
   </div>
