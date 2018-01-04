@@ -32,7 +32,7 @@ class PostCard extends Component {
 
   render() {
     return (
-      <Link to={`/posts/${this.props.id}`}>
+      <Link to={`/auto/posts/${this.props.id}`}>
         <Wrap className="post-list">
           <Title>{this.props.title}</Title>
           <TimeBox>
@@ -44,15 +44,15 @@ class PostCard extends Component {
   }
 }
 
-const Title = styled.h1`
+export const Title = styled.h1`
   display: inline-block;
   padding-left: 1em;
   color: #444;
   width: 85%;
 `;
 
-const TimeBox = styled.div`
-  background-color: ${colors.torq};
+export const TimeBox = styled.div`
+  background-color: ${colors.spotify};
   position: relative;
   padding: 0em 1em;
   border-bottom-right-radius: inherit;
@@ -64,7 +64,7 @@ const TimeBox = styled.div`
   bottom: 0px;
 `;
 
-const TimeStamp = styled.p`
+export const TimeStamp = styled.p`
   margin: 4px 0px 0px 0px;
   padding: 0px;
   float: right;
