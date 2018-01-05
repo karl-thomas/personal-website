@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { string } from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { colors, media } from '../utilities';
+import media, { colors } from '../utilities';
 import wrap from '../shared/StyledComponents';
 import { TimeBox as tb, Title as title, TimeStamp } from '../automatic_blog/PostCard';
 
@@ -66,6 +66,9 @@ const Title = title.extend`
   margin-top:7px;
   height:70px;
   font-size: calc(2.8vw);
+  ${media.phone`
+    font-size: calc(4.5vw);
+    `};
 `;
 
 const Svg = styled.svg`
