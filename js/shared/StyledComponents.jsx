@@ -5,7 +5,7 @@ export const PostWrapper = styled.div`
   z-index: -1000;
   position: fixed;
   padding: 4em 2em;
-  height: 72vh;
+  height: 75vh;
   width: calc(97% - 250px);
   overflow-y: scroll;
   -webkit-transition: all 0.5s ease-out;

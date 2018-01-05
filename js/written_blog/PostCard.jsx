@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { string } from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { colors, media } from '../utilities';
 import wrap from '../shared/StyledComponents';
 import { TimeBox as tb, Title as title, TimeStamp } from '../automatic_blog/PostCard';
 
@@ -35,7 +36,10 @@ class PostCard extends Component {
         <Wrap className="post-list">
           <Title>{this.props.title}</Title>
           <Svg>
-            <polygon className="bottom-triangle" points="50,0 0,0 0,50" />
+            <polygon fill="#6f577c" points="2,80 20,80 2,40" />
+            <polygon fill="white" points="30,0 0,0 0,80" />
+            <polygon fill={colors.spotify} points="39,0 30,0 0,81 5,81" />
+            <polygon fill="#444" points="30,0 28,0 0,81 1,81" />
           </Svg>
           <Image>
             <img src={this.props.feature_image} alt="featured post" />
@@ -61,15 +65,15 @@ const Title = title.extend`
   margin:0;
   margin-top:7px;
   height:70px;
-  font-size: calc(3vw);
+  font-size: calc(2.8vw);
 `;
 
 const Svg = styled.svg`
   z-index: 100;
   position: absolute;
-  right: calc(30%-50px);
+  right: calc(30% - 48px);
   width: 50px;
-  height: 50px;
+  height: 81px;
 `;
 
 const Image = styled.div`
