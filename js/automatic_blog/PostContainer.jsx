@@ -3,14 +3,12 @@ import axios from 'axios';
 import { object, bool } from 'prop-types';
 import AutomaticPostCard from './PostCard';
 import AutomaticPostDetails from './PostDetails';
-import WrittenPostCard from '../written_blog/PostCard';
 import { PostWrapper as Wrapper } from '../shared/StyledComponents';
 
 class PostContainer extends Component {
   static propTypes = {
     startPos: bool,
-    postID: object,
-    written: bool
+    postID: object
   };
 
   state = {
@@ -20,13 +18,8 @@ class PostContainer extends Component {
 
   // production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com // hey change this.
   componentDidMount() {
-    if (!this.props.postID.id && !this.props.written) {
+    if (!this.props.postID.id) {
       this.getPostData('localhost:3000/posts');
-    } else if (!this.props.postID.id && this.props.written) {
-      const { GHOST_ADDRESS, GHOST_ID, GHOST_SECRET } = process.env;
-      this.getPostData(
-        `${GHOST_ADDRESS}/ghost/api/v0.1/posts?client_id=${GHOST_ID}&client_secret=${GHOST_SECRET}`
-      );
     }
   }
 
@@ -43,8 +36,6 @@ class PostContainer extends Component {
       });
   };
 
-  containerComponent = () => (this.props.written ? this.renderWrittenBlog() : this.renderAutomaticBlog());
-
   renderAutomaticBlog = () => {
     let content;
 
@@ -58,18 +49,8 @@ class PostContainer extends Component {
     return content;
   };
 
-  renderWrittenBlog = () => {
-    let content;
-    if (this.state.apiData.posts) {
-      content = this.state.apiData.posts.map(record => <WrittenPostCard key={record.id} {...record} />);
-    } else {
-      content = 'loadin';
-    }
-    return content;
-  };
-
   render() {
-    return <Wrapper startPos={this.props.startPos}>{this.containerComponent()}</Wrapper>;
+    return <Wrapper startPos={this.props.startPos}>{this.renderAutomaticBlog()}</Wrapper>;
   }
 }
 
