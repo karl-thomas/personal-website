@@ -53,7 +53,8 @@ class PostCard extends Component {
   }
 }
 
-const TimeBox = tb.extend`position:absolute; bottom:0;`;
+const TimeBox = tb.extend`
+position:absolute; bottom:0;`;
 
 const Wrap = wrap.extend`
   height:110px;
