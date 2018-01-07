@@ -55,12 +55,12 @@ const App = () => (
           return <AutomaticBlog postID={id} />;
         }}
       />
-      <Route path="/blog" component={() => <WrittenBlog index />} />
+      <Route exact path="/blog" component={() => <WrittenBlog index />} />
       <Route
-        path="/blog/posts/:id"
+        path="/blog/posts/:slug"
         component={(props: { match: Match }) => {
-          const id = { id: props.match.params.id };
-          return <WrittenBlog postID={id} />;
+          const slug = props.match.params.slug;
+          return <WrittenBlog slug={slug} />;
         }}
       />
       <Route component={FourOhFour} />
