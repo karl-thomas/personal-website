@@ -8,10 +8,10 @@ import { TimeBox as tb, Title as title, TimeStamp } from '../automatic_blog/Post
 
 class PostCard extends Component {
   static propTypes = {
-    id: string,
     title: string,
     feature_image: string,
-    published_at: string
+    published_at: string,
+    slug: string
   };
 
   shouldComponentUpdate() {
@@ -32,7 +32,7 @@ class PostCard extends Component {
 
   render() {
     return (
-      <Link to={`/blog/posts/${this.props.id}`}>
+      <Link to={`/blog/posts/${this.props.slug}`}>
         <Wrap className="post-list">
           <Title>{this.props.title}</Title>
           <Svg>
