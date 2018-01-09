@@ -19,6 +19,7 @@ class WrittenBlog extends Component {
   state = {
     apiData: {}
   };
+
   componentDidMount() {
     const { GHOST_ID, GHOST_SECRET } = process.env;
     const auth = `?client_id=${GHOST_ID}&client_secret=${GHOST_SECRET}`;
@@ -58,7 +59,7 @@ class WrittenBlog extends Component {
   render() {
     return (
       <BlogLayout>
-        <PostWrapper>{this.renderPostDetails()}</PostWrapper>
+        <PostWrapper>{this.determinePostRendering()}</PostWrapper>
       </BlogLayout>
     );
   }
