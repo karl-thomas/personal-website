@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import ReactDOMServer from 'react-dom/server';
 import styled from 'styled-components';
+import sanitize from 'sanitize-html';
 
 class PostDetails extends Component {
   componentDidMount() {
@@ -24,7 +25,7 @@ class PostDetails extends Component {
     return (
       <Wrap>
         <h1>{this.props.title}</h1>
-        <Wrap dangerouslySetInnerHTML={{ __html: this.props.html }} />
+        <Wrap dangerouslySetInnerHTML={{ __html: sanitize(this.props.html) }} />
       </Wrap>
     );
   }
