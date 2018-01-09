@@ -59,7 +59,7 @@ class WrittenBlog extends Component {
   render() {
     return (
       <BlogLayout>
-        <PostWrapper>{this.determinePostRendering()}</PostWrapper>
+        <PostWrapper className="wrtn-post">{this.determinePostRendering()}</PostWrapper>
       </BlogLayout>
     );
   }

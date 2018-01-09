@@ -24,7 +24,6 @@ class PostDetails extends Component {
   render() {
     return (
       <Wrap>
-        <h1>{this.props.title}</h1>
         <Wrap dangerouslySetInnerHTML={{ __html: sanitize(this.props.html) }} />
       </Wrap>
     );

@@ -4,7 +4,7 @@ import media, { colors } from '../utilities';
 export const PostWrapper = styled.div`
   z-index: -1000;
   position: fixed;
-  padding: 4em 2em;
+  padding: 4em 3em;
   height: 75vh;
   width: calc(97% - 250px);
   overflow-y: scroll;
