@@ -59,7 +59,9 @@ class WrittenBlog extends Component {
   render() {
     return (
       <BlogLayout>
-        <PostWrapper className="wrtn-post">{this.determinePostRendering()}</PostWrapper>
+        <PostWrapper className={this.props.index ? '' : 'wrtn-post'}>
+          {this.determinePostRendering()}
+        </PostWrapper>
       </BlogLayout>
     );
   }
