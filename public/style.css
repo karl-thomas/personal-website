@@ -488,3 +488,15 @@ strong,
 li {
   color: #444;
 }
+
+.flavor-text--green {
+  display: inline;
+  margin: 0px;
+  padding: 0px;
+  color: #36bf9a;
+}
+
+.wrtn-post {
+  font-size: 24px;
+  padding: 4em 3em;
+}

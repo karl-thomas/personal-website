@@ -1,3 +1,4 @@
+require('dotenv').config(); // load .env file
 const path = require('path');
 const webpack = require('webpack');
 
@@ -28,7 +29,17 @@ const config = {
     reasons: true,
     chunks: true
   },
-  plugins: [new webpack.HotModuleReplacementPlugin(), new webpack.NamedModulesPlugin()],
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        GHOST_ADDRESS: JSON.stringify(process.env.GHOST_ADDRESS),
+        GHOST_ID: JSON.stringify(process.env.GHOST_ID),
+        GHOST_SECRET: JSON.stringify(process.env.GHOST_SECRET)
+      }
+    })
+  ],
   module: {
     rules: [
       {

@@ -1,42 +1,56 @@
 // @flow
 
-import React from 'react';
+import React, { PureComponent } from 'react';
+import { func, bool } from 'prop-types';
 import styled from 'styled-components';
 import media, { colors } from './utilities';
 import Link from './shared/PanningLink';
 
-const SideBar = (props: { parentClickHandler: Function, startPos: boolean }) => (
-  <SideWrap startPos={props.startPos}>
-    <Header startPos={props.startPos}>Karl Thomas</Header>
-    {props.startPos ? (
-      <ContactUL startPos={props.startPos}>
-        <Li startPos={props.startPos} onClick={props.parentClickHandler}>
-          <Link color="green" width="200" height="40">
-            <BarHeader>Portfolio</BarHeader>
-          </Link>
-        </Li>
-        <Li>
-          <Link to="https://github.com/karl-thomas" width="200" height="40">
-            <BarHeader>Github</BarHeader>
-          </Link>
-        </Li>
-        <Li>
-          <Link to="https://www.linkedin.com/in/karl-thomas/" width="200" height="40">
-            <BarHeader>LinkedIn</BarHeader>
-          </Link>
-        </Li>
-      </ContactUL>
-    ) : (
-      <ContactUL startPos={props.startPos}>
-        <Li startPos={props.startPos} onClick={props.parentClickHandler}>
-          <Link color="purple" width="200" height="40">
-            <BarHeader>Back</BarHeader>
-          </Link>
-        </Li>
-      </ContactUL>
-    )}
-  </SideWrap>
-);
+class SideBar extends PureComponent {
+  static propTypes = {
+    parentClickHandler: func,
+    startPos: bool
+  };
+
+  startingUl = (
+    <ContactUL startPos={this.props.startPos}>
+      <Li startPos={this.props.startPos} onClick={this.props.parentClickHandler}>
+        <Link color="green" width="200" height="40">
+          <BarHeader>Portfolio</BarHeader>
+        </Link>
+      </Li>
+      <Li>
+        <Link to="https://github.com/karl-thomas" width="200" height="40">
+          <BarHeader>Github</BarHeader>
+        </Link>
+      </Li>
+      <Li>
+        <Link to="https://www.linkedin.com/in/karl-thomas/" width="200" height="40">
+          <BarHeader>LinkedIn</BarHeader>
+        </Link>
+      </Li>
+    </ContactUL>
+  );
+
+  transitionedUl = (
+    <ContactUL startPos={this.props.startPos}>
+      <Li startPos={this.props.startPos} onClick={this.props.parentClickHandler}>
+        <Link color="purple" width="200" height="40">
+          <BarHeader>Back</BarHeader>
+        </Link>
+      </Li>
+    </ContactUL>
+  );
+
+  render() {
+    return (
+      <SideWrap startPos={this.props.startPos}>
+        <Header startPos={this.props.startPos}>Karl Thomas</Header>
+        {this.props.startPos ? this.startingUl : this.transitionedUl}
+      </SideWrap>
+    );
+  }
+}
 
 const transition = `-moz-transition: all 0.7s ease-out; -ms-transition: all 0.7s ease-out; -o-transition: all 0.7s ease-out; transition: all 0.7s ease-out;`;
 

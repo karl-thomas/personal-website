@@ -1,13 +1,13 @@
-// @flow
-import React, { Component } from 'react';
+import * as React from 'react';
+import { object, oneOfType, arrayOf, node } from 'prop-types';
 import SideBar from './SideBar';
 import NavBar from './NavBar';
-import PostContainer from './post_components/PostContainer';
 import Resume from './Resume';
 
-class Blog extends Component {
-  static defaultProps = {
-    postID: {}
+class Blog extends React.Component {
+  static propTypes = {
+    postID: object,
+    children: oneOfType([arrayOf(node), node])
   };
 
   state = {
@@ -18,9 +18,7 @@ class Blog extends Component {
     this.setState(prevState => ({ startPos: !prevState.startPos }));
   };
 
-  props: {
-    postID?: Object
-  };
+  mapStateToChildren = () => React.cloneElement(this.props.children, { startPos: this.state.startPos });
 
   render() {
     return (
@@ -28,7 +26,7 @@ class Blog extends Component {
         <Resume startPos={this.state.startPos} />
         <NavBar startPos={this.state.startPos} postID={this.props.postID} />
         <SideBar startPos={this.state.startPos} parentClickHandler={this.handleClick} />
-        <PostContainer startPos={this.state.startPos} postID={this.props.postID} />
+        {this.mapStateToChildren()}
       </div>
     );
   }

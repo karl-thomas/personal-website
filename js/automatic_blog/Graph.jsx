@@ -6,7 +6,6 @@ import { object, string } from 'prop-types';
 import * as d3 from 'd3';
 import Wrap from '../shared/StyledComponents';
 import Legend from './Legend';
-import GreenText from '../shared/GreenText';
 
 import { sizes, colors } from '../utilities';
 
@@ -165,7 +164,7 @@ class Graph extends Component {
 
     stream
       .append('path')
-      .attr('class', 'line')
+      .attr('class', d => `line ${d.id}`)
       .attr('d', d => line(d.values))
       .style('stroke', d => z(d.id));
 
@@ -199,7 +198,7 @@ class Graph extends Component {
     return +Object.keys(this.props.tempGraph) !== 0 ? (
       <div>
         <h3>
-          <GreenText text="//  " />
+          <p className="flavor-text--green">{'//  '}</p>
           Activity on the {this.props.tempTitle}
         </h3>
         <Legend
@@ -213,7 +212,7 @@ class Graph extends Component {
     ) : (
       <div>
         <h3>
-          <GreenText text="//  " />
+          <p className="flavor-text--green">{'//  '}</p>
           Activity the last two weeks
         </h3>
         <Wrap>
