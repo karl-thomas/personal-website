@@ -33,12 +33,19 @@ class PostDetails extends Component {
 const Image = styled.img`
   margin: -4em -3em;
   max-width: calc(97vw - 250px);
+  z-index: 0;
 `;
 
 const Wrap = styled.div`
   display: initial;
-  & > * {
-    display: initial;
+  & > div {
+    margin-left: -0.5rem;
+    margin-right: 3rem;
+    padding: 1.5em;
+    position: absolute;
+    background-color: white;
   }
+  z-index: 1;
+  background-color: white;
 `;
 export default PostDetails;
