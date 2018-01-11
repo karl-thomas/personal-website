@@ -25,7 +25,9 @@ class WrittenBlog extends Component {
     const auth = `?client_id=${GHOST_ID}&client_secret=${GHOST_SECRET}`;
 
     if (this.props.index) this.getPostData(`/posts${auth}`);
-    else if (this.props.slug) this.getPostData(`/posts/slug/${this.props.slug}${auth}`);
+    else if (this.props.slug)
+      // all posts
+      this.getPostData(`/posts/slug/${this.props.slug}${auth}`); // details
   }
 
   getPostData = url => {
