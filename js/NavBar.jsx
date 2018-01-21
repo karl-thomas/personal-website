@@ -61,7 +61,7 @@ const Nav = styled.div`
 
 const NavShadow = styled.div`
   height: 70%;
-  width: calc(97% - 30rem);
+  width: 97%;
   background-color: ${props => (props.startPos ? `#422c54` : `#30a988`)};
   position: absolute;
   right: 2.5rem;
@@ -70,14 +70,20 @@ const NavShadow = styled.div`
 
 const NavOptions = styled.div`
   position: absolute;
+  overflow: hidden;
   bottom: 0px;
   right: 1em;
   height: 70%;
   text-align: bottom;
   max-width: 100%;
   color: white;
+
   & > .nav-link {
     ${props => (props.startPos ? `background-color: #6f577c;` : `background-color: #50e7b7;`)};
+    margin: 0 10px;
+    height: 100%;
+
+    padding: 7px 7px 50px 7px;
   }
 `;
 
