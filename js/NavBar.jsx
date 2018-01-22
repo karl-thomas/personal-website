@@ -18,12 +18,13 @@ class NavBar extends Component {
         <Nav startPos={this.props.startPos}>
           <NavShadow startPos={this.props.startPos}>
             <NavOptions startPos={this.props.startPos}>
-              <Link className="nav-link" to="/blog">
+              <NavLink className="nav-link" to="/blog">
                 Tech Blog
-              </Link>
-              <Link className="nav-link" to="/">
+              </NavLink>
+
+              <NavLink className="nav-link" to="/">
                 Automatic Blog
-              </Link>
+              </NavLink>
             </NavOptions>
           </NavShadow>
         </Nav>
@@ -32,6 +33,12 @@ class NavBar extends Component {
   }
 }
 // const StyledLink = styled(Link)`text-decoration: none;`;
+
+const NavLink = styled(Link)`
+  color: white;
+  font-size: 2em;
+  text-decoration: none;
+`;
 
 const transition =
   '-webkit-transition: all 0.7s ease-out; -moz-transition: all 0.7s ease-out; -ms-transition: all 0.7s ease-out; -o-transition: all 0.7s ease-out; transition: all 0.7s ease-out;';
@@ -77,13 +84,14 @@ const NavOptions = styled.div`
   text-align: bottom;
   max-width: 100%;
   color: white;
-
+  display: flex;
   & > .nav-link {
-    ${props => (props.startPos ? `background-color: #6f577c;` : `background-color: #50e7b7;`)};
     margin: 0 10px;
+    ${props => (props.startPos ? `background-color: #6f577c;` : `background-color: #50e7b7;`)};
     height: 100%;
-
     padding: 7px 7px 50px 7px;
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
   }
 `;
 

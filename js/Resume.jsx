@@ -180,6 +180,7 @@ const LinkTo = styled.a`
   height: 50%;
   padding-bottom: 10px;
   text-decoration-color: #a9ffce;
-  ${media.tablet`text-align: right;`};
+  font-size: 1.2em;
+  ${media.tablet`text-align: right; font-size: 1.0em;`};
 `;
 export default Resume;
