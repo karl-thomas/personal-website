@@ -58,7 +58,10 @@ position:absolute; bottom:0;`;
 
 const Wrap = wrap.extend`
   height:110px;
+  width:85%;
   position: relative;
+  margin:auto;
+  margin-bottom:35px;
 `;
 
 const Title = title.extend`

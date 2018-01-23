@@ -33,16 +33,15 @@ class NavBar extends Component {
     );
   }
 }
-const trans = `-moz-transition: all 0.7s ease-out; -ms-transition: all 0.7s ease-out; -o-transition: all 0.7s ease-out; transition: all 0.7s ease-out;`;
 
 const transition =
   '-webkit-transition: all 0.7s ease-out; -moz-transition: all 0.7s ease-out; -ms-transition: all 0.7s ease-out; -o-transition: all 0.7s ease-out; transition: all 0.7s ease-out;';
 
 const Top = styled.div`
-  ${props => (props.startPos ? `transform: translate(0px, 5vh);` : `transform: translate(0px, 69vh);`)};
+  ${props => (props.startPos ? `transform: translate(0px, 0px);` : `transform: translate(0px, 69vh);`)};
   z-index: 0;
   position: fixed;
-  height: 112px;
+  height: 140px;
   width: 100vw;
   ${transition};
 `;
@@ -68,27 +67,28 @@ const NavShadow = styled.div`
   position: absolute;
   right: 2.5rem;
   top: 15%;
+  ${transition};
 `;
 
 const NavOptions = styled.div`
-  ${trans};
+  ${transition};
   position: absolute;
   bottom: 0px;
   right: 1em;
-  height: 70%;
+  height: 60%;
   text-align: bottom;
   max-width: 100%;
   color: white;
   display: flex;
   & > .nav-link {
-    ${props => (props.startPos ? `background-color: #6f577c;` : `background-color: #50e7b7;`)};
+    ${props => (props.startPos ? `background-color: #6f577c;` : `display:none;`)};
   }
 `;
 
 const NavLink = styled(Link)`
-  ${trans};
+  ${transition};
   color: white;
-  font-size: 2em;
+  font-size: 2.5em;
   text-decoration: none;
   margin: 0 10px;
   height: 100%;
@@ -101,14 +101,13 @@ const NavLink = styled(Link)`
     color: #e1dbeb;
     order: 1;
     font-size: 1.2em;
-    margin-top: 15px;
+    margin-top: 18px;
     box-shadow: inset 0em -9px 10px rgba(66, 45, 83, .5);
-    height:74%;
+    height:71%;
     padding: 7px 7px 0px 7px;
     `
       : ` 
-    padding: 10px 10px 50px 10px; 
-    
+    padding: 2px 10px 50px 10px; 
     `};
 `;
 
