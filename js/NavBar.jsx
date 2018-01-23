@@ -12,17 +12,18 @@ class NavBar extends Component {
 
   startPos = this.props.startPos;
 
+  isActive = tab => this.props[tab];
+
   render() {
     return (
       <Top startPos={this.props.startPos}>
         <Nav startPos={this.props.startPos}>
           <NavShadow startPos={this.props.startPos}>
             <NavOptions startPos={this.props.startPos}>
-              <NavLink className="nav-link" to="/blog">
+              <NavLink data-active={this.isActive('written')} className="nav-link" to="/blog">
                 Tech Blog
               </NavLink>
-
-              <NavLink className="nav-link" to="/">
+              <NavLink data-active={this.isActive('auto')} className="nav-link" to="/">
                 Automatic Blog
               </NavLink>
             </NavOptions>
@@ -32,13 +33,7 @@ class NavBar extends Component {
     );
   }
 }
-// const StyledLink = styled(Link)`text-decoration: none;`;
-
-const NavLink = styled(Link)`
-  color: white;
-  font-size: 2em;
-  text-decoration: none;
-`;
+const trans = `-moz-transition: all 0.7s ease-out; -ms-transition: all 0.7s ease-out; -o-transition: all 0.7s ease-out; transition: all 0.7s ease-out;`;
 
 const transition =
   '-webkit-transition: all 0.7s ease-out; -moz-transition: all 0.7s ease-out; -ms-transition: all 0.7s ease-out; -o-transition: all 0.7s ease-out; transition: all 0.7s ease-out;';
@@ -76,8 +71,8 @@ const NavShadow = styled.div`
 `;
 
 const NavOptions = styled.div`
+  ${trans};
   position: absolute;
-  overflow: hidden;
   bottom: 0px;
   right: 1em;
   height: 70%;
@@ -86,13 +81,35 @@ const NavOptions = styled.div`
   color: white;
   display: flex;
   & > .nav-link {
-    margin: 0 10px;
     ${props => (props.startPos ? `background-color: #6f577c;` : `background-color: #50e7b7;`)};
-    height: 100%;
-    padding: 7px 7px 50px 7px;
-    border-top-right-radius: 7px;
-    border-top-left-radius: 7px;
   }
+`;
+
+const NavLink = styled(Link)`
+  ${trans};
+  color: white;
+  font-size: 2em;
+  text-decoration: none;
+  margin: 0 10px;
+  height: 100%;
+  padding: 7px 7px 50px 7px;
+  border-top-right-radius: 7px;
+  border-top-left-radius: 7px;
+  ${props =>
+    !props['data-active']
+      ? `
+    color: #e1dbeb;
+    order: 1;
+    font-size: 1.2em;
+    margin-top: 15px;
+    box-shadow: inset 0em -9px 10px rgba(66, 45, 83, .5);
+    height:74%;
+    padding: 7px 7px 0px 7px;
+    `
+      : ` 
+    padding: 10px 10px 50px 10px; 
+    
+    `};
 `;
 
 // const TopRight = styled.div`
