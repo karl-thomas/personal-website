@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { string } from 'prop-types';
+import { string, array } from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import media, { colors } from '../utilities';
@@ -11,7 +11,8 @@ class PostCard extends Component {
     title: string,
     feature_image: string,
     published_at: string,
-    slug: string
+    slug: string,
+    tags: array
   };
 
   shouldComponentUpdate() {
@@ -30,17 +31,20 @@ class PostCard extends Component {
     });
   };
 
+  tagsToS = this.props.tags.map(tag => tag.name).join(' ');
+
   render() {
     return (
-      <Link to={`/blog/posts/${this.props.slug}`}>
+      <Link style={{ textDecoration: 'none' }} to={`/blog/posts/${this.props.slug}`}>
         <Wrap className="post-list">
-          <Title>{this.props.title}</Title>
+          <Tags>{this.tagsToS}</Tags>
           <Svg>
             <polygon fill="#6f577c" points="2,80 20,80 2,40" />
             <polygon fill="white" points="30,0 0,0 0,80" />
             <polygon fill={colors.spotify} points="39,0 30,0 0,81 5,81" />
             <polygon fill="#444" points="30,0 28,0 0,81 1,81" />
           </Svg>
+          <Title>{this.props.title}</Title>
           <Image>
             <img src={this.props.feature_image} alt="featured post" />
           </Image>
@@ -52,6 +56,17 @@ class PostCard extends Component {
     );
   }
 }
+
+const Tags = styled.div`
+  display: inline-block;
+  width: 30%;
+  margin: 1rem 0px 4px 1rem;
+  color: #738a94;
+  font-size: 0.75rem;
+  line-height: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+`;
 
 const TimeBox = tb.extend`
 position:absolute; bottom:0;`;
@@ -65,9 +80,10 @@ const Wrap = wrap.extend`
 `;
 
 const Title = title.extend`
+  display:block;
   width:70%;
   margin:0;
-  margin-top:7px;
+  padding-left:1rem;
   height:70px;
   font-size: calc(2.8vw);
   ${media.phone`

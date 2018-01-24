@@ -103,7 +103,7 @@ const NavLink = styled(Link)`
     font-size: 1.2em;
     margin-top: 18px;
     box-shadow: inset 0em -9px 10px rgba(66, 45, 83, .5);
-    height:71%;
+    height:41px;
     padding: 7px 7px 0px 7px;
     `
       : ` 
