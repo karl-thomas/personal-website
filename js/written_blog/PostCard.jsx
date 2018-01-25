@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { string, array } from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import media, { colors } from '../utilities';
+import media from '../utilities';
 import wrap from '../shared/StyledComponents';
 import { TimeBox as tb, Title as title, TimeStamp } from '../automatic_blog/PostCard';
 
@@ -12,7 +12,8 @@ class PostCard extends Component {
     feature_image: string,
     published_at: string,
     slug: string,
-    tags: array
+    tags: array,
+    custom_excerpt: string
   };
 
   shouldComponentUpdate() {
@@ -38,13 +39,9 @@ class PostCard extends Component {
       <Link style={{ textDecoration: 'none' }} to={`/blog/posts/${this.props.slug}`}>
         <Wrap className="post-list">
           <Tags>{this.tagsToS}</Tags>
-          <Svg>
-            <polygon fill="#6f577c" points="2,80 20,80 2,40" />
-            <polygon fill="white" points="30,0 0,0 0,80" />
-            <polygon fill={colors.spotify} points="39,0 30,0 0,81 5,81" />
-            <polygon fill="#444" points="30,0 28,0 0,81 1,81" />
-          </Svg>
+          <Svg src="public/img/post-card.svg" alt="svg graphic for style" />
           <Title>{this.props.title}</Title>
+          <Excerpt>{this.props.custom_excerpt}</Excerpt>
           <Image>
             <img src={this.props.feature_image} alt="featured post" />
           </Image>
@@ -68,15 +65,19 @@ const Tags = styled.div`
   text-transform: uppercase;
 `;
 
-const TimeBox = tb.extend`
-position:absolute; bottom:0;`;
+const Excerpt = styled.p`
+  width: 70%;
+  padding: 0 0 calc(30px + 1rem) 1rem;
+`;
+
+const TimeBox = tb.extend`position:absolute; bottom:0;`;
 
 const Wrap = wrap.extend`
-  height:110px;
   width:85%;
   position: relative;
   margin:auto;
   margin-bottom:35px;
+  z-index: -30;
 `;
 
 const Title = title.extend`
@@ -84,25 +85,25 @@ const Title = title.extend`
   width:70%;
   margin:0;
   padding-left:1rem;
-  height:70px;
   font-size: calc(2.8vw);
   ${media.phone`
     font-size: calc(4.5vw);
     `};
 `;
 
-const Svg = styled.svg`
+const Svg = styled.img`
   z-index: 100;
+  width: 52px;
+  height: calc(100% - 28px);
   position: absolute;
-  right: calc(30% - 48px);
-  width: 50px;
-  height: 81px;
+  left: calc(70% - 10px);
 `;
 
 const Image = styled.div`
   border-bottom-right-radius: inherit;
   border-top-right-radius: inherit;
   position: absolute;
+  z-index: 0;
   height: 100%;
   top: 0;
   right: 0;
