@@ -69,10 +69,7 @@ const Tags = styled.div`
   text-transform: uppercase;
 `;
 
-const Excerpt = styled.p`
-  width: 100%;
-  padding: 0 0 calc(30px + 1rem) 0;
-`;
+const Excerpt = styled.p`margin-bottom: 1rem;`;
 
 const TimeBox = styled.aside`
   background-color: ${colors.spotify};
@@ -87,15 +84,17 @@ const TimeBox = styled.aside`
 
 const PostContent = styled.section`
   width: 60%;
-  padding: 0 0 0 1rem;
+  height: 100%;
+  padding: 0 1rem 0 1rem;
+  overflow: scroll;
 `;
 
-const Post = styled.article``;
+const Post = styled.article`border-radius: inherit;`;
 
 const Wrap = wrap.extend`
   width:85%;
   display: flex;
-  flex-flow:column;
+  flex-flow: column;
   position: relative;
   margin:auto;
   margin-bottom:35px;
@@ -133,6 +132,8 @@ const Image = styled.div`
   width: 30%;
   overflow: hidden;
   & > img {
+    border-bottom-right-radius: inherit;
+    border-top-right-radius: inherit;
     height: 100%;
     position: absolute;
     right: 0;
@@ -151,10 +152,29 @@ const StyledLink = styled(Link)`
       width: 92%;
     }
     & ${Excerpt} {
-      font-size: 1.2rem;
+      font-size: calc(1rem + 2%);
+    }
+    & ${Post} {
+      width: 100%;
+      height: 260px;
+      & ${PostContent} {
+        width: 40%;
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
     }
     & ${Image} {
-      width: 40%;
+      border-bottom-right-radius: initial;
+      border-top-right-radius: initial;
+      border-top-left-radius: inherit;
+      border-bottom-left-radius: inherit;
+      height: 99%;
+      width: 60%;
+      left: 0;
+      & img {
+        width: 100%;
+      }
     }
   }
   text-decoration: none;
