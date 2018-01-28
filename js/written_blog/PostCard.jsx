@@ -46,6 +46,7 @@ class PostCard extends Component {
               <Svg src="public/img/post-card.svg" alt="svg graphic for style" />
             </PostContent>
             <Image>
+              <Svg2 src="public/img/post-card.svg" alt="svg graphic for style" />
               <img src={this.props.feature_image} alt="featured post" />
             </Image>
           </Post>
@@ -121,6 +122,14 @@ const Svg = styled.img`
   top: 0;
 `;
 
+const Svg2 = Svg.extend`
+  display: none;
+  height: 260px;
+  transform: scaleX(-1);
+  width: 52px;
+  right: 56px;
+`;
+
 const Image = styled.div`
   border-bottom-right-radius: inherit;
   border-top-right-radius: inherit;
@@ -158,13 +167,21 @@ const StyledLink = styled(Link)`
       width: 100%;
       height: 260px;
       & ${PostContent} {
+        z-index: 1;
         width: 40%;
         position: absolute;
         top: 0;
         right: 0;
       }
     }
+    & ${Svg} {
+      display: none;
+    }
+    & ${Svg2} {
+      display: initial;
+    }
     & ${Image} {
+      z-index: 0;
       border-bottom-right-radius: initial;
       border-top-right-radius: initial;
       border-top-left-radius: inherit;
