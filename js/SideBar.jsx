@@ -16,7 +16,7 @@ class SideBar extends PureComponent {
     <ContactUL startPos={this.props.startPos}>
       <Li startPos={this.props.startPos} onClick={this.props.parentClickHandler}>
         <Link color="green" width="200" height="40">
-          <BarHeader>Portfolio</BarHeader>
+          <BarHeader>Resume</BarHeader>
         </Link>
       </Li>
       <Li>

@@ -47,7 +47,7 @@ class PostCard extends Component {
             </PostContent>
             <Image>
               <Svg2 src="public/img/post-card.svg" alt="svg graphic for style" />
-              <img src={this.props.feature_image} alt="featured post" />
+              <img className="post-image" src={this.props.feature_image} alt="featured post" />
             </Image>
           </Post>
           <TimeBox>
@@ -124,10 +124,11 @@ const Svg = styled.img`
 
 const Svg2 = Svg.extend`
   display: none;
-  height: 260px;
+  height: 270px;
   transform: scaleX(-1);
   width: 52px;
-  right: 56px;
+  left: initial;
+  right: inherit;
 `;
 
 const Image = styled.div`
@@ -140,7 +141,7 @@ const Image = styled.div`
   right: 0;
   width: 30%;
   overflow: hidden;
-  & > img {
+  & > .post-image {
     border-bottom-right-radius: inherit;
     border-top-right-radius: inherit;
     height: 100%;
@@ -189,7 +190,7 @@ const StyledLink = styled(Link)`
       height: 99%;
       width: 60%;
       left: 0;
-      & img {
+      & .post-image {
         width: 100%;
       }
     }
