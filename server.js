@@ -1,5 +1,6 @@
 /* eslint no-console:0 */
 require('babel-register');
+
 const express = require('express');
 
 const server = express();
@@ -7,7 +8,7 @@ const server = express();
 // set up ssr rendering for react components
 const renderHTMLTemplate = require('./app/scripts/renderHtmlTemplate');
 const { createElement } = require('react');
-const { renderToString, renderToNodeStream } = require('react-dom/server');
+const { renderToString } = require('react-dom/server');
 const { StaticRouter } = require('react-router-dom');
 const App = require('./js/App').default;
 
@@ -26,7 +27,10 @@ const config = require('./webpack.config');
 // set port
 const port = 8080;
 
+require('dotenv').config(); // load .env file
+
 server.use(compression());
+
 if (process.env.NODE_ENV === 'development') {
   const compiler = webpack(config);
   server.use(
@@ -41,7 +45,8 @@ server.use('/public', express.static('./public'));
 // middleware for ssr render
 server.use((req, res) => {
   const context = {};
-  // wrap style/ router provider around application
+
+  // wrap style/router provider around application
   // render body and styles.
   const body = renderToString(
     createElement(
@@ -64,5 +69,6 @@ server.use((req, res) => {
   res.end();
 });
 
+// start the server
 console.log(`listening on ${port}`);
 server.listen(port);
