@@ -46,7 +46,6 @@ class WrittenBlog extends Component {
 
   // is it the index page or not?
   determinePostRendering = () => (this.props.index ? this.renderPostCards() : this.renderPostDetails());
-
   // render a section of each post
   renderPostCards = () =>
     this.state.apiData.posts
