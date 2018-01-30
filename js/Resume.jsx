@@ -137,7 +137,9 @@ const Header = styled.h2`
 `;
 const Summary = styled.div`
   padding-left: 144px;
-  ${media.tablet`padding:0px;margin:10px;`};
+  font-size: 1.2em;
+  ${media.tablet`padding:0px;margin:10px;
+    font-size: 1.0em;`};
 `;
 
 const Title = styled.p`
@@ -157,9 +159,12 @@ const Times = styled.p`
 const Body = styled.div`
   padding-left: 144px;
   padding-bottom: 20px;
-  ${media.tablet`padding:0px;margin:10px;`};
+
+  ${media.tablet`padding:0px;margin:10px;font-size: 1.0em;`};
   & > p {
     color: #444;
+    font-size: 1.2em;
+    ${media.tablet`font-size: 1.0em;`};
   }
 `;
 const SubSection = styled.div`
@@ -175,6 +180,7 @@ const LinkTo = styled.a`
   height: 50%;
   padding-bottom: 10px;
   text-decoration-color: #a9ffce;
-  ${media.tablet`text-align: right;`};
+  font-size: 1.2em;
+  ${media.tablet`text-align: right; font-size: 1.0em;`};
 `;
 export default Resume;

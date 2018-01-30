@@ -4,7 +4,7 @@ import media, { colors } from '../utilities';
 export const PostWrapper = styled.div`
   z-index: -1000;
   position: fixed;
-  padding: 4em 3em;
+  padding: 3em 3em;
   height: 75vh;
   width: calc(97% - 250px);
   overflow-y: scroll;
@@ -29,9 +29,9 @@ export const PostWrapper = styled.div`
 const Wrap = styled.div`
   background-color: white;
   width: 100%;
-
-  border-radius: 25px;
+  border-radius: 10px;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+
   ${media.phone`
     & > svg > g {
       transform: translate(20px,20px)

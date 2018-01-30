@@ -21,7 +21,7 @@ resumeFig.volunteering = [
     title: 'Volunteer Instructor',
     company: 'Living Works',
     bullets: [
-      'Help 4-6th graders in CPS  understand the basics of HTML and CSS.',
+      'Help 4-6th graders in CPS understand the basics of HTML and CSS.',
       "Teach children about computer science before someone tells them that it's only for certain kinds of people."
     ],
     start: 'Oct 2017',

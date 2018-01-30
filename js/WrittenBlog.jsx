@@ -24,8 +24,10 @@ class WrittenBlog extends Component {
     const { GHOST_ID, GHOST_SECRET } = process.env;
     const auth = `?client_id=${GHOST_ID}&client_secret=${GHOST_SECRET}`;
 
-    if (this.props.index) this.getPostData(`/posts${auth}`);
-    else if (this.props.slug) this.getPostData(`/posts/slug/${this.props.slug}${auth}`);
+    if (this.props.index) this.getPostData(`/posts${auth}&include=tags`);
+    else if (this.props.slug)
+      // all posts
+      this.getPostData(`/posts/slug/${this.props.slug}${auth}&include=tags`); // details
   }
 
   getPostData = url => {
@@ -58,8 +60,8 @@ class WrittenBlog extends Component {
   // render the end result
   render() {
     return (
-      <BlogLayout>
-        <PostWrapper className={this.props.index ? '' : 'wrtn-post'}>
+      <BlogLayout written>
+        <PostWrapper className={this.props.index ? 'wrtn-cards' : 'wrtn-post'}>
           {this.determinePostRendering()}
         </PostWrapper>
       </BlogLayout>

@@ -1,11 +1,13 @@
 import * as React from 'react';
-import { object, oneOfType, arrayOf, node } from 'prop-types';
+import { object, oneOfType, arrayOf, node, bool } from 'prop-types';
 import SideBar from './SideBar';
 import NavBar from './NavBar';
 import Resume from './Resume';
 
 class Blog extends React.Component {
   static propTypes = {
+    written: bool,
+    auto: bool,
     postID: object,
     children: oneOfType([arrayOf(node), node])
   };
@@ -24,7 +26,12 @@ class Blog extends React.Component {
     return (
       <div>
         <Resume startPos={this.state.startPos} />
-        <NavBar startPos={this.state.startPos} postID={this.props.postID} />
+        <NavBar
+          written={this.props.written}
+          auto={this.props.auto}
+          startPos={this.state.startPos}
+          postID={this.props.postID}
+        />
         <SideBar startPos={this.state.startPos} parentClickHandler={this.handleClick} />
         {this.mapStateToChildren()}
       </div>

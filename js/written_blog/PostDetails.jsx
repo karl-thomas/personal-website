@@ -7,6 +7,7 @@ import sanitize from 'sanitize-html';
 
 class PostDetails extends Component {
   componentDidMount() {
+    // when details are loaded, update nav.
     this.changeTitle();
   }
 
@@ -39,10 +40,12 @@ const Image = styled.img`
 const Wrap = styled.div`
   display: initial;
   & > div {
-    margin-left: -0.5rem;
+    margin-left: -1rem;
     margin-right: 3rem;
-    padding: 1.5em;
+    padding: 1.5em 2.2em;
     position: absolute;
+    font-size: 21px;
+    font-weight: 350;
     background-color: white;
   }
   z-index: 1;

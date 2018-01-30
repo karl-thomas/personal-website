@@ -14,7 +14,7 @@ class AutomaticBlog extends Component {
 
   render() {
     return (
-      <BlogLayout>
+      <BlogLayout auto>
         <PostContainer postID={this.props.postID} />
       </BlogLayout>
     );
