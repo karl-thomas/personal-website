@@ -1,4 +1,4 @@
-module.exports = function renderHtmlTemplate(html) {
+module.exports = function renderHtmlTemplate(html, styles) {
   return `<!DOCTYPE html>
    <html lang="en">
     <head>
@@ -7,6 +7,7 @@ module.exports = function renderHtmlTemplate(html) {
       <meta name=viewport content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="/public/style.css">
       <title>Automatic Blog</title>
+      ${styles}
     </head>
     <body>
       <div id="app">${html}</div>

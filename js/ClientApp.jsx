@@ -1,17 +1,11 @@
-// @flow
-
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 
-// PERFORMANCE TOOLS
-// import Perf from 'react-addons-perf';
-// window.Perf = Perf;
-// Perf.start();
-
+// hydrate because of the ssr
 const renderApp = () => {
-  render(
+  ReactDOM.hydrate(
     <BrowserRouter>
       <App />
     </BrowserRouter>,

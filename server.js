@@ -7,9 +7,14 @@ const server = express();
 // set up ssr rendering for react components
 const renderHTMLTemplate = require('./app/scripts/renderHtmlTemplate');
 const { createElement } = require('react');
-const { renderToString } = require('react-dom/server');
+const { renderToString, renderToNodeStream } = require('react-dom/server');
 const { StaticRouter } = require('react-router-dom');
 const App = require('./js/App').default;
+
+// ssr styled components
+const styled = require('styled-components');
+
+const sheet = new styled.ServerStyleSheet();
 
 // require middleware/compiler
 const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -33,17 +38,29 @@ if (process.env.NODE_ENV === 'development') {
 }
 server.use('/public', express.static('./public'));
 
+// middleware for ssr render
 server.use((req, res) => {
   const context = {};
+  // wrap style/ router provider around application
+  // render body and styles.
   const body = renderToString(
-    createElement(StaticRouter, { location: req.url, context }, createElement(App))
+    createElement(
+      styled.StyleSheetManager,
+      { sheet: sheet.instance },
+      createElement(StaticRouter, { location: req.url, context }, createElement(App))
+    )
   );
 
   if (context.url) {
     res.redirect(301, context.url);
   }
 
-  res.write(renderHTMLTemplate(body));
+  const styles = sheet.getStyleTags();
+
+  // add body and styles to the template.
+  const finalSsrRender = renderHTMLTemplate(body, styles);
+
+  res.write(finalSsrRender);
   res.end();
 });
 
