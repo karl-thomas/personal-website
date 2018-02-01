@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 
-// hydrate because of the ssr
+// render in development/*| or |*/hydrate because of the ssr
+const renderMethod = process.env.NODE_ENV === 'development' ? ReactDOM.render : ReactDOM.hydrate;
+
 const renderApp = () => {
-  ReactDOM.hydrate(
+  renderMethod(
     <BrowserRouter>
       <App />
     </BrowserRouter>,

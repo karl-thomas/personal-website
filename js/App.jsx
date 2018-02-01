@@ -41,8 +41,7 @@ import WrittenBlog from './WrittenBlog';
 />
 <Route path="/details/:id" component={matchedDetailsPage} />
 */
-
-const FourOhFour = () => <h1>4 OH 4</h1>;
+const FourOhFour = () => <h1>404</h1>;
 
 // provider gives app access to redux store
 const App = () => (

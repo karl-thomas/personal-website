@@ -162,7 +162,7 @@ const StyledLink = styled(Link)`
       width: 92%;
     }
     & ${Excerpt} {
-      font-size: calc(1rem + 2%);
+      font-size: calc(1.3rem + 2%);
     }
     & ${Post} {
       width: 100%;

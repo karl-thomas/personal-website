@@ -5,6 +5,7 @@ import BlogLayout from './Blog';
 import PostCard from './written_blog/PostCard';
 import { PostWrapper } from './shared/StyledComponents';
 import PostDetails from './written_blog/PostDetails';
+import secrets from '../app/scripts/secret';
 
 class WrittenBlog extends Component {
   static defaultProps = {
@@ -21,7 +22,7 @@ class WrittenBlog extends Component {
   };
 
   componentDidMount() {
-    const { GHOST_ID, GHOST_SECRET } = process.env;
+    const { GHOST_ID, GHOST_SECRET } = secrets;
     const auth = `?client_id=${GHOST_ID}&client_secret=${GHOST_SECRET}`;
 
     if (this.props.index) this.getPostData(`/posts${auth}&include=tags`);
@@ -31,7 +32,7 @@ class WrittenBlog extends Component {
   }
 
   getPostData = url => {
-    const { GHOST_ADDRESS } = process.env;
+    const { GHOST_ADDRESS } = secrets;
     axios
       .get(`http://${GHOST_ADDRESS}/ghost/api/v0.1${url}`)
       .then(response =>

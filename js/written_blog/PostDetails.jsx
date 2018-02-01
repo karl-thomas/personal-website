@@ -1,23 +1,10 @@
 // @flow
 
 import React, { Component } from 'react';
-import ReactDOMServer from 'react-dom/server';
 import styled from 'styled-components';
 import sanitize from 'sanitize-html';
 
 class PostDetails extends Component {
-  componentDidMount() {
-    // when details are loaded, update nav.
-    this.changeTitle();
-  }
-
-  changeTitle = () => {
-    const titleBox = document.getElementsByClassName('post-title-text')[0];
-    titleBox.innerHTML = ReactDOMServer.renderToString(
-      <h2 style={{ fontSize: '175%' }}>{this.props.title}</h2>
-    );
-  };
-
   props: { title: string, html: string, feature_image: string };
 
   initial = { style: { display: 'initial' } };
