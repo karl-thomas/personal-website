@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { string, array } from 'prop-types';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import media, { colors } from '../utilities';
 import wrap from '../shared/StyledComponents';
 import { Title as title, TimeStamp } from '../automatic_blog/PostCard';
@@ -25,10 +25,7 @@ class PostCard extends Component {
     return date.toLocaleString(undefined, {
       day: '2-digit',
       month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit'
+      year: 'numeric'
     });
   };
 
@@ -39,19 +36,20 @@ class PostCard extends Component {
       <StyledLink to={`/blog/posts/${this.props.slug}`}>
         <Wrap className="post-list">
           <Post>
-            <PostContent>
-              <Tags>{this.tagsToS}</Tags>
-              <Title>{this.props.title}</Title>
-              <Excerpt>{this.props.custom_excerpt}</Excerpt>
-              <Svg src="public/img/post-card.svg" alt="svg graphic for style" />
-            </PostContent>
             <Image>
-              <Svg2 src="public/img/post-card.svg" alt="svg graphic for style" />
               <img className="post-image" src={this.props.feature_image} alt="featured post" />
             </Image>
+            <PostContent>
+              <Text>
+                <Tags>{this.tagsToS}</Tags>
+                <Title>{this.props.title}</Title>
+                <Excerpt>{this.props.custom_excerpt}</Excerpt>
+              </Text>
+              <Svg src="public/img/post-card.svg" alt="svg graphic for style" />
+            </PostContent>
           </Post>
           <TimeBox>
-            <TimeStamp>{this.formattedDate()}</TimeStamp>
+            <TimeStamp> Posted {this.formattedDate()}</TimeStamp>
           </TimeBox>
         </Wrap>
       </StyledLink>
@@ -62,7 +60,7 @@ class PostCard extends Component {
 const Tags = styled.div`
   display: inline-block;
   width: 100%;
-  margin: 1rem 0px 4px 0;
+  margin: 0 0 4px 0;
   color: #738a94;
   font-size: 0.75rem;
   line-height: 0.75rem;
@@ -70,7 +68,7 @@ const Tags = styled.div`
   text-transform: uppercase;
 `;
 
-const Excerpt = styled.p`margin-bottom: 1rem;`;
+const Excerpt = styled.p`margin: 0 0 1rem 0;`;
 
 const TimeBox = styled.aside`
   background-color: ${colors.spotify};
@@ -84,10 +82,12 @@ const TimeBox = styled.aside`
 `;
 
 const PostContent = styled.section`
-  width: 60%;
   height: 100%;
-  padding: 0 1rem 0 1rem;
+  padding: 0 0 0 0;
   overflow: scroll;
+  display: flex;
+  flex-flow: row wrap;
+  width: calc(60% + 50px);
 `;
 
 const Post = styled.article`border-radius: inherit;`;
@@ -116,19 +116,7 @@ const Title = title.extend`
 const Svg = styled.img`
   z-index: 100;
   width: 52px;
-  height: calc(100% - 28px);
-  position: absolute;
-  left: calc(70% - 13px);
-  top: 0;
-`;
-
-const Svg2 = Svg.extend`
-  display: none;
-  height: 270px;
-  transform: scaleX(-1);
-  width: 52px;
-  left: initial;
-  right: inherit;
+  height: auto;
 `;
 
 const Image = styled.div`
@@ -139,7 +127,7 @@ const Image = styled.div`
   height: 100%;
   top: 0;
   right: 0;
-  width: 30%;
+  width: 40%;
   overflow: hidden;
   & > .post-image {
     border-bottom-right-radius: inherit;
@@ -152,51 +140,64 @@ const Image = styled.div`
   }
 `;
 
-const StyledLink = styled(Link)`
-  &:first-child {
-    flex-basis: 100%;
-    & ${Title} {
-      font-size: calc(2.2vw + 5px);
-    }
-    & ${Wrap} {
-      width: 92%;
-    }
-    & ${Excerpt} {
-      font-size: calc(1.3rem + 2%);
-    }
-    & ${Post} {
-      width: 100%;
-      height: 260px;
-      & ${PostContent} {
-        z-index: 1;
-        width: 40%;
-        position: absolute;
-        top: 0;
-        right: 0;
-      }
-    }
-    & ${Svg} {
-      display: none;
-    }
-    & ${Svg2} {
-      display: initial;
-    }
-    & ${Image} {
-      z-index: 0;
-      border-bottom-right-radius: initial;
-      border-top-right-radius: initial;
-      border-top-left-radius: inherit;
-      border-bottom-left-radius: inherit;
-      height: 99%;
-      width: 60%;
-      left: 0;
-      & .post-image {
-        width: 100%;
-      }
+// css for making a card the full fit the container
+const FullPageCard = css`
+  flex-basis: 100%;
+  & ${Title} {
+    font-size: calc(2.2vw + 5px);
+  }
+  & ${Wrap} {
+    width: 92%;
+  }
+  & ${Excerpt} {
+    font-size: calc(0.8rem + 0.35vw);
+  }
+  & ${Post} {
+    width: 100%;
+    height: 260px;
+    & ${PostContent} {
+      flex-flow: row-reverse wrap;
+      z-index: 1;
+      width: calc(40% + 52px);
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding-right: 1rem;
     }
   }
+  & ${Svg} {
+    transform: scaleX(-1);
+  }
+  & ${Image} {
+    z-index: 0;
+    border-bottom-right-radius: initial;
+    border-top-right-radius: initial;
+    border-top-left-radius: inherit;
+    border-bottom-left-radius: inherit;
+    height: 99%;
+    width: 60%;
+    left: 0;
+    & .post-image {
+      width: 100%;
+    }
+  }
+`;
+
+const StyledLink = styled(Link)`
   text-decoration: none;
   flex-basis: 50%;
+  &:first-child {
+    ${FullPageCard};
+  }
+  ${media.desktop`${FullPageCard}`};
+`;
+
+const Text = styled.section`
+  width: calc(100% - 54px);
+  padding: 1rem 0 0 1rem;
+  ${StyledLink}:hover & {
+    animation: up-bump 0.4s ease;
+  }
 `;
 
 export default PostCard;
