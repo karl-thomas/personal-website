@@ -8,13 +8,13 @@ import Link from './shared/PanningLink';
 
 class SideBar extends PureComponent {
   static propTypes = {
-    parentClickHandler: func,
+    changeToResume: func,
     startPos: bool
   };
 
   startingUl = (
     <ContactUL startPos={this.props.startPos}>
-      <Li startPos={this.props.startPos} onClick={this.props.parentClickHandler}>
+      <Li startPos={this.props.startPos} onClick={this.props.changeToResume}>
         <Link color="green" width="200" height="40">
           <BarHeader>Resume</BarHeader>
         </Link>
@@ -34,7 +34,7 @@ class SideBar extends PureComponent {
 
   transitionedUl = (
     <ContactUL startPos={this.props.startPos}>
-      <Li startPos={this.props.startPos} onClick={this.props.parentClickHandler}>
+      <Li startPos={this.props.startPos} onClick={this.props.changeToResume}>
         <Link color="purple" width="200" height="40">
           <BarHeader>Back</BarHeader>
         </Link>

@@ -539,12 +539,15 @@ li {
 @keyframes up-bump {
   0% {
     padding-top: 1rem;
+    padding-bottom: 0rem;
   }
   50% {
     padding-top: 0.2rem;
+    padding-bottom: 0.8rem;
   }
   100% {
     padding-top: 1rem;
+    padding-bottom: 0rem;
   }
 }
 @keyframes down-bump {

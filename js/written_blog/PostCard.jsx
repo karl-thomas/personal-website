@@ -57,6 +57,9 @@ class PostCard extends Component {
   }
 }
 
+const transition =
+  '-webkit-transition: all 0.7s ease-out; -moz-transition: all 0.7s ease-out; -ms-transition: all 0.7s ease-out; -o-transition: all 0.7s ease-out; transition: all 0.7s ease-out;';
+
 const Tags = styled.div`
   display: inline-block;
   width: 100%;
@@ -145,6 +148,7 @@ const FullPageCard = css`
   flex-basis: 100%;
   & ${Title} {
     font-size: calc(2.2vw + 5px);
+    margin-bottom: 1rem;
   }
   & ${Wrap} {
     width: 92%;
@@ -158,7 +162,7 @@ const FullPageCard = css`
     & ${PostContent} {
       flex-flow: row-reverse wrap;
       z-index: 1;
-      width: calc(40% + 52px);
+      width: calc(calc(20% + 15vw) + 52px);
       position: absolute;
       top: 0;
       right: 0;
@@ -175,7 +179,7 @@ const FullPageCard = css`
     border-top-left-radius: inherit;
     border-bottom-left-radius: inherit;
     height: 99%;
-    width: 60%;
+    width: calc(90% - 22vw);
     left: 0;
     & .post-image {
       width: 100%;
@@ -184,6 +188,7 @@ const FullPageCard = css`
 `;
 
 const StyledLink = styled(Link)`
+  ${transition};
   text-decoration: none;
   flex-basis: 50%;
   &:first-child {

@@ -25,10 +25,13 @@ class WrittenBlog extends Component {
     const { GHOST_ID, GHOST_SECRET } = secrets;
     const auth = `?client_id=${GHOST_ID}&client_secret=${GHOST_SECRET}`;
 
-    if (this.props.index) this.getPostData(`/posts${auth}&include=tags`);
-    else if (this.props.slug)
+    if (this.props.index) {
       // all posts
-      this.getPostData(`/posts/slug/${this.props.slug}${auth}&include=tags`); // details
+      this.getPostData(`/posts${auth}&include=tags`);
+    } else if (this.props.slug) {
+      // details
+      this.getPostData(`/posts/slug/${this.props.slug}${auth}&include=tags`);
+    }
   }
 
   getPostData = url => {

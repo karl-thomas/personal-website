@@ -32,7 +32,7 @@ class Blog extends React.Component {
           startPos={this.state.startPos}
           postID={this.props.postID}
         />
-        <SideBar startPos={this.state.startPos} parentClickHandler={this.handleClick} />
+        <SideBar startPos={this.state.startPos} changeToResume={this.handleClick} />
         {this.mapStateToChildren()}
       </div>
     );

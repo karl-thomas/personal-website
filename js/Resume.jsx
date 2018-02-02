@@ -118,7 +118,7 @@ const OutsideBox = styled.div`
 const Wrapper = styled.div`
   height: 100%;
   width: 100%;
-  padding: 2em 2em 100px 3em;
+  padding: 2vh 5vw 100px 5vw;
   overflow-y: scroll;
   ${props => (props.startPos ? '' : `display: block;`)};
   ${media.phone`
@@ -134,10 +134,11 @@ const Header = styled.h2`
   font-weight: 500;
   width: 100%;
   margin: 0px 0px 5px;
+  font-size: calc(1em + 1.2vw);
 `;
 const Summary = styled.div`
   padding-left: 144px;
-  font-size: 1.2em;
+  font-size: calc(0.5em + 1.1vw);
   ${media.tablet`padding:0px;margin:10px;
     font-size: 1.0em;`};
 `;
@@ -163,7 +164,7 @@ const Body = styled.div`
   ${media.tablet`padding:0px;margin:10px;font-size: 1.0em;`};
   & > p {
     color: #444;
-    font-size: 1.2em;
+    font-size: calc(0.5em + 1.1vw);
     ${media.tablet`font-size: 1.0em;`};
   }
 `;
@@ -180,7 +181,7 @@ const LinkTo = styled.a`
   height: 50%;
   padding-bottom: 10px;
   text-decoration-color: #a9ffce;
-  font-size: 1.2em;
+  font-size: calc(0.5em + 1.1vw);
   ${media.tablet`text-align: right; font-size: 1.0em;`};
 `;
 export default Resume;

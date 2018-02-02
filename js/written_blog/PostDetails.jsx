@@ -33,6 +33,7 @@ const Hero = styled.figure`
   display: flex;
   flex-flow: row wrap;
   z-index: 0;
+  box-shadow: rgba(66, 45, 83, 0.3) 0px 4px 7px 1px;
 
   ${media.phone`
     max-width:100vw;`};
@@ -45,22 +46,23 @@ const Hero = styled.figure`
     width: 40%;
     animation: detailsTitleMove 1s 1;
     animation-timing-function: ease-out;
-    color: white;
+    color: #444;
     font-size: 180%;
     padding: 2rem;
-    background-color: hsla(279, 18%, 41%, 0.4);
+    background-color: white;
     border-bottom-left-radius: 10px;
   }
 `;
 
 const Wrap = styled.article`
   display: initial;
+  ${media.phone`width:100vw;`};
   & > div {
+    box-shadow: 0px -4px 7px 1px rgba(66, 45, 83, 0.3);
     transition: all 1.2s ease-out;
     animation: detailsContentJostle 1.2s 1;
     animation-timing-function: ease-out;
     animation-delay: 1s;
-    margin-left: -1rem;
     margin-right: 0;
     top: 50px;
     padding: 1.5em calc(2em + 4vw);
@@ -69,6 +71,7 @@ const Wrap = styled.article`
     font-weight: 350;
     background-color: white;
     border-radius: 5px;
+    ${media.phone`width:100%;`};
     & p {
       & code {
         background-color: hsla(161, 76%, 91%, 1);
