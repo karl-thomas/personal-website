@@ -4,8 +4,8 @@ import media, { colors } from '../utilities';
 export const PostWrapper = styled.div`
   z-index: -1000;
   position: fixed;
-  padding: 3em 3em;
-  height: 75vh;
+  padding: 3em 3vw;
+  height: 77vh;
   width: calc(97% - 250px);
   overflow-y: scroll;
   -webkit-transition: all 0.5s ease-out;
@@ -15,7 +15,7 @@ export const PostWrapper = styled.div`
   transition: all 0.5s ease-out;
   ${props =>
     props.startPos
-      ? 'transform: translate(calc(250px + 4%),calc(112px + 5vh));'
+      ? 'transform: translate(calc(250px + 4%),calc(108px + 5vh));'
       : 'transform: translate(100vw,100vh);'};
   ${media.phone`
     visibility: visible;
@@ -23,6 +23,8 @@ export const PostWrapper = styled.div`
       top: 112px;
       left:0px;
       width:100%;
+      padding-right:10px;
+      padding-left:10px;
     `};
 `;
 

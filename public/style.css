@@ -506,3 +506,59 @@ li {
   flex-flow: row wrap;
 }
 
+@keyframes details-title-move {
+  from {
+    top: -300px;
+  }
+  to {
+    top: 0px;
+  }
+}
+
+@keyframes details-content-jostle {
+  0% {
+    top: 0;
+  }
+  20% {
+    top: -120px;
+  }
+  40% {
+    top: -105px;
+  }
+  60% {
+    top: -115px;
+  }
+  80% {
+    top: -105px;
+  }
+  100% {
+    top: 0;
+  }
+}
+
+@keyframes up-bump {
+  0% {
+    padding-top: 1rem;
+  }
+  50% {
+    padding-top: 0.2rem;
+  }
+  100% {
+    padding-top: 1rem;
+  }
+}
+@keyframes down-bump {
+  0% {
+    padding-top: 1em;
+  }
+  50% {
+    padding-top: 1.5rem;
+  }
+  100% {
+    padding-top: 2rem;
+  }
+}
+
+.down-bump-animation {
+  animation: down-bump 0.4s ease;
+}

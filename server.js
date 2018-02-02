@@ -60,6 +60,7 @@ server.use((req, res) => {
     res.redirect(301, context.url);
   }
 
+  // retrieves a string of styl tags
   const styles = sheet.getStyleTags();
 
   // add body and styles to the template.
