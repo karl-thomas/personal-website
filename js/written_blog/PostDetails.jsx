@@ -5,7 +5,7 @@ import sanitize from 'sanitize-html';
 import media from '../utilities';
 
 class PostDetails extends Component {
-  static propTypes = { title: string, html: string, feature_image: string };
+  static propTypes = { title: string, html: string, feature_image: string, custom_excerpt: string };
 
   componentDidMount() {
     const img = document.querySelector(`img[alt='${this.props.title}']`);
@@ -16,9 +16,10 @@ class PostDetails extends Component {
   render() {
     return (
       <React.Fragment>
+        <h1>{this.props.title}</h1>
         <Hero>
           <img src={this.props.feature_image} alt={this.props.title} />
-          <figcaption>{this.props.title}</figcaption>
+          <figcaption>{this.props.custom_excerpt}</figcaption>
         </Hero>
         <Wrap dangerouslySetInnerHTML={{ __html: sanitize(this.props.html) }} />
       </React.Fragment>
@@ -47,8 +48,9 @@ const Hero = styled.figure`
     animation: detailsTitleMove 1s 1;
     animation-timing-function: ease-out;
     color: #444;
-    font-size: 180%;
+    font-size: 120%;
     padding: 2rem;
+
     background-color: white;
     border-bottom-left-radius: 10px;
   }
@@ -58,7 +60,7 @@ const Wrap = styled.article`
   display: initial;
   ${media.phone`width:100vw;`};
   & > div {
-    box-shadow: 0px -4px 7px 1px rgba(66, 45, 83, 0.3);
+    box-shadow: rgba(66, 45, 83, 0.3) 0px -2px 2px -1px;
     transition: all 1.2s ease-out;
     animation: detailsContentJostle 1.2s 1;
     animation-timing-function: ease-out;
