@@ -7,16 +7,15 @@ import media from '../utilities';
 class PostDetails extends Component {
   static propTypes = { title: string, html: string, feature_image: string, custom_excerpt: string };
 
-  componentDidMount() {
-    const img = document.querySelector(`img[alt='${this.props.title}']`);
-    console.log(img.offsetHeight);
-  }
+  // componentDidMount() {
+  //   const img = document.querySelector(`img[alt='${this.props.title}']`);
+  // }
 
   initial = { style: { display: 'initial' } };
   render() {
     return (
       <React.Fragment>
-        <h1>{this.props.title}</h1>
+        <Title>{this.props.title}</Title>
         <Hero>
           <img src={this.props.feature_image} alt={this.props.title} />
           <figcaption>{this.props.custom_excerpt}</figcaption>
@@ -26,10 +25,13 @@ class PostDetails extends Component {
     );
   }
 }
+
+const Title = styled.h1`text-align: center;`;
+
 const Hero = styled.figure`
   height: 100%;
   transition: all 0.5s ease-out;
-  margin: -4em -3vw;
+  margin: 0 -3vw -4em -3vw;
   max-width: calc(97vw - 250px);
   display: flex;
   flex-flow: row wrap;
