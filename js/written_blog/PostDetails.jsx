@@ -26,7 +26,10 @@ class PostDetails extends Component {
   }
 }
 
-const Title = styled.h1`text-align: center;`;
+const Title = styled.h1`
+  text-align: center;
+  margin-top: 0;
+`;
 
 const Hero = styled.figure`
   height: 100%;
@@ -77,6 +80,7 @@ const Wrap = styled.article`
     border-radius: 5px;
     ${media.phone`width:100%;`};
     & p {
+      font-family: medium-content-serif-font, Georgia, Cambria, 'Times New Roman', Times, serif;
       & code {
         background-color: hsla(161, 76%, 91%, 1);
         padding: 0 2px;
@@ -87,4 +91,5 @@ const Wrap = styled.article`
   z-index: 1;
   background-color: white;
 `;
+
 export default PostDetails;

@@ -5,6 +5,7 @@ import styled, { css } from 'styled-components';
 import media, { colors } from '../utilities';
 import wrap from '../shared/StyledComponents';
 import { Title as title, TimeStamp } from '../automatic_blog/PostCard';
+import { GHOST_ADDRESS } from '../../app/scripts/secret';
 
 class PostCard extends Component {
   static propTypes = {
@@ -37,7 +38,11 @@ class PostCard extends Component {
         <Wrap className="post-list">
           <Post>
             <Image>
-              <img className="post-image" src={this.props.feature_image} alt="featured post" />
+              <img
+                className="post-image"
+                src={`http://${GHOST_ADDRESS}${this.props.feature_image}`}
+                alt="featured post"
+              />
             </Image>
             <PostContent>
               <Text>
@@ -123,6 +128,7 @@ const Svg = styled.img`
 `;
 
 const Image = styled.div`
+  background: linear-gradient(to right, transparent, #50e5b7);
   border-bottom-right-radius: inherit;
   border-top-right-radius: inherit;
   position: absolute;
