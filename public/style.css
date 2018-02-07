@@ -559,6 +559,15 @@ li {
   }
 }
 
+@keyframes equalizor {
+  from {
+    border-bottom-width: 100px;
+  }
+  to {
+    border-bottom-width: 1px;
+  }
+}
+
 .down-bump-animation {
   animation: down-bump 0.4s ease;
 }
