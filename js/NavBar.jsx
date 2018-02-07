@@ -111,45 +111,4 @@ const NavLink = styled(Link)`
     `};
 `;
 
-// const TopRight = styled.div`
-//   ${transition};
-//   ${props => (props.startPos ? `background-color: #6f577c;` : `background-color: #50e7b7;`)};
-//   transform: translate(-50px, 50px);
-//   padding: 20px 20px 20px 80px;
-//   z-index: -1;
-//   width: calc(50% + 50px);
-//   position: fixed;
-//   vertical-align: top;
-//   text-align: center;
-//   display: inline-block;
-//   height: 100%;
-//   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-//   ${media.phone`display: none;`};
-//   & > h1,
-//   h2 {
-//     ${props => (props.startPos ? `display:initial;` : `display:none;`)};
-//     margin: 0px;
-//     padding: 0px;
-//     color: white;
-//     font-weight: 350;
-//   }
-// `;
-
-// const TopSvg = styled.svg`
-//   display: block;
-//   left: calc(50vw - 50px);
-//   position: fixed;
-//   width: 50px;
-//   height: 50px;
-//   z-index: 0;
-//   ${transition};
-//   & > .bottom-triangle {
-//     fill: ${props => (props.startPos ? `#422c54` : `#30a988`)};
-//     ${transition};
-//   }
-//   ${media.phone`
-//     display:none;
-//     `};
-// `;
-
 export default NavBar;
