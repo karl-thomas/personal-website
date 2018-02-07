@@ -6,7 +6,7 @@ export const PostWrapper = styled.div`
   position: fixed;
   padding: 3em 3vw;
   height: 77vh;
-  width: calc(97% - 250px);
+  width: calc(97vw - 250px);
   overflow-y: scroll;
   -webkit-transition: all 0.5s ease-out;
   -moz-transition: all 0.5s ease-out;
@@ -15,7 +15,7 @@ export const PostWrapper = styled.div`
   transition: all 0.5s ease-out;
   ${props =>
     props.startPos
-      ? 'transform: translate(calc(250px + 4%),calc(108px + 5vh));'
+      ? 'transform: translate(calc(250px + 3vw),calc(108px + 5vh));'
       : 'transform: translate(100vw,100vh);'};
   ${media.phone`
     visibility: visible;

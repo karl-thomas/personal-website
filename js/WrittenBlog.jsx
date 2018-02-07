@@ -6,6 +6,7 @@ import PostCard from './written_blog/PostCard';
 import { PostWrapper } from './shared/StyledComponents';
 import PostDetails from './written_blog/PostDetails';
 import secrets from '../app/scripts/secret';
+import Loader from './Spinner';
 
 class WrittenBlog extends Component {
   static defaultProps = {
@@ -53,13 +54,15 @@ class WrittenBlog extends Component {
 
   // render a section of each post
   renderPostCards = () =>
-    this.state.apiData.posts
-      ? this.state.apiData.posts.map(record => <PostCard key={record.id} {...record} />)
-      : 'loadin';
+    this.state.apiData.posts ? (
+      this.state.apiData.posts.map(record => <PostCard key={record.id} {...record} />)
+    ) : (
+      <Loader />
+    );
 
   // render the whole post
   renderPostDetails = () =>
-    this.state.apiData.posts ? <PostDetails {...this.state.apiData.posts[0]} /> : 'loadin';
+    this.state.apiData.posts ? <PostDetails {...this.state.apiData.posts[0]} /> : <Loader />;
 
   // render the end result
   render() {

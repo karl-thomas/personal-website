@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import InsightRenderer from './InsightRenderer';
 import Legend from './Legend';
 import Graph from './Graph';
+import Loader from '../Spinner';
 
 class PostDetails extends Component {
   state = {
@@ -63,7 +64,7 @@ class PostDetails extends Component {
         </div>
       );
     } else {
-      postContent = 'LOADIN';
+      postContent = <Loader />;
     }
     return <div>{postContent}</div>;
   }

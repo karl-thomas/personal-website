@@ -4,6 +4,7 @@ import { object, bool } from 'prop-types';
 import AutomaticPostCard from './PostCard';
 import AutomaticPostDetails from './PostDetails';
 import { PostWrapper as Wrapper } from '../shared/StyledComponents';
+import Loader from '../Spinner';
 
 class PostContainer extends Component {
   static propTypes = {
@@ -42,7 +43,7 @@ class PostContainer extends Component {
     if (this.props.postID.id) {
       content = <AutomaticPostDetails id={this.props.postID.id} />;
     } else if (this.state.apiData.length === 0) {
-      content = 'loadin';
+      content = <Loader />;
     } else {
       content = this.state.apiData.map(record => <AutomaticPostCard key={record.id} {...record} />);
     }
