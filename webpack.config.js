@@ -50,7 +50,9 @@ const config = {
       },
       {
         test: /\.jsx?$/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+        include: path.join(__dirname, 'js'),
+        exclude: /node_modules/
       }
     ]
   }

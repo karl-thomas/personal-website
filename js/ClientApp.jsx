@@ -1,17 +1,13 @@
-// @flow
-
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 
-// PERFORMANCE TOOLS
-// import Perf from 'react-addons-perf';
-// window.Perf = Perf;
-// Perf.start();
+// render in development/*| or |*/hydrate because of the ssr
+const renderMethod = process.env.NODE_ENV === 'development' ? ReactDOM.render : ReactDOM.hydrate;
 
 const renderApp = () => {
-  render(
+  renderMethod(
     <BrowserRouter>
       <App />
     </BrowserRouter>,
