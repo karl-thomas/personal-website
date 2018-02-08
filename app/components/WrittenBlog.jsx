@@ -5,7 +5,7 @@ import BlogLayout from './Blog';
 import PostCard from './written_blog/PostCard';
 import { PostWrapper } from './shared/StyledComponents';
 import PostDetails from './written_blog/PostDetails';
-import secrets from '../app/scripts/secret';
+import secrets from '../scripts/secret';
 import Loader from './Spinner';
 
 class WrittenBlog extends Component {

@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import Prism from 'prismjs';
 // import sanitize from 'sanitize-html';
 import media from '../utilities';
-import { GHOST_ADDRESS } from '../../app/scripts/secret';
+import { GHOST_ADDRESS } from '../../scripts/secret';
 
 class PostDetails extends Component {
   static propTypes = {
@@ -70,6 +70,7 @@ const Top = styled.section`
 const Title = styled.h1`
   text-align: center;
   margin-top: 0;
+  font-size: calc(1.5rem + 2.2vw);
 `;
 
 const Hero = styled.figure`
@@ -82,15 +83,10 @@ const Hero = styled.figure`
   z-index: 0;
   box-shadow: rgba(66, 45, 83, 0.3) 0px 4px 7px 1px;
 
-  ${media.phone`
-    max-width:100vw;
-    `};
   & img {
     width: 60%;
     justify-content: center;
     object-fit: cover;
-    ${media.phone`
-      width:100%;`};
   }
   & figcaption {
     width: 40%;
@@ -101,10 +97,18 @@ const Hero = styled.figure`
     padding: 2rem;
     background-color: white;
     border-bottom-left-radius: 10px;
-    ${media.phone`
-      display:none;
-      `};
   }
+
+  ${media.phone`
+    max-width:100vw;
+    margin: 0 -2px -4em -2px;
+    & > img {
+      width:100vw;
+    };
+    & > figcaption {
+      display:none;
+    };
+    `};
 `;
 
 const PostContent = css`
@@ -121,10 +125,11 @@ const PostContent = css`
   font-weight: 350;
   background-color: white;
   border-radius: 5px;
-  padding: 0.7em 2rem;
+
   ${media.phone`
     width:100%;
-    font-size:18px;
+    font-size: 18px;
+    padding: 0.7em .9rem;
     `};
 `;
 
@@ -139,7 +144,24 @@ const generalHeaders = css`
     margin-left:0;`};
 `;
 
-const lists = css`-webkit-padding-start: 0;`;
+const codeBlocks = css`
+  font-size: 1.2rem;
+  padding: 1.2rem;
+  padding-left: calc(2rem + 4vw);
+  margin: 0 calc(-2rem + -4vw);
+  ${media.phone`
+        margin: 0 -2rem;
+        padding-left: 2rem;
+        font-size:1rem;
+        `};
+`;
+
+const lists = css`
+  -webkit-padding-start: 0;
+  ${media.phone`
+  -webkit-padding-start: inherit;
+  `};
+`;
 
 const Wrap = styled.article`
   display: initial;
@@ -149,15 +171,7 @@ const Wrap = styled.article`
   & > div {
     ${PostContent};
     & pre {
-      font-size: 1.2rem;
-      padding: 1.2rem;
-      padding-left: calc(2rem + 4vw);
-      margin: 0 calc(-2rem + -4vw);
-      ${media.phone`
-        margin: 0 -2rem;
-        padding-left: 2rem;
-        font-size:1rem;
-        `};
+      ${codeBlocks};
     }
 
     & p {

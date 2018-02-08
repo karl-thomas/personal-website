@@ -72,10 +72,9 @@ const SideWrap = styled.div`
   ${transition};
   ${media.phone`
     background-color: ${colors.torq};
-    transform: translate(3vw,0vh);
+    transform: translate(0,0);
     box-shadow:-2px 0px 6px 3px rgba(0, 0, 0, 0.1);
     box-shadow: 2px 0px 6px 3px rgba(0, 0, 0, 0.1);
-    left: -10px;
     width: 100%;
     height: 112px;
     padding: .5em;

@@ -8,7 +8,7 @@ const config = {
     'react-hot-loader/patch',
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/only-dev-server',
-    './js/ClientApp.jsx'
+    './app/ClientApp.jsx'
   ],
   devtool: process.env.NODE_ENV === 'development' ? 'cheap-eval-source-map' : false,
   output: {
@@ -49,15 +49,15 @@ const config = {
         exclude: /node_modules/
       },
       {
-        test: /\.css$/, // bake down css
-        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
-        include: path.join(__dirname, 'js')
-      },
-      {
         test: /\.jsx?$/,
         loader: 'babel-loader',
-        include: path.join(__dirname, 'js'),
+        include: path.join(__dirname, 'app'),
         exclude: /node_modules/
+      },
+      {
+        test: /\.css$/, // bake down css
+        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
+        include: path.join(__dirname, 'app')
       }
     ]
   }

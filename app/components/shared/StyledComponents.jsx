@@ -23,8 +23,9 @@ export const PostWrapper = styled.div`
       top: 112px;
       left:0px;
       width:100%;
-      padding-right:10px;
-      padding-left:10px;
+      padding-right:2px;
+      padding-left:2px;
+      overflow-x:hidden;
     `};
 `;
 
