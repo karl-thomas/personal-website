@@ -49,6 +49,11 @@ const config = {
         exclude: /node_modules/
       },
       {
+        test: /\.css$/, // bake down css
+        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
+        include: path.join(__dirname, 'js')
+      },
+      {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         include: path.join(__dirname, 'js'),
