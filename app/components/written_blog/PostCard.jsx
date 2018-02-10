@@ -5,6 +5,7 @@ import styled, { css } from 'styled-components';
 import media, { colors } from '../utilities';
 import wrap from '../shared/StyledComponents';
 import { Title as title, TimeStamp } from '../automatic_blog/PostCard';
+import { GHOST_ADDRESS } from '../../scripts/secret';
 
 class PostCard extends Component {
   static propTypes = {
@@ -37,7 +38,11 @@ class PostCard extends Component {
         <Wrap className="post-list">
           <Post>
             <Image>
-              <img className="post-image" src={`${this.props.feature_image}`} alt="featured post" />
+              <img
+                className="post-image"
+                src={`http://${GHOST_ADDRESS}${this.props.feature_image}`}
+                alt="featured post"
+              />
             </Image>
             <PostContent>
               <Text>
@@ -144,7 +149,6 @@ const Image = styled.div`
   }
 `;
 
-// css for making a card the full fit the container
 const FullPageCard = css`
   flex-basis: 100%;
   & ${Title} {
@@ -186,6 +190,14 @@ const FullPageCard = css`
       width: 100%;
     }
   }
+
+  ${media.phone`
+    &  ${PostContent} {
+        padding-left:1rem;
+        & section {
+          padding-left:0;
+        }}
+    `};
 `;
 
 const StyledLink = styled(Link)`

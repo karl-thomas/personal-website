@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { object, bool } from 'prop-types';
 import AutomaticPostCard from './PostCard';
 import AutomaticPostDetails from './PostDetails';
 import { PostWrapper as Wrapper } from '../shared/StyledComponents';
 import Loader from '../Spinner';
+import { BASE } from '../../scripts/secret';
 
 class PostContainer extends Component {
   static propTypes = {
@@ -20,18 +20,14 @@ class PostContainer extends Component {
   // production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com // hey change this.
   componentDidMount() {
     if (!this.props.postID.id) {
-      this.getPostData('localhost:3000/posts');
+      this.getPostData('http://localhost:3000/posts');
     }
   }
 
   getPostData = url => {
-    axios
-      .get(`http://${url}`)
-      .then(response =>
-        this.setState({
-          apiData: response.data
-        })
-      )
+    fetch(url, { headers: { Authorization: `Basic ${BASE}` } })
+      .then(response => response.json())
+      .then(json => this.setState({ apiData: json }))
       .catch(error => {
         console.error('axios ERROR', error); // eslint-disable-line no-console
       });

@@ -93,15 +93,16 @@ const Hero = styled.figure`
     animation: detailsTitleMove 1s 1;
     animation-timing-function: ease-out;
     color: #444;
-    font-size: 120%;
+    font-size: calc(3vw - 30%);
     padding: 2rem;
+    line-height: 1.35;
     background-color: white;
     border-bottom-left-radius: 10px;
   }
 
   ${media.phone`
     max-width:100vw;
-    margin: 0 -2px -4em -2px;
+    margin: 0 -2vw -4em -2vw;
     & > img {
       width:100vw;
     };
@@ -199,6 +200,18 @@ const Wrap = styled.article`
     & ul,
     ol {
       ${lists};
+    }
+    & a {
+      color: #1cce96;
+      &:visited {
+        color: #45536e;
+      }
+      &:active {
+        color: #50e7b7;
+      }
+    }
+    & img {
+      width: 100%;
     }
   }
 `;
