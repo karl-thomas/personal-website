@@ -47,12 +47,12 @@ const Top = styled.div`
 `;
 
 const Nav = styled.div`
-  ${props => (props.startPos ? `background-color: #6f577c;` : `background-color: #50e7b7;`)};
   color: #ae5d64;
   z-index: 100;
   width: 100%;
   vertical-align: top;
   display:block;
+      border-bottom: solid #6e567b 21px;
   height: 100%;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   ${transition};
@@ -63,7 +63,7 @@ const Nav = styled.div`
 const NavShadow = styled.div`
   height: 70%;
   width: 97%;
-  background-color: ${props => (props.startPos ? `#422c54` : `#30a988`)};
+
   position: absolute;
   right: 2.5rem;
   top: 15%;
