@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { string, bool } from 'prop-types';
 import BlogLayout from './Blog';
 import PostCard from './written_blog/PostCard';
 import { PostWrapper } from './shared/StyledComponents';
 import PostDetails from './written_blog/PostDetails';
-import secrets from '../scripts/secret';
 import Loader from './Spinner';
+import API from '../scripts/writtenAPI';
 
 class WrittenBlog extends Component {
   static defaultProps = {
@@ -23,22 +22,17 @@ class WrittenBlog extends Component {
   };
 
   componentDidMount() {
-    const { GHOST_ID, GHOST_SECRET } = secrets;
-    const auth = `?client_id=${GHOST_ID}&client_secret=${GHOST_SECRET}`;
-
     if (this.props.index) {
-      // all posts
-      this.getPostData(`/posts${auth}&include=tags`);
+      this.getPostData();
     } else if (this.props.slug) {
-      // details
-      this.getPostData(`/posts/slug/${this.props.slug}${auth}&include=tags`);
+      this.getPostData(this.props.slug);
     }
   }
 
-  getPostData = url => {
-    const { GHOST_ADDRESS } = secrets;
-    axios
-      .get(`http://${GHOST_ADDRESS}/ghost/api/v0.1${url}`)
+  getPostData = slug => {
+    const { Posts } = API;
+    const request = slug ? Posts.find(slug) : Posts.all();
+    request
       .then(response =>
         this.setState({
           apiData: response.data
