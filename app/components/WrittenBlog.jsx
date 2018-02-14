@@ -30,14 +30,15 @@ class WrittenBlog extends Component {
   }
 
   getPostData = slug => {
-    const { Posts } = API;
+    const { Posts } = API.Client;
     const request = slug ? Posts.find(slug) : Posts.all();
     request
-      .then(response =>
+      .then(response => {
+        console.log(response);
         this.setState({
           apiData: response.data
-        })
-      )
+        });
+      })
       .catch(error => {
         console.error('axios ERROR', error); // eslint-disable-line no-console
       });
