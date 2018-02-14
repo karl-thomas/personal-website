@@ -5,16 +5,39 @@ const { GHOST_ID, GHOST_ADDRESS, GHOST_SECRET } = secrets;
 
 const API = {
   auth: `?client_id=${GHOST_ID}&client_secret=${GHOST_SECRET}`,
+
   defaultParams: '&include=tags',
-  url(searchTerms) {
-    return `http://${GHOST_ADDRESS}/ghost/api/v0.1/${searchTerms + this.auth + this.defaultParams}`;
+
+  uri(searchTerms) {
+    return searchTerms + this.auth + this.defaultParams;
   },
-  Posts: {
-    all() {
-      return axios.get(API.url('posts'));
-    },
-    find(slug) {
-      return axios.get(API.url(`/posts/slug/${slug}`));
+
+  externalUrl(searchTerms) {
+    return `http://${GHOST_ADDRESS}/ghost/api/v0.1/${this.uri(searchTerms)}`;
+  },
+  internalUrl(searchTerms) {
+    return process.env.NODE_ENV === 'development'
+      ? `http://localhost:8080/${this.uri(searchTerms)}`
+      : `http://karl-thomas.com/${this.uri(searchTerms)}`;
+  },
+  Server: {
+    Posts: {
+      all() {
+        return axios.get(API.externalUrl('posts'));
+      },
+      find(slug) {
+        return axios.get(API.expertnalUrl(`/posts/slug/${slug}`));
+      }
+    }
+  },
+  Client: {
+    Posts: {
+      all() {
+        return axios.get('/api/posts');
+      },
+      find(slug) {
+        return axios.get(`/api/posts/${slug}`);
+      }
     }
   }
 };
