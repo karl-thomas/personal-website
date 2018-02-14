@@ -36,10 +36,10 @@ const API = {
   Client: {
     Posts: {
       all() {
-        return axios.get('/api/posts');
+        return axios.get('/api/written/posts');
       },
       find(slug) {
-        return axios.get(`/api/posts/${slug}`);
+        return axios.get(`/api/written/posts/${slug}`);
       }
     }
   }

@@ -50,7 +50,6 @@ server.use(writtenAPIRoutes);
 
 // middleware for ssr render
 server.use((req, res) => {
-  console.log(req.originalUrl);
   // not an api route
   if (!req.originalUrl.includes('api')) {
     const context = {};

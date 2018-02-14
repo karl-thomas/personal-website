@@ -4,15 +4,15 @@ const router = require('express').Router();
 // get the serverside version of the api
 const API = require('../scripts/writtenAPI').default;
 // API Routes
-router.route('/api/posts').get((req, res) => {
-  console.log(API);
+router.route('/posts').get((req, res) => {
   API.Server.Posts
     .all()
     .then(posts => {
-      console.log(posts);
       res.json(posts.data); // sending
     })
     .catch(() => res.status(400).send('Bad Request'));
 });
+
+router.use('/api/written', router);
 
 module.exports = router;
