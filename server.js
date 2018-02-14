@@ -26,7 +26,6 @@ const config = require('./webpack.config');
 
 const writtenAPIRoutes = require('./app/routes/api');
 
-console.log(writtenAPIRoutes);
 // set port
 const port = 8080;
 
@@ -46,8 +45,12 @@ if (process.env.NODE_ENV === 'development') {
 
 server.use('/public', express.static('./public'));
 
+// use routes
+server.use(writtenAPIRoutes);
+
 // middleware for ssr render
 server.use((req, res) => {
+  console.log(req.originalUrl);
   // not an api route
   if (!req.originalUrl.includes('api')) {
     const context = {};
@@ -76,9 +79,6 @@ server.use((req, res) => {
     res.end();
   }
 });
-
-// use routes
-server.use(writtenAPIRoutes);
 
 // start the server
 server.listen(port, () => {

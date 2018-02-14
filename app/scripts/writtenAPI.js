@@ -15,11 +15,13 @@ const API = {
   externalUrl(searchTerms) {
     return `http://${GHOST_ADDRESS}/ghost/api/v0.1/${this.uri(searchTerms)}`;
   },
+
   internalUrl(searchTerms) {
     return process.env.NODE_ENV === 'development'
       ? `http://localhost:8080/${this.uri(searchTerms)}`
       : `http://karl-thomas.com/${this.uri(searchTerms)}`;
   },
+
   Server: {
     Posts: {
       all() {
@@ -30,6 +32,7 @@ const API = {
       }
     }
   },
+
   Client: {
     Posts: {
       all() {
