@@ -5,8 +5,8 @@ const router = require('express').Router();
 const API = require('../scripts/writtenAPI').default;
 // API Routes
 router.route('/posts').get((req, res) => {
-  API.Server.Posts
-    .all()
+  API(process.env)
+    .Server.Posts.all()
     .then(posts => {
       res.json(posts.data); // sending
     })

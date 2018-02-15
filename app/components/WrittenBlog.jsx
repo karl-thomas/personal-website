@@ -30,11 +30,11 @@ class WrittenBlog extends Component {
   }
 
   getPostData = slug => {
-    const { Posts } = API.Client;
+    const isDeveloping = process.env.KARLS_NODE_ENV === 'development';
+    const { Posts } = isDeveloping ? API(process.env).Server : API(process.env).Client;
     const request = slug ? Posts.find(slug) : Posts.all();
     request
       .then(response => {
-        console.log(response);
         this.setState({
           apiData: response.data
         });
