@@ -18,16 +18,15 @@ class NavBar extends Component {
     return (
       <Top startPos={this.props.startPos}>
         <Nav startPos={this.props.startPos}>
-          <NavShadow startPos={this.props.startPos}>
-            <NavOptions startPos={this.props.startPos}>
-              <NavLink data-active={this.isActive('written')} className="nav-link" to="/blog">
-                Tech Blog
-              </NavLink>
-              <NavLink data-active={this.isActive('auto')} className="nav-link" to="/">
-                Automatic Blog
-              </NavLink>
-            </NavOptions>
-          </NavShadow>
+          <Chicago height="200px" src="/public/img/Chicago.svg" alt="chicago line drawing" />
+          <NavOptions startPos={this.props.startPos}>
+            <NavLink data-active={this.isActive('written')} className="nav-link" to="/blog">
+              Tech Blog
+            </NavLink>
+            <NavLink data-active={this.isActive('auto')} className="nav-link" to="/">
+              Automatic Blog
+            </NavLink>
+          </NavOptions>
         </Nav>
       </Top>
     );
@@ -37,12 +36,19 @@ class NavBar extends Component {
 const transition =
   '-webkit-transition: all 0.7s ease-out; -moz-transition: all 0.7s ease-out; -ms-transition: all 0.7s ease-out; -o-transition: all 0.7s ease-out; transition: all 0.7s ease-out;';
 
+const Chicago = styled.img`
+  position: absolute;
+  top: -50px;
+  left: 300px;
+  ${transition};
+`;
 const Top = styled.div`
   ${props => (props.startPos ? `transform: translate(0px, 0px);` : `transform: translate(0px, 69vh);`)};
   z-index: 0;
   position: fixed;
   height: 140px;
   width: 100vw;
+  overflow: hidden;
   ${transition};
 `;
 
@@ -55,19 +61,10 @@ const Nav = styled.div`
       border-bottom: solid #6e567b 21px;
   height: 100%;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  overflow:hidden;
   ${transition};
   ${media.phone`display: none;`};
 }
-`;
-
-const NavShadow = styled.div`
-  height: 70%;
-  width: 97%;
-
-  position: absolute;
-  right: 2.5rem;
-  top: 15%;
-  ${transition};
 `;
 
 const NavOptions = styled.div`
