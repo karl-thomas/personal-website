@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { string, bool } from 'prop-types';
 import BlogLayout from './Blog';
-import PostCard from './written_blog/PostCard';
+import PostList from './written_blog/PostList';
 import { PostWrapper } from './shared/StyledComponents';
 import PostDetails from './written_blog/PostDetails';
 import Loader from './Spinner';
@@ -49,11 +49,7 @@ class WrittenBlog extends Component {
 
   // render a section of each post
   renderPostCards = () =>
-    this.state.apiData.posts ? (
-      this.state.apiData.posts.map(record => <PostCard key={record.id} {...record} />)
-    ) : (
-      <Loader />
-    );
+    this.state.apiData.posts ? <PostList posts={this.state.apiData.posts} /> : <Loader />;
 
   // render the whole post
   renderPostDetails = () =>
