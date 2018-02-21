@@ -50,6 +50,7 @@ const Top = styled.div`
   width: 100vw;
   overflow: hidden;
   ${transition};
+  ${media.phone`display: none;`};
 `;
 
 const Nav = styled.div`
@@ -63,7 +64,7 @@ const Nav = styled.div`
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   overflow:hidden;
   ${transition};
-  ${media.phone`display: none;`};
+  
 }
 `;
 
@@ -106,6 +107,7 @@ const NavLink = styled(Link)`
       : ` 
     padding: 2px 10px 50px 10px; 
     `};
+  ${media.phone`display: none;`};
 `;
 
 export default NavBar;
