@@ -20,7 +20,8 @@ class PostList extends Component {
   gatherMatchingPosts = () =>
     this.state.searchTerm && this.state.searchTerm !== ''
       ? this.props.posts.filter(post => {
-          const plainText = this.strip(post.html).toLowerCase();
+          post.custom_excerpt = post.custom_excerpt || '';
+          const plainText = this.strip(post.html).toLowerCase() + post.custom_excerpt.toLowerCase();
           return plainText.includes(this.state.searchTerm);
         })
       : this.props.posts;
@@ -43,7 +44,7 @@ class PostList extends Component {
 
   displaySearchResults = () => {
     const searchResults = this.gatherMatchingPosts();
-    return searchResults[0] ? (
+    return searchResults.length ? (
       searchResults.map(record => <PostCard key={record.id} {...record} />)
     ) : (
       <BigMessage>No Results</BigMessage>
@@ -66,7 +67,12 @@ class PostList extends Component {
     );
   }
 }
-const SearchForm = styled.form`display: flex;`;
+const SearchForm = styled.form`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  margin: -1.5em 35px 35px 35px;
+`;
 
 const BigMessage = styled.h1`
   font-size: 20vw;
@@ -77,7 +83,6 @@ const BigMessage = styled.h1`
 const SearchInput = styled.input`
   border-radius: 7px;
   border: solid #6e567b 2px;
-  align-self: center;
   padding: 6px;
 `;
 

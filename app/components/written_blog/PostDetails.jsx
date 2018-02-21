@@ -37,6 +37,7 @@ class PostDetails extends Component {
   tagsToS = this.props.tags.map(tag => tag.name).join(' ');
 
   initial = { style: { display: 'initial' } };
+
   render() {
     return (
       <React.Fragment>
