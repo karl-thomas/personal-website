@@ -8,7 +8,9 @@ class PostList extends Component {
     posts: array
   };
 
-  state = {};
+  state = {
+    search: []
+  };
   // for filtering through the text in the posts so that
   // i do not have to do tag search right away
 
@@ -28,6 +30,7 @@ class PostList extends Component {
 
   handleInput = event => {
     const { name, value } = event.target;
+
     this.setState({
       [name]: value.toLowerCase()
     });
@@ -45,7 +48,7 @@ class PostList extends Component {
   displaySearchResults = () => {
     const searchResults = this.gatherMatchingPosts();
     return searchResults.length ? (
-      searchResults.map(record => <PostCard key={record.id} {...record} />)
+      searchResults.map(record => <PostCard key={record.id} searchTerm={this.state.searchTerm} {...record} />)
     ) : (
       <BigMessage>No Results</BigMessage>
     );
@@ -84,6 +87,8 @@ const SearchInput = styled.input`
   border-radius: 7px;
   border: solid #6e567b 2px;
   padding: 6px;
+  &:focus {
+  }
 `;
 
 export default PostList;

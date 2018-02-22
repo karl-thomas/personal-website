@@ -14,12 +14,18 @@ class PostCard extends Component {
     published_at: string,
     slug: string,
     tags: array,
-    custom_excerpt: string
+    custom_excerpt: string,
+    searchTerm: string,
+    html: string
   };
 
-  shouldComponentUpdate() {
-    return false;
+  componentDidUpdate() {
+    this.findMatch();
   }
+
+  // shouldComponentUpdate() {
+  //   return false;
+  // }
 
   formattedDate = () => {
     const date = new Date(this.props.published_at);
@@ -29,6 +35,30 @@ class PostCard extends Component {
       year: 'numeric'
     });
   };
+
+  strip = html => {
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    return doc.body.textContent || '';
+  };
+
+  // search through text for matches to search term, display them in box
+  findMatch = () => {
+    const re = new RegExp(this.props.searchTerm, 'i');
+    const searchString = this.strip(`${this.props.title} ${this.props.custom_excerpt} ${this.props.html}`);
+    const matchArray = re.exec(searchString);
+    const first = matchArray.index;
+    const last = first + matchArray[0].length;
+    return (
+      <span>
+        {`...${searchString.substring(first - 25, first)}`}
+        <Highlight>{searchString.substring(first, last)}</Highlight>
+        {`${searchString.substring(last, last + 80)}...`}
+      </span>
+    );
+  };
+
+  determineExcerpt = () =>
+    this.props.searchTerm && this.props.searchTerm !== '' ? this.findMatch() : this.props.custom_excerpt;
 
   tagsToS = this.props.tags.map(tag => tag.name).join(' ');
 
@@ -48,7 +78,7 @@ class PostCard extends Component {
               <Text>
                 <Tags>{this.tagsToS}</Tags>
                 <Title>{this.props.title}</Title>
-                <Excerpt>{this.props.custom_excerpt}</Excerpt>
+                <Excerpt>{this.determineExcerpt()}</Excerpt>
               </Text>
               <Svg src="public/img/post-card.svg" alt="svg graphic for style" />
             </PostContent>
@@ -201,7 +231,6 @@ const FullPageCard = css`
 `;
 
 const StyledLink = styled(Link)`
-  ${transition};
   text-decoration: none;
   flex-basis: 50%;
   &:first-child {
@@ -217,5 +246,7 @@ const Text = styled.section`
     animation: up-bump 0.4s ease;
   }
 `;
+
+const Highlight = styled.span`background-color: yellow;`;
 
 export default PostCard;
