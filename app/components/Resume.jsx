@@ -111,7 +111,7 @@ const OutsideBox = styled.div`
   -ms-transition: all 0.5s ease-out;
   -o-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
-  height: 84vh;
+  height: 91vh;
   ${props => (props.startPos ? 'transform: translate(-100vw,-100vh);' : `transform: translate(0vw,0vh);`)};
 `;
 

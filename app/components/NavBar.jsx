@@ -42,29 +42,27 @@ const Chicago = styled.img`
   left: 300px;
   ${transition};
 `;
-const Top = styled.div`
-  ${props => (props.startPos ? `transform: translate(0px, 0px);` : `transform: translate(0px, 69vh);`)};
+const Top = styled.div``;
+
+const Nav = styled.div`
+  color: #ae5d64;
+  z-index: 100;
+  vertical-align: top;
   z-index: 0;
   position: fixed;
   height: 140px;
   width: 100vw;
   overflow: hidden;
-  ${transition};
-  ${media.phone`display: none;`};
-`;
-
-const Nav = styled.div`
-  color: #ae5d64;
-  z-index: 100;
-  width: 100%;
-  vertical-align: top;
-  display:block;
-      border-bottom: solid #6e567b 21px;
-  height: 100%;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-  overflow:hidden;
+  
   ${transition};
   
+  ${props =>
+    props.startPos
+      ? `transform: translate(0px, 0px); border-bottom: solid #6e567b 21px;`
+      : `transform: translate(0px, 69vh); border-bottom: solid #52e5b7 21px;`};
+    
+  ${media.phone`display: none;`};
 }
 `;
 
@@ -99,7 +97,7 @@ const NavLink = styled(Link)`
     color: #e1dbeb;
     order: 1;
     font-size: 1.2em;
-    margin-top: 18px;
+    margin-top: 27px;
     box-shadow: inset 0em -9px 10px rgba(66, 45, 83, .5);
     height:45px;
     padding: 7px 7px 0px 7px;
