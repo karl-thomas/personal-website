@@ -24,7 +24,7 @@ export const colors = {
 };
 
 export const sizes = {
-  desktop: 992,
+  desktop: 800,
   tablet: 768,
   phone: 650,
   xSmall: 400
