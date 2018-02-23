@@ -92,8 +92,8 @@ class PostCard extends Component {
   }
 }
 
-const transition =
-  '-webkit-transition: all 0.7s ease-out; -moz-transition: all 0.7s ease-out; -ms-transition: all 0.7s ease-out; -o-transition: all 0.7s ease-out; transition: all 0.7s ease-out;';
+// const transition =
+// '-webkit-transition: all 0.7s ease-out; -moz-transition: all 0.7s ease-out; -ms-transition: all 0.7s ease-out; -o-transition: all 0.7s ease-out; transition: all 0.7s ease-out;';
 
 const Tags = styled.div`
   display: inline-block;
@@ -119,15 +119,6 @@ const TimeBox = styled.aside`
   width: 100%;
 `;
 
-const PostContent = styled.section`
-  height: 100%;
-  padding: 0 0 0 0;
-  overflow: scroll;
-  display: flex;
-  flex-flow: row wrap;
-  width: calc(60% + 50px);
-`;
-
 const Post = styled.article`border-radius: inherit;`;
 
 const Wrap = wrap.extend`
@@ -146,9 +137,12 @@ const Title = title.extend`
   margin:0;
   padding:0; 
   font-size: calc(1.5vw + 5px);
+  
   ${media.phone`
     font-size: calc(4.5vw);
-    `};
+  `};
+
+   
 `;
 
 const Svg = styled.img`
@@ -194,15 +188,6 @@ const FullPageCard = css`
   & ${Post} {
     width: 100%;
     height: 260px;
-    & ${PostContent} {
-      flex-flow: row-reverse wrap;
-      z-index: 1;
-      width: calc(calc(20% + 15vw) + 52px);
-      position: absolute;
-      top: 0;
-      right: 0;
-      padding-right: 1rem;
-    }
   }
   & ${Svg} {
     transform: scaleX(-1);
@@ -220,14 +205,6 @@ const FullPageCard = css`
       width: 100%;
     }
   }
-
-  ${media.phone`
-    &  ${PostContent} {
-        padding-left:1rem;
-        & section {
-          padding-left:0;
-        }}
-    `};
 `;
 
 const StyledLink = styled(Link)`
@@ -245,6 +222,45 @@ const Text = styled.section`
   ${StyledLink}:hover & {
     animation: up-bump 0.4s ease;
   }
+  background-color: white;
+`;
+
+const PostContent = styled.section`
+  height: 100%;
+  padding: 0 0 0 0;
+  overflow: scroll;
+  display: flex;
+  flex-flow: row wrap;
+  width: calc(60% + 50px);
+  ${StyledLink}:first-child & {
+    flex-flow: row-reverse wrap;
+    z-index: 1;
+    width: calc(calc(20% + 15vw) + 52px);
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-right: 1rem;
+    ${media.xSmall`
+    width: 60vw;
+  `};
+  }
+  ${media.xSmall`
+    width: 60vw;
+  `};
+
+  ${media.phone`
+    flex-flow: row-reverse wrap;
+    z-index: 1;
+    width: calc(calc(20% + 15vw) + 52px);
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-right: 1rem;
+        padding-left:1rem;
+        & section {
+          padding-left:0;
+        }}
+    `};
 `;
 
 const Highlight = styled.span`background-color: yellow;`;

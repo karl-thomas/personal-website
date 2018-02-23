@@ -61,7 +61,7 @@ class PostList extends Component {
           <SearchInput
             placeholder="Search posts..."
             name="searchTerm"
-            type="text"
+            type="search"
             onChange={this.handleInput}
           />
         </SearchForm>
@@ -81,6 +81,7 @@ const BigMessage = styled.h1`
   font-size: 20vw;
   margin: 0;
   line-height: 15vw;
+  text-shadow: -4px 0px hsla(157, 31%, 48%, 1);
 `;
 
 const SearchInput = styled.input`
@@ -88,6 +89,11 @@ const SearchInput = styled.input`
   border: solid #6e567b 2px;
   padding: 6px;
   &:focus {
+    outline-color: 0;
+    outline-style: 0;
+    outline-width: 0;
+    border: solid #50e7b7 2px;
+    box-shadow: rgba(0, 0, 0, 0.2) 2px 1px 2px 1px;
   }
 `;
 

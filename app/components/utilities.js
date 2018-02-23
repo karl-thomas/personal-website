@@ -26,7 +26,8 @@ export const colors = {
 export const sizes = {
   desktop: 992,
   tablet: 768,
-  phone: 750
+  phone: 650,
+  xSmall: 400
 };
 
 // Iterate through the sizes and create a media template
