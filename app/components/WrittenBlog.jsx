@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { string, bool } from 'prop-types';
+import { string, bool, object } from 'prop-types';
 import BlogLayout from './Blog';
 import PostList from './written_blog/PostList';
 import { PostWrapper } from './shared/StyledComponents';
@@ -14,7 +14,8 @@ class WrittenBlog extends Component {
 
   static propTypes = {
     index: bool,
-    slug: string
+    slug: string,
+    match: object
   };
 
   state = {
@@ -49,13 +50,16 @@ class WrittenBlog extends Component {
 
   // render a section of each post
   renderPostCards = () =>
-    this.state.apiData.posts ? <PostList posts={this.state.apiData.posts} /> : <Loader />;
+    this.state.apiData.posts ? (
+      <PostList match={this.props.match} posts={this.state.apiData.posts} />
+    ) : (
+      <Loader />
+    );
 
   // render the whole post
   renderPostDetails = () =>
     this.state.apiData.posts ? <PostDetails {...this.state.apiData.posts[0]} /> : <Loader />;
 
-  // render the end result
   render() {
     return (
       <BlogLayout written>

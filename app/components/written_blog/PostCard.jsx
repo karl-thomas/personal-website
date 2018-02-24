@@ -210,10 +210,11 @@ const FullPageCard = css`
 const StyledLink = styled(Link)`
   text-decoration: none;
   flex-basis: 50%;
+
+  ${media.desktop`${FullPageCard}`};
   &:first-child {
     ${FullPageCard};
   }
-  ${media.desktop`${FullPageCard}`};
 `;
 
 const Text = styled.section`
@@ -223,6 +224,7 @@ const Text = styled.section`
     animation: up-bump 0.4s ease;
   }
   background-color: white;
+  box-shadow: -10px 1px 10px white;
 `;
 
 const PostContent = styled.section`
@@ -234,8 +236,8 @@ const PostContent = styled.section`
   width: calc(60% + 50px);
   ${StyledLink}:first-child & {
     flex-flow: row-reverse wrap;
-    z-index: 1;
-    width: calc(calc(20% + 15vw) + 52px);
+    z-index: 100;
+    width: calc(calc(30% + 15vw) + 52px);
     position: absolute;
     top: 0;
     right: 0;
@@ -248,10 +250,10 @@ const PostContent = styled.section`
     width: 60vw;
   `};
 
-  ${media.phone`
+  ${media.desktop`
     flex-flow: row-reverse wrap;
     z-index: 1;
-    width: calc(calc(20% + 15vw) + 52px);
+    width: calc(calc(30% + 15vw) + 52px);
     position: absolute;
     top: 0;
     right: 0;
