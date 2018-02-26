@@ -57,6 +57,14 @@ class PostCard extends Component {
     );
   };
 
+  /* function for read time 
+    read time is the word count divided average 
+    words per minute by adult readers ~250
+    ... i just need to figure out word count.  
+  */
+
+  readTime = post => post.wordCount / 250;
+
   determineExcerpt = () =>
     this.props.searchTerm && this.props.searchTerm !== '' ? this.findMatch() : this.props.custom_excerpt;
 
