@@ -58,7 +58,7 @@ const SideWrap = styled.div`
   ${props =>
     props.startPos /* true: top left, false: bottom right */
       ? `background-color: ${colors.torq};
-         transform: translate(3vw,0vh);
+         transform: translate(calc(97vw - 250px),0vh);
          box-shadow:-2px 0px 6px 3px rgba(0, 0, 0, 0.1);`
       : `background-color: ${colors.purp};
          transform: translate(calc(97vw - 250px),0vh);

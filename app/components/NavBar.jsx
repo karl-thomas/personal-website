@@ -47,7 +47,10 @@ const Chicago = styled.img`
   left: 300px;
   z-index: -99;
   ${transition};
-  ${props => (props.startPos ? ` transform: translate(0px, 0px)` : `transform: translate(100vw, 0px)`)};
+  ${props => (props.startPos ? ` transform: translate(0px, 0px)` : ` transform: translate(100vw, 0px)`)};
+  ${media.phone`
+      display:none;
+    `};
 `;
 const Top = styled.div`
   height: 140px;
@@ -82,7 +85,7 @@ const NavOptions = styled.div`
   ${transition};
   position: absolute;
   bottom: 0px;
-  right: 1em;
+  left: 3vw;
   height: 60%;
   text-align: bottom;
   max-width: 100%;
@@ -115,6 +118,7 @@ const NavLink = styled(Link)`
     padding: 7px 7px 0px 7px;
     `
       : ` 
+    margin-left: 0px ;
     padding: 2px 10px 50px 10px; 
     `};
   ${media.phone`display: none;`};

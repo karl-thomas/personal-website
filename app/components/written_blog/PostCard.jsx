@@ -5,7 +5,6 @@ import styled, { css } from 'styled-components';
 import media, { colors } from '../utilities';
 import wrap from '../shared/StyledComponents';
 import { Title as title, TimeStamp } from '../automatic_blog/PostCard';
-import { GHOST_ADDRESS } from '../../scripts/secret';
 
 class PostCard extends Component {
   static propTypes = {
@@ -22,10 +21,6 @@ class PostCard extends Component {
   componentDidUpdate() {
     this.findMatch();
   }
-
-  // shouldComponentUpdate() {
-  //   return false;
-  // }
 
   formattedDate = () => {
     const date = new Date(this.props.published_at);
@@ -62,7 +57,6 @@ class PostCard extends Component {
     words per minute by adult readers ~250
     ... i just need to figure out word count.  
   */
-
   readTime = post => post.wordCount / 250;
 
   determineExcerpt = () =>
@@ -78,7 +72,7 @@ class PostCard extends Component {
             <Image>
               <img
                 className="post-image"
-                src={`http://${GHOST_ADDRESS}${this.props.feature_image}`}
+                src={`http://${process.env.GHOST_ADDRESS}${this.props.feature_image}`}
                 alt="featured post"
               />
             </Image>
@@ -134,7 +128,6 @@ const Wrap = wrap.extend`
   display: flex;
   flex-flow: column;
   position: relative;
-  margin:auto;
   margin-bottom:35px;
   z-index: -30;
 `;
@@ -198,6 +191,7 @@ const FullPageCard = css`
     height: 260px;
   }
   & ${Svg} {
+    margin-top: -5px;
     transform: scaleX(-1);
   }
   & ${Image} {

@@ -14,9 +14,7 @@ export const PostWrapper = styled.div`
   -o-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
   ${props =>
-    props.startPos
-      ? 'transform: translate(calc(250px + 3vw),calc(108px + 5vh));'
-      : 'transform: translate(100vw,100vh);'};
+    props.startPos ? 'transform: translate(0,calc(108px + 5vh));' : 'transform: translate(100vw,100vh);'};
   ${media.phone`
     visibility: visible;
       transform: translate(0px);
