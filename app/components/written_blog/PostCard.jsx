@@ -124,7 +124,7 @@ const TimeBox = styled.aside`
 const Post = styled.article`border-radius: inherit;`;
 
 const Wrap = wrap.extend`
-  width:85%;
+  width:100%;
   display: flex;
   flex-flow: column;
   position: relative;
@@ -181,7 +181,7 @@ const FullPageCard = css`
     margin-bottom: 1rem;
   }
   & ${Wrap} {
-    width: 92%;
+    width: 100%;
   }
   & ${Excerpt} {
     font-size: calc(0.8rem + 0.35vw);
@@ -211,7 +211,7 @@ const FullPageCard = css`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  flex-basis: 50%;
+  flex-basis: 48%;
 
   ${media.desktop`${FullPageCard}`};
   &:first-child {

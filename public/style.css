@@ -641,6 +641,7 @@ li {
 .wrtn-cards {
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-between;
 }
 
 @keyframes details-title-move {

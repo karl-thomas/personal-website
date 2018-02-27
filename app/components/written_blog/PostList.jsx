@@ -74,7 +74,7 @@ const SearchForm = styled.form`
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-end;
-  margin: calc(-3em + 35px) 35px 35px 35px;
+  margin: calc(-3em + 35px) 0 35px 35px;
 `;
 
 const BigMessage = styled.h1`
