@@ -13,7 +13,7 @@ const Loader = () => (
 const Quiver = styled.div`
   height: 100px;
   width: 40%;
-  margin-left: -3vw;
+  margin-left: -4vw;
   margin-top: -7em;
   transform: rotate(90deg);
   transform-origin: bottom left;

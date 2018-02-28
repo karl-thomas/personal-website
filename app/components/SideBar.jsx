@@ -15,17 +15,17 @@ class SideBar extends PureComponent {
   startingUl = (
     <ContactUL startPos={this.props.startPos}>
       <Li startPos={this.props.startPos} onClick={this.props.changeToResume}>
-        <Link color="green" width="200" height="40">
+        <Link color="green" width="160" height="40">
           <BarHeader>Resume</BarHeader>
         </Link>
       </Li>
       <Li>
-        <Link to="https://github.com/karl-thomas" width="200" height="40">
+        <Link to="https://github.com/karl-thomas" width="160" height="40">
           <BarHeader>Github</BarHeader>
         </Link>
       </Li>
       <Li>
-        <Link to="https://www.linkedin.com/in/karl-thomas/" width="200" height="40">
+        <Link to="https://www.linkedin.com/in/karl-thomas/" width="160" height="40">
           <BarHeader>LinkedIn</BarHeader>
         </Link>
       </Li>
@@ -58,16 +58,16 @@ const SideWrap = styled.div`
   ${props =>
     props.startPos /* true: top left, false: bottom right */
       ? `background-color: ${colors.torq};
-         transform: translate(calc(97vw - 250px),0vh);
+         transform: translate(calc(97vw - 210px),0vh);
          box-shadow:-2px 0px 6px 3px rgba(0, 0, 0, 0.1);`
       : `background-color: ${colors.purp};
-         transform: translate(calc(97vw - 250px),0vh);
+         transform: translate(calc(97vw - 210px),0vh);
          box-shadow:2px 0px 6px 3px rgba(0, 0, 0, 0.1);`};
   z-index: 1000;
   -webkit-font-smoothing: antialiased;
   position: fixed;
   padding: 0em 1em;
-  width: 250px;
+  width: 210px;
   height: 100vh;
   ${transition};
   ${media.phone`
@@ -85,7 +85,7 @@ const SideWrap = styled.div`
 const Header = styled.h1`
   ${props => (props.startPos ? `transform: translate(0px,1rem);` : ` transform: translate(0px,72vh);`)};
   width: 100%;
-  padding-left: 10px;
+  padding-left: 0px;
   color: white;
   display: block;
   position: relative;

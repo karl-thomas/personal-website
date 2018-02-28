@@ -4,9 +4,9 @@ import media, { colors } from '../utilities';
 export const PostWrapper = styled.div`
   z-index: -1000;
   position: fixed;
-  padding: 3em 3vw;
+  padding: 3em 4vw;
   height: 77vh;
-  width: calc(97vw - 250px);
+  width: calc(97vw - 210px);
   overflow-y: scroll;
   -webkit-transition: all 0.5s ease-out;
   -moz-transition: all 0.5s ease-out;

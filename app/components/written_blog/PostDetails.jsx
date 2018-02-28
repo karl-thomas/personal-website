@@ -80,8 +80,8 @@ const Title = styled.h1`
 const Hero = styled.figure`
   height: 100%;
   transition: all 0.5s ease-out;
-  margin: 0 -3vw -4em -3vw;
-  max-width: calc(97vw - 250px);
+  margin: 0 -4vw -4em -4vw;
+  max-width: calc(97vw - 210px);
   display: flex;
   flex-flow: row wrap;
   z-index: 0;

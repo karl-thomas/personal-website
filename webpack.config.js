@@ -34,14 +34,16 @@ const config = {
   plugins: [
     // new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        KARLS_NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        GHOST_ADDRESS: JSON.stringify(process.env.GHOST_ADDRESS),
-        GHOST_ID: JSON.stringify(process.env.GHOST_ID),
-        GHOST_SECRET: JSON.stringify(process.env.GHOST_SECRET)
-      }
-    })
+    process.env.NODE_ENV === 'development'
+      ? new webpack.DefinePlugin({
+          'process.env': {
+            KARLS_NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+            GHOST_ADDRESS: JSON.stringify(process.env.GHOST_ADDRESS),
+            GHOST_ID: JSON.stringify(process.env.GHOST_ID),
+            GHOST_SECRET: JSON.stringify(process.env.GHOST_SECRET)
+          }
+        })
+      : ''
   ],
   module: {
     rules: [
