@@ -201,7 +201,7 @@ const FullPageCard = css`
     border-top-left-radius: inherit;
     border-bottom-left-radius: inherit;
     height: 99%;
-    width: 50%;
+    width: 55%;
     left: 0;
     & .post-image {
       width: 100%;
