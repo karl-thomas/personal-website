@@ -72,12 +72,6 @@ const StyledLink = styled(Link)`
   transition: all 0.2s ease-in;
   ${Trigger}:hover & {
     color: white;
-    &::after {
-      content: '  ►';
-      font-size: ${props => Math.ceil(props.height / 2) + 5}px;
-      color: white;
-      text-shadow: 2px 3px 1px rgba(0, 0, 0, 0.2);
-    }
   }
 `;
 
@@ -95,12 +89,6 @@ const StyledA = styled.a`
   transition: all 0.2s ease-in;
   ${Trigger}:hover & {
     color: white;
-    &::after {
-      content: '  ►';
-      font-size: ${props => Math.ceil(props.height / 2) + 5}px;
-      color: white;
-      text-shadow: 2px 3px 1px rgba(0, 0, 0, 0.2);
-    }
   }
 `;
 

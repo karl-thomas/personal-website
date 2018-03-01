@@ -184,7 +184,7 @@ const FullPageCard = css`
     width: 100%;
   }
   & ${Excerpt} {
-    font-size: calc(0.8rem + 0.35vw);
+    font-size: calc(0.8rem + 0.75vw);
   }
   & ${Post} {
     width: 100%;
@@ -201,7 +201,7 @@ const FullPageCard = css`
     border-top-left-radius: inherit;
     border-bottom-left-radius: inherit;
     height: 99%;
-    width: calc(90% - 22vw);
+    width: 50%;
     left: 0;
     & .post-image {
       width: 100%;

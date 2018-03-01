@@ -35,7 +35,7 @@ class SideBar extends PureComponent {
   transitionedUl = (
     <ContactUL startPos={this.props.startPos}>
       <Li startPos={this.props.startPos} onClick={this.props.changeToResume}>
-        <Link color="purple" width="200" height="40">
+        <Link color="purple" width="160" height="40">
           <BarHeader>Back</BarHeader>
         </Link>
       </Li>
@@ -120,6 +120,7 @@ const Li = styled.li`
 `;
 
 const BarHeader = styled.h1`
+  font-size: 190%;
   display: inline-block;
   margin: 0px;
   color: white;
