@@ -85,7 +85,7 @@ const NavOptions = styled.div`
   ${transition};
   position: absolute;
   bottom: 0px;
-  left: 3vw;
+  left: 4vw;
   height: 60%;
   text-align: bottom;
   max-width: 100%;
