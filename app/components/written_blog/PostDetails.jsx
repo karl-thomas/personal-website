@@ -189,6 +189,10 @@ const Wrap = styled.article`
       ${generalHeaders};
     }
 
+    & code {
+      font-size: initial;
+    }
+
     & h3 {
       font-size: 2.7rem;
       ${media.phone`
