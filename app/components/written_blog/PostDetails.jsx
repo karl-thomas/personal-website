@@ -4,7 +4,6 @@ import styled, { css } from 'styled-components';
 import Prism from 'prismjs';
 // import sanitize from 'sanitize-html';
 import media from '../utilities';
-import { GHOST_ADDRESS } from '../../scripts/secret';
 
 class PostDetails extends Component {
   static propTypes = {

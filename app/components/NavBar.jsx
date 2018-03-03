@@ -17,12 +17,7 @@ class NavBar extends Component {
   render() {
     return (
       <Top startPos={this.props.startPos}>
-        <Chicago
-          startPos={this.props.startPos}
-          height="170px"
-          src="/public/img/Chicago.svg"
-          alt="chicago line drawing"
-        />
+        <Chicago startPos={this.props.startPos} src="/public/img/Chicago.svg" alt="chicago line drawing" />
         <Nav startPos={this.props.startPos}>
           <NavOptions startPos={this.props.startPos}>
             <NavLink data-active={this.isActive('written')} className="nav-link" to="/blog">
@@ -43,7 +38,8 @@ const transition =
 
 const Chicago = styled.img`
   position: absolute;
-  top: -35px;
+  height: 280px;
+  top: -142px;
   left: 300px;
   z-index: -99;
   ${transition};

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { array } from 'prop-types';
 import PostCard from './PostCard';
+import media from '../utilities';
 
 class PostList extends Component {
   static propTypes = {
@@ -82,6 +83,8 @@ const BigMessage = styled.h1`
   margin: 0;
   line-height: 15vw;
   text-shadow: -4px 0px hsla(157, 31%, 48%, 1);
+  ${media.phone`    font-size: 28vw;
+    line-height: 25vh;`};
 `;
 
 const SearchInput = styled.input`
