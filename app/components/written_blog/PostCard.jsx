@@ -62,7 +62,7 @@ class PostCard extends Component {
   determineExcerpt = () =>
     this.props.searchTerm && this.props.searchTerm !== '' ? this.findMatch() : this.props.custom_excerpt;
 
-  tagsToS = this.props.tags.map(tag => tag.name).join(' ');
+  tagsToS = this.props.tags.map(tag => tag.name).join(', ');
 
   render() {
     return (
