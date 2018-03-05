@@ -40,7 +40,7 @@ const Chicago = styled.img`
   position: absolute;
   height: 280px;
   top: -142px;
-  left: 300px;
+  left: 310px;
   z-index: -99;
   ${transition};
   ${props => (props.startPos ? ` transform: translate(0px, 0px)` : ` transform: translate(100vw, 0px)`)};
