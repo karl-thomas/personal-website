@@ -153,7 +153,6 @@ const Svg = styled.img`
 `;
 
 const Image = styled.div`
-  background: linear-gradient(to right, transparent, #50e5b7);
   border-bottom-right-radius: inherit;
   border-top-right-radius: inherit;
   position: absolute;
