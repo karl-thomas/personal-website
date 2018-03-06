@@ -77,10 +77,11 @@ const Title = styled.h1`
 `;
 
 const Hero = styled.figure`
-  height: 100%;
+  max-height: 280px;
+  max-width: calc(97vw - 210px);
+  width: calc(100% + 8vw);
   transition: all 0.5s ease-out;
   margin: 0 -4vw -4em -4vw;
-  max-width: calc(97vw - 210px);
   display: flex;
   flex-flow: row wrap;
   z-index: 0;
