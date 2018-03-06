@@ -50,13 +50,17 @@ const Chicago = styled.img`
 `;
 const Top = styled.div`
   height: 140px;
-  position: fixed;
+
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   ${transition};
   ${props =>
     props.startPos
-      ? `border-bottom: solid #6e567b 21px; transform: translate(0px, 0px); `
-      : `border-bottom: solid #52e5b7 21px; transform: translate(0px, calc(91vh - 140px)); `};
+      ? `
+      position:relative;
+      border-bottom: solid #6e567b 21px; transform: translate(0px, 0px); `
+      : `
+      position:fixed;
+      border-bottom: solid #52e5b7 21px; transform: translate(0px, calc(91vh - 140px)); `};
 `;
 
 const Nav = styled.div`
