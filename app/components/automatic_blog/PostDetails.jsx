@@ -5,7 +5,7 @@ import InsightRenderer from './InsightRenderer';
 import Legend from './Legend';
 import Graph from './Graph';
 import Loader from '../Spinner';
-import { BASE } from '../../scripts/secret';
+import BASE from '../../scripts/secret';
 
 class PostDetails extends Component {
   state = {

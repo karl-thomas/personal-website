@@ -4,7 +4,7 @@ import AutomaticPostCard from './PostCard';
 import AutomaticPostDetails from './PostDetails';
 import { PostWrapper as Wrapper } from '../shared/StyledComponents';
 import Loader from '../Spinner';
-import { BASE } from '../../scripts/secret';
+import BASE from '../../scripts/secret';
 
 class PostContainer extends Component {
   static propTypes = {

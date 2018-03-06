@@ -61,6 +61,7 @@ const Top = styled.div`
       : `
       position:fixed;
       border-bottom: solid #52e5b7 21px; transform: translate(0px, calc(91vh - 140px)); `};
+  ${media.phone`display:none;`};
 `;
 
 const Nav = styled.div`
