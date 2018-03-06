@@ -78,6 +78,7 @@ const Title = styled.h1`
 
 const Hero = styled.figure`
   max-height: 280px;
+
   max-width: calc(97vw - 210px);
   width: calc(100% + 8vw);
   transition: all 0.5s ease-out;
@@ -88,6 +89,7 @@ const Hero = styled.figure`
   box-shadow: rgba(66, 45, 83, 0.3) 0px 4px 7px 1px;
 
   & img {
+    background: #444;
     width: 60%;
     justify-content: center;
     object-fit: cover;

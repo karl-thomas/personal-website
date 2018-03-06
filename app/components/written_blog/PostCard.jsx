@@ -153,7 +153,6 @@ const Svg = styled.img`
 `;
 
 const Image = styled.div`
-  border-bottom-right-radius: inherit;
   border-top-right-radius: inherit;
   position: absolute;
   z-index: 0;
@@ -163,6 +162,7 @@ const Image = styled.div`
   width: 40%;
   overflow: hidden;
   & > .post-image {
+    background: #444;
     border-bottom-right-radius: inherit;
     border-top-right-radius: inherit;
     height: 100%;
