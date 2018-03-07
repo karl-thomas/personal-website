@@ -126,24 +126,30 @@ class Graph extends Component {
         .sort((a, b) => new Date(a.date) - new Date(b.date))
     }));
 
-    const z = d3
-      .scaleOrdinal()
-      .domain(streams.map(c => c.id))
-      .range(streams.map(c => colors[c.id]));
+    // x-axis TIME
 
     x.domain(d3.extent(data, d => d.date));
 
+    // y-axis ACTIVITY
     y.domain([
       d3.min(streams, c => d3.min(c.values, d => d.contributions)),
       d3.max(streams, c => d3.max(c.values, d => d.contributions + 2))
     ]);
 
+    // z-axis COLOR
+    const z = d3
+      .scaleOrdinal()
+      .domain(streams.map(c => c.id))
+      .range(streams.map(c => colors[c.id]));
+
+    // apply horizontal axis
     svg.g
       .append('g')
       .attr('class', 'axis axis--x')
       .attr('transform', `translate(0,${svg.height})`)
       .call(d3.axisBottom(x));
 
+    // apply vertical axis, with text
     svg.g
       .append('g')
       .attr('class', 'axis axis--y')
@@ -167,7 +173,6 @@ class Graph extends Component {
       .attr('class', d => `line ${d.id}`)
       .attr('d', d => line(d.values))
       .style('stroke', d => z(d.id));
-
     stream
       .append('text')
       .datum(d => ({ id: d.id, value: d.values[d.values.length - 1] }))

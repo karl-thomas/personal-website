@@ -21,7 +21,5 @@ renderApp();
 if (module.hot) {
   // when the top level component changes, reload it.
   // the smaller components will reload themselves.
-  module.hot.accept('./App', () => {
-    renderApp();
-  });
+  module.hot.accept('./App', () => renderApp());
 }

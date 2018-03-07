@@ -8,24 +8,24 @@ import Link from './shared/PanningLink';
 
 class SideBar extends PureComponent {
   static propTypes = {
-    parentClickHandler: func,
+    changeToResume: func,
     startPos: bool
   };
 
   startingUl = (
     <ContactUL startPos={this.props.startPos}>
-      <Li startPos={this.props.startPos} onClick={this.props.parentClickHandler}>
-        <Link color="green" width="200" height="40">
+      <Li startPos={this.props.startPos} onClick={this.props.changeToResume}>
+        <Link color="green" width="160" height="40">
           <BarHeader>Resume</BarHeader>
         </Link>
       </Li>
       <Li>
-        <Link to="https://github.com/karl-thomas" width="200" height="40">
+        <Link to="https://github.com/karl-thomas" width="160" height="40">
           <BarHeader>Github</BarHeader>
         </Link>
       </Li>
       <Li>
-        <Link to="https://www.linkedin.com/in/karl-thomas/" width="200" height="40">
+        <Link to="https://www.linkedin.com/in/karl-thomas/" width="160" height="40">
           <BarHeader>LinkedIn</BarHeader>
         </Link>
       </Li>
@@ -34,8 +34,8 @@ class SideBar extends PureComponent {
 
   transitionedUl = (
     <ContactUL startPos={this.props.startPos}>
-      <Li startPos={this.props.startPos} onClick={this.props.parentClickHandler}>
-        <Link color="purple" width="200" height="40">
+      <Li startPos={this.props.startPos} onClick={this.props.changeToResume}>
+        <Link color="purple" width="160" height="40">
           <BarHeader>Back</BarHeader>
         </Link>
       </Li>
@@ -58,24 +58,23 @@ const SideWrap = styled.div`
   ${props =>
     props.startPos /* true: top left, false: bottom right */
       ? `background-color: ${colors.torq};
-         transform: translate(3vw,0vh);
+         transform: translate(calc(97vw - 210px),0vh);
          box-shadow:-2px 0px 6px 3px rgba(0, 0, 0, 0.1);`
       : `background-color: ${colors.purp};
-         transform: translate(calc(97vw - 250px),0vh);
+         transform: translate(calc(97vw - 210px),0vh);
          box-shadow:2px 0px 6px 3px rgba(0, 0, 0, 0.1);`};
   z-index: 1000;
   -webkit-font-smoothing: antialiased;
   position: fixed;
   padding: 0em 1em;
-  width: 250px;
+  width: 210px;
   height: 100vh;
   ${transition};
   ${media.phone`
     background-color: ${colors.torq};
-    transform: translate(3vw,0vh);
+    transform: translate(0,0);
     box-shadow:-2px 0px 6px 3px rgba(0, 0, 0, 0.1);
     box-shadow: 2px 0px 6px 3px rgba(0, 0, 0, 0.1);
-    left: -10px;
     width: 100%;
     height: 112px;
     padding: .5em;
@@ -84,9 +83,9 @@ const SideWrap = styled.div`
 `;
 
 const Header = styled.h1`
-  ${props => (props.startPos ? `transform: translate(0px,1rem);` : ` transform: translate(0px,77vh);`)};
+  ${props => (props.startPos ? `transform: translate(0px,1rem);` : ` transform: translate(0px,72vh);`)};
   width: 100%;
-  padding-left: 10px;
+  padding-left: 0px;
   color: white;
   display: block;
   position: relative;
@@ -121,6 +120,7 @@ const Li = styled.li`
 `;
 
 const BarHeader = styled.h1`
+  font-size: 190%;
   display: inline-block;
   margin: 0px;
   color: white;

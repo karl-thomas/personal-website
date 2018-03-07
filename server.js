@@ -10,7 +10,7 @@ const renderHTMLTemplate = require('./app/scripts/renderHtmlTemplate');
 const { createElement } = require('react');
 const { renderToString } = require('react-dom/server');
 const { StaticRouter } = require('react-router-dom');
-const App = require('./js/App').default;
+const App = require('./app/App').default;
 
 // ssr styled components
 const styled = require('styled-components');
@@ -23,6 +23,8 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const compression = require('compression');
 const webpack = require('webpack');
 const config = require('./webpack.config');
+
+const writtenAPIRoutes = require('./app/routes/api');
 
 // set port
 const port = 8080;
@@ -40,36 +42,44 @@ if (process.env.NODE_ENV === 'development') {
   );
   server.use(webpackHotMiddleware(compiler));
 }
+
 server.use('/public', express.static('./public'));
+
+// use routes
+server.use(writtenAPIRoutes);
 
 // middleware for ssr render
 server.use((req, res) => {
-  const context = {};
+  // not an api route
+  if (!req.originalUrl.includes('api')) {
+    const context = {};
 
-  // wrap style/router provider around application
-  // render body and styles.
-  const body = renderToString(
-    createElement(
-      styled.StyleSheetManager,
-      { sheet: sheet.instance },
-      createElement(StaticRouter, { location: req.url, context }, createElement(App))
-    )
-  );
+    // wrap style/router provider around application
+    // render body and styles.
+    const body = renderToString(
+      createElement(
+        styled.StyleSheetManager,
+        { sheet: sheet.instance },
+        createElement(StaticRouter, { location: req.url, context }, createElement(App))
+      )
+    );
 
-  if (context.url) {
-    res.redirect(301, context.url);
+    if (context.url) {
+      res.redirect(301, context.url);
+    }
+
+    // retrieves a string of styl tags
+    const styles = sheet.getStyleTags();
+
+    // add body and styles to the template.
+    const finalSsrRender = renderHTMLTemplate(body, styles);
+
+    res.write(finalSsrRender);
+    res.end();
   }
-
-  // retrieves a string of styl tags
-  const styles = sheet.getStyleTags();
-
-  // add body and styles to the template.
-  const finalSsrRender = renderHTMLTemplate(body, styles);
-
-  res.write(finalSsrRender);
-  res.end();
 });
 
 // start the server
-console.log(`listening on ${port}`);
-server.listen(port);
+server.listen(port, () => {
+  console.log(`🌎  ==> now listening on PORT ${port}!`);
+});

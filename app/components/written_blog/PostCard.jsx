@@ -13,11 +13,13 @@ class PostCard extends Component {
     published_at: string,
     slug: string,
     tags: array,
-    custom_excerpt: string
+    custom_excerpt: string,
+    searchTerm: string,
+    html: string
   };
 
-  shouldComponentUpdate() {
-    return false;
+  componentDidUpdate() {
+    this.findMatch();
   }
 
   formattedDate = () => {
@@ -29,7 +31,38 @@ class PostCard extends Component {
     });
   };
 
-  tagsToS = this.props.tags.map(tag => tag.name).join(' ');
+  strip = html => {
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    return doc.body.textContent || '';
+  };
+
+  // search through text for matches to search term, display them in box
+  findMatch = () => {
+    const re = new RegExp(this.props.searchTerm, 'i');
+    const searchString = this.strip(`${this.props.title} ${this.props.custom_excerpt} ${this.props.html}`);
+    const matchArray = re.exec(searchString);
+    const first = matchArray.index;
+    const last = first + matchArray[0].length;
+    return (
+      <span>
+        {`...${searchString.substring(first - 25, first)}`}
+        <Highlight>{searchString.substring(first, last)}</Highlight>
+        {`${searchString.substring(last, last + 80)}...`}
+      </span>
+    );
+  };
+
+  /* function for read time 
+    read time is the word count divided average 
+    words per minute by adult readers ~250
+    ... i just need to figure out word count.  
+  */
+  readTime = post => post.wordCount / 250;
+
+  determineExcerpt = () =>
+    this.props.searchTerm && this.props.searchTerm !== '' ? this.findMatch() : this.props.custom_excerpt;
+
+  tagsToS = this.props.tags.map(tag => tag.name).join(', ');
 
   render() {
     return (
@@ -37,13 +70,17 @@ class PostCard extends Component {
         <Wrap className="post-list">
           <Post>
             <Image>
-              <img className="post-image" src={this.props.feature_image} alt="featured post" />
+              <img
+                className="post-image"
+                src={`http://${process.env.GHOST_ADDRESS}${this.props.feature_image}`}
+                alt="featured post"
+              />
             </Image>
             <PostContent>
               <Text>
                 <Tags>{this.tagsToS}</Tags>
                 <Title>{this.props.title}</Title>
-                <Excerpt>{this.props.custom_excerpt}</Excerpt>
+                <Excerpt>{this.determineExcerpt()}</Excerpt>
               </Text>
               <Svg src="public/img/post-card.svg" alt="svg graphic for style" />
             </PostContent>
@@ -56,6 +93,9 @@ class PostCard extends Component {
     );
   }
 }
+
+// const transition =
+// '-webkit-transition: all 0.7s ease-out; -moz-transition: all 0.7s ease-out; -ms-transition: all 0.7s ease-out; -o-transition: all 0.7s ease-out; transition: all 0.7s ease-out;';
 
 const Tags = styled.div`
   display: inline-block;
@@ -81,23 +121,13 @@ const TimeBox = styled.aside`
   width: 100%;
 `;
 
-const PostContent = styled.section`
-  height: 100%;
-  padding: 0 0 0 0;
-  overflow: scroll;
-  display: flex;
-  flex-flow: row wrap;
-  width: calc(60% + 50px);
-`;
-
 const Post = styled.article`border-radius: inherit;`;
 
 const Wrap = wrap.extend`
-  width:85%;
+  width:100%;
   display: flex;
   flex-flow: column;
   position: relative;
-  margin:auto;
   margin-bottom:35px;
   z-index: -30;
 `;
@@ -108,9 +138,12 @@ const Title = title.extend`
   margin:0;
   padding:0; 
   font-size: calc(1.5vw + 5px);
+  
   ${media.phone`
     font-size: calc(4.5vw);
-    `};
+  `};
+
+   
 `;
 
 const Svg = styled.img`
@@ -120,7 +153,6 @@ const Svg = styled.img`
 `;
 
 const Image = styled.div`
-  border-bottom-right-radius: inherit;
   border-top-right-radius: inherit;
   position: absolute;
   z-index: 0;
@@ -130,6 +162,7 @@ const Image = styled.div`
   width: 40%;
   overflow: hidden;
   & > .post-image {
+    background: #444;
     border-bottom-right-radius: inherit;
     border-top-right-radius: inherit;
     height: 100%;
@@ -140,32 +173,24 @@ const Image = styled.div`
   }
 `;
 
-// css for making a card the full fit the container
 const FullPageCard = css`
   flex-basis: 100%;
   & ${Title} {
     font-size: calc(2.2vw + 5px);
+    margin-bottom: 1rem;
   }
   & ${Wrap} {
-    width: 92%;
+    width: 100%;
   }
   & ${Excerpt} {
-    font-size: calc(0.8rem + 0.35vw);
+    font-size: calc(0.8rem + 0.75vw);
   }
   & ${Post} {
     width: 100%;
     height: 260px;
-    & ${PostContent} {
-      flex-flow: row-reverse wrap;
-      z-index: 1;
-      width: calc(40% + 52px);
-      position: absolute;
-      top: 0;
-      right: 0;
-      padding-right: 1rem;
-    }
   }
   & ${Svg} {
+    margin-top: -5px;
     transform: scaleX(-1);
   }
   & ${Image} {
@@ -175,7 +200,7 @@ const FullPageCard = css`
     border-top-left-radius: inherit;
     border-bottom-left-radius: inherit;
     height: 99%;
-    width: 60%;
+    width: 55%;
     left: 0;
     & .post-image {
       width: 100%;
@@ -185,11 +210,12 @@ const FullPageCard = css`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  flex-basis: 50%;
+  flex-basis: 48%;
+
+  ${media.desktop`${FullPageCard}`};
   &:first-child {
     ${FullPageCard};
   }
-  ${media.desktop`${FullPageCard}`};
 `;
 
 const Text = styled.section`
@@ -198,6 +224,48 @@ const Text = styled.section`
   ${StyledLink}:hover & {
     animation: up-bump 0.4s ease;
   }
+  background-color: white;
+  box-shadow: -10px 1px 10px white;
 `;
+
+const PostContent = styled.section`
+  height: 100%;
+  padding: 0 0 0 0;
+  overflow: scroll;
+  display: flex;
+  flex-flow: row wrap;
+  width: calc(60% + 50px);
+  ${StyledLink}:first-child & {
+    flex-flow: row-reverse wrap;
+    z-index: 100;
+    width: calc(calc(30% + 15vw) + 52px);
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-right: 1rem;
+    ${media.xSmall`
+    width: 60vw;
+  `};
+  }
+  ${media.xSmall`
+    width: 60vw;
+  `};
+
+  ${media.desktop`
+    flex-flow: row-reverse wrap;
+    z-index: 1;
+    width: calc(calc(30% + 15vw) + 52px);
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-right: 1rem;
+        padding-left:1rem;
+        & section {
+          padding-left:0;
+        }}
+    `};
+`;
+
+const Highlight = styled.span`background-color: yellow;`;
 
 export default PostCard;

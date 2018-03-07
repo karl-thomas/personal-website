@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import InsightRenderer from './InsightRenderer';
 import Legend from './Legend';
 import Graph from './Graph';
+import Loader from '../Spinner';
+import { BASE } from '../../scripts/secret';
 
 class PostDetails extends Component {
   state = {
@@ -20,7 +22,12 @@ class PostDetails extends Component {
 
   getPostData = () => {
     const url = `http://localhost:3000/posts/${this.props.id}`;
-    fetch(url)
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        Authorization: `Basic ${BASE}`
+      }
+    })
       .then(response => response.json())
       .then(json => this.setState({ apiData: json }));
   };
@@ -63,7 +70,7 @@ class PostDetails extends Component {
         </div>
       );
     } else {
-      postContent = 'LOADIN';
+      postContent = <Loader />;
     }
     return <div>{postContent}</div>;
   }
