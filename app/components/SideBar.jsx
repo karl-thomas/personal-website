@@ -65,6 +65,7 @@ const SideWrap = styled.div`
          box-shadow:2px 0px 6px 3px rgba(0, 0, 0, 0.1);`};
   z-index: 1000;
   -webkit-font-smoothing: antialiased;
+  top: 0;
   position: fixed;
   padding: 0em 1em;
   width: 210px;

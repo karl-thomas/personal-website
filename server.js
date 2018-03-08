@@ -25,6 +25,7 @@ const webpack = require('webpack');
 const config = require('./webpack.config');
 
 const writtenAPIRoutes = require('./app/routes/api');
+const automaticBlogAPIRoutes = require('./app/routes/automaticBlog');
 
 // set port
 const port = 8080;
@@ -47,6 +48,7 @@ server.use('/public', express.static('./public'));
 
 // use routes
 server.use(writtenAPIRoutes);
+server.use(automaticBlogAPIRoutes);
 
 // middleware for ssr render
 server.use((req, res) => {

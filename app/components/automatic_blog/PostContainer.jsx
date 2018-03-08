@@ -4,7 +4,7 @@ import AutomaticPostCard from './PostCard';
 import AutomaticPostDetails from './PostDetails';
 import { PostWrapper as Wrapper } from '../shared/StyledComponents';
 import Loader from '../Spinner';
-import { BASE } from '../../scripts/secret';
+import API from '../../scripts/automaticAPI';
 
 class PostContainer extends Component {
   static propTypes = {
@@ -20,14 +20,21 @@ class PostContainer extends Component {
   // production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com // hey change this.
   componentDidMount() {
     if (!this.props.postID.id) {
-      this.getPostData('http://localhost:3000/posts');
+      this.getPostData();
     }
   }
 
-  getPostData = url => {
-    fetch(url, { headers: { Authorization: `Basic ${BASE}` } })
-      .then(response => response.json())
-      .then(json => this.setState({ apiData: json }))
+  getPostData = () => {
+    API(process.env)
+      .Client.Posts.all()
+      .then(response => {
+        this.setState(() => {
+          console.log(response.data);
+          return {
+            apiData: response.data
+          };
+        });
+      })
       .catch(error => {
         console.error('axios ERROR', error); // eslint-disable-line no-console
       });

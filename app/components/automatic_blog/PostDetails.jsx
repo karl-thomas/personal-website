@@ -5,7 +5,7 @@ import InsightRenderer from './InsightRenderer';
 import Legend from './Legend';
 import Graph from './Graph';
 import Loader from '../Spinner';
-import { BASE } from '../../scripts/secret';
+import API from '../../scripts/automaticAPI';
 
 class PostDetails extends Component {
   state = {
@@ -18,18 +18,11 @@ class PostDetails extends Component {
     this.getPostData();
   }
 
-  // production.mqpdw8dnfc.us-east-1.elasticbeanstalk.com
-
   getPostData = () => {
-    const url = `http://localhost:3000/posts/${this.props.id}`;
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        Authorization: `Basic ${BASE}`
-      }
-    })
-      .then(response => response.json())
-      .then(json => this.setState({ apiData: json }));
+    API(process.env)
+      .Client.Posts.find(this.props.id)
+      .then(res => this.setState({ apiData: res.data }))
+      .catch(err => console.error('axios error', err)); // eslint-disable-line no-console
   };
 
   showRecentProjGraph = (event: SyntheticEvent) => {

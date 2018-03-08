@@ -20,10 +20,10 @@ class NavBar extends Component {
         <Chicago startPos={this.props.startPos} src="/public/img/Chicago.svg" alt="chicago line drawing" />
         <Nav startPos={this.props.startPos}>
           <NavOptions startPos={this.props.startPos}>
-            <NavLink data-active={this.isActive('written')} className="nav-link" to="/blog">
+            <NavLink data-active={this.isActive('written')} className="nav-link" to="/">
               Tech Blog
             </NavLink>
-            <NavLink data-active={this.isActive('auto')} className="nav-link" to="/">
+            <NavLink data-active={this.isActive('auto')} className="nav-link" to="/auto/posts">
               Automatic Blog
             </NavLink>
           </NavOptions>
@@ -50,13 +50,18 @@ const Chicago = styled.img`
 `;
 const Top = styled.div`
   height: 140px;
-  position: fixed;
+
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   ${transition};
   ${props =>
     props.startPos
-      ? `border-bottom: solid #6e567b 21px; transform: translate(0px, 0px); `
-      : `border-bottom: solid #52e5b7 21px; transform: translate(0px, calc(91vh - 140px)); `};
+      ? `
+      position:relative;
+      border-bottom: solid #6e567b 21px; transform: translate(0px, 0px); `
+      : `
+      position:fixed;
+      border-bottom: solid #52e5b7 21px; transform: translate(0px, calc(91vh - 140px)); `};
+  ${media.phone`display:none;`};
 `;
 
 const Nav = styled.div`
