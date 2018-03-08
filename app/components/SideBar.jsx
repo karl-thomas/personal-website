@@ -2,6 +2,7 @@
 
 import React, { PureComponent } from 'react';
 import { func, bool } from 'prop-types';
+import { Link as NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import media, { colors } from './utilities';
 import Link from './shared/PanningLink';
@@ -45,7 +46,9 @@ class SideBar extends PureComponent {
   render() {
     return (
       <SideWrap startPos={this.props.startPos}>
-        <Header startPos={this.props.startPos}>Karl Thomas</Header>
+        <NavLink style={{ textDecoration: 'none' }} to="/">
+          <Header startPos={this.props.startPos}>Karl Thomas</Header>{' '}
+        </NavLink>
         {this.props.startPos ? this.startingUl : this.transitionedUl}
       </SideWrap>
     );
@@ -91,6 +94,7 @@ const Header = styled.h1`
   display: block;
   position: relative;
   font-size: 280%;
+  font-decoration: none;
   margin-top: 0px;
   -webkit-transition: all 0.4s ease-out;
   ${transition};

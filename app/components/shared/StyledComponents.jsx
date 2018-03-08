@@ -19,6 +19,7 @@ export const PostWrapper = styled.div`
       width:100%;
       padding-right:2vw;
       padding-left:2vw;
+      padding-top: calc(2em + 112px);
       overflow-x:hidden;
     `};
 `;

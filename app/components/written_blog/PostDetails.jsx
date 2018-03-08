@@ -123,7 +123,7 @@ const PostContent = css`
   animation-delay: 1s;
   margin-right: 0;
   top: 65px;
-  padding: 1.5em calc(2rem + 4vw);
+  padding: 1.5em calc(1rem + 5vw);
   position: relative;
   font-size: 21px;
   font-weight: 350;
@@ -161,8 +161,8 @@ const generalHeaders = css`
 const codeBlocks = css`
   font-size: 1.2rem;
   padding: 1.2rem;
-  padding-left: calc(2rem + 4vw);
-  margin: 0 calc(-2rem + -4vw);
+  padding-left: calc(1rem + 5vw);
+  margin: 0 calc(-1rem + -5vw);
   ${media.phone`
         margin: 0 -2rem;
         padding-left: 2rem;
