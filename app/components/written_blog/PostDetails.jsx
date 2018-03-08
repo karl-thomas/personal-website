@@ -190,7 +190,10 @@ const Wrap = styled.article`
     }
 
     & code {
+      color: #20735d;
       font-size: initial;
+      background-color: #f6f6fd;
+      padding: 2px 4px;
     }
 
     & h3 {
