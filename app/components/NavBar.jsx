@@ -20,10 +20,10 @@ class NavBar extends Component {
         <Chicago startPos={this.props.startPos} src="/public/img/Chicago.svg" alt="chicago line drawing" />
         <Nav startPos={this.props.startPos}>
           <NavOptions startPos={this.props.startPos}>
-            <NavLink data-active={this.isActive('written')} className="nav-link" to="/blog">
+            <NavLink data-active={this.isActive('written')} className="nav-link" to="/">
               Tech Blog
             </NavLink>
-            <NavLink data-active={this.isActive('auto')} className="nav-link" to="/">
+            <NavLink data-active={this.isActive('auto')} className="nav-link" to="/auto/posts">
               Automatic Blog
             </NavLink>
           </NavOptions>
