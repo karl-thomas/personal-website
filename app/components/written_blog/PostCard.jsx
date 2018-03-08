@@ -176,7 +176,7 @@ const Image = styled.div`
 const FullPageCard = css`
   flex-basis: 100%;
   & ${Title} {
-    font-size: calc(2.2vw + 5px);
+    font-size: calc(1.7vw + 10px);
     margin-bottom: 1rem;
   }
   & ${Wrap} {
@@ -244,11 +244,11 @@ const PostContent = styled.section`
     right: 0;
     padding-right: 1rem;
     ${media.xSmall`
-    width: 60vw;
+    width:80vw;
   `};
   }
   ${media.xSmall`
-    width: 60vw;
+    width: 80vw;
   `};
 
   ${media.desktop`

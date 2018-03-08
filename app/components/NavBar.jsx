@@ -64,7 +64,7 @@ const Chicago = styled.img`
 const Top = styled.div`
   height: 140px;
   overflow: hidden;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  rgba(0, 0, 0, 0.2) 2px 4px 5px -1px;
   ${transition};
   ${props =>
     props.startPos
