@@ -28,11 +28,8 @@ class PostContainer extends Component {
     API(process.env)
       .Client.Posts.all()
       .then(response => {
-        this.setState(() => {
-          console.log(response.data);
-          return {
-            apiData: response.data
-          };
+        this.setState({
+          apiData: response.data
         });
       })
       .catch(error => {

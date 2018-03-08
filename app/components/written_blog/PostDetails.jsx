@@ -96,7 +96,7 @@ const Hero = styled.figure`
     animation: detailsTitleMove 1s 1;
     animation-timing-function: ease-out;
     color: #444;
-    font-size: calc(3vw - 30%);
+    font-size: calc(2.5vw - 30%);
     padding: 2rem;
     line-height: 1.35;
     background-color: white;
@@ -123,7 +123,7 @@ const PostContent = css`
   animation-delay: 1s;
   margin-right: 0;
   top: 65px;
-  padding: 1.5em calc(2rem + 4vw);
+  padding: 1.5em calc(1rem + 5vw);
   position: relative;
   font-size: 21px;
   font-weight: 350;
@@ -138,11 +138,21 @@ const PostContent = css`
 `;
 
 const generalText = css`
-  font-family: medium-content-serif-font, Georgia, Cambria, 'Times New Roman', Times, serif;
+  font-size: calc(11px + 0.7vw);
+  ${media.tablet`font-size: calc(17px + 0.1vw);`} font-family: medium-content-serif-font,
+    Georgia,
+    Cambria,
+    'Times New Roman',
+    Times,
+    serif;
+  padding-left: 3vw;
+  padding-right: 3vw;
 `;
 
 const generalHeaders = css`
-  margin-left: -2rem;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: calc(-2rem + 3vw);
   font-weight: 350;
   ${media.phone`
     margin-left:0;`};
@@ -151,8 +161,8 @@ const generalHeaders = css`
 const codeBlocks = css`
   font-size: 1.2rem;
   padding: 1.2rem;
-  padding-left: calc(2rem + 4vw);
-  margin: 0 calc(-2rem + -4vw);
+  padding-left: calc(1rem + 5vw);
+  margin: 0 calc(-1rem + -5vw);
   ${media.phone`
         margin: 0 -2rem;
         padding-left: 2rem;
@@ -162,6 +172,12 @@ const codeBlocks = css`
 
 const lists = css`
   -webkit-padding-start: 0;
+  margin-right: 3vw;
+  margin-left: 3vw;
+  & li p {
+    padding-left: 0;
+    padding-right: 0;
+  }
   ${media.phone`
   -webkit-padding-start: inherit;
   `};
@@ -177,7 +193,7 @@ const Wrap = styled.article`
     & pre {
       ${codeBlocks};
       & code {
-        font-size: initial;
+        color: initial;
         background-color: initial;
         padding: 0;
       }
@@ -227,6 +243,17 @@ const Wrap = styled.article`
     }
     & img {
       width: 100%;
+    }
+    & blockquote {
+      border-left: solid #50e7b7 3px;
+      margin-right: 3vw;
+      margin-left: 3vw;
+      padding-left: 20px;
+      font-size: 19px;
+      & p {
+        padding-left: 0;
+        padding-right: 0;
+      }
     }
   }
 `;

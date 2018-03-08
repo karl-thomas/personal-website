@@ -17,6 +17,7 @@ class NavBar extends Component {
   render() {
     return (
       <Top startPos={this.props.startPos}>
+        <Sun startPos={this.props.startPos} src="/public/img/sun.svg" alt="line art of the sun" />
         <Chicago startPos={this.props.startPos} src="/public/img/Chicago.svg" alt="chicago line drawing" />
         <Nav startPos={this.props.startPos}>
           <NavOptions startPos={this.props.startPos}>
@@ -36,11 +37,23 @@ class NavBar extends Component {
 const transition =
   '-webkit-transition: all 0.7s ease-out; -moz-transition: all 0.7s ease-out; -ms-transition: all 0.7s ease-out; -o-transition: all 0.7s ease-out; transition: all 0.7s ease-out;';
 
+const Sun = styled.img`
+  position: absolute;
+  height: 280px;
+  top: -114px;
+  left: 540px;
+  z-index: -99;
+  ${transition};
+  ${props => (props.startPos ? ` transform: translate(0px, 0px)` : ` transform: translate(100vw, 0px)`)};
+  ${media.phone`
+      display:none;
+    `};
+`;
 const Chicago = styled.img`
   position: absolute;
   height: 280px;
   top: -142px;
-  left: 310px;
+  left: 261px;
   z-index: -99;
   ${transition};
   ${props => (props.startPos ? ` transform: translate(0px, 0px)` : ` transform: translate(100vw, 0px)`)};
@@ -50,8 +63,8 @@ const Chicago = styled.img`
 `;
 const Top = styled.div`
   height: 140px;
-
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  rgba(0, 0, 0, 0.2) 2px 4px 5px -1px;
   ${transition};
   ${props =>
     props.startPos
@@ -72,10 +85,7 @@ const Nav = styled.div`
   z-index: 0;
   width: 100vw;
   ${transition};
-  
-  
-  
-  
+
   ${props => (props.startPos ? ` transform: translate(0px, 0px)` : `transform: translate(100vw, 0px)`)};
     
   ${media.phone`display: none;`};

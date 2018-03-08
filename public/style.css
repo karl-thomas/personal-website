@@ -713,9 +713,4 @@ li {
   animation: down-bump 0.4s ease;
 }
 
-blockquote {
-  border-left: solid #50e7b7 3px;
-  margin-left: 0;
-  padding-left: 20px;
-  font-size: 19px;
-}
+
