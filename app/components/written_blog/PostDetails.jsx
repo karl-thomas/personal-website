@@ -176,6 +176,11 @@ const Wrap = styled.article`
     ${PostContent};
     & pre {
       ${codeBlocks};
+      & code {
+        font-size: initial;
+        background-color: initial;
+        padding: 0;
+      }
     }
 
     & p {
