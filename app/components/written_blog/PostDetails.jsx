@@ -47,10 +47,7 @@ class PostDetails extends Component {
         </Top>
         <Title>{this.props.title}</Title>
         <Hero>
-          <img
-            src={`http://${process.env.GHOST_ADDRESS}${this.props.feature_image}`}
-            alt={this.props.title}
-          />
+          <img src={`http://104.236.79.161/${this.props.feature_image}`} alt={this.props.title} />
           <figcaption>{this.props.custom_excerpt}</figcaption>
         </Hero>
         <Wrap dangerouslySetInnerHTML={{ __html: this.state.post }} />

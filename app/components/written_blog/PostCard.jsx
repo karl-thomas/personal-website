@@ -72,7 +72,7 @@ class PostCard extends Component {
             <Image>
               <img
                 className="post-image"
-                src={`http://${process.env.GHOST_ADDRESS}${this.props.feature_image}`}
+                src={`http://104.236.79.161/${this.props.feature_image}`}
                 alt="featured post"
               />
             </Image>
